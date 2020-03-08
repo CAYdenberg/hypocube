@@ -5,12 +5,12 @@ import Shape from '../Shape';
 
 storiesOf('container component', module)
   .add('basic', () => (
-    <Reactscape>
+    <Reactscape pxHeight={900}>
       <Shape />
     </Reactscape>
   ))
   .add('with canvas', () => (
-    <Reactscape useCanvas>
+    <Reactscape pxHeight={900} useCanvas>
       <Shape />
     </Reactscape>
   ));
