@@ -1,35 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { line as d3Line } from 'd3-shape';
-import { ScapeContext } from './Reactscape';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { scaleLinear } from 'd3-scale';
+import { ChartContext } from './Chart';
+import Line from './Line';
 
-const Shape: React.FC<{}> = () => {
-  const { renderer, useCanvas, pxScale } = useContext(ScapeContext);
+interface Props {
+  data: [number, number][];
+  stroke?: string;
+  fill?: string;
+  strokeWidth?: number;
+}
 
-  const data: Array<[number, number]> = [
-    [150, 0],
-    [75, 200],
-    [225, 200],
-  ];
+const Shape: React.FC<Props> = (props) => {
+  const { data } = props;
+  const { cartesianBox, pxBox } = useContext(ChartContext);
 
-  useEffect(() => {
-    if (renderer) {
-      const line = d3Line().context(renderer);
-      renderer.beginPath();
-      renderer.fillStyle = '#000';
-      renderer.strokeStyle = '#000';
-      line(data);
-      renderer.fill();
-      renderer.stroke();
-    }
-  });
+  const convertX = useCallback(
+    (coord: number) =>
+      scaleLinear().domain(cartesianBox.x).range(pxBox.x)(coord),
+    [cartesianBox, pxBox]
+  );
+  const convertY = useCallback(
+    (coord: number) =>
+      scaleLinear().domain(cartesianBox.y).range(pxBox.y.reverse())(coord),
+    [cartesianBox, pxBox]
+  );
 
-  if (useCanvas) {
-    return null;
-  }
+  const pxData = data.map(
+    (point) => [convertX(point[0]), convertY(point[1])] as [number, number]
+  );
 
-  const line = d3Line()(data);
-  if (!line) return null;
-  return <path d={line} />;
+  return <Line path={pxData} {...props} />;
 };
 
 export default Shape;
