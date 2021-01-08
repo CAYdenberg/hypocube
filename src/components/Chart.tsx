@@ -1,3 +1,4 @@
+import { scaleLinear, ScaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 
 export interface Scale {
@@ -9,6 +10,9 @@ export interface ChartState {
   isCanvas: boolean;
   cartesianBox: Scale;
   pxBox: Scale;
+  scaleX: ScaleLinear<number, number, number>;
+  scaleY: ScaleLinear<number, number, number>;
+  containerOffset: [number, number];
   renderer?: CanvasRenderingContext2D | null;
 }
 
@@ -16,7 +20,10 @@ export const ChartContext = React.createContext<ChartState>({
   isCanvas: false,
   cartesianBox: { x: [0, 1], y: [0, 1] },
   pxBox: { x: [0, 1], y: [0, 1] },
+  scaleX: scaleLinear(),
+  scaleY: scaleLinear(),
   renderer: null,
+  containerOffset: [0, 0],
 });
 
 interface Props {
@@ -35,11 +42,17 @@ const Chart: React.FC<Props> = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const renderer = useRef<CanvasRenderingContext2D | null>(null);
+
+  useEffect(() => {
+    const canvasEl = canvasRef.current;
+    renderer.current = canvasEl ? canvasEl.getContext('2d') : null;
+  }, [canvasRef]);
+
   const [pxBox, setPxBox] = useState<Scale>({
     x: [0, 1],
     y: [0, 1],
   });
-  const [renderer, setRenderer] = useState<CanvasRenderingContext2D | null>();
 
   const calculateScales = useCallback(() => {
     const containerEl = containerRef.current;
@@ -64,14 +77,30 @@ const Chart: React.FC<Props> = ({
     };
   }, [containerRef, calculateScales]);
 
-  useEffect(() => {
-    const canvasEl = canvasRef.current;
-    setRenderer(canvasEl ? canvasEl.getContext('2d') : null);
-  }, [canvasRef]);
+  const cartesianBox = view;
+  const scaleX = scaleLinear().domain(cartesianBox.x).range(pxBox.x);
+  const scaleY = scaleLinear()
+    .domain(cartesianBox.y)
+    .range([pxBox.y[1], pxBox.y[0]]);
+  const containerOffset: [number, number] = containerRef.current
+    ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
+    : [0, 0];
+
+  if (renderer.current) {
+    renderer.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
+  }
 
   return (
     <ChartContext.Provider
-      value={{ renderer, isCanvas, pxBox, cartesianBox: view }}
+      value={{
+        renderer: renderer.current,
+        isCanvas,
+        pxBox,
+        cartesianBox,
+        scaleX,
+        scaleY,
+        containerOffset,
+      }}
     >
       <div ref={containerRef} style={{ width: '100%', height }}>
         {isCanvas ? (

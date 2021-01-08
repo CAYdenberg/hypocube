@@ -12,8 +12,8 @@ interface Props {
 const Line: React.FC<Props> = (props) => {
   const { path, stroke, fill, strokeWidth } = {
     stroke: '#000',
-    fill: '#000',
     strokeWidth: 1,
+    fill: null,
     ...props,
   };
 
@@ -24,11 +24,15 @@ const Line: React.FC<Props> = (props) => {
       const line = d3Line().context(renderer);
       renderer.beginPath();
       renderer.strokeStyle = stroke;
-      renderer.fillStyle = fill;
+
       renderer.lineWidth = strokeWidth;
       line(path);
-      renderer.fill();
       renderer.stroke();
+
+      if (fill) {
+        renderer.fillStyle = fill;
+        renderer.fill();
+      }
     }
   });
 
@@ -41,7 +45,12 @@ const Line: React.FC<Props> = (props) => {
     return null;
   }
   return (
-    <path d={line} stroke={stroke} fill={fill} strokeWidth={strokeWidth} />
+    <path
+      d={line}
+      stroke={stroke}
+      fill={fill || 'transparent'}
+      strokeWidth={strokeWidth}
+    />
   );
 };
 
