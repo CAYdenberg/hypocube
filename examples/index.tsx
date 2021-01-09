@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Chart, Handle, Shape } from '../src';
+import { Chart, Handle, Line, XAxis } from '../src';
 
 interface Example {
   name: string;
@@ -16,8 +16,8 @@ const examples: Example[] = [
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
-        <Shape
-          data={[
+        <Line
+          path={[
             [0, 0],
             [25, 75],
             [50, 0],
@@ -34,8 +34,8 @@ const examples: Example[] = [
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
-        <Shape
-          data={[
+        <Line
+          path={[
             [0, 0],
             [25, 75],
             [50, 0],
@@ -54,8 +54,8 @@ const examples: Example[] = [
         isCanvas={isCanvas}
       >
         <Handle onClick={console.log} elementPosition={[0, 0]}>
-          <Shape
-            data={[
+          <Line
+            path={[
               [0, 0],
               [25, 75],
               [50, 0],
@@ -63,6 +63,18 @@ const examples: Example[] = [
             fill="#000"
           />
         </Handle>
+      </Chart>
+    ),
+  },
+  {
+    name: 'Bar chart',
+    render: ({ isCanvas }) => (
+      <Chart
+        height={300}
+        view={{ x: [-10, 110], y: [-10, 110] }}
+        isCanvas={isCanvas}
+      >
+        <XAxis range={[0, 100]} />
       </Chart>
     ),
   },

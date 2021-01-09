@@ -1,5 +1,8 @@
 export { default as Chart } from './components/Chart';
-export { default as Shape } from './components/Shape';
-export { default as Handle } from './components/Handle';
 
-export type { Scale } from './components/Chart';
+export { XAxis } from './components/furniture/Axes';
+
+export { default as Handle } from './components/primitives/Handle';
+export { Line, PxLine } from './components/primitives/Line';
+
+export * from './types';

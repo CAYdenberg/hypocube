@@ -1,15 +1,28 @@
 import React, { useContext, useEffect } from 'react';
 import { line as d3Line } from 'd3-shape';
-import { ChartContext } from './Chart';
+
+import { Point } from '../../types';
+import { ChartContext } from '../Chart';
 
 interface Props {
-  path: [number, number][];
+  path: Point[];
   stroke?: string;
   fill?: string;
   strokeWidth?: number;
 }
 
-const Line: React.FC<Props> = (props) => {
+export const Line: React.FC<Props> = (props) => {
+  const { path } = props;
+  const { scaleX, scaleY } = useContext(ChartContext);
+
+  const pxData = path.map(
+    (point) => [scaleX(point[0]), scaleY(point[1])] as [number, number]
+  );
+
+  return <PxLine {...props} path={pxData} />;
+};
+
+export const PxLine: React.FC<Props> = (props) => {
   const { path, stroke, fill, strokeWidth } = {
     stroke: '#000',
     strokeWidth: 1,
@@ -53,5 +66,3 @@ const Line: React.FC<Props> = (props) => {
     />
   );
 };
-
-export default Line;

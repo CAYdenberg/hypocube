@@ -1,20 +1,6 @@
-import { scaleLinear, ScaleLinear } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-
-export interface Scale {
-  x: [number, number];
-  y: [number, number];
-}
-
-export interface ChartState {
-  isCanvas: boolean;
-  cartesianBox: Scale;
-  pxBox: Scale;
-  scaleX: ScaleLinear<number, number, number>;
-  scaleY: ScaleLinear<number, number, number>;
-  containerOffset: [number, number];
-  renderer?: CanvasRenderingContext2D | null;
-}
+import { Scale, ChartState } from '../types';
 
 export const ChartContext = React.createContext<ChartState>({
   isCanvas: false,

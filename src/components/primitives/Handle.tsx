@@ -1,16 +1,6 @@
 import React, { Fragment, useCallback, useContext } from 'react';
-import Chart, { ChartContext } from './Chart';
-
-type Event = React.MouseEvent<SVGGElement> | React.PointerEvent<SVGGElement>;
-
-interface Interaction {
-  event: Event;
-  elementPosition: [number, number];
-  pointerPosition: [number, number];
-  meta: {
-    [key: string]: string | number | boolean;
-  };
-}
+import { ChartContext } from '../Chart';
+import { Event, Interaction } from '../../types';
 
 interface Props {
   onClick?: (data: Interaction) => void;
