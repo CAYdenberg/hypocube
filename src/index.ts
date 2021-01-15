@@ -1,4 +1,4 @@
-export { default as Chart } from './components/Chart';
+export { default as Chart } from './components/base/Chart';
 
 export { XAxis } from './components/furniture/Axes';
 

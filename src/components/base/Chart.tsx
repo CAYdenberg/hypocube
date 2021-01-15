@@ -1,21 +1,14 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Scale, ChartState } from '../types';
-
-export const ChartContext = React.createContext<ChartState>({
-  isCanvas: false,
-  cartesianBox: { x: [0, 1], y: [0, 1] },
-  pxBox: { x: [0, 1], y: [0, 1] },
-  scaleX: scaleLinear(),
-  scaleY: scaleLinear(),
-  renderer: null,
-  containerOffset: [0, 0],
-});
+import { ChartStyleOptions, Scale } from '../../types';
+import { ChartStateContext } from './ChartState';
+import { ChartStyleProvider } from './ChartStyle';
 
 interface Props {
   height: number;
   isCanvas?: boolean;
   view: Scale;
+  rootStyles: ChartStyleOptions;
 }
 
 const Chart: React.FC<Props> = ({
@@ -23,6 +16,7 @@ const Chart: React.FC<Props> = ({
   children,
   height,
   view,
+  rootStyles,
 }) => {
   const isCanvas = _isCanvas || false;
 
@@ -77,7 +71,7 @@ const Chart: React.FC<Props> = ({
   }
 
   return (
-    <ChartContext.Provider
+    <ChartStateContext.Provider
       value={{
         renderer: renderer.current,
         isCanvas,
@@ -88,18 +82,20 @@ const Chart: React.FC<Props> = ({
         containerOffset,
       }}
     >
-      <div ref={containerRef} style={{ width: '100%', height }}>
-        {isCanvas ? (
-          <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
-            {children}
-          </canvas>
-        ) : (
-          <svg width={pxBox.x[1]} height={pxBox.y[1]}>
-            {children}
-          </svg>
-        )}
-      </div>
-    </ChartContext.Provider>
+      <ChartStyleProvider {...rootStyles}>
+        <div ref={containerRef} style={{ width: '100%', height }}>
+          {isCanvas ? (
+            <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+              {children}
+            </canvas>
+          ) : (
+            <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+              {children}
+            </svg>
+          )}
+        </div>
+      </ChartStyleProvider>
+    </ChartStateContext.Provider>
   );
 };
 

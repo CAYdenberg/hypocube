@@ -21,8 +21,7 @@ export type Event =
   | React.MouseEvent<SVGGElement>
   | React.PointerEvent<SVGGElement>;
 
-export type Contextual<T> = (chartState: ChartState) => T | T;
-
+export type Contextual<T> = T | ((chartState: ChartState) => T);
 export interface Interaction {
   event: Event;
   elementPosition: [number, number];
@@ -36,4 +35,24 @@ export interface Handlers {
   onClick: Event;
   onMouseOver: Event;
   onDrag: Event;
+}
+
+export interface ChartStyleOptions {
+  baseFontSize?: Contextual<number>;
+  axisColor?: Contextual<string>;
+  axisThickness: Contextual<string>;
+  axisTickLength?: Contextual<number>;
+  axisTickOffset?: Contextual<number>;
+  axisTickLabelOffset?: Contextual<number>;
+  axisLabelOffset?: Contextual<number>;
+}
+
+export interface ChartStyleT {
+  baseFontSize: number;
+  axisColor: string;
+  axisThickness: number;
+  axisTickLength: number;
+  axisTickOffset: number;
+  axisTickLabelOffset: number;
+  axisLabelOffset: number;
 }

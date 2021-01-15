@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
+    "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0",
+    "test": "jest --env=jsdom",
+    "typecheck": "tsc --noEmit",
     "examples": "parcel examples/index.html"
   },
   "author": "@CAYdenberg",
@@ -38,6 +41,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "jest": "^26.6.3",
     "parcel-bundler": "^1.12.4",
     "ts-jest": "^26.4.4",

@@ -4,6 +4,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'header/header': 'off',
     'simple-import-sort/sort': 'off',
+    curly: 'off',
   },
   overrides: [
     {

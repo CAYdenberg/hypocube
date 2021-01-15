@@ -1,5 +1,5 @@
-import React, { Fragment, useCallback, useContext } from 'react';
-import { ChartContext } from '../Chart';
+import React, { Fragment, useCallback } from 'react';
+import useChartState from '../base/ChartState';
 import { Event, Interaction } from '../../types';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Handle: React.FC<Props> = (props) => {
-  const { isCanvas } = useContext(ChartContext);
+  const { isCanvas } = useChartState();
   if (isCanvas) {
     return <Fragment>{props.children}</Fragment>;
   }
@@ -25,7 +25,7 @@ const HandleInner: React.FC<Props> = ({
   meta,
   children,
 }) => {
-  const { scaleX, scaleY, containerOffset } = useContext(ChartContext);
+  const { scaleX, scaleY, containerOffset } = useChartState();
 
   const getData = useCallback(
     (event: Event): Interaction => {

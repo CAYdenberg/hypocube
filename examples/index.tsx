@@ -71,10 +71,10 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
-        view={{ x: [-10, 110], y: [-10, 110] }}
+        view={{ x: [-10, 110], y: [-30, 110] }}
         isCanvas={isCanvas}
       >
-        <XAxis range={[0, 100]} />
+        <XAxis range={[0, 100]} tickPositions={[0, 50, 100]} />
       </Chart>
     ),
   },

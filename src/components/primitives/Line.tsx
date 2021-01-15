@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { line as d3Line } from 'd3-shape';
 
 import { Point } from '../../types';
-import { ChartContext } from '../Chart';
+import useChartState from '../base/ChartState';
 
 interface Props {
   path: Point[];
@@ -13,10 +13,25 @@ interface Props {
 
 export const Line: React.FC<Props> = (props) => {
   const { path } = props;
-  const { scaleX, scaleY } = useContext(ChartContext);
+  const { scaleX, scaleY } = useChartState();
 
   const pxData = path.map(
     (point) => [scaleX(point[0]), scaleY(point[1])] as [number, number]
+  );
+
+  return <PxLine {...props} path={pxData} />;
+};
+
+export const TranslatedLine: React.FC<Props & { position: Point }> = (
+  props
+) => {
+  const { path, position } = props;
+  const { scaleX, scaleY } = useChartState();
+
+  const pxPosition = [scaleX(position[0]), scaleY(position[1])] as Point;
+
+  const pxData = path.map(
+    (point) => [pxPosition[0] + point[0], pxPosition[1] + point[1]] as Point
   );
 
   return <PxLine {...props} path={pxData} />;
@@ -30,7 +45,7 @@ export const PxLine: React.FC<Props> = (props) => {
     ...props,
   };
 
-  const { renderer, isCanvas } = useContext(ChartContext);
+  const { renderer, isCanvas } = useChartState();
 
   useEffect(() => {
     if (renderer) {
