@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Chart, Handle, Line, XAxis } from '../src';
+import { Chart, Handle, Line, XAxis, YAxis } from '../src';
 
 interface Example {
   name: string;
@@ -67,7 +67,7 @@ const examples: Example[] = [
     ),
   },
   {
-    name: 'Bar chart',
+    name: 'Scatter plot',
     render: ({ isCanvas }) => (
       <Chart
         height={300}
@@ -75,6 +75,7 @@ const examples: Example[] = [
         isCanvas={isCanvas}
       >
         <XAxis range={[0, 100]} tickPositions={[0, 50, 100]} />
+        <YAxis range={[0, 100]} tickPositions={[0, 25, 50, 75, 100]} />
       </Chart>
     ),
   },

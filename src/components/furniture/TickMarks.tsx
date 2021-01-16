@@ -5,24 +5,28 @@ import { useChartStyles } from '../base/ChartStyle';
 import { TranslatedLine } from '../primitives/Line';
 import Text from '../primitives/Text';
 
-interface Props {
+export interface TickMarkProps {
   position: Point;
   label?: string;
   overrideStyles?: ChartStyleOptions;
 }
 
 export const XTickMarkComposer = () => {
-  const XTickMark: React.FC<Props> = (props) => {
+  const XTickMark: React.FC<TickMarkProps> = (props) => {
     const position = props.position;
     const label = normalize(props.label, '');
 
     const {
+      baseFontSize,
       axisColor,
       axisThickness,
       axisTickLength,
       axisTickOffset,
       axisTickLabelOffset,
     } = useChartStyles(props.overrideStyles);
+
+    const labelAbsoluteOffset =
+      axisTickLength + axisTickLabelOffset + baseFontSize;
 
     return (
       <React.Fragment>
@@ -37,7 +41,7 @@ export const XTickMarkComposer = () => {
         />
         <Text
           position={position}
-          pxOffset={[0, axisTickLabelOffset]}
+          pxOffset={[0, labelAbsoluteOffset]}
           text={label}
           color={axisColor}
           align="center"
@@ -50,3 +54,45 @@ export const XTickMarkComposer = () => {
 };
 
 export const XTickMark = XTickMarkComposer();
+
+export const YTickMarkComposer = () => {
+  const YTickMark: React.FC<TickMarkProps> = (props) => {
+    const position = props.position;
+    const label = normalize(props.label, '');
+
+    const {
+      axisColor,
+      axisThickness,
+      axisTickLength,
+      axisTickOffset,
+      axisTickLabelOffset,
+    } = useChartStyles(props.overrideStyles);
+
+    const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
+
+    return (
+      <React.Fragment>
+        <TranslatedLine
+          position={position}
+          path={[
+            [0 - axisTickOffset, 0],
+            [axisTickLength - axisTickOffset, 0],
+          ]}
+          strokeWidth={axisThickness}
+          stroke={axisColor}
+        />
+        <Text
+          position={position}
+          pxOffset={[labelAbsoluteOffset, 0]}
+          text={label}
+          color={axisColor}
+          align="right"
+        />
+      </React.Fragment>
+    );
+  };
+
+  return YTickMark;
+};
+
+export const YTickMark = YTickMarkComposer();

@@ -9,7 +9,7 @@ const baseStyles: ChartStyleT = {
   axisThickness: 2,
   axisTickLength: 10,
   axisTickOffset: 0,
-  axisTickLabelOffset: 28,
+  axisTickLabelOffset: 2,
   axisLabelOffset: 50,
 };
 
@@ -31,10 +31,12 @@ const contextualizeStyles = (
 
 export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyles);
 
-export const ChartStyleProvider: React.FC<ChartStyleOptions> = (props) => {
+export const ChartStyleProvider: React.FC<{
+  rootStyles: ChartStyleOptions;
+}> = (props) => {
   const state = useChartState();
 
-  const rootStyles = contextualizeStyles(props, baseStyles, state);
+  const rootStyles = contextualizeStyles(props.rootStyles, baseStyles, state);
 
   return (
     <ChartStyleContext.Provider value={rootStyles}>

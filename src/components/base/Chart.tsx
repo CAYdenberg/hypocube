@@ -1,24 +1,25 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { ChartStyleOptions, Scale } from '../../types';
+import { ChartStyleOptions, Viewbox } from '../../types';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
 interface Props {
   height: number;
+  view: Viewbox;
   isCanvas?: boolean;
-  view: Scale;
-  rootStyles: ChartStyleOptions;
+  rootStyles?: ChartStyleOptions;
 }
 
 const Chart: React.FC<Props> = ({
-  isCanvas: _isCanvas,
   children,
   height,
   view,
-  rootStyles,
+  isCanvas: _isCanvas,
+  rootStyles: _rootStyles,
 }) => {
   const isCanvas = _isCanvas || false;
+  const rootStyles: ChartStyleOptions = _rootStyles || {};
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,7 +30,7 @@ const Chart: React.FC<Props> = ({
     renderer.current = canvasEl ? canvasEl.getContext('2d') : null;
   }, [canvasRef]);
 
-  const [pxBox, setPxBox] = useState<Scale>({
+  const [pxBox, setPxBox] = useState<Viewbox>({
     x: [0, 1],
     y: [0, 1],
   });
@@ -82,7 +83,7 @@ const Chart: React.FC<Props> = ({
         containerOffset,
       }}
     >
-      <ChartStyleProvider {...rootStyles}>
+      <ChartStyleProvider rootStyles={rootStyles}>
         <div ref={containerRef} style={{ width: '100%', height }}>
           {isCanvas ? (
             <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>

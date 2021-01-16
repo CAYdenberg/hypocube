@@ -2,15 +2,17 @@ import { ScaleLinear } from 'd3-scale';
 
 export type Point = [number, number];
 
-export interface Scale {
-  x: [number, number];
-  y: [number, number];
+export type Range = [number, number];
+
+export interface Viewbox {
+  x: Range;
+  y: Range;
 }
 
 export interface ChartState {
   isCanvas: boolean;
-  cartesianBox: Scale;
-  pxBox: Scale;
+  cartesianBox: Viewbox;
+  pxBox: Viewbox;
   scaleX: ScaleLinear<number, number, number>;
   scaleY: ScaleLinear<number, number, number>;
   containerOffset: [number, number];
@@ -40,7 +42,7 @@ export interface Handlers {
 export interface ChartStyleOptions {
   baseFontSize?: Contextual<number>;
   axisColor?: Contextual<string>;
-  axisThickness: Contextual<string>;
+  axisThickness?: Contextual<string>;
   axisTickLength?: Contextual<number>;
   axisTickOffset?: Contextual<number>;
   axisTickLabelOffset?: Contextual<number>;
