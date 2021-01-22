@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test: Click handler 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "width": "100%",
+    }
+  }
+>
+  <svg
+    height={1}
+    width={1}
+  >
+    <g
+      onClick={[Function]}
+    >
+      <path
+        d="M0.09090909090909091,0.9090909090909091L0.3181818181818182,0.2272727272727273L0.5454545454545454,0.9090909090909091"
+        fill="#000"
+        stroke="#000"
+        strokeWidth={1}
+      />
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Test: Filled line 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "width": "100%",
+    }
+  }
+>
+  <svg
+    height={1}
+    width={1}
+  >
+    <path
+      d="M0.09090909090909091,0.9090909090909091L0.3181818181818182,0.2272727272727273L0.5454545454545454,0.9090909090909091"
+      fill="#000"
+      stroke="#000"
+      strokeWidth={1}
+    />
+  </svg>
+</div>
+`;
+
+exports[`Test: Line 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "width": "100%",
+    }
+  }
+>
+  <svg
+    height={1}
+    width={1}
+  >
+    <path
+      d="M0.09090909090909091,0.9090909090909091L0.3181818181818182,0.2272727272727273L0.5454545454545454,0.9090909090909091"
+      fill="transparent"
+      stroke="#000"
+      strokeWidth={1}
+    />
+  </svg>
+</div>
+`;
+
+exports[`Test: Scatter plot 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "width": "100%",
+    }
+  }
+>
+  <svg
+    height={1}
+    width={1}
+  >
+    <g
+      onClick={[Function]}
+    >
+      <path
+        d="M0.08333333333333333,0.7857142857142857L0.9166666666666666,0.7857142857142857"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <path
+        d="M0.08333333333333333,0.7857142857142857L0.08333333333333333,10.785714285714286"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={0.08333333333333333}
+        y={28.785714285714285}
+      >
+        0
+      </text>
+      <path
+        d="M0.5,0.7857142857142857L0.5,10.785714285714286"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={0.5}
+        y={28.785714285714285}
+      >
+        50
+      </text>
+      <path
+        d="M0.9166666666666666,0.7857142857142857L0.9166666666666666,10.785714285714286"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={0.9166666666666666}
+        y={28.785714285714285}
+      >
+        100
+      </text>
+    </g>
+    <g
+      onClick={[Function]}
+    >
+      <path
+        d="M0.08333333333333333,0.7857142857142857L0.08333333333333333,0.0714285714285714"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <path
+        d="M0.08333333333333333,0.7857142857142857L10.083333333333334,0.7857142857142857"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={-11.916666666666666}
+        y={0.7857142857142857}
+      >
+        0
+      </text>
+      <path
+        d="M0.08333333333333333,0.6071428571428572L10.083333333333334,0.6071428571428572"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={-11.916666666666666}
+        y={0.6071428571428572}
+      >
+        25
+      </text>
+      <path
+        d="M0.08333333333333333,0.4285714285714286L10.083333333333334,0.4285714285714286"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={-11.916666666666666}
+        y={0.4285714285714286}
+      >
+        50
+      </text>
+      <path
+        d="M0.08333333333333333,0.25L10.083333333333334,0.25"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={-11.916666666666666}
+        y={0.25}
+      >
+        75
+      </text>
+      <path
+        d="M0.08333333333333333,0.0714285714285714L10.083333333333334,0.0714285714285714"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={-11.916666666666666}
+        y={0.0714285714285714}
+      >
+        100
+      </text>
+    </g>
+  </svg>
+</div>
+`;

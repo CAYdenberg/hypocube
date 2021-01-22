@@ -3,14 +3,17 @@ import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
 
-interface Props {
-  position: Point;
-  text: string;
+export interface TextDrawProps {
   pxOffset?: [number, number];
   color?: string;
   font?: string;
   fontSize?: number;
   align?: 'left' | 'center' | 'right';
+}
+
+interface Props extends TextDrawProps {
+  position: Point;
+  text: string;
 }
 
 const Text: React.FC<Props> = (props) => {

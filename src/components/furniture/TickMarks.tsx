@@ -76,7 +76,7 @@ export const YTickMarkComposer = () => {
           position={position}
           path={[
             [0 - axisTickOffset, 0],
-            [axisTickLength - axisTickOffset, 0],
+            [0 - axisTickLength - axisTickOffset, 0],
           ]}
           strokeWidth={axisThickness}
           stroke={axisColor}

@@ -47,6 +47,11 @@ export interface ChartStyleOptions {
   axisTickOffset?: Contextual<number>;
   axisTickLabelOffset?: Contextual<number>;
   axisLabelOffset?: Contextual<number>;
+
+  databoxFill?: Contextual<string>;
+  databoxStroke?: Contextual<string>;
+  databoxStrokeWidth?: Contextual<number>;
+  databoxThickness: Contextual<number>;
 }
 
 export interface ChartStyleT {
@@ -57,4 +62,9 @@ export interface ChartStyleT {
   axisTickOffset: number;
   axisTickLabelOffset: number;
   axisLabelOffset: number;
+
+  databoxFill?: string;
+  databoxStroke?: string;
+  databoxStrokeWidth?: number;
+  databoxThickness: number;
 }

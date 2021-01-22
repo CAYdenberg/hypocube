@@ -4,11 +4,14 @@ import { line as d3Line } from 'd3-shape';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
 
-interface Props {
-  path: Point[];
+export interface LineDrawProps {
   stroke?: string;
   fill?: string;
   strokeWidth?: number;
+}
+
+interface Props extends LineDrawProps {
+  path: Point[];
 }
 
 export const Line: React.FC<Props> = (props) => {

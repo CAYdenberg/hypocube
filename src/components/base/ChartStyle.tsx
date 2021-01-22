@@ -11,6 +11,11 @@ const baseStyles: ChartStyleT = {
   axisTickOffset: 0,
   axisTickLabelOffset: 2,
   axisLabelOffset: 50,
+
+  databoxFill: '#000',
+  databoxStroke: '#000',
+  databoxStrokeWidth: 0,
+  databoxThickness: 10,
 };
 
 const contextualizeStyles = (
