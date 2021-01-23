@@ -7,6 +7,18 @@ interface Example {
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
 
+const SimpleTooltip: React.FC<> = () => (
+  <div
+    style={{
+      background: 'white',
+      border: '1px solid black',
+      boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
+    }}
+  >
+    <strong>Hello, world!</strong>
+  </div>
+);
+
 const examples: Example[] = [
   {
     name: 'Line',
@@ -71,8 +83,11 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
-        view={{ x: [-10, 110], y: [-30, 110] }}
+        view={{ x: [0, 110], y: [0, 110] }}
+        gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
+        tooltip={<SimpleTooltip />}
+        tooltipPosition={[10, 50]}
       >
         <XAxis range={[0, 100]} tickPositions={[0, 50, 100]} />
         <YAxis range={[0, 100]} tickPositions={[0, 25, 50, 75, 100]} />
@@ -84,10 +99,15 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
-        view={{ x: [-1, 7], y: [-100, 10000] }}
+        view={{ x: [0, 6], y: [0, 9000] }}
+        gutter={[20, 20, 50, 50]}
         isCanvas={isCanvas}
       >
-        <XAxis range={[0, 6]} tickPositions={[0, 1, 2, 3, 4, 5, 6]} />
+        <XAxis
+          range={[0, 6]}
+          tickPositions={[1, 2, 3, 4, 5, 6]}
+          getTickLabel={(x) => bcVaccinations[x - 1][0]}
+        />
         <YAxis range={[0, 9000]} tickPositions={[0, 3000, 6000, 9000]} />
         <BarVerticalSeries
           data={bcVaccinations.map((point, i) => [i + 1, point[1]])}

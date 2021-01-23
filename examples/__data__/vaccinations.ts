@@ -1,4 +1,4 @@
-export const bc = [
+export const bc: Array<[string, number]> = [
   ['2021/01/17', 3811],
   ['2021/01/18', 3810],
   ['2021/01/19', 5023],

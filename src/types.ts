@@ -51,7 +51,7 @@ export interface ChartStyleOptions {
   databoxFill?: Contextual<string>;
   databoxStroke?: Contextual<string>;
   databoxStrokeWidth?: Contextual<number>;
-  databoxThickness: Contextual<number>;
+  databoxThickness?: Contextual<number>;
 }
 
 export interface ChartStyleT {
