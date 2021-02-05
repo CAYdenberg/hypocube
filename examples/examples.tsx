@@ -4,6 +4,7 @@ import {
   Chart,
   Handle,
   Line,
+  LineSeries,
   ScatterSeries,
   XAxis,
   YAxis,
@@ -101,6 +102,11 @@ const examples: Example[] = [
         <XAxis range={[0, 1]} tickPositions={[0, 0.5, 1]} />
         <YAxis range={[0, 2.5]} tickPositions={[0, 0.5, 1, 1.5, 2, 2.5]} />
         <ScatterSeries data={tickerTape} color="#5477a1" />
+        <LineSeries
+          data={tickerTape}
+          color="#5477a1"
+          overrideStyles={{ dataLineCurveType: 'natural' }}
+        />
       </Chart>
     ),
   },

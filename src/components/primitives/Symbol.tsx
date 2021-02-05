@@ -90,6 +90,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
         renderer.fill();
       }
 
+      renderer.restore();
       renderer.setTransform(1, 0, 0, 1, 0, 0);
     }
   });

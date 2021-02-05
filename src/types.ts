@@ -1,4 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
+import { curveType, dashType } from './components/primitives/Line';
 import { symbolType } from './components/primitives/Symbol';
 
 export type Point = [number, number];
@@ -55,6 +56,8 @@ export interface ChartStyleOptions {
   dataBoxThickness?: Contextual<number>;
   dataPointSize?: Contextual<number>;
   dataPointSymbol?: Contextual<symbolType>;
+  dataLineCurveType?: Contextual<curveType>;
+  dataLineDashType?: Contextual<dashType>;
 }
 
 export interface ChartStyleT {
@@ -72,4 +75,6 @@ export interface ChartStyleT {
   dataBoxThickness: number;
   dataPointSize: number;
   dataPointSymbol: symbolType;
+  dataLineCurveType: curveType;
+  dataLineDashType: dashType;
 }

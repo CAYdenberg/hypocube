@@ -20,6 +20,9 @@ const baseStyles: ChartStyleT = {
 
   dataPointSize: 8,
   dataPointSymbol: 'circle',
+
+  dataLineCurveType: 'linear',
+  dataLineDashType: 'solid',
 };
 
 const contextualizeStyles = (
@@ -30,8 +33,8 @@ const contextualizeStyles = (
   return Object.keys(defaults).reduce(
     (styles, key: keyof ChartStyleOptions) => {
       return {
-        [key]: contextualize(overrides[key], defaults[key], state),
         ...styles,
+        [key]: contextualize(overrides[key], defaults[key], state),
       };
     },
     defaults

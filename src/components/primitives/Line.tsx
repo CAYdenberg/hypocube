@@ -1,15 +1,66 @@
 import React, { useEffect } from 'react';
-import { line as d3Line } from 'd3-shape';
+import {
+  curveBasisOpen,
+  curveCardinalOpen,
+  CurveFactoryLineOnly,
+  curveLinear,
+  curveNatural,
+  curveStepBefore,
+  line as d3Line,
+} from 'd3-shape';
 
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
+import { DASHED_LINE, DOTTED_LINE } from '../../constants';
+
+export type curveType = 'linear' | 'cardinal' | 'natural' | 'basis' | 'step';
+export type dashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
 
 interface Props {
+  path: Point[];
   stroke?: string;
   fill?: string;
   strokeWidth?: number;
-  path: Point[];
+  curveType?: curveType | CurveFactoryLineOnly;
+  dash?: dashType;
 }
+
+const getD3Curve = (
+  input: curveType | CurveFactoryLineOnly
+): CurveFactoryLineOnly => {
+  if (typeof input !== 'string') return input;
+
+  switch (input) {
+    case 'cardinal':
+      return curveCardinalOpen;
+
+    case 'natural':
+      return curveNatural;
+
+    case 'basis':
+      return curveBasisOpen;
+
+    case 'step':
+      return curveStepBefore;
+  }
+
+  return curveLinear;
+};
+
+const getDashArray = (input: dashType): Array<number> | null => {
+  if (typeof input !== 'string') return input;
+
+  switch (input) {
+    case 'solid':
+      return null;
+
+    case 'dashed':
+      return DASHED_LINE;
+
+    case 'dotted':
+      return DOTTED_LINE;
+  }
+};
 
 export const Line: React.FC<Props> = (props) => {
   const { path } = props;
@@ -38,22 +89,31 @@ export const TranslatedLine: React.FC<Props & { position: Point }> = (
 };
 
 export const PxLine: React.FC<Props> = (props) => {
-  const { path, stroke, fill, strokeWidth } = {
+  const { path, stroke, fill, strokeWidth, curveType, dash } = {
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
+    curveType: 'linear' as curveType,
+    dash: null,
     ...props,
   };
+  const curveFactory = getD3Curve(curveType);
+  const dashArray = getDashArray(dash);
 
   const { renderer, isCanvas } = useChartState();
 
   useEffect(() => {
     if (renderer) {
-      const line = d3Line().context(renderer);
+      const line = d3Line().curve(curveFactory).context(renderer);
       renderer.beginPath();
       renderer.strokeStyle = stroke;
 
       renderer.lineWidth = strokeWidth;
+
+      if (dashArray) {
+        renderer.setLineDash(dashArray);
+      }
+
       line(path);
       renderer.stroke();
 
@@ -61,6 +121,8 @@ export const PxLine: React.FC<Props> = (props) => {
         renderer.fillStyle = fill;
         renderer.fill();
       }
+
+      renderer.restore();
     }
   });
 
@@ -68,7 +130,7 @@ export const PxLine: React.FC<Props> = (props) => {
     return null;
   }
 
-  const line = d3Line()(path);
+  const line = d3Line().curve(curveFactory)(path);
   if (!line) {
     return null;
   }
@@ -78,6 +140,7 @@ export const PxLine: React.FC<Props> = (props) => {
       stroke={stroke}
       fill={fill || 'transparent'}
       strokeWidth={strokeWidth}
+      strokeDasharray={dashArray ? dashArray.join(',') : undefined}
     />
   );
 };
