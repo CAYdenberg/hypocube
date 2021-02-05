@@ -22,7 +22,7 @@ interface BarSeriesProps {
   seriesIndex?: number;
   seriesIndexOutof?: number;
   color: string;
-  overridesStyles?: ChartStyleOptions;
+  overrideStyles?: ChartStyleOptions;
 }
 
 const BarVerticalSeriesDefaultComponents = {

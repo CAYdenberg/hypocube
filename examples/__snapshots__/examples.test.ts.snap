@@ -1,10 +1,285 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test: B.C. COVID-19 Vaccinations - Bar 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <svg
+    height={1}
+    width={1}
+  >
+    <g
+      onClick={[Function]}
+    >
+      <path
+        d="M50,-49L-19,-49"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <path
+        d="M38.50000000000001,-49L38.50000000000001,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={38.50000000000001}
+        y={-21}
+      >
+        2021/01/17
+      </text>
+      <path
+        d="M27.000000000000004,-49L27.000000000000004,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={27.000000000000004}
+        y={-21}
+      >
+        2021/01/18
+      </text>
+      <path
+        d="M15.5,-49L15.5,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={15.5}
+        y={-21}
+      >
+        2021/01/19
+      </text>
+      <path
+        d="M4.000000000000002,-49L4.000000000000002,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={4.000000000000002}
+        y={-21}
+      >
+        2021/01/18
+      </text>
+      <path
+        d="M-7.500000000000002,-49L-7.500000000000002,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={-7.500000000000002}
+        y={-21}
+      >
+        2021/01/20
+      </text>
+      <path
+        d="M-19,-49L-19,-39"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="middle"
+        x={-19}
+        y={-21}
+      >
+        2021/01/21
+      </text>
+    </g>
+    <g
+      onClick={[Function]}
+    >
+      <path
+        d="M50,-49L50,20"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <path
+        d="M50,-49L40,-49"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={38}
+        y={-49}
+      >
+        0
+      </text>
+      <path
+        d="M50,-26.000000000000007L40,-26.000000000000007"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={38}
+        y={-26.000000000000007}
+      >
+        3000
+      </text>
+      <path
+        d="M50,-3.0000000000000036L40,-3.0000000000000036"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={38}
+        y={-3.0000000000000036}
+      >
+        6000
+      </text>
+      <path
+        d="M50,20L40,20"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={38}
+        y={20}
+      >
+        9000
+      </text>
+    </g>
+    <path
+      d="M33.50000000000001,-19.782333333333327L43.50000000000001,-19.782333333333327L43.50000000000001,-49L33.50000000000001,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+    <path
+      d="M22.000000000000004,-19.79L32,-19.79L32,-49L22.000000000000004,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+    <path
+      d="M10.5,-10.490333333333332L20.5,-10.490333333333332L20.5,-49L10.5,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+    <path
+      d="M-0.9999999999999982,-19.79L9.000000000000002,-19.79L9.000000000000002,-49L-0.9999999999999982,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+    <path
+      d="M-12.500000000000002,-4.8706666666666685L-2.5000000000000018,-4.8706666666666685L-2.5000000000000018,-49L-12.500000000000002,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+    <path
+      d="M-24,2.949333333333337L-14,2.949333333333337L-14,-49L-24,-49"
+      fill="rgb(177, 0, 0)"
+      stroke="#000"
+      strokeWidth={1}
+    />
+  </svg>
+</div>
+`;
+
 exports[`Test: Click handler 1`] = `
 <div
   style={
     Object {
       "height": 300,
+      "position": "relative",
       "width": "100%",
     }
   }
@@ -32,6 +307,7 @@ exports[`Test: Filled line 1`] = `
   style={
     Object {
       "height": 300,
+      "position": "relative",
       "width": "100%",
     }
   }
@@ -55,6 +331,7 @@ exports[`Test: Line 1`] = `
   style={
     Object {
       "height": 300,
+      "position": "relative",
       "width": "100%",
     }
   }
@@ -78,6 +355,7 @@ exports[`Test: Scatter plot 1`] = `
   style={
     Object {
       "height": 300,
+      "position": "relative",
       "width": "100%",
     }
   }
@@ -90,13 +368,13 @@ exports[`Test: Scatter plot 1`] = `
       onClick={[Function]}
     >
       <path
-        d="M0.08333333333333333,0.7857142857142857L0.9166666666666666,0.7857142857142857"
+        d="M50,-29L-9,-29"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
       />
       <path
-        d="M0.08333333333333333,0.7857142857142857L0.08333333333333333,10.785714285714286"
+        d="M50,-29L50,-19"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -110,13 +388,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="middle"
-        x={0.08333333333333333}
-        y={28.785714285714285}
+        x={50}
+        y={-1}
       >
         0
       </text>
       <path
-        d="M0.5,0.7857142857142857L0.5,10.785714285714286"
+        d="M20.5,-29L20.5,-19"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -130,13 +408,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="middle"
-        x={0.5}
-        y={28.785714285714285}
+        x={20.5}
+        y={-1}
       >
-        50
+        0.5
       </text>
       <path
-        d="M0.9166666666666666,0.7857142857142857L0.9166666666666666,10.785714285714286"
+        d="M-9,-29L-9,-19"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -150,23 +428,23 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="middle"
-        x={0.9166666666666666}
-        y={28.785714285714285}
+        x={-9}
+        y={-1}
       >
-        100
+        1
       </text>
     </g>
     <g
       onClick={[Function]}
     >
       <path
-        d="M0.08333333333333333,0.7857142857142857L0.08333333333333333,0.0714285714285714"
+        d="M50,-29L50,10"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
       />
       <path
-        d="M0.08333333333333333,0.7857142857142857L10.083333333333334,0.7857142857142857"
+        d="M50,-29L40,-29"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -180,13 +458,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="end"
-        x={-11.916666666666666}
-        y={0.7857142857142857}
+        x={38}
+        y={-29}
       >
         0
       </text>
       <path
-        d="M0.08333333333333333,0.6071428571428572L10.083333333333334,0.6071428571428572"
+        d="M50,-21.200000000000003L40,-21.200000000000003"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -200,13 +478,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="end"
-        x={-11.916666666666666}
-        y={0.6071428571428572}
+        x={38}
+        y={-21.200000000000003}
       >
-        25
+        0.5
       </text>
       <path
-        d="M0.08333333333333333,0.4285714285714286L10.083333333333334,0.4285714285714286"
+        d="M50,-13.399999999999999L40,-13.399999999999999"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -220,13 +498,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="end"
-        x={-11.916666666666666}
-        y={0.4285714285714286}
+        x={38}
+        y={-13.399999999999999}
       >
-        50
+        1
       </text>
       <path
-        d="M0.08333333333333333,0.25L10.083333333333334,0.25"
+        d="M50,-5.600000000000001L40,-5.600000000000001"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -240,13 +518,13 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="end"
-        x={-11.916666666666666}
-        y={0.25}
+        x={38}
+        y={-5.600000000000001}
       >
-        75
+        1.5
       </text>
       <path
-        d="M0.08333333333333333,0.0714285714285714L10.083333333333334,0.0714285714285714"
+        d="M50,2.200000000000001L40,2.200000000000001"
         fill="transparent"
         stroke="#666"
         strokeWidth={2}
@@ -260,11 +538,131 @@ exports[`Test: Scatter plot 1`] = `
           }
         }
         textAnchor="end"
-        x={-11.916666666666666}
-        y={0.0714285714285714}
+        x={38}
+        y={2.200000000000001}
       >
-        100
+        2
       </text>
+      <path
+        d="M50,10L40,10"
+        fill="transparent"
+        stroke="#666"
+        strokeWidth={2}
+      />
+      <text
+        fill="#666"
+        fontSize={16}
+        style={
+          Object {
+            "fontFamily": "Helvetica, sans-serif",
+          }
+        }
+        textAnchor="end"
+        x={38}
+        y={10}
+      >
+        2.5
+      </text>
+    </g>
+    <g
+      transform="translate(50, -29)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(44.1, -25.256)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(38.2, -21.98)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(32.3, -16.831999999999997)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(26.4, -14.492)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(20.5, -10.280000000000001)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(14.600000000000001, -7.160000000000002)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(8.700000000000003, -4.039999999999999)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(2.799999999999998, -0.9200000000000017)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
+    </g>
+    <g
+      transform="translate(-3.1000000000000005, 2.200000000000001)"
+    >
+      <path
+        d="M4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,-4.51351666838205,0A4.51351666838205,4.51351666838205,0,1,1,4.51351666838205,0"
+        fill="#5477a1"
+        stroke="#5477a1"
+        strokeWidth={1}
+      />
     </g>
   </svg>
 </div>

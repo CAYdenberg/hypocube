@@ -13,7 +13,6 @@
   "author": "@CAYdenberg",
   "license": "MIT",
   "dependencies": {
-    "@types/d3-scale": "^3.2.2",
     "d3-scale": "^3.2.3",
     "d3-shape": "^2.0.0",
     "react": "^17.0.1",
@@ -25,6 +24,7 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@manuscripts/eslint-config": "^0.4.2",
+    "@types/d3-scale": "^3.2.2",
     "@types/d3-shape": "^2.0.0",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",

@@ -2,7 +2,7 @@ import { scaleLinear } from 'd3-scale';
 import React, { useContext } from 'react';
 import { ChartState } from '../../types';
 
-export const ChartStateContext = React.createContext<ChartState>({
+export const getDefaultState = (): ChartState => ({
   isCanvas: false,
   cartesianBox: { x: [0, 1], y: [0, 1] },
   pxBox: { x: [0, 1], y: [0, 1] },
@@ -11,6 +11,10 @@ export const ChartStateContext = React.createContext<ChartState>({
   renderer: null,
   containerOffset: [0, 0],
 });
+
+export const ChartStateContext = React.createContext<ChartState>(
+  getDefaultState()
+);
 
 const useChartState = () => {
   return useContext(ChartStateContext);

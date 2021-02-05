@@ -1,4 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
+import { symbolType } from './components/primitives/Symbol';
 
 export type Point = [number, number];
 
@@ -48,10 +49,12 @@ export interface ChartStyleOptions {
   axisTickLabelOffset?: Contextual<number>;
   axisLabelOffset?: Contextual<number>;
 
-  databoxFill?: Contextual<string>;
-  databoxStroke?: Contextual<string>;
-  databoxStrokeWidth?: Contextual<number>;
-  databoxThickness?: Contextual<number>;
+  dataFill?: Contextual<string>;
+  dataStroke?: Contextual<string>;
+  dataStrokeWidth?: Contextual<number>;
+  dataBoxThickness?: Contextual<number>;
+  dataPointSize?: Contextual<number>;
+  dataPointSymbol?: Contextual<symbolType>;
 }
 
 export interface ChartStyleT {
@@ -63,8 +66,10 @@ export interface ChartStyleT {
   axisTickLabelOffset: number;
   axisLabelOffset: number;
 
-  databoxFill?: string;
-  databoxStroke?: string;
-  databoxStrokeWidth?: number;
-  databoxThickness: number;
+  dataFill: string;
+  dataStroke: string;
+  dataStrokeWidth: number;
+  dataBoxThickness: number;
+  dataPointSize: number;
+  dataPointSymbol: symbolType;
 }

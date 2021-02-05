@@ -1,5 +1,14 @@
 import React from 'react';
-import { BarVerticalSeries, Chart, Handle, Line, XAxis, YAxis } from '../src';
+import {
+  BarVerticalSeries,
+  Chart,
+  Handle,
+  Line,
+  ScatterSeries,
+  XAxis,
+  YAxis,
+} from '../src';
+import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
 interface Example {
@@ -7,7 +16,7 @@ interface Example {
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
 
-const SimpleTooltip: React.FC<> = () => (
+const SimpleTooltip: React.FC = () => (
   <div
     style={{
       background: 'white',
@@ -83,19 +92,20 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
-        view={{ x: [0, 110], y: [0, 110] }}
+        view={{ x: [0, 1], y: [0, 2.5] }}
         gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
-        tooltip={<SimpleTooltip />}
-        tooltipPosition={[10, 50]}
+        // tooltip={<SimpleTooltip />}
+        // tooltipPosition={[10, 50]}
       >
-        <XAxis range={[0, 100]} tickPositions={[0, 50, 100]} />
-        <YAxis range={[0, 100]} tickPositions={[0, 25, 50, 75, 100]} />
+        <XAxis range={[0, 1]} tickPositions={[0, 0.5, 1]} />
+        <YAxis range={[0, 2.5]} tickPositions={[0, 0.5, 1, 1.5, 2, 2.5]} />
+        <ScatterSeries data={tickerTape} color="#5477a1" />
       </Chart>
     ),
   },
   {
-    name: 'B.C. COVID-19 Vaccinations',
+    name: 'B.C. COVID-19 Vaccinations - Bar',
     render: ({ isCanvas }) => (
       <Chart
         height={300}
