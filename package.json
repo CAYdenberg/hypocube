@@ -4,17 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
-    "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0",
-    "test": "jest --env=jsdom",
     "typecheck": "tsc --noEmit",
-    "examples": "parcel examples/index.html"
+    "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
+    "test": "jest --env=jsdom",
+    "docz": "docz dev",
+    "examples": "parcel examples/index.html",
+    "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0"
   },
   "author": "@CAYdenberg",
   "license": "MIT",
   "dependencies": {
     "d3-scale": "^3.2.3",
     "d3-shape": "^2.0.0",
+    "docz": "^2.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

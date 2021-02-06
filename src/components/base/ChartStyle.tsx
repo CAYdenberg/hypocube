@@ -15,12 +15,9 @@ const baseStyles: ChartStyleT = {
   dataFill: '#000',
   dataStroke: '#000',
   dataStrokeWidth: 1,
-
   dataBoxThickness: 10,
-
   dataPointSize: 8,
   dataPointSymbol: 'circle',
-
   dataLineCurveType: 'linear',
   dataLineDashType: 'solid',
 };
