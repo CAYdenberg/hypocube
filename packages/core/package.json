@@ -1,0 +1,35 @@
+{
+  "name": "hypocube",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
+    "test": "jest --env=jsdom",
+    "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0",
+    "build": "tsc"
+  },
+  "author": "@CAYdenberg",
+  "license": "MIT",
+  "dependencies": {
+    "d3-scale": "^3.2.3",
+    "d3-shape": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/d3-scale": "^3.2.2",
+    "@types/d3-shape": "^2.0.0",
+    "@types/jest": "^26.0.20",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "jest": {
+    "clearMocks": true
+  }
+}

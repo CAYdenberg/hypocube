@@ -2,10 +2,10 @@
 package-lock.json
 yarn.lock
 dist/*
-.docz/*
-report.html
 .cache
-.env
+**node_modules**
+**build**
+
 
 # Logs
 logs

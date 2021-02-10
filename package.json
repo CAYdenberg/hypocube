@@ -1,22 +1,14 @@
 {
-  "name": "reactscape",
+  "name": "hypocube-monorepo",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
-    "test": "jest --env=jsdom",
-    "docz": "docz dev",
-    "examples": "parcel examples/index.html",
+    "examples": "parcel sandbox/index.html",
     "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0"
   },
   "author": "@CAYdenberg",
   "license": "MIT",
   "dependencies": {
-    "d3-scale": "^3.2.3",
-    "d3-shape": "^2.0.0",
-    "docz": "^2.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
