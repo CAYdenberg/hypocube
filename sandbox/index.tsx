@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import examples from './examples';
+import stories from './stories';
 
 const App = () => {
-  const [active, setActive] = useState<string>(examples[0].name);
-  const example = examples.find((eg) => eg.name === active);
+  const [active, setActive] = useState<string>(stories[0].name);
+  const story = stories.find(eg => eg.name === active);
+
+  if (!story) return null;
 
   return (
     <div>
       <ul className="example-menu">
-        {examples.map((eg) => (
+        {stories.map(eg => (
           <li key={eg.name}>
             <button type="button" onClick={() => setActive(eg.name)}>
               {eg.name}
@@ -21,10 +23,10 @@ const App = () => {
       <hr />
       <div className="chart-area">
         <div className="chart-area-left">
-          {example.render({ isCanvas: false })}
+          {story.render({ isCanvas: false })}
         </div>
         <div className="chart-area-right">
-          {example.render({ isCanvas: true })}
+          {story.render({ isCanvas: true })}
         </div>
       </div>
     </div>

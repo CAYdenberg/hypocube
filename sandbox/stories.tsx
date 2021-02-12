@@ -17,17 +17,17 @@ interface Example {
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
 
-const SimpleTooltip: React.FC = () => (
-  <div
-    style={{
-      background: 'white',
-      border: '1px solid black',
-      boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
-    }}
-  >
-    <strong>Hello, world!</strong>
-  </div>
-);
+// const SimpleTooltip: React.FC = () => (
+//   <div
+//     style={{
+//       background: 'white',
+//       border: '1px solid black',
+//       boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
+//     }}
+//   >
+//     <strong>Hello, world!</strong>
+//   </div>
+// );
 
 const examples: Example[] = [
   {
@@ -122,7 +122,7 @@ const examples: Example[] = [
         <XAxis
           range={[0, 6]}
           tickPositions={[1, 2, 3, 4, 5, 6]}
-          getTickLabel={(x) => bcVaccinations[x - 1][0]}
+          getTickLabel={x => bcVaccinations[x - 1][0]}
         />
         <YAxis range={[0, 9000]} tickPositions={[0, 3000, 6000, 9000]} />
         <BarVerticalSeries

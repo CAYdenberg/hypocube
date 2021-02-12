@@ -2,6 +2,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2015",
+    "outDir": "./build/js",
+    "declarationDir": "./build/types",
+    "declaration": true,
     "lib": ["es2017", "dom", "dom.iterable"],
     "sourceMap": true,
     "allowJs": false,
@@ -12,7 +15,6 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "noEmit": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
@@ -21,5 +23,6 @@
     "strictNullChecks": true,
     "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": ["./src/**/*", "./sandbox/**/*", "./types/**/*", "package.json"]
+  "include": ["./src/**/*"],
+  "exclude": ["**/*/__tests__"]
 }
