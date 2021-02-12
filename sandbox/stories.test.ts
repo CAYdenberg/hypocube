@@ -1,4 +1,4 @@
-import examples from './examples';
+import examples from './stories';
 import renderer from 'react-test-renderer';
 
 examples.forEach((eg) => {

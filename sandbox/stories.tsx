@@ -8,7 +8,7 @@ import {
   ScatterSeries,
   XAxis,
   YAxis,
-} from '../src';
+} from '../packages/core';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
@@ -17,17 +17,17 @@ interface Example {
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
 
-const SimpleTooltip: React.FC = () => (
-  <div
-    style={{
-      background: 'white',
-      border: '1px solid black',
-      boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
-    }}
-  >
-    <strong>Hello, world!</strong>
-  </div>
-);
+// const SimpleTooltip: React.FC = () => (
+//   <div
+//     style={{
+//       background: 'white',
+//       border: '1px solid black',
+//       boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
+//     }}
+//   >
+//     <strong>Hello, world!</strong>
+//   </div>
+// );
 
 const examples: Example[] = [
   {

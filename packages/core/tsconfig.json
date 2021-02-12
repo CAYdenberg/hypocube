@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "commonjs",
     "target": "es2015",
+    "outDir": "./build/js",
+    "declarationDir": "./build/types",
+    "declaration": true,
     "sourceMap": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -11,17 +14,14 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "noEmit": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./packages/core/node_modules/@types"
-    ]
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["packages/**/*", "sandbox/**/*", "package.json"]
+  "include": ["./src/**/*"],
+  "exclude": ["**/*/__tests__"]
 }
