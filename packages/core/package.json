@@ -4,9 +4,6 @@
   "description": "",
   "main": "build/js/index.js",
   "types": "build/types",
-  "scripts": {
-    "build": "tsc"
-  },
   "author": "@CAYdenberg",
   "license": "MIT",
   "dependencies": {

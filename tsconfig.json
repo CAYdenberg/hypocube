@@ -20,7 +20,8 @@
     "strictNullChecks": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./packages/core/node_modules/@types"
+      "./packages/core/node_modules/@types",
+      "docs"
     ]
   },
   "include": ["packages/**/*", "sandbox/**/*", "package.json"]

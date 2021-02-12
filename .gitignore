@@ -1,11 +1,11 @@
 #
 package-lock.json
 yarn.lock
-dist/*
+dist
 .cache
 **node_modules**
 **build**
-
+**.docz**
 
 # Logs
 logs
