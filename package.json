@@ -9,9 +9,11 @@
     "lint": "eslint src sandbox --ext .ts,.tsx --max-warnings=0",
     "test": "jest --env=jsdom",
     "build": "tsc --project tsconfig.build.json",
-    "docz": "docz dev",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "preversion": "npm run typecheck && npm run lint && npm run test && npm run build && npm run docz:build",
     "sandbox": "parcel sandbox/index.html",
-    "autofix": "eslint src --ext .ts,.tsx --fix --max-warnings=0"
+    "autofix": "eslint src sandbox --ext .ts,.tsx --fix --max-warnings=0"
   },
   "author": "@CAYdenberg",
   "license": "MIT",
@@ -31,6 +33,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-loader": "^8.2.2",
     "docz": "^2.3.1",

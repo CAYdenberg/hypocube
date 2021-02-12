@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "import"],
+  "plugins": ["prettier", "import", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error"
   }

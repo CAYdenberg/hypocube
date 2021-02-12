@@ -10,7 +10,7 @@ interface LineSeriesProps {
   overrideStyles?: ChartStyleOptions;
 }
 
-export const LineSeries: React.FC<LineSeriesProps> = (props) => {
+export const LineSeries: React.FC<LineSeriesProps> = props => {
   const { color, data } = props;
 
   const {

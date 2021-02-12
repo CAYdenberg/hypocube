@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { contextualize } from '../../lib/normalize';
-import type { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 import useChartState from './ChartState';
+import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 
 const baseStyles: ChartStyleT = {
   baseFontSize: 16,
@@ -42,7 +42,7 @@ export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyles);
 
 export const ChartStyleProvider: React.FC<{
   rootStyles: ChartStyleOptions;
-}> = (props) => {
+}> = props => {
   const state = useChartState();
 
   const rootStyles = contextualizeStyles(props.rootStyles, baseStyles, state);

@@ -58,7 +58,7 @@ const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType => {
   return symbolCircle;
 };
 
-export const Symbol: React.FC<SymbolProps> = (props) => {
+export const Symbol: React.FC<SymbolProps> = props => {
   const { point, size, symbol, stroke, fill, strokeWidth } = {
     size: 8,
     symbol: symbolCircle,

@@ -9,7 +9,7 @@ interface BarProps {
   overrideStyles?: ChartStyleOptions;
 }
 
-export const BarVertical: React.FC<BarProps> = (props) => {
+export const BarVertical: React.FC<BarProps> = props => {
   return <DataboxVertical {...props} yMin={0} yMax={props.y} x={props.x} />;
 };
 
@@ -37,7 +37,7 @@ export const BarVerticalSeriesComposer = (
     ...Components,
   };
 
-  const BarVerticalSeries: React.FC<BarSeriesProps> = (props) => {
+  const BarVerticalSeries: React.FC<BarSeriesProps> = props => {
     return (
       <React.Fragment>
         {props.data.map(([x, y]) => (
