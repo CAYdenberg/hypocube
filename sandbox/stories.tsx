@@ -8,7 +8,7 @@ import {
   ScatterSeries,
   XAxis,
   YAxis,
-} from '../packages/core';
+} from 'hypocube';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
