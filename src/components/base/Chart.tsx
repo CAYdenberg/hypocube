@@ -8,6 +8,9 @@ import { ChartStyleProvider } from './ChartStyle';
 interface Props {
   height: number;
   view: Viewbox;
+  /**
+   * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
+   */
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
   rootStyles?: ChartStyleOptions;

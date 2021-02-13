@@ -8,6 +8,9 @@ import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
 
 interface AxisProps {
+  /**
+   * The start and end of the axis on the Cartesian scale. Defaults to the corresponding value in the Chart view
+   */
   range?: [number, number];
   intercept?: number;
   tickPositions?: Contextual<number[]>;
