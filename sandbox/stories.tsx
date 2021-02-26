@@ -1,3 +1,4 @@
+import { scaleTime } from 'd3-scale';
 import React from 'react';
 import {
   BarVerticalSeries,
@@ -9,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from '../src';
+import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
@@ -78,7 +80,7 @@ const examples: Example[] = [
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
-        <Handle onClick={console.log} elementPosition={[0, 0]}>
+        <Handle onPointerDown={console.log} elementPosition={[0, 0]}>
           <Line
             path={[
               [0, 0],
@@ -136,6 +138,41 @@ const examples: Example[] = [
         />
       </Chart>
     ),
+  },
+  {
+    name: 'Canada COVID-19 Cases',
+    render: ({ isCanvas }) => {
+      const dates = canada.map(day => new Date(day[0]));
+      const scale = scaleTime(
+        [dates[0], dates[dates.length - 1]],
+        [0, dates.length]
+      );
+      const series: Array<[number, number]> = canada.map((day, i) => [
+        scale(dates[i]),
+        day[1],
+      ]);
+      return (
+        <Chart
+          height={300}
+          width={300}
+          view={{ x: [50, 60], y: [0, 1000] }}
+          gutter={[20, 20, 50, 50]}
+          isCanvas={isCanvas}
+        >
+          <XAxis
+            range={[50, 60]}
+            tickPositions={dates.map(scale)}
+            getTickLabel={x =>
+              scale
+                .invert(x)
+                .getDate()
+                .toString()
+            }
+          />
+          <LineSeries data={series} color="#5477a1" />
+        </Chart>
+      );
+    },
   },
 ];
 

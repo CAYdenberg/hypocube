@@ -21,25 +21,7 @@ export interface ChartState {
   renderer?: CanvasRenderingContext2D | null;
 }
 
-export type Event =
-  | React.MouseEvent<SVGGElement>
-  | React.PointerEvent<SVGGElement>;
-
 export type Contextual<T> = T | ((chartState: ChartState) => T);
-export interface Interaction {
-  event: Event;
-  elementPosition: [number, number];
-  pointerPosition: [number, number];
-  meta: {
-    [key: string]: string | number | boolean;
-  };
-}
-
-export interface Handlers {
-  onClick: Event;
-  onMouseOver: Event;
-  onDrag: Event;
-}
 
 export interface ChartStyleOptions {
   baseFontSize?: Contextual<number>;
@@ -77,4 +59,49 @@ export interface ChartStyleT {
   dataPointSymbol: symbolType;
   dataLineCurveType: curveType;
   dataLineDashType: dashType;
+}
+
+export type ReactEvent =
+  | React.PointerEvent<SVGGElement>
+  | React.PointerEvent<HTMLDivElement>
+  | React.WheelEvent<SVGGElement>
+  | React.WheelEvent<HTMLDivElement>;
+
+export interface ReactHandlers {
+  onPointerDown?: (e: ReactEvent) => void;
+  onPointerMove?: (e: ReactEvent) => void;
+  onPointerUp?: (e: ReactEvent) => void;
+  onPointerCancel?: (e: ReactEvent) => void;
+  onGotPointerCapture?: (e: ReactEvent) => void;
+  onLostPointerCapture?: (e: ReactEvent) => void;
+  onPointerEnter?: (e: ReactEvent) => void;
+  onPointerLeave?: (e: ReactEvent) => void;
+  onPointerOver?: (e: ReactEvent) => void;
+  onPointerOut?: (e: ReactEvent) => void;
+  onWheel?: (e: ReactEvent) => void;
+}
+
+export interface HypocubeEventData {
+  event: ReactEvent;
+  pointerPosition: [number, number];
+  elementPosition?: [number, number];
+  meta: {
+    [key: string]: string | number | boolean;
+  };
+}
+
+export type HypocubeHandler = (data: HypocubeEventData) => void;
+
+export interface HypocubeHandlers {
+  onPointerDown?: HypocubeHandler;
+  onPointerMove?: HypocubeHandler;
+  onPointerUp?: HypocubeHandler;
+  onPointerCancel?: HypocubeHandler;
+  onGotPointerCapture?: HypocubeHandler;
+  onLostPointerCapture?: HypocubeHandler;
+  onPointerEnter?: HypocubeHandler;
+  onPointerLeave?: HypocubeHandler;
+  onPointerOver?: HypocubeHandler;
+  onPointerOut?: HypocubeHandler;
+  onWheel?: HypocubeHandler;
 }

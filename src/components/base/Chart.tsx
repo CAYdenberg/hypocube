@@ -1,11 +1,13 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { normalize } from '../../lib/normalize';
+import { HandlerProps } from '../../lib/useHandle';
 import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { ChartHandle } from '../primitives/Handle';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
-interface Props {
+interface Props extends HandlerProps {
   height: number;
   width: number;
   view: Viewbox;
@@ -99,26 +101,28 @@ const Chart: React.FC<Props> = (props) => {
             position: 'relative',
           }}
         >
-          {isCanvas ? (
-            <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
-              {children}
-            </canvas>
-          ) : (
-            <svg width={pxBox.x[1]} height={pxBox.y[1]}>
-              {children}
-            </svg>
-          )}
-          {props.tooltip && props.tooltipPosition ? (
-            <div
-              style={{
-                position: 'absolute',
-                left: scaleX(props.tooltipPosition[0]),
-                top: scaleY(props.tooltipPosition[1]),
-              }}
-            >
-              {props.tooltip}
-            </div>
-          ) : null}
+          <ChartHandle {...props}>
+            {isCanvas ? (
+              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+                {children}
+              </canvas>
+            ) : (
+              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+                {children}
+              </svg>
+            )}
+            {props.tooltip && props.tooltipPosition ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: scaleX(props.tooltipPosition[0]),
+                  top: scaleY(props.tooltipPosition[1]),
+                }}
+              >
+                {props.tooltip}
+              </div>
+            ) : null}
+          </ChartHandle>
         </div>
       </ChartStyleProvider>
     </ChartStateContext.Provider>
