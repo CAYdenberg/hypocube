@@ -158,6 +158,7 @@ const examples: Example[] = [
           view={{ x: [50, 60], y: [0, 1000] }}
           gutter={[20, 20, 50, 50]}
           isCanvas={isCanvas}
+          onPointerDown={console.log}
         >
           <XAxis
             range={[50, 60]}

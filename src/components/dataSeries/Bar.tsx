@@ -1,6 +1,8 @@
 import React from 'react';
 import { DataboxVertical } from './Databox';
-import { ChartStyleOptions, Point } from '../../types';
+import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { normalize } from '../../lib/normalize';
+import useChartState from '../base/ChartState';
 
 interface BarProps {
   x: number;
@@ -19,6 +21,7 @@ interface BarVerticalSeriesComponents {
 
 interface BarSeriesProps {
   data: Point[];
+  view?: Viewbox;
   seriesIndex?: number;
   seriesIndexOutof?: number;
   color: string;
@@ -38,11 +41,16 @@ export const BarVerticalSeriesComposer = (
   };
 
   const BarVerticalSeries: React.FC<BarSeriesProps> = (props) => {
+    const { cartesianBox } = useChartState();
+    const viewbox = normalize(props.view, cartesianBox);
+
     return (
       <React.Fragment>
-        {props.data.map(([x, y]) => (
-          <BarVertical x={x} y={y} key={`${x}${y}`} {...props} />
-        ))}
+        {props.data.map(([x, y]) =>
+          x >= viewbox.x[0] || x <= viewbox.x[1] ? (
+            <BarVertical x={x} y={y} key={`${x}${y}`} {...props} />
+          ) : null
+        )}
       </React.Fragment>
     );
   };
