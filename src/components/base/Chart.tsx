@@ -7,6 +7,7 @@ import { ChartStyleProvider } from './ChartStyle';
 
 interface Props {
   height: number;
+  width: number;
   view: Viewbox;
   /**
    * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
@@ -19,7 +20,7 @@ interface Props {
 }
 
 const Chart: React.FC<Props> = (props) => {
-  const { children, height, view } = props;
+  const { children, height, width, view } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const rootStyles = normalize(props.rootStyles, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
@@ -34,8 +35,8 @@ const Chart: React.FC<Props> = (props) => {
   }, [canvasRef]);
 
   const [pxBox, setPxBox] = useState<Viewbox>({
-    x: [0, 1],
-    y: [0, 1],
+    x: [0, width],
+    y: [0, height],
   });
 
   const calculateScales = useCallback(() => {
@@ -91,7 +92,12 @@ const Chart: React.FC<Props> = (props) => {
       <ChartStyleProvider rootStyles={rootStyles}>
         <div
           ref={containerRef}
-          style={{ width: '100%', height, position: 'relative' }}
+          style={{
+            height,
+            maxWidth: width,
+            minWidth: '100%',
+            position: 'relative',
+          }}
         >
           {isCanvas ? (
             <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>

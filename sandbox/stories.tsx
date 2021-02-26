@@ -35,6 +35,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
@@ -53,6 +54,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
@@ -72,6 +74,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
@@ -93,6 +96,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [0, 1], y: [0, 2.5] }}
         gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
@@ -115,6 +119,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [0, 6], y: [0, 9000] }}
         gutter={[20, 20, 50, 50]}
         isCanvas={isCanvas}
