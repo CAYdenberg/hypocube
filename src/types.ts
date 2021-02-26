@@ -84,7 +84,9 @@ export interface ReactHandlers {
 export interface HypocubeEventData {
   event: ReactEvent;
   pointerPosition: [number, number];
+  pointerId: number | null;
   elementPosition?: [number, number];
+  modifiers: Array<string>;
   meta: {
     [key: string]: string | number | boolean;
   };

@@ -7,9 +7,11 @@ import {
   Line,
   LineSeries,
   ScatterSeries,
+  useGestures,
   XAxis,
   YAxis,
 } from '../src';
+import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
@@ -151,27 +153,19 @@ const examples: Example[] = [
         scale(dates[i]),
         day[1],
       ]);
+
       return (
-        <Chart
-          height={300}
-          width={300}
-          view={{ x: [50, 60], y: [0, 1000] }}
-          gutter={[20, 20, 50, 50]}
+        <Pannable
           isCanvas={isCanvas}
-          onPointerDown={console.log}
-        >
-          <XAxis
-            range={[50, 60]}
-            tickPositions={dates.map(scale)}
-            getTickLabel={x =>
-              scale
-                .invert(x)
-                .getDate()
-                .toString()
-            }
-          />
-          <LineSeries data={series} color="#5477a1" />
-        </Chart>
+          getDateLabel={x =>
+            scale
+              .invert(x)
+              .getDate()
+              .toString()
+          }
+          series={series}
+          tickPositions={dates.map(scale)}
+        />
       );
     },
   },
