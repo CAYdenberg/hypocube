@@ -7,7 +7,6 @@ import {
   Line,
   LineSeries,
   ScatterSeries,
-  useGestures,
   XAxis,
   YAxis,
 } from '../src';

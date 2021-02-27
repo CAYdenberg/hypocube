@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { HypocubeEventData, Point, Viewbox } from '../types';
+import { HypocubeEventData, Point } from '../types';
 
 type Deltas = Array<{
   deltaX: number;

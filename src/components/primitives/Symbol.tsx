@@ -9,7 +9,7 @@ import {
   symbolTriangle,
   symbolWye,
 } from 'd3-shape';
-import React, { useEffect } from 'react';
+import React from 'react';
 import useChartState from '../base/ChartState';
 
 export type symbolType =
@@ -69,29 +69,24 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
   };
   const symbolF = getD3Symbol(symbol);
 
-  const { scaleX, scaleY, renderer, isCanvas } = useChartState();
+  const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
 
   const pxPoint: [number, number] = [scaleX(point[0]), scaleY(point[1])];
 
-  useEffect(() => {
-    if (renderer) {
-      const line = d3Symbol(symbolF, size * 8).context(renderer);
+  pushToCanvasQueue(renderer => {
+    const line = d3Symbol(symbolF, size * 8).context(renderer);
 
-      renderer.setTransform(1, 0, 0, 1, ...pxPoint);
-      renderer.beginPath();
-      renderer.strokeStyle = stroke;
-      renderer.lineWidth = strokeWidth;
+    renderer.setTransform(1, 0, 0, 1, ...pxPoint);
+    renderer.beginPath();
+    renderer.strokeStyle = stroke;
+    renderer.lineWidth = strokeWidth;
 
-      line();
-      renderer.stroke();
+    line();
+    renderer.stroke();
 
-      if (fill) {
-        renderer.fillStyle = fill;
-        renderer.fill();
-      }
-
-      renderer.restore();
-      renderer.setTransform(1, 0, 0, 1, 0, 0);
+    if (fill) {
+      renderer.fillStyle = fill;
+      renderer.fill();
     }
   });
 

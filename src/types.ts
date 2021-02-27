@@ -1,6 +1,7 @@
 import { ScaleLinear } from 'd3-scale';
 import { curveType, dashType } from './components/primitives/Line';
 import { symbolType } from './components/primitives/Symbol';
+import { CanvasComponent } from './lib/useCanvas';
 
 export type Point = [number, number];
 
@@ -18,7 +19,7 @@ export interface ChartState {
   scaleX: ScaleLinear<number, number, number>;
   scaleY: ScaleLinear<number, number, number>;
   containerOffset: [number, number];
-  renderer?: CanvasRenderingContext2D | null;
+  pushToCanvasQueue: (func: CanvasComponent) => void;
 }
 
 export type Contextual<T> = T | ((chartState: ChartState) => T);

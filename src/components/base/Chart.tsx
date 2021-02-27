@@ -1,6 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { normalize } from '../../lib/normalize';
+import useCanvas from '../../lib/useCanvas';
 import { HandlerProps } from '../../lib/useHandle';
 import { ChartStyleOptions, Point, Viewbox } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
@@ -28,13 +29,6 @@ const Chart: React.FC<Props> = (props) => {
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const renderer = useRef<CanvasRenderingContext2D | null>(null);
-
-  useEffect(() => {
-    const canvasEl = canvasRef.current;
-    renderer.current = canvasEl ? canvasEl.getContext('2d') : null;
-  }, [canvasRef]);
 
   const [pxBox, setPxBox] = useState<Viewbox>({
     x: [0, width],
@@ -75,14 +69,12 @@ const Chart: React.FC<Props> = (props) => {
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];
 
-  if (renderer.current) {
-    renderer.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
-  }
+  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, children);
 
   return (
     <ChartStateContext.Provider
       value={{
-        renderer: renderer.current,
+        pushToCanvasQueue,
         isCanvas,
         pxBox,
         cartesianBox,

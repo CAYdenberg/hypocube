@@ -8,8 +8,8 @@ export const getDefaultState = (): ChartState => ({
   pxBox: { x: [0, 1], y: [0, 1] },
   scaleX: scaleLinear(),
   scaleY: scaleLinear(),
-  renderer: null,
   containerOffset: [0, 0],
+  pushToCanvasQueue: () => undefined,
 });
 
 export const ChartStateContext = React.createContext<ChartState>(
