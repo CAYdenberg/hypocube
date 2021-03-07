@@ -57,7 +57,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
     ...Components,
   };
 
-  const XAxis: React.FC<AxisProps> = props => {
+  const XAxis: React.FC<AxisProps> = (props) => {
     const state = useChartState();
 
     const {
@@ -79,7 +79,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map(pos => (
+        {tickPositions.map((pos) => (
           <XTickMark
             position={[pos, intercept]}
             label={getTickLabel(pos)}
@@ -110,7 +110,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
     ...Components,
   };
 
-  const YAxis: React.FC<AxisProps> = props => {
+  const YAxis: React.FC<AxisProps> = (props) => {
     const state = useChartState();
 
     const {
@@ -133,7 +133,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map(pos => (
+        {tickPositions.map((pos) => (
           <YTickMark
             position={[intercept, pos]}
             label={getTickLabel(pos)}

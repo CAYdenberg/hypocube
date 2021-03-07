@@ -12,7 +12,7 @@ export interface TickMarkProps {
 }
 
 export const XTickMarkComposer = () => {
-  const XTickMark: React.FC<TickMarkProps> = props => {
+  const XTickMark: React.FC<TickMarkProps> = (props) => {
     const position = props.position;
     const label = normalize(props.label, '');
 
@@ -56,7 +56,7 @@ export const XTickMarkComposer = () => {
 export const XTickMark = XTickMarkComposer();
 
 export const YTickMarkComposer = () => {
-  const YTickMark: React.FC<TickMarkProps> = props => {
+  const YTickMark: React.FC<TickMarkProps> = (props) => {
     const position = props.position;
     const label = normalize(props.label, '');
 

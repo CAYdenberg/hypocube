@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const Handle: React.FC<Props> = props => {
+const Handle: React.FC<Props> = (props) => {
   const { isCanvas } = useChartState();
   if (isCanvas) {
     return <Fragment>{props.children}</Fragment>;

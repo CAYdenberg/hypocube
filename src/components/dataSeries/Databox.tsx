@@ -15,7 +15,7 @@ interface DataboxVerticalProps {
   overrideStyles?: ChartStyleOptions;
 }
 
-export const DataboxVertical: React.FC<DataboxVerticalProps> = props => {
+export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
   const { scaleX, scaleY } = useChartState();
   const {
     dataBoxThickness,

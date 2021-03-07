@@ -18,7 +18,7 @@ interface Props {
   tooltipPosition?: Point;
 }
 
-const Chart: React.FC<Props> = props => {
+const Chart: React.FC<Props> = (props) => {
   const { children, height, view } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const rootStyles = normalize(props.rootStyles, {});
