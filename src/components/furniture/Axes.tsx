@@ -9,13 +9,28 @@ import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
 
 interface AxisProps {
   /**
-   * The start and end of the axis on the Cartesian scale. Defaults to the corresponding value in the Chart view
+   * The start and end of the axis on the Cartesian scale. Default: The corresponding value in the Chart's view prop.
    */
   range?: [number, number];
+  /**
+   * Position of the axis on in the other dimension. Default: 0
+   */
   intercept?: number;
+  /**
+   * Positions of the all tick marks. Default: the start and end of the axis.
+   */
   tickPositions?: Contextual<number[]>;
+  /**
+   * Get the tick label from its value on the Cartesian axis. Default: String of the value itself.
+   */
   getTickLabel?: (value: number) => string;
+  /**
+   * Label of the axis itself. Null means no axis will be rendered. Default: null
+   */
   axisLabel?: string | null;
+  /**
+   * See Styles.
+   */
   overrideStyles?: ChartStyleOptions;
 }
 

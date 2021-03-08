@@ -6,7 +6,13 @@ import { TranslatedLine } from '../primitives/Line';
 import Text from '../primitives/Text';
 
 export interface TickMarkProps {
+  /**
+   * The principle position (Cartesian scale) the tick mark is meant to label.
+   */
   position: Point;
+  /**
+   * The string label for the tick mark.
+   */
   label?: string;
   overrideStyles?: ChartStyleOptions;
 }
