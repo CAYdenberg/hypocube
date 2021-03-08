@@ -16,7 +16,7 @@ interface Props extends TextDrawProps {
   text: string;
 }
 
-const Text: React.FC<Props> = props => {
+const Text: React.FC<Props> = (props) => {
   const { scaleX, scaleY, renderer, isCanvas } = useChartState();
   const { position, text } = props;
 

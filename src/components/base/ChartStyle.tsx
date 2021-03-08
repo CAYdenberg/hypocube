@@ -42,7 +42,7 @@ export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyles);
 
 export const ChartStyleProvider: React.FC<{
   rootStyles: ChartStyleOptions;
-}> = props => {
+}> = (props) => {
   const state = useChartState();
 
   const rootStyles = contextualizeStyles(props.rootStyles, baseStyles, state);

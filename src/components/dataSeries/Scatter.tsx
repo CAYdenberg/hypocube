@@ -13,7 +13,7 @@ interface DataPointProps {
   overrideStyles?: ChartStyleOptions;
 }
 
-export const DataPoint: React.FC<DataPointProps> = props => {
+export const DataPoint: React.FC<DataPointProps> = (props) => {
   const { x, y } = props;
 
   const {
@@ -64,7 +64,7 @@ export const ScatterSeriesComposer = (
     ...Components,
   };
 
-  const ScatterSeries: React.FC<ScatterSeriesProps> = props => {
+  const ScatterSeries: React.FC<ScatterSeriesProps> = (props) => {
     return (
       <React.Fragment>
         {props.data.map(([x, y]) => (
