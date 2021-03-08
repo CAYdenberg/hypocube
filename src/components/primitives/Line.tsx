@@ -104,7 +104,9 @@ export const PxLine: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (renderer) {
-      const line = d3Line().curve(curveFactory).context(renderer);
+      const line = d3Line()
+        .curve(curveFactory)
+        .context(renderer);
       renderer.beginPath();
       renderer.strokeStyle = stroke;
 
