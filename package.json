@@ -2,6 +2,9 @@
   "name": "hypocube",
   "version": "0.0.1",
   "description": "",
+  "repository": {
+    "url": "https://github.com/CAYdenberg/hypocube"
+  },
   "main": "build/js/index.ts",
   "types": "build/types",
   "scripts": {
