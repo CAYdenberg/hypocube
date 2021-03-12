@@ -1,12 +1,16 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { normalize } from '../../lib/normalize';
+import useCanvas from '../../lib/useCanvas';
+import { HandlerProps } from '../../lib/useHandle';
 import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { ChartHandle } from '../primitives/Handle';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
-interface Props {
+interface Props extends HandlerProps {
   height: number;
+  width: number;
   view: Viewbox;
   /**
    * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
@@ -19,23 +23,16 @@ interface Props {
 }
 
 const Chart: React.FC<Props> = (props) => {
-  const { children, height, view } = props;
+  const { children, height, width, view } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const rootStyles = normalize(props.rootStyles, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const renderer = useRef<CanvasRenderingContext2D | null>(null);
-
-  useEffect(() => {
-    const canvasEl = canvasRef.current;
-    renderer.current = canvasEl ? canvasEl.getContext('2d') : null;
-  }, [canvasRef]);
 
   const [pxBox, setPxBox] = useState<Viewbox>({
-    x: [0, 1],
-    y: [0, 1],
+    x: [0, width],
+    y: [0, height],
   });
 
   const calculateScales = useCallback(() => {
@@ -72,14 +69,12 @@ const Chart: React.FC<Props> = (props) => {
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];
 
-  if (renderer.current) {
-    renderer.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
-  }
+  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, children);
 
   return (
     <ChartStateContext.Provider
       value={{
-        renderer: renderer.current,
+        pushToCanvasQueue,
         isCanvas,
         pxBox,
         cartesianBox,
@@ -91,28 +86,35 @@ const Chart: React.FC<Props> = (props) => {
       <ChartStyleProvider rootStyles={rootStyles}>
         <div
           ref={containerRef}
-          style={{ width: '100%', height, position: 'relative' }}
+          style={{
+            height,
+            maxWidth: width,
+            minWidth: '100%',
+            position: 'relative',
+          }}
         >
-          {isCanvas ? (
-            <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
-              {children}
-            </canvas>
-          ) : (
-            <svg width={pxBox.x[1]} height={pxBox.y[1]}>
-              {children}
-            </svg>
-          )}
-          {props.tooltip && props.tooltipPosition ? (
-            <div
-              style={{
-                position: 'absolute',
-                left: scaleX(props.tooltipPosition[0]),
-                top: scaleY(props.tooltipPosition[1]),
-              }}
-            >
-              {props.tooltip}
-            </div>
-          ) : null}
+          <ChartHandle {...props}>
+            {isCanvas ? (
+              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+                {children}
+              </canvas>
+            ) : (
+              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+                {children}
+              </svg>
+            )}
+            {props.tooltip && props.tooltipPosition ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: scaleX(props.tooltipPosition[0]),
+                  top: scaleY(props.tooltipPosition[1]),
+                }}
+              >
+                {props.tooltip}
+              </div>
+            ) : null}
+          </ChartHandle>
         </div>
       </ChartStyleProvider>
     </ChartStateContext.Provider>

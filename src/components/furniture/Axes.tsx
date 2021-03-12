@@ -79,14 +79,18 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map((pos) => (
-          <XTickMark
-            position={[pos, intercept]}
-            label={getTickLabel(pos)}
-            overrideStyles={props.overrideStyles}
-            key={pos}
-          />
-        ))}
+        {tickPositions.map(
+          (pos) =>
+            pos >= range[0] &&
+            pos <= range[1] && (
+              <XTickMark
+                position={[pos, intercept]}
+                label={getTickLabel(pos)}
+                overrideStyles={props.overrideStyles}
+                key={pos}
+              />
+            )
+        )}
       </Handle>
     );
   };
@@ -133,14 +137,18 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map((pos) => (
-          <YTickMark
-            position={[intercept, pos]}
-            label={getTickLabel(pos)}
-            overrideStyles={props.overrideStyles}
-            key={pos}
-          />
-        ))}
+        {tickPositions.map(
+          (pos) =>
+            pos <= range[0] &&
+            pos >= range[1] && (
+              <YTickMark
+                position={[intercept, pos]}
+                label={getTickLabel(pos)}
+                overrideStyles={props.overrideStyles}
+                key={pos}
+              />
+            )
+        )}
       </Handle>
     );
   };

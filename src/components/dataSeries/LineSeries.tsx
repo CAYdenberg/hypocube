@@ -1,10 +1,11 @@
 import React from 'react';
-import { ChartStyleOptions, Point } from '../../types';
+import { ChartStyleOptions, Point, Viewbox } from '../../types';
 import { useChartStyles } from '../base/ChartStyle';
 import { dashType, Line } from '../primitives/Line';
 
 interface LineSeriesProps {
   data: Point[];
+  view?: Viewbox;
   color: string;
   dash?: dashType;
   overrideStyles?: ChartStyleOptions;
@@ -18,6 +19,9 @@ export const LineSeries: React.FC<LineSeriesProps> = (props) => {
     dataLineCurveType,
     dataLineDashType,
   } = useChartStyles(props.overrideStyles);
+
+  // filter out points that are out of range and both their neighbours are
+  // out of range.
 
   return (
     <Line

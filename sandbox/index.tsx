@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { renderToString } from 'react-dom/server';
 import stories from './stories';
 
 const App = () => {
@@ -7,6 +8,11 @@ const App = () => {
   const story = stories.find((eg) => eg.name === active);
 
   if (!story) return null;
+
+  // this is to confirm that string rendering can work. Width will not
+  // match the client-rendered and canvas-rendered version, and interactivity
+  // will not work.
+  const __html = renderToString(story.render({ isCanvas: false }));
 
   return (
     <div>
@@ -22,12 +28,9 @@ const App = () => {
       </ul>
       <hr />
       <div className="chart-area">
-        <div className="chart-area-left">
-          {story.render({ isCanvas: false })}
-        </div>
-        <div className="chart-area-right">
-          {story.render({ isCanvas: true })}
-        </div>
+        <div>{story.render({ isCanvas: false })}</div>
+        <div>{story.render({ isCanvas: true })}</div>
+        <div dangerouslySetInnerHTML={{ __html }} />
       </div>
     </div>
   );

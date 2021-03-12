@@ -1,14 +1,17 @@
+import { scaleTime } from 'd3-scale';
 import React from 'react';
 import {
   BarVerticalSeries,
   Chart,
-  Handle,
   Line,
   LineSeries,
   ScatterSeries,
   XAxis,
   YAxis,
 } from '../src';
+import ClickHandler from './ClickHandler';
+import { Pannable } from './Pannable';
+import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
@@ -35,6 +38,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
@@ -53,6 +57,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [-10, 100], y: [-10, 100] }}
         isCanvas={isCanvas}
       >
@@ -69,30 +74,14 @@ const examples: Example[] = [
   },
   {
     name: 'Click handler',
-    render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        view={{ x: [-10, 100], y: [-10, 100] }}
-        isCanvas={isCanvas}
-      >
-        <Handle onClick={console.log} elementPosition={[0, 0]}>
-          <Line
-            path={[
-              [0, 0],
-              [25, 75],
-              [50, 0],
-            ]}
-            fill="#000"
-          />
-        </Handle>
-      </Chart>
-    ),
+    render: ({ isCanvas }) => <ClickHandler isCanvas={isCanvas} />,
   },
   {
     name: 'Scatter plot',
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [0, 1], y: [0, 2.5] }}
         gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
@@ -115,6 +104,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
+        width={300}
         view={{ x: [0, 6], y: [0, 9000] }}
         gutter={[20, 20, 50, 50]}
         isCanvas={isCanvas}
@@ -131,6 +121,34 @@ const examples: Example[] = [
         />
       </Chart>
     ),
+  },
+  {
+    name: 'Canada COVID-19 Cases',
+    render: ({ isCanvas }) => {
+      const dates = canada.map((day) => new Date(day[0]));
+      const scale = scaleTime(
+        [dates[0], dates[dates.length - 1]],
+        [0, dates.length]
+      );
+      const series: Array<[number, number]> = canada.map((day, i) => [
+        scale(dates[i]),
+        day[1],
+      ]);
+
+      return (
+        <Pannable
+          isCanvas={isCanvas}
+          getDateLabel={(x) =>
+            scale
+              .invert(x)
+              .getDate()
+              .toString()
+          }
+          series={series}
+          tickPositions={dates.map(scale)}
+        />
+      );
+    },
   },
 ];
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   curveBasisOpen,
   curveCardinalOpen,
@@ -100,31 +100,27 @@ export const PxLine: React.FC<Props> = (props) => {
   const curveFactory = getD3Curve(curveType);
   const dashArray = getDashArray(dash);
 
-  const { renderer, isCanvas } = useChartState();
+  const { pushToCanvasQueue, isCanvas } = useChartState();
 
-  useEffect(() => {
-    if (renderer) {
-      const line = d3Line()
-        .curve(curveFactory)
-        .context(renderer);
-      renderer.beginPath();
-      renderer.strokeStyle = stroke;
+  pushToCanvasQueue((renderer) => {
+    const line = d3Line()
+      .curve(curveFactory)
+      .context(renderer);
+    renderer.beginPath();
+    renderer.strokeStyle = stroke;
 
-      renderer.lineWidth = strokeWidth;
+    renderer.lineWidth = strokeWidth;
 
-      if (dashArray) {
-        renderer.setLineDash(dashArray);
-      }
+    if (dashArray) {
+      renderer.setLineDash(dashArray);
+    }
 
-      line(path);
-      renderer.stroke();
+    line(path);
+    renderer.stroke();
 
-      if (fill) {
-        renderer.fillStyle = fill;
-        renderer.fill();
-      }
-
-      renderer.restore();
+    if (fill) {
+      renderer.fillStyle = fill;
+      renderer.fill();
     }
   });
 
