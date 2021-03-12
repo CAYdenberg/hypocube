@@ -3,18 +3,13 @@
 // return either a new Sheet or an array.
 
 export class Sheet {
-  private rows: Array<Array<string | number | null>>;
-  private columns: Array<Array<string | number | null>>;
-
-  constructor(rows: Array<Array<number | string>>) {
-    this.rows = rows;
-  }
-
-  map() {}
-
-  selectColumns() {}
-
-  appendColumns() {}
-
-  concatColumns() {}
+  // private rows: Array<Array<string | number | null>>;
+  // private columns: Array<Array<string | number | null>>;
+  // constructor(rows: Array<Array<number | string>>) {
+  //   this.rows = rows;
+  // }
+  // map() {}
+  // selectColumns() {}
+  // appendColumns() {}
+  // concatColumns() {}
 }

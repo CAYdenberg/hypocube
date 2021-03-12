@@ -23,7 +23,7 @@ export default (pxBox: Viewbox, children: React.ReactNode) => {
 
     context.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
 
-    queue.forEach(func => {
+    queue.forEach((func) => {
       func(context.current!);
       context.current!.restore();
       context.current!.setTransform(1, 0, 0, 1, 0, 0);

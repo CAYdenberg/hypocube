@@ -143,7 +143,7 @@ const examples: Example[] = [
   {
     name: 'Canada COVID-19 Cases',
     render: ({ isCanvas }) => {
-      const dates = canada.map(day => new Date(day[0]));
+      const dates = canada.map((day) => new Date(day[0]));
       const scale = scaleTime(
         [dates[0], dates[dates.length - 1]],
         [0, dates.length]
@@ -156,7 +156,7 @@ const examples: Example[] = [
       return (
         <Pannable
           isCanvas={isCanvas}
-          getDateLabel={x =>
+          getDateLabel={(x) =>
             scale
               .invert(x)
               .getDate()

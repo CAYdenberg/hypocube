@@ -16,7 +16,7 @@ export const applyTouchPoints = (
     return state;
   }
 
-  if (!state.find(touchPoint => touchPoint.pointerId)) {
+  if (!state.find((touchPoint) => touchPoint.pointerId)) {
     if (!updates || !updates.start || !updates.now) {
       return state;
     }
@@ -28,7 +28,7 @@ export const applyTouchPoints = (
   }
 
   return state
-    .map(touchPoint => {
+    .map((touchPoint) => {
       if (touchPoint.pointerId === pointerId) {
         if (updates === null) return null;
         return {
@@ -73,7 +73,7 @@ export default (onDrag?: (deltas: Deltas) => void, onDragEnd?: () => void) => {
     if (!actualPoints.length && onDragEnd) onDragEnd();
 
     if (!onDrag) return;
-    const deltas = actualPoints.map(point => ({
+    const deltas = actualPoints.map((point) => ({
       deltaX: point.now[0] - point.start[0],
       deltaY: point.now[1] - point.start[1],
     }));

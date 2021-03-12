@@ -102,7 +102,7 @@ export const PxLine: React.FC<Props> = (props) => {
 
   const { pushToCanvasQueue, isCanvas } = useChartState();
 
-  pushToCanvasQueue(renderer => {
+  pushToCanvasQueue((renderer) => {
     const line = d3Line()
       .curve(curveFactory)
       .context(renderer);
