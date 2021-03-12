@@ -435,34 +435,39 @@ exports[`Test: Canada COVID-19 Cases 1`] = `
 `;
 
 exports[`Test: Click handler 1`] = `
-<div
-  style={
-    Object {
-      "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
-      "position": "relative",
+Array [
+  <p>
+    0
+  </p>,
+  <div
+    style={
+      Object {
+        "height": 300,
+        "maxWidth": 300,
+        "minWidth": "100%",
+        "position": "relative",
+      }
     }
-  }
->
-  <div>
-    <svg
-      height={300}
-      width={300}
-    >
-      <g
-        onPointerDown={[Function]}
+  >
+    <div>
+      <svg
+        height={300}
+        width={300}
       >
-        <path
-          d="M27.272727272727273,272.7272727272727L95.45454545454545,68.18181818181819L163.63636363636363,272.7272727272727"
-          fill="#000"
-          stroke="#000"
-          strokeWidth={1}
-        />
-      </g>
-    </svg>
-  </div>
-</div>
+        <g
+          onPointerDown={[Function]}
+        >
+          <path
+            d="M27.272727272727273,272.7272727272727L95.45454545454545,68.18181818181819L163.63636363636363,272.7272727272727"
+            fill="#000"
+            stroke="#000"
+            strokeWidth={1}
+          />
+        </g>
+      </svg>
+    </div>
+  </div>,
+]
 `;
 
 exports[`Test: Filled line 1`] = `

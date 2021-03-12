@@ -3,13 +3,13 @@ import React from 'react';
 import {
   BarVerticalSeries,
   Chart,
-  Handle,
   Line,
   LineSeries,
   ScatterSeries,
   XAxis,
   YAxis,
 } from '../src';
+import ClickHandler from './ClickHandler';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
@@ -74,25 +74,7 @@ const examples: Example[] = [
   },
   {
     name: 'Click handler',
-    render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        width={300}
-        view={{ x: [-10, 100], y: [-10, 100] }}
-        isCanvas={isCanvas}
-      >
-        <Handle onPointerDown={console.log} elementPosition={[0, 0]}>
-          <Line
-            path={[
-              [0, 0],
-              [25, 75],
-              [50, 0],
-            ]}
-            fill="#000"
-          />
-        </Handle>
-      </Chart>
-    ),
+    render: ({ isCanvas }) => <ClickHandler isCanvas={isCanvas} />,
   },
   {
     name: 'Scatter plot',
