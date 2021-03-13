@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Chart, XAxis, useGestures, LineSeries } from '../src';
+import { Chart, XAxis, LineSeries } from '../src';
 
 interface Props {
   getDateLabel: (x: number) => string;
@@ -15,13 +15,6 @@ export const Pannable: React.FC<Props> = ({
   tickPositions,
 }) => {
   const [xView, setXView] = useState<[number, number]>([50, 60]);
-  const handleGestures = useGestures((deltas) => {
-    if (!deltas.length) return;
-    setXView(([start, end]) => [
-      start - deltas[0].deltaX,
-      end - deltas[0].deltaX,
-    ]);
-  });
 
   return (
     <Chart
@@ -30,7 +23,9 @@ export const Pannable: React.FC<Props> = ({
       view={{ x: xView, y: [0, 1000] }}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}
-      {...handleGestures}
+      onGestureContinue={(_, nextViewbox) => {
+        setXView(nextViewbox.x);
+      }}
     >
       <XAxis
         range={xView}
