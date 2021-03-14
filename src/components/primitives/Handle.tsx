@@ -5,7 +5,7 @@ import useRescaleGestures from '../../lib/useRescaleGestures';
 
 export const ChartHandle: React.FC<HandlerProps> = ({ children, ...props }) => {
   const handlers = useHandle(props);
-  const bind = useRescaleGestures(props);
+  const bind = useRescaleGestures(props.onGesture);
   return (
     <div {...handlers} {...bind()}>
       {children}

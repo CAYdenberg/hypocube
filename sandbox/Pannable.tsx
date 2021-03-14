@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Chart, XAxis, LineSeries } from '../src';
+import { Chart, XAxis, LineSeries, GestureKind } from '../src';
 
 interface Props {
   getDateLabel: (x: number) => string;
@@ -23,8 +23,9 @@ export const Pannable: React.FC<Props> = ({
       view={{ x: xView, y: [0, 1000] }}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}
-      onGestureContinue={(_, nextViewbox) => {
-        setXView(nextViewbox.x);
+      onGesture={(data) => {
+        if (data.kind !== GestureKind.Drag) return;
+        setXView(data.nextView.x);
       }}
     >
       <XAxis

@@ -96,23 +96,25 @@ export type HypocubeHandler = (data: HypocubeEventData) => void;
 
 export enum GestureKind {
   Drag = 'Drag',
+  Swipe = 'Swipe',
   Pinch = 'Pinch',
   Wheel = 'Wheel',
 }
 
-export type HypocubeGestureHandler = (
-  type: GestureKind,
-  nextViewbox: Viewbox,
-  state: any
-) => void;
-
-export interface HypocubeGestureHandlers {
-  onGestureStart?: HypocubeGestureHandler;
-  onGestureContinue?: HypocubeGestureHandler;
-  onGestureEnd?: HypocubeGestureHandler;
+export enum GesturePhase {
+  Start = 'Start',
+  Continue = 'Continue',
+  End = 'End',
 }
 
-export interface HypocubeHandlers extends HypocubeGestureHandlers {
+export interface HypocubeGestureData {
+  kind: GestureKind;
+  phase: GesturePhase;
+  nextView: Viewbox;
+  state: any;
+}
+
+export interface HypocubeHandlers {
   onPointerDown?: HypocubeHandler;
   onPointerMove?: HypocubeHandler;
   onPointerUp?: HypocubeHandler;
@@ -123,4 +125,5 @@ export interface HypocubeHandlers extends HypocubeGestureHandlers {
   onPointerLeave?: HypocubeHandler;
   onPointerOver?: HypocubeHandler;
   onPointerOut?: HypocubeHandler;
+  onGesture?: (data: HypocubeGestureData) => void;
 }
