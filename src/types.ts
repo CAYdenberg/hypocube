@@ -127,3 +127,5 @@ export interface HypocubeHandlers {
   onPointerOut?: HypocubeHandler;
   onGesture?: (data: HypocubeGestureData) => void;
 }
+
+export type Animation = (time: number, end: () => void) => Viewbox;

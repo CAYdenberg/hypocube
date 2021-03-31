@@ -11,7 +11,7 @@ export default (pxBox: Viewbox, children: React.ReactNode) => {
   useEffect(() => {
     const canvasEl = canvasRef.current;
     context.current = canvasEl ? canvasEl.getContext('2d') : null;
-  }, [canvasRef]);
+  }, [canvasRef.current]);
 
   const queue: Array<CanvasComponent> = [];
   const pushToCanvasQueue = (func: CanvasComponent) => {

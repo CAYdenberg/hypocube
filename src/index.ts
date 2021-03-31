@@ -12,4 +12,6 @@ export { Symbol } from './components/primitives/Symbol';
 
 export { default as useGestures } from './lib/useRescaleGestures';
 
+export { default as usePannableView } from './extras/usePannableView';
+
 export * from './types';
