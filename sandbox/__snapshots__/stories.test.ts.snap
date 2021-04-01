@@ -11,7 +11,12 @@ exports[`Test: B.C. COVID-19 Vaccinations - Bar 1`] = `
     }
   }
 >
-  <div>
+  <div
+    onPointerCancel={[Function]}
+    onPointerDown={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+  >
     <svg
       height={300}
       width={300}
@@ -205,10 +210,9 @@ exports[`Test: Canada COVID-19 Cases 1`] = `
   }
 >
   <div
+    onPointerCancel={[Function]}
     onPointerDown={[Function]}
-    onPointerLeave={[Function]}
     onPointerMove={[Function]}
-    onPointerOut={[Function]}
     onPointerUp={[Function]}
   >
     <svg
@@ -449,7 +453,12 @@ Array [
       }
     }
   >
-    <div>
+    <div
+      onPointerCancel={[Function]}
+      onPointerDown={[Function]}
+      onPointerMove={[Function]}
+      onPointerUp={[Function]}
+    >
       <svg
         height={300}
         width={300}
@@ -481,7 +490,12 @@ exports[`Test: Filled line 1`] = `
     }
   }
 >
-  <div>
+  <div
+    onPointerCancel={[Function]}
+    onPointerDown={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+  >
     <svg
       height={300}
       width={300}
@@ -508,7 +522,12 @@ exports[`Test: Line 1`] = `
     }
   }
 >
-  <div>
+  <div
+    onPointerCancel={[Function]}
+    onPointerDown={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+  >
     <svg
       height={300}
       width={300}
@@ -535,7 +554,12 @@ exports[`Test: Scatter plot 1`] = `
     }
   }
 >
-  <div>
+  <div
+    onPointerCancel={[Function]}
+    onPointerDown={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+  >
     <svg
       height={300}
       width={300}

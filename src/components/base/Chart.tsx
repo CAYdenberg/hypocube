@@ -1,5 +1,11 @@
 import { scaleLinear } from 'd3-scale';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  useMemo,
+} from 'react';
 import { normalize } from '../../lib/normalize';
 import useCanvas from '../../lib/useCanvas';
 import { HandlerProps } from '../../lib/useHandle';
@@ -11,7 +17,7 @@ import { ChartStyleProvider } from './ChartStyle';
 interface Props extends HandlerProps {
   height: number;
   width: number;
-  view: Viewbox;
+  view: Viewbox | ((width: number) => Viewbox);
   /**
    * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
    */
@@ -23,7 +29,7 @@ interface Props extends HandlerProps {
 }
 
 const Chart: React.FC<Props> = (props) => {
-  const { children, height, width, view } = props;
+  const { children, height, width } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const rootStyles = normalize(props.rootStyles, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
@@ -35,7 +41,7 @@ const Chart: React.FC<Props> = (props) => {
     y: [0, height],
   });
 
-  const calculateScales = useCallback(() => {
+  const calculateSizes = useCallback(() => {
     const containerEl = containerRef.current;
     if (containerEl) {
       setPxBox({
@@ -46,25 +52,34 @@ const Chart: React.FC<Props> = (props) => {
   }, [containerRef]);
 
   useEffect(() => {
-    calculateScales();
+    calculateSizes();
 
     if (!window) {
       return;
     }
-    window.addEventListener('resize', calculateScales);
+    window.addEventListener('resize', calculateSizes);
 
     return () => {
-      window.removeEventListener('resize', calculateScales);
+      window.removeEventListener('resize', calculateSizes);
     };
-  }, [containerRef, calculateScales]);
+  }, [containerRef, calculateSizes]);
 
-  const cartesianBox = view;
-  const scaleX = scaleLinear()
-    .domain(cartesianBox.x)
-    .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]);
-  const scaleY = scaleLinear()
-    .domain(cartesianBox.y)
-    .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]);
+  const cartesianBox: Viewbox =
+    typeof props.view === 'function' ? props.view(width) : props.view;
+  const scaleX = useMemo(
+    () =>
+      scaleLinear()
+        .domain(cartesianBox.x)
+        .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]),
+    [pxBox, cartesianBox]
+  );
+  const scaleY = useMemo(
+    () =>
+      scaleLinear()
+        .domain(cartesianBox.y)
+        .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]),
+    [pxBox, cartesianBox]
+  );
   const containerOffset: [number, number] = containerRef.current
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];

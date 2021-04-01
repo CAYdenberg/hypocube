@@ -79,7 +79,6 @@ export interface ReactHandlers {
   onPointerLeave?: (e: ReactEvent) => void;
   onPointerOver?: (e: ReactEvent) => void;
   onPointerOut?: (e: ReactEvent) => void;
-  onWheel?: (e: ReactEvent) => void;
 }
 
 export interface HypocubeEventData {
@@ -95,6 +94,26 @@ export interface HypocubeEventData {
 
 export type HypocubeHandler = (data: HypocubeEventData) => void;
 
+export enum GestureKind {
+  Drag = 'Drag',
+  Swipe = 'Swipe',
+  Pinch = 'Pinch',
+  Wheel = 'Wheel',
+}
+
+export enum GesturePhase {
+  Start = 'Start',
+  Continue = 'Continue',
+  End = 'End',
+}
+
+export interface HypocubeGestureData {
+  kind: GestureKind;
+  phase: GesturePhase;
+  nextView: Viewbox;
+  state: any;
+}
+
 export interface HypocubeHandlers {
   onPointerDown?: HypocubeHandler;
   onPointerMove?: HypocubeHandler;
@@ -106,5 +125,7 @@ export interface HypocubeHandlers {
   onPointerLeave?: HypocubeHandler;
   onPointerOver?: HypocubeHandler;
   onPointerOut?: HypocubeHandler;
-  onWheel?: HypocubeHandler;
+  onGesture?: (data: HypocubeGestureData) => void;
 }
+
+export type Animation = (time: number, end: () => void) => Viewbox;

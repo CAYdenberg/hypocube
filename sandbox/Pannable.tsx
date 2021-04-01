@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Chart, XAxis, useGestures, LineSeries } from '../src';
+import React from 'react';
+import { Chart, XAxis, LineSeries, usePannableView, GestureKind } from '../src';
 
 interface Props {
   getDateLabel: (x: number) => string;
@@ -14,26 +14,38 @@ export const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const [xView, setXView] = useState<[number, number]>([50, 60]);
-  const handleGestures = useGestures((deltas) => {
-    if (!deltas.length) return;
-    setXView(([start, end]) => [
-      start - deltas[0].deltaX,
-      end - deltas[0].deltaX,
-    ]);
-  });
+  const { view, isPanning, onGesture } = usePannableView(
+    { x: [50, 60], y: [0, 1000] },
+    (data) => {
+      if (data.kind === GestureKind.Swipe) {
+        return (time, cancel) => {
+          if (time > 1) {
+            cancel();
+          }
+          return {
+            y: view.y,
+            x: [
+              view.x[0] - time * (data.nextView.x[0] - view.x[0]),
+              view.x[1] - time * (data.nextView.x[1] - view.x[1]),
+            ],
+          };
+        };
+      }
+      return { x: data.nextView.x, y: view.y };
+    }
+  );
 
   return (
     <Chart
       height={300}
       width={300}
-      view={{ x: xView, y: [0, 1000] }}
+      view={view}
       gutter={[20, 20, 50, 50]}
-      isCanvas={isCanvas}
-      {...handleGestures}
+      isCanvas={isCanvas || isPanning}
+      onGesture={onGesture}
     >
       <XAxis
-        range={xView}
+        range={view.x}
         tickPositions={tickPositions}
         getTickLabel={getDateLabel}
       />

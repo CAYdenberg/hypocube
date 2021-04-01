@@ -1,8 +1,8 @@
-import { HypocubeHandlers } from './types';
+import { ReactHandlers } from './types';
 
 export const DASHED_LINE = [5, 5];
 export const DOTTED_LINE = [1, 1];
-export const SUPPORTED_EVENTS: Array<keyof HypocubeHandlers> = [
+export const SUPPORTED_EVENTS: Array<keyof ReactHandlers> = [
   'onPointerDown',
   'onPointerMove',
   'onPointerUp',
@@ -13,5 +13,4 @@ export const SUPPORTED_EVENTS: Array<keyof HypocubeHandlers> = [
   'onPointerLeave',
   'onPointerOver',
   'onPointerOut',
-  'onWheel',
 ];
