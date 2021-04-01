@@ -27,9 +27,7 @@ export default (initialViewbox: Viewbox, handleGesture: HandleGesture) => {
   };
 
   const onGesture = (data: HypocubeGestureData) => {
-    if (timer.current) {
-      cancelAnimationFrame(timer.current);
-    }
+    cancelAnimation();
 
     if (data.phase === GesturePhase.Start) {
       setIsPanning(true);
