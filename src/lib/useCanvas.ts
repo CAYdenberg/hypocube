@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Viewbox } from '../types';
+import Viewbox from '../lib/Viewbox';
 
 export type CanvasComponent = (renderer: CanvasRenderingContext2D) => void;
 

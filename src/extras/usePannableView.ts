@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Animation,
-  GesturePhase,
-  HypocubeGestureData,
-  Viewbox,
-} from '../types';
+import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import { Animation, GesturePhase, HypocubeGestureData } from '../types';
 
 type HandleGesture = (data: HypocubeGestureData) => Viewbox | Animation;
 
 const isAnimation = (input: Viewbox | Animation): input is Animation =>
   typeof input === 'function';
 
-export default (initialViewbox: Viewbox, handleGesture: HandleGesture) => {
+export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
+  initialViewbox = createViewbox(initialViewbox);
   const [current, setView] = useState<Viewbox>(initialViewbox);
   const [isPanning, setIsPanning] = useState<boolean>(false);
 

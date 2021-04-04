@@ -1,7 +1,8 @@
 import React from 'react';
-import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { ChartStyleOptions, Point } from '../../types';
 import { useChartStyles } from '../base/ChartStyle';
 import { dashType, Line } from '../primitives/Line';
+import Viewbox from '../../lib/Viewbox';
 
 interface LineSeriesProps {
   data: Point[];

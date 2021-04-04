@@ -2,16 +2,9 @@ import { ScaleLinear } from 'd3-scale';
 import { curveType, dashType } from './components/primitives/Line';
 import { symbolType } from './components/primitives/Symbol';
 import { CanvasComponent } from './lib/useCanvas';
+import Viewbox from './lib/Viewbox';
 
 export type Point = [number, number];
-
-export type Range = [number, number];
-
-export interface Viewbox {
-  x: Range;
-  y: Range;
-}
-
 export interface ChartState {
   isCanvas: boolean;
   cartesianBox: Viewbox;

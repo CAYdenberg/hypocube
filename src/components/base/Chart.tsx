@@ -9,7 +9,8 @@ import React, {
 import { normalize } from '../../lib/normalize';
 import useCanvas from '../../lib/useCanvas';
 import { HandlerProps } from '../../lib/useHandle';
-import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
+import { ChartStyleOptions, Point } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
@@ -17,7 +18,7 @@ import { ChartStyleProvider } from './ChartStyle';
 interface Props extends HandlerProps {
   height: number;
   width: number;
-  view: Viewbox | ((width: number) => Viewbox);
+  view: ViewboxDuck | ((width: number) => ViewboxDuck);
   /**
    * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
    */
@@ -36,18 +37,14 @@ const Chart: React.FC<Props> = (props) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [pxBox, setPxBox] = useState<Viewbox>({
-    x: [0, width],
-    y: [0, height],
-  });
+  const [pxBox, setPxBox] = useState<Viewbox>(new Viewbox(0, 0, width, height));
 
   const calculateSizes = useCallback(() => {
     const containerEl = containerRef.current;
     if (containerEl) {
-      setPxBox({
-        x: [0, containerEl.clientWidth],
-        y: [0, containerEl.clientHeight],
-      });
+      setPxBox(
+        new Viewbox(0, 0, containerEl.clientWidth, containerEl.clientHeight)
+      );
     }
   }, [containerRef]);
 
@@ -64,8 +61,10 @@ const Chart: React.FC<Props> = (props) => {
     };
   }, [containerRef, calculateSizes]);
 
-  const cartesianBox: Viewbox =
-    typeof props.view === 'function' ? props.view(width) : props.view;
+  const cartesianBox: Viewbox = createViewbox(
+    typeof props.view === 'function' ? props.view(width) : props.view
+  );
+
   const scaleX = useMemo(
     () =>
       scaleLinear()

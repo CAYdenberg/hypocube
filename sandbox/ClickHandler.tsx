@@ -10,7 +10,7 @@ const ClickHandler: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       <Chart
         height={300}
         width={300}
-        view={{ x: [-10, 100], y: [-10, 100] }}
+        view={[-10, -10, 110, 110]}
         isCanvas={isCanvas}
       >
         <Handle onPointerDown={bump} elementPosition={[0, 0]}>

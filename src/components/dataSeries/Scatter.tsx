@@ -1,9 +1,10 @@
 import React from 'react';
-import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { ChartStyleOptions, Point } from '../../types';
 import { Symbol, symbolType } from '../primitives/Symbol';
 import { useChartStyles } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
 import useChartState from '../base/ChartState';
+import Viewbox from '../../lib/Viewbox';
 
 interface DataPointProps {
   x: number;
