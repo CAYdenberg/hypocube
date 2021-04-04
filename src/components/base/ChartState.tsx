@@ -1,11 +1,12 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useContext } from 'react';
+import Viewbox from '../../lib/Viewbox';
 import { ChartState } from '../../types';
 
 export const getDefaultState = (): ChartState => ({
   isCanvas: false,
-  cartesianBox: { x: [0, 1], y: [0, 1] },
-  pxBox: { x: [0, 1], y: [0, 1] },
+  cartesianBox: new Viewbox(0, 0, 1, 1),
+  pxBox: new Viewbox(0, 0, 1, 1),
   scaleX: scaleLinear(),
   scaleY: scaleLinear(),
   containerOffset: [0, 0],

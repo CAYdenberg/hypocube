@@ -1,7 +1,8 @@
 import React from 'react';
 import { DataboxVertical } from './Databox';
-import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import { ChartStyleOptions, Point } from '../../types';
 import { normalize } from '../../lib/normalize';
+import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 
 interface BarProps {

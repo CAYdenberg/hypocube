@@ -1,3 +1,5 @@
+export type Range = [number, number];
+export type ViewboxDuck = Viewbox | [number, number, number, number];
 export default class Viewbox {
   public readonly xMin: number;
   public readonly yMin: number;
@@ -5,6 +7,8 @@ export default class Viewbox {
   public readonly height: number;
   public readonly xMax: number;
   public readonly yMax: number;
+  public readonly x: Range;
+  public readonly y: Range;
 
   constructor(xMin: number, yMin: number, width: number, height: number) {
     this.xMin = xMin;
@@ -13,6 +17,8 @@ export default class Viewbox {
     this.height = height;
     this.xMax = xMin + width;
     this.yMax = yMin + height;
+    this.x = [xMin, this.xMax];
+    this.y = [yMin, this.yMax];
   }
 
   panX(distance: number): Viewbox {
@@ -73,4 +79,16 @@ export default class Viewbox {
       Math.min(this.height, boundingBox.height)
     );
   }
+
+  interpolate(final: Viewbox, progress: number): Viewbox {
+    return new Viewbox(
+      this.xMin + progress * (final.xMin - this.xMin),
+      this.yMin + progress * (final.yMin - this.yMin),
+      this.width + progress * (final.width - this.width),
+      this.height + progress * (final.height - this.height)
+    );
+  }
 }
+
+export const createViewbox = (input: ViewboxDuck): Viewbox =>
+  Array.isArray(input) ? new Viewbox(...input) : input;

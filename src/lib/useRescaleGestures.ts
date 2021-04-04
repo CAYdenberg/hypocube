@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { FullGestureState } from 'react-use-gesture/dist/types';
 import useChartState from '../components/base/ChartState';
-import {
-  Range,
-  GestureKind,
-  GesturePhase,
-  HypocubeGestureData,
-  Viewbox,
-} from '../types';
+import Viewbox from '../lib/Viewbox';
+import { GestureKind, GesturePhase, HypocubeGestureData } from '../types';
 
 export default (
   onGesture: (data: HypocubeGestureData) => void = () => null
@@ -17,16 +12,9 @@ export default (
   const [boxStart, setBoxStart] = useState(cartesianBox);
 
   const moveViewbox = (state: FullGestureState<'drag'>): Viewbox => {
-    return {
-      x: [
-        boxStart.x[0] + scaleX.invert(0) - scaleX.invert(state.movement[0]),
-        boxStart.x[1] + scaleX.invert(0) - scaleX.invert(state.movement[0]),
-      ],
-      y: [
-        boxStart.y[0] + scaleY.invert(0) - scaleY.invert(state.movement[1]),
-        boxStart.y[1] + scaleY.invert(0) - scaleY.invert(state.movement[1]),
-      ],
-    };
+    const distanceX = scaleX.invert(0) - scaleX.invert(state.movement[0]);
+    const distanceY = scaleY.invert(0) - scaleY.invert(state.movement[1]);
+    return boxStart.panX(distanceX).panY(distanceY);
   };
 
   return useGesture({
@@ -58,28 +46,14 @@ export default (
       });
 
       let nextView: Viewbox | null;
-      const widthX = boxStart.x[1] - boxStart.x[0];
-      const widthY = boxStart.y[1] - boxStart.y[0];
       if (state.swipe[0] === -1) {
-        nextView = {
-          x: boxStart.x.map((val) => val - widthX) as Range,
-          y: boxStart.y,
-        };
+        nextView = boxStart.panX(boxStart.width);
       } else if (state.swipe[0] === 1) {
-        nextView = {
-          x: boxStart.x.map((val) => val + widthX) as Range,
-          y: boxStart.y,
-        };
+        nextView = boxStart.panX(boxStart.width * -1);
       } else if (state.swipe[1] === -1) {
-        nextView = {
-          x: boxStart.x,
-          y: boxStart.y.map((val) => val - widthY) as Range,
-        };
+        nextView = boxStart.panY(boxStart.height);
       } else if (state.swipe[1] === 1) {
-        nextView = {
-          x: boxStart.x,
-          y: boxStart.y.map((val) => val + widthY) as Range,
-        };
+        nextView = boxStart.panY(boxStart.height * -1);
       } else {
         nextView = null;
       }

@@ -61,4 +61,26 @@ describe('Viewbox', () => {
       expect(result.yMax).toEqual(boundingBox.yMax);
     });
   });
+
+  describe('interpolate', () => {
+    it('produces a viewbox partway in between the starting and ending points', () => {
+      const final = new Viewbox(10, 50, 20, 15);
+      const result = initial.interpolate(final, 0.5);
+      expect(result.y).toEqual(initial.y);
+      expect(result.xMin).toEqual(7.5);
+      expect(result.width).toEqual(15);
+    });
+
+    it('produces the initial viewbox before it starts', () => {
+      const final = new Viewbox(10, 50, 20, 15);
+      const result = initial.interpolate(final, 0);
+      expect(result).toEqual(initial);
+    });
+
+    it('produces the final viewbox once progress is finished', () => {
+      const final = new Viewbox(10, 50, 20, 15);
+      const result = initial.interpolate(final, 1);
+      expect(result).toEqual(final);
+    });
+  });
 });

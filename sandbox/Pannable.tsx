@@ -1,5 +1,6 @@
 import React from 'react';
 import { Chart, XAxis, LineSeries, usePannableView, GestureKind } from '../src';
+import { createViewbox } from '../src/lib/Viewbox';
 
 interface Props {
   getDateLabel: (x: number) => string;
@@ -14,24 +15,19 @@ export const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
+  const boundingBox = createViewbox([0, 0, 400, 1000]);
   const { view, isPanning, onGesture } = usePannableView(
-    { x: [50, 60], y: [0, 1000] },
+    [50, 0, 10, 1000],
     (data) => {
       if (data.kind === GestureKind.Swipe) {
         return (time, cancel) => {
           if (time > 1) {
             cancel();
           }
-          return {
-            y: view.y,
-            x: [
-              view.x[0] - time * (data.nextView.x[0] - view.x[0]),
-              view.x[1] - time * (data.nextView.x[1] - view.x[1]),
-            ],
-          };
+          return view.interpolate(data.nextView, time).bound(boundingBox);
         };
       }
-      return { x: data.nextView.x, y: view.y };
+      return data.nextView.bound(boundingBox);
     }
   );
 

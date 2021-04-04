@@ -39,7 +39,7 @@ const examples: Example[] = [
       <Chart
         height={300}
         width={300}
-        view={{ x: [-10, 100], y: [-10, 100] }}
+        view={[-10, -10, 110, 110]}
         isCanvas={isCanvas}
       >
         <Line
@@ -58,7 +58,7 @@ const examples: Example[] = [
       <Chart
         height={300}
         width={300}
-        view={{ x: [-10, 100], y: [-10, 100] }}
+        view={[-10, -10, 110, 110]}
         isCanvas={isCanvas}
       >
         <Line
@@ -82,7 +82,7 @@ const examples: Example[] = [
       <Chart
         height={300}
         width={300}
-        view={{ x: [0, 1], y: [0, 2.5] }}
+        view={[0, 0, 1, 2.5]}
         gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
         // tooltip={<SimpleTooltip />}
@@ -105,7 +105,7 @@ const examples: Example[] = [
       <Chart
         height={300}
         width={300}
-        view={{ x: [0, 6], y: [0, 9000] }}
+        view={[0, 0, 6, 9000]}
         gutter={[20, 20, 50, 50]}
         isCanvas={isCanvas}
       >
