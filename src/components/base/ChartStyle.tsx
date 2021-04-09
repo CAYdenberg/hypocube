@@ -12,14 +12,22 @@ const baseStyles: ChartStyleT = {
   axisTickLabelOffset: 2,
   axisLabelOffset: 50,
 
-  dataFill: '#000',
-  dataStroke: '#000',
-  dataStrokeWidth: 1,
+  dataBoxFill: '#000',
+  dataBoxStroke: '#000',
+  dataBoxStrokeWidth: 0,
   dataBoxThickness: 10,
-  dataPointSize: 8,
-  dataPointSymbol: 'circle',
+
+  dataPointSize: 5,
+  dataPointSymbol: 'none',
+  dataPointFill: '#000',
+  dataPointStroke: '#000',
+  dataPointStrokeWidth: 0,
+  dataPointMinTargetRadius: 0,
+
   dataLineCurveType: 'linear',
   dataLineDashType: 'solid',
+  dataLineStroke: '#000',
+  dataLineStrokeWidth: 1,
 };
 
 const contextualizeStyles = (

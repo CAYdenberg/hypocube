@@ -1,7 +1,6 @@
 export { default as Chart } from './components/base/Chart';
 
-export { BarVertical, BarVerticalSeries } from './components/dataSeries/Bar';
-export { DataPoint, ScatterSeries } from './components/dataSeries/Scatter';
+export { BarVerticalSeries } from './components/dataSeries/BarSeries';
 export { LineSeries } from './components/dataSeries/LineSeries';
 
 export { XAxis, YAxis } from './components/furniture/Axes';

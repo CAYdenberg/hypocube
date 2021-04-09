@@ -26,7 +26,7 @@ interface Props extends HandlerProps {
   isCanvas?: boolean;
   rootStyles?: ChartStyleOptions;
   tooltip?: JSX.Element;
-  tooltipPosition?: Point;
+  tooltipPosition?: Point | null;
 }
 
 const Chart: React.FC<Props> = (props) => {

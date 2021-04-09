@@ -26,14 +26,22 @@ export interface ChartStyleOptions {
   axisTickLabelOffset?: Contextual<number>;
   axisLabelOffset?: Contextual<number>;
 
-  dataFill?: Contextual<string>;
-  dataStroke?: Contextual<string>;
-  dataStrokeWidth?: Contextual<number>;
+  dataBoxFill?: Contextual<string>;
+  dataBoxStroke?: Contextual<string>;
+  dataBoxStrokeWidth?: Contextual<number>;
   dataBoxThickness?: Contextual<number>;
+
   dataPointSize?: Contextual<number>;
   dataPointSymbol?: Contextual<symbolType>;
+  dataPointFill?: Contextual<string>;
+  dataPointStroke?: Contextual<string>;
+  dataPointStrokeWidth?: Contextual<number>;
+  dataPointMinTargetRadius?: Contextual<number>;
+
   dataLineCurveType?: Contextual<curveType>;
   dataLineDashType?: Contextual<dashType>;
+  dataLineStroke?: Contextual<string>;
+  dataLineStrokeWidth?: Contextual<number>;
 }
 
 export interface ChartStyleT {
@@ -45,14 +53,22 @@ export interface ChartStyleT {
   axisTickLabelOffset: number;
   axisLabelOffset: number;
 
-  dataFill: string;
-  dataStroke: string;
-  dataStrokeWidth: number;
+  dataBoxFill: string;
+  dataBoxStroke: string;
+  dataBoxStrokeWidth: number;
   dataBoxThickness: number;
+
   dataPointSize: number;
   dataPointSymbol: symbolType;
+  dataPointFill: string;
+  dataPointStroke: string;
+  dataPointStrokeWidth: number;
+  dataPointMinTargetRadius: number;
+
   dataLineCurveType: curveType;
   dataLineDashType: dashType;
+  dataLineStroke: string;
+  dataLineStrokeWidth: number;
 }
 
 export type ReactEvent =

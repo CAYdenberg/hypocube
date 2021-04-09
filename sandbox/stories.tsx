@@ -1,38 +1,30 @@
 import { scaleTime } from 'd3-scale';
 import React from 'react';
-import {
-  BarVerticalSeries,
-  Chart,
-  Line,
-  LineSeries,
-  Point,
-  ScatterSeries,
-  XAxis,
-  YAxis,
-} from '../src';
+import { Chart, Line, LineSeries, Point, XAxis, YAxis } from '../src';
+import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
+import MultipleSeries from './MultipleSeries';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
 import { rain } from './__data__/precipitation';
 import { tickerTape } from './__data__/tickerTape';
-import { bc as bcVaccinations } from './__data__/vaccinations';
 
 interface Example {
   name: string;
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
 
-// const SimpleTooltip: React.FC = () => (
-//   <div
-//     style={{
-//       background: 'white',
-//       border: '1px solid black',
-//       boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
-//     }}
-//   >
-//     <strong>Hello, world!</strong>
-//   </div>
-// );
+const SimpleTooltip: React.FC = () => (
+  <div
+    style={{
+      background: 'white',
+      border: '1px solid black',
+      boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
+    }}
+  >
+    <strong>Hello, world!</strong>
+  </div>
+);
 
 const examples: Example[] = [
   {
@@ -79,7 +71,7 @@ const examples: Example[] = [
     render: ({ isCanvas }) => <ClickHandler isCanvas={isCanvas} />,
   },
   {
-    name: 'Scatter plot',
+    name: 'LineSeries',
     render: ({ isCanvas }) => (
       <Chart
         height={300}
@@ -92,37 +84,17 @@ const examples: Example[] = [
       >
         <XAxis range={[0, 1]} tickPositions={[0, 0.5, 1]} />
         <YAxis range={[0, 2.5]} tickPositions={[0, 0.5, 1, 1.5, 2, 2.5]} />
-        <ScatterSeries data={tickerTape} color="#5477a1" />
         <LineSeries
           data={tickerTape}
           color="#5477a1"
-          overrideStyles={{ dataLineCurveType: 'natural' }}
+          styles={{ dataLineCurveType: 'natural', dataPointSymbol: 'circle' }}
         />
       </Chart>
     ),
   },
   {
     name: 'Bar Graph',
-    render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        width={300}
-        view={[0, 0, 6, 9000]}
-        gutter={[20, 20, 50, 50]}
-        isCanvas={isCanvas}
-      >
-        <XAxis
-          range={[0, 6]}
-          tickPositions={[1, 2, 3, 4, 5, 6]}
-          getTickLabel={(x) => bcVaccinations[x - 1][0]}
-        />
-        <YAxis range={[0, 9000]} tickPositions={[0, 3000, 6000, 9000]} />
-        <BarVerticalSeries
-          data={bcVaccinations.map((point, i) => [i + 1, point[1]])}
-          color="rgb(177, 0, 0)"
-        />
-      </Chart>
-    ),
+    render: ({ isCanvas }) => <BarGraph isCanvas={isCanvas} />,
   },
   {
     name: 'Pannable',
@@ -154,45 +126,7 @@ const examples: Example[] = [
   },
   {
     name: 'Multiple Series',
-    render: ({ isCanvas }) => {
-      const dates = rain.map((month) => new Date(month[0]));
-      const scale = scaleTime(
-        [dates[0], dates[dates.length - 1]],
-        [0, dates.length]
-      );
-      const vancouver = rain.map(
-        (month, i) => [scale(dates[i]), month[1]] as Point
-      );
-      const victoria = rain.map(
-        (month, i) => [scale(dates[i]), month[2]] as Point
-      );
-      const kelowna = rain.map(
-        (month, i) => [scale(dates[i]), month[3]] as Point
-      );
-      const tickPositions = Array.from({ length: 20 }, (_, i) => i * 12);
-
-      return (
-        <Chart
-          height={300}
-          width={300}
-          view={[0, 0, 255, 200]}
-          gutter={[20, 20, 50, 50]}
-          isCanvas={isCanvas}
-        >
-          <XAxis
-            tickPositions={tickPositions}
-            getTickLabel={(pos) => String(dates[pos].getFullYear())}
-          />
-          <YAxis
-            tickPositions={[0, 50, 100, 200]}
-            getTickLabel={(pos) => String(pos)}
-          />
-          <ScatterSeries data={vancouver} color="#003f5c" />
-          <ScatterSeries data={victoria} color="#58508d" />
-          <ScatterSeries data={kelowna} color="#bc5090" />
-        </Chart>
-      );
-    },
+    render: ({ isCanvas }) => <MultipleSeries isCanvas={isCanvas} />,
   },
 ];
 
