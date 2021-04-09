@@ -5,6 +5,7 @@ import {
   Chart,
   Line,
   LineSeries,
+  Point,
   ScatterSeries,
   XAxis,
   YAxis,
@@ -12,6 +13,7 @@ import {
 import ClickHandler from './ClickHandler';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
+import { rain } from './__data__/precipitation';
 import { tickerTape } from './__data__/tickerTape';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
@@ -100,7 +102,7 @@ const examples: Example[] = [
     ),
   },
   {
-    name: 'B.C. COVID-19 Vaccinations - Bar',
+    name: 'Bar Graph',
     render: ({ isCanvas }) => (
       <Chart
         height={300}
@@ -123,7 +125,7 @@ const examples: Example[] = [
     ),
   },
   {
-    name: 'Canada COVID-19 Cases',
+    name: 'Pannable',
     render: ({ isCanvas }) => {
       const dates = canada.map((day) => new Date(day[0]));
       const scale = scaleTime(
@@ -147,6 +149,48 @@ const examples: Example[] = [
           series={series}
           tickPositions={dates.map(scale)}
         />
+      );
+    },
+  },
+  {
+    name: 'Multiple Series',
+    render: ({ isCanvas }) => {
+      const dates = rain.map((month) => new Date(month[0]));
+      const scale = scaleTime(
+        [dates[0], dates[dates.length - 1]],
+        [0, dates.length]
+      );
+      const vancouver = rain.map(
+        (month, i) => [scale(dates[i]), month[1]] as Point
+      );
+      const victoria = rain.map(
+        (month, i) => [scale(dates[i]), month[2]] as Point
+      );
+      const kelowna = rain.map(
+        (month, i) => [scale(dates[i]), month[3]] as Point
+      );
+      const tickPositions = Array.from({ length: 20 }, (_, i) => i * 12);
+
+      return (
+        <Chart
+          height={300}
+          width={300}
+          view={[0, 0, 255, 200]}
+          gutter={[20, 20, 50, 50]}
+          isCanvas={isCanvas}
+        >
+          <XAxis
+            tickPositions={tickPositions}
+            getTickLabel={(pos) => String(dates[pos].getFullYear())}
+          />
+          <YAxis
+            tickPositions={[0, 50, 100, 200]}
+            getTickLabel={(pos) => String(pos)}
+          />
+          <ScatterSeries data={vancouver} color="#003f5c" />
+          <ScatterSeries data={victoria} color="#58508d" />
+          <ScatterSeries data={kelowna} color="#bc5090" />
+        </Chart>
       );
     },
   },

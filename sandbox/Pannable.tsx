@@ -1,5 +1,6 @@
 import React from 'react';
-import { Chart, XAxis, LineSeries, usePannableView, GestureKind } from '../src';
+import { Chart, XAxis, LineSeries, GestureKind } from '../src';
+import usePannableView from '../src/addons/usePannableView';
 import { createViewbox } from '../src/lib/Viewbox';
 
 interface Props {
