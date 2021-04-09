@@ -18,7 +18,7 @@ export const Pannable: React.FC<Props> = ({
 }) => {
   const boundingBox = createViewbox([0, 0, 400, 1000]);
   const { view, isPanning, onGesture } = usePannableView(
-    [50, 0, 10, 1000],
+    [50, 0, 50, 1000],
     (data) => {
       if (data.kind === GestureKind.Swipe) {
         return (time, cancel) => {

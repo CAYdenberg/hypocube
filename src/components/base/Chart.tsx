@@ -25,7 +25,7 @@ interface Props extends HandlerProps {
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
   rootStyles?: ChartStyleOptions;
-  tooltip?: JSX.Element;
+  tooltip?: JSX.Element | null;
   tooltipPosition?: Point | null;
 }
 

@@ -1,5 +1,4 @@
-import { scaleTime } from 'd3-scale';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart,
   HypocubeEventData,
@@ -10,41 +9,49 @@ import {
 } from '../src';
 import { rain } from './__data__/precipitation';
 
-const SimpleTooltip: React.FC = () => (
+const SimpleTooltip: React.FC<{ seriesName?: string }> = ({ seriesName }) => (
   <div
     style={{
       background: 'white',
       border: '1px solid black',
       boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
+      transform: 'translate(5px, -50%)',
     }}
   >
-    <strong>Hello, world!</strong>
+    <strong>{seriesName || ''}</strong>
   </div>
 );
 
 const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
-  const [tooltipPos, setTooltipPos] = useState<[number, number] | null>(null);
+  const [tooltipData, setTooltipData] = useState<
+    [number, number, string] | null
+  >(null);
 
-  const dates = rain.map((month) => new Date(month[0]));
-  const scale = scaleTime(
-    [dates[0], dates[dates.length - 1]],
-    [0, dates.length]
+  const series = rain.reduce(
+    (series, month, i) => {
+      const ys = month.slice(1) as number[];
+      const row = ys.map((y) => [i, y] as Point);
+      return series.map((s, j) => {
+        return [...s, row[j]];
+      });
+    },
+    [[], [], []] as Array<Array<Point>>
   );
-  const vancouver = rain.map(
-    (month, i) => [scale(dates[i]), month[1]] as Point
-  );
-  const victoria = rain.map((month, i) => [scale(dates[i]), month[2]] as Point);
-  const kelowna = rain.map((month, i) => [scale(dates[i]), month[3]] as Point);
-  const tickPositions = Array.from({ length: 20 }, (_, i) => i * 12);
-  const getXLabel = (pos: number) => String(dates[pos].getFullYear());
+
+  const labels = ['Vancouver', 'Victoria', 'Kelowna'];
+  const colors = ['#003f5c', '#58508d', '#bc5090'];
+
+  const tickPositions = series[0]
+    .filter((_, i) => i % 12 === 0)
+    .map((s) => s[0]);
+  const getXLabel = (pos: number) => String(rain[pos][0]);
 
   const setTooltip = (data: HypocubeEventData) => {
     if (!data.elementPosition) {
       return;
     }
-    setTooltipPos(data.elementPosition);
+    setTooltipData([...data.elementPosition, data.meta.seriesName as string]);
   };
-  const clearTooltip = () => setTooltipPos(null);
 
   return (
     <Chart
@@ -57,17 +64,27 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         dataPointSymbol: 'circle',
         dataPointMinTargetRadius: 10,
       }}
-      tooltip={<SimpleTooltip />}
-      tooltipPosition={tooltipPos}
+      tooltip={
+        tooltipData && (
+          <SimpleTooltip seriesName={tooltipData && tooltipData[2]} />
+        )
+      }
+      tooltipPosition={tooltipData && [tooltipData[0], tooltipData[1]]}
     >
       <XAxis tickPositions={tickPositions} getTickLabel={getXLabel} />
       <YAxis
         tickPositions={[0, 50, 100, 200]}
         getTickLabel={(pos) => String(pos)}
       />
-      <LineSeries data={vancouver} color="#003f5c" onPointerDown={setTooltip} />
-      {/* <LineSeries data={victoria} color="#58508d" />
-      <LineSeries data={kelowna} color="#bc5090" /> */}
+      {series.map((s, i) => (
+        <LineSeries
+          key={labels[i]}
+          data={s}
+          color={colors[i]}
+          onPointerDown={setTooltip}
+          handlerMeta={{ seriesName: labels[i] }}
+        />
+      ))}
     </Chart>
   );
 };

@@ -37,6 +37,7 @@ interface BarSeriesProps {
   seriesIndexOutof?: number;
   color?: string;
   styles?: ChartStyleOptions;
+  handlerMeta?: Record<string, string | number | boolean>;
 }
 
 const BarVerticalSeriesDefaultComponents = {

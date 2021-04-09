@@ -1,30 +1,17 @@
 import { scaleTime } from 'd3-scale';
 import React from 'react';
-import { Chart, Line, LineSeries, Point, XAxis, YAxis } from '../src';
+import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
 import MultipleSeries from './MultipleSeries';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
-import { rain } from './__data__/precipitation';
 import { tickerTape } from './__data__/tickerTape';
 
 interface Example {
   name: string;
   render: ({ isCanvas }: { isCanvas: boolean }) => JSX.Element;
 }
-
-const SimpleTooltip: React.FC = () => (
-  <div
-    style={{
-      background: 'white',
-      border: '1px solid black',
-      boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, 0.2)',
-    }}
-  >
-    <strong>Hello, world!</strong>
-  </div>
-);
 
 const examples: Example[] = [
   {
@@ -99,27 +86,17 @@ const examples: Example[] = [
   {
     name: 'Pannable',
     render: ({ isCanvas }) => {
-      const dates = canada.map((day) => new Date(day[0]));
-      const scale = scaleTime(
-        [dates[0], dates[dates.length - 1]],
-        [0, dates.length]
-      );
       const series: Array<[number, number]> = canada.map((day, i) => [
-        scale(dates[i]),
+        i,
         day[1],
       ]);
 
       return (
         <Pannable
           isCanvas={isCanvas}
-          getDateLabel={(x) =>
-            scale
-              .invert(x)
-              .getDate()
-              .toString()
-          }
+          getDateLabel={(x) => canada[x][0]}
           series={series}
-          tickPositions={dates.map(scale)}
+          tickPositions={canada.map((_, i) => i)}
         />
       );
     },

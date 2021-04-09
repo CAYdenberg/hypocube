@@ -95,6 +95,7 @@ interface LineSeriesProps {
   view?: Viewbox;
   color?: string;
   styles?: ChartStyleOptions;
+  handlerMeta?: Record<string, string | number | boolean>;
 }
 
 export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
@@ -104,20 +105,28 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
   };
 
   const LineSeries: React.FC<LineSeriesProps & HypocubeHandlers> = (props) => {
-    const { cartesianBox } = useChartState();
+    const { cartesianBox, isCanvas } = useChartState();
+    const { dataPointSymbol } = useChartStyles(props.styles);
     const view = normalize(props.view, cartesianBox);
+
+    const filteredPoints =
+      isCanvas && dataPointSymbol === 'none'
+        ? // No interaction, no render: don't bother
+          []
+        : props.data.filter(
+            ([x, y], i) =>
+              x >= view.x[0] &&
+              x <= view.x[1] &&
+              y >= view.y[0] &&
+              y <= view.y[1]
+          );
 
     return (
       <React.Fragment>
         <DataLine {...props} />
-        {props.data.map(([x, y]) =>
-          x >= view.x[0] &&
-          x <= view.x[1] &&
-          y >= view.y[0] &&
-          y <= view.y[1] ? (
-            <DataPoint x={x} y={y} key={`${x},${y}`} {...props} />
-          ) : null
-        )}
+        {filteredPoints.map(([x, y]) => (
+          <DataPoint x={x} y={y} key={`${x},${y}`} {...props} />
+        ))}
       </React.Fragment>
     );
   };
