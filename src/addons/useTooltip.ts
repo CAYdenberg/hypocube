@@ -11,7 +11,7 @@ export default () => {
   const ref = useRef();
 
   const handleSetTooltip = useCallback((data: HypocubeEventData) => {
-    // set tooltip
+    setData(null);
   }, []);
 
   // clear on click outside

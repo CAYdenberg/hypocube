@@ -1,4 +1,3 @@
-import { scaleTime } from 'd3-scale';
 import React from 'react';
 import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
 import BarGraph from './BarGraph';
