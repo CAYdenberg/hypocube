@@ -19,7 +19,8 @@ export type symbolType =
   | 'square'
   | 'star'
   | 'triangle'
-  | 'wye';
+  | 'wye'
+  | 'none';
 
 interface SymbolProps {
   point: [number, number];
@@ -28,9 +29,10 @@ interface SymbolProps {
   stroke?: string;
   fill?: string | null;
   strokeWidth?: number;
+  quietRenderRadius?: number;
 }
 
-const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType => {
+const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType | null => {
   if (typeof input !== 'string') {
     return input;
   }
@@ -53,21 +55,37 @@ const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType => {
 
     case 'wye':
       return symbolWye;
+
+    case 'none':
+      return null;
   }
 
   return symbolCircle;
 };
 
 export const Symbol: React.FC<SymbolProps> = (props) => {
-  const { point, size, symbol, stroke, fill, strokeWidth } = {
-    size: 8,
+  const {
+    point,
+    size,
+    symbol,
+    stroke,
+    fill,
+    strokeWidth,
+    quietRenderRadius,
+  } = {
+    size: 5,
     symbol: symbolCircle,
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
+    quietRenderRadius: 0,
     ...props,
   };
   const symbolF = getD3Symbol(symbol);
+
+  if (!symbolF) {
+    return null;
+  }
 
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
 
@@ -96,6 +114,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
   return (
     <g transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}>
+      <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
       <path
         d={line}
         stroke={stroke}

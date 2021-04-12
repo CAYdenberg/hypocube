@@ -49,7 +49,7 @@ const Text: React.FC<Props> = (props) => {
       y={y}
       fill={color}
       fontSize={fontSize}
-      style={{ fontFamily: `${font}, sans-serif` }}
+      style={{ fontFamily: `${font}, sans-serif`, userSelect: 'none' }}
       textAnchor={svgAnchor}
     >
       {text}

@@ -25,8 +25,8 @@ interface Props extends HandlerProps {
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
   rootStyles?: ChartStyleOptions;
-  tooltip?: JSX.Element;
-  tooltipPosition?: Point;
+  tooltip?: JSX.Element | null;
+  tooltipPosition?: Point | null;
 }
 
 const Chart: React.FC<Props> = (props) => {

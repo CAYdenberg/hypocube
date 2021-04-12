@@ -12,17 +12,17 @@ interface DataboxVerticalProps {
   x: number;
   xOffset?: number;
   color?: string;
-  overrideStyles?: ChartStyleOptions;
+  styles?: ChartStyleOptions;
 }
 
 export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
   const { scaleX, scaleY } = useChartState();
   const {
     dataBoxThickness,
-    dataFill,
-    dataStroke,
-    dataStrokeWidth,
-  } = useChartStyles(props.overrideStyles);
+    dataBoxFill,
+    dataBoxStroke,
+    dataBoxStrokeWidth,
+  } = useChartStyles(props.styles);
 
   const tHalf = dataBoxThickness / 2;
 
@@ -30,7 +30,7 @@ export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
   const yMax = scaleY(props.yMax);
   const x = scaleX(props.x);
   const xOffset = normalize(props.xOffset, 0);
-  const fill = props.color || dataFill;
+  const fill = props.color || dataBoxFill;
 
   const path: Point[] = [
     [x - tHalf + xOffset, yMax],
@@ -43,8 +43,8 @@ export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
     <PxLine
       path={path}
       fill={fill}
-      stroke={dataStroke}
-      strokeWidth={dataStrokeWidth}
+      stroke={dataBoxStroke}
+      strokeWidth={dataBoxStrokeWidth}
     />
   );
 };
