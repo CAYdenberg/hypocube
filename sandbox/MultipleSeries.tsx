@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import {
-  Chart,
-  HypocubeEventData,
-  LineSeries,
-  Point,
-  XAxis,
-  YAxis,
-} from '../src';
+import React from 'react';
+import { Chart, LineSeries, Point, XAxis, YAxis } from '../src';
+import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
 
-const SimpleTooltip: React.FC<{ seriesName?: string }> = ({ seriesName }) => (
+const SimpleTooltip: React.FC<{
+  seriesName?: string;
+}> = ({ seriesName }) => (
   <div
     style={{
       background: 'white',
@@ -23,9 +19,9 @@ const SimpleTooltip: React.FC<{ seriesName?: string }> = ({ seriesName }) => (
 );
 
 const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
-  const [tooltipData, setTooltipData] = useState<
-    [number, number, string] | null
-  >(null);
+  const [tooltipData, setTooltip, handleCloseTooltip] = useTooltip<{
+    seriesName: string;
+  }>();
 
   const series = rain.reduce(
     (series, month, i) => {
@@ -46,13 +42,6 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
     .map((s) => s[0]);
   const getXLabel = (pos: number) => String(rain[pos][0]);
 
-  const setTooltip = (data: HypocubeEventData) => {
-    if (!data.elementPosition) {
-      return;
-    }
-    setTooltipData([...data.elementPosition, data.meta.seriesName as string]);
-  };
-
   return (
     <Chart
       height={300}
@@ -65,11 +54,11 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         dataPointMinTargetRadius: 10,
       }}
       tooltip={
-        tooltipData && (
-          <SimpleTooltip seriesName={tooltipData && tooltipData[2]} />
-        )
+        <TooltipWrapper onRequestClose={handleCloseTooltip}>
+          <SimpleTooltip seriesName={tooltipData?.meta.seriesName} />
+        </TooltipWrapper>
       }
-      tooltipPosition={tooltipData && [tooltipData[0], tooltipData[1]]}
+      tooltipPosition={tooltipData?.position}
     >
       <XAxis tickPositions={tickPositions} getTickLabel={getXLabel} />
       <YAxis

@@ -96,9 +96,7 @@ export interface HypocubeEventData {
   pointerId: number | null;
   elementPosition?: [number, number];
   modifiers: Array<string>;
-  meta: {
-    [key: string]: string | number | boolean;
-  };
+  meta: Record<string, string | number | boolean | null>;
 }
 
 export type HypocubeHandler = (data: HypocubeEventData) => void;

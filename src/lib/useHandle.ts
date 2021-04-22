@@ -11,7 +11,7 @@ import {
 
 export interface HandlerProps extends HypocubeHandlers {
   elementPosition?: [number, number];
-  meta?: Record<string, string | number | boolean>;
+  meta?: Record<string, string | number | boolean | null>;
 }
 
 export default ({ elementPosition, meta, ...handlers }: HandlerProps) => {
