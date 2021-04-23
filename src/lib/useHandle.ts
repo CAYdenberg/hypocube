@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import useChartState from '../components/base/ChartState';
-import { SUPPORTED_EVENTS } from '../constants';
+import { REMAPPED_EVENTS } from '../constants';
 import {
   HypocubeEventData,
   HypocubeHandler,
@@ -39,8 +39,8 @@ export default ({ elementPosition, meta, ...handlers }: HandlerProps) => {
   );
 
   const reactHandlers = useMemo(() => {
-    return SUPPORTED_EVENTS.reduce((rhandlers, key) => {
-      const handler = handlers[key] as HypocubeHandler;
+    return REMAPPED_EVENTS.reduce((rhandlers, key) => {
+      const handler = handlers[key] as HypocubeHandler | undefined;
       if (handler) {
         rhandlers[key] = (event: ReactEvent) => {
           event.preventDefault();

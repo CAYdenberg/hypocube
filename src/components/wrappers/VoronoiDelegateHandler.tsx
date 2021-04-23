@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { DelegateHandler, HypocubeHandlers } from '../../types';
-import Handle from '../primitives/Handle';
 
 interface Props extends HypocubeHandlers {
   debounceCalculation: number;
