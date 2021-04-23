@@ -121,6 +121,16 @@ export interface HypocubeGestureData {
   state: any;
 }
 
+export enum DelegationPhase {
+  Mount = 'Mount',
+  Unmount = 'Unmount',
+}
+
+export type DelegateHandler = (
+  data: Pick<HypocubeEventData, 'elementPosition' | 'meta'>,
+  phase: DelegationPhase
+) => void;
+
 export interface HypocubeHandlers {
   onPointerDown?: HypocubeHandler;
   onPointerMove?: HypocubeHandler;
@@ -133,6 +143,7 @@ export interface HypocubeHandlers {
   onPointerOver?: HypocubeHandler;
   onPointerOut?: HypocubeHandler;
   onGesture?: (data: HypocubeGestureData) => void;
+  delegateHandler?: DelegateHandler;
 }
 
 export type Animation = (time: number, end: () => void) => Viewbox;

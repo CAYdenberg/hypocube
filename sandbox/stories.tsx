@@ -4,6 +4,7 @@ import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
 import MultipleSeries from './MultipleSeries';
 import { Pannable } from './Pannable';
+import SimpleVoronoi from './SimpleVoronoi';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 
@@ -55,6 +56,10 @@ const examples: Example[] = [
   {
     name: 'Click handler',
     render: ({ isCanvas }) => <ClickHandler isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Simple Voronoi',
+    render: ({ isCanvas }) => <SimpleVoronoi isCanvas={isCanvas} />,
   },
   {
     name: 'LineSeries',
