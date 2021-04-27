@@ -1,5 +1,10 @@
 import React from 'react';
-import { ChartStyleOptions, HypocubeHandlers, Point } from '../../types';
+import {
+  ChartStyleOptions,
+  HypocubeEventMetaData,
+  HypocubeHandlers,
+  Point,
+} from '../../types';
 import { Symbol } from '../primitives/Symbol';
 import { Line } from '../primitives/Line';
 import { useChartStyles } from '../base/ChartStyle';
@@ -13,7 +18,7 @@ interface DataPointProps {
   y: number;
   styles?: ChartStyleOptions;
   color?: string;
-  handlerMeta?: Record<string, string | number | boolean>;
+  handlerMeta?: HypocubeEventMetaData;
 }
 
 export const DataPoint: React.FC<DataPointProps & HypocubeHandlers> = (
@@ -95,7 +100,7 @@ interface LineSeriesProps {
   view?: Viewbox;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: Record<string, string | number | boolean>;
+  handlerMeta?: HypocubeEventMetaData;
 }
 
 export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {

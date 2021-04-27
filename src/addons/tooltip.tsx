@@ -1,16 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { HypocubeEventData, Point } from '../types';
+import { HypocubeEventData, HypocubeEventMetaData, Point } from '../types';
 
-interface TooltipData<
-  Meta extends Record<string, string | number | boolean | null>
-> {
+interface TooltipData<Meta extends HypocubeEventMetaData> {
   position: Point;
   meta: Meta;
 }
 
-export const useTooltip = <
-  Meta extends Record<string, string | number | boolean | null>
->() => {
+export const useTooltip = <Meta extends HypocubeEventMetaData>() => {
   const [data, setData] = useState<TooltipData<Meta> | null>(null);
 
   const handleSetTooltip = useCallback(
