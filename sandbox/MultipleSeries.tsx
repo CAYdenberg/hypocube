@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, LineSeries, Point, XAxis, YAxis } from '../src';
+import { Chart, LineSeries, Point, VoronoiHandle, XAxis, YAxis } from '../src';
 import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
 
@@ -74,6 +74,11 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
           handlerMeta={{ seriesName: labels[i] }}
         />
       ))}
+      <VoronoiHandle
+        series={series}
+        meta={series.map((_, i) => ({ seriesName: labels[i] }))}
+        onPointerDown={setTooltip}
+      />
     </Chart>
   );
 };

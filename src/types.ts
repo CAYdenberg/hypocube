@@ -90,13 +90,18 @@ export interface ReactHandlers {
   onPointerOut?: (e: ReactEvent) => void;
 }
 
+export type HypocubeEventMetaData = Record<
+  string,
+  string | number | boolean | null
+>;
+
 export interface HypocubeEventData {
   event: ReactEvent;
   pointerPosition: [number, number];
   pointerId: number | null;
   elementPosition?: [number, number];
   modifiers: Array<string>;
-  meta: Record<string, string | number | boolean | null>;
+  meta: HypocubeEventMetaData;
 }
 
 export type HypocubeHandler = (data: HypocubeEventData) => void;

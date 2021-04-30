@@ -18,8 +18,8 @@ export type dashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
 
 interface Props {
   path: Point[];
-  stroke?: string;
-  fill?: string;
+  stroke?: string | null;
+  fill?: string | null;
   strokeWidth?: number;
   curveType?: curveType | CurveFactoryLineOnly;
   dash?: dashType;
@@ -107,7 +107,10 @@ export const PxLine: React.FC<Props> = (props) => {
       .curve(curveFactory)
       .context(renderer);
     renderer.beginPath();
-    renderer.strokeStyle = stroke;
+
+    if (stroke) {
+      renderer.strokeStyle = stroke;
+    }
 
     renderer.lineWidth = strokeWidth;
 
@@ -135,7 +138,7 @@ export const PxLine: React.FC<Props> = (props) => {
   return (
     <path
       d={line}
-      stroke={stroke}
+      stroke={stroke || 'transparent'}
       fill={fill || 'transparent'}
       strokeWidth={strokeWidth}
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}

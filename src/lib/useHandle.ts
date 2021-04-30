@@ -3,6 +3,7 @@ import useChartState from '../components/base/ChartState';
 import { SUPPORTED_EVENTS } from '../constants';
 import {
   HypocubeEventData,
+  HypocubeEventMetaData,
   HypocubeHandler,
   HypocubeHandlers,
   ReactEvent,
@@ -11,15 +12,21 @@ import {
 
 export interface HandlerProps extends HypocubeHandlers {
   elementPosition?: [number, number];
-  meta?: Record<string, string | number | boolean | null>;
+  meta?: HypocubeEventMetaData;
+  mapEventData?: (data: HypocubeEventData) => HypocubeEventData;
 }
 
-export default ({ elementPosition, meta, ...handlers }: HandlerProps) => {
+export default ({
+  elementPosition,
+  meta,
+  mapEventData,
+  ...handlers
+}: HandlerProps) => {
   const { scaleX, scaleY, containerOffset } = useChartState();
 
   const getData = useCallback(
     (event: ReactEvent): HypocubeEventData => {
-      return {
+      const data: HypocubeEventData = {
         meta: meta || {},
         elementPosition,
         event,
@@ -34,8 +41,10 @@ export default ({ elementPosition, meta, ...handlers }: HandlerProps) => {
           event.shiftKey && 'shift',
         ].filter(Boolean) as Array<string>,
       };
+
+      return mapEventData ? mapEventData(data) : data;
     },
-    [meta, elementPosition, scaleX, scaleY, containerOffset]
+    [meta, elementPosition, scaleX, scaleY, containerOffset, mapEventData]
   );
 
   const reactHandlers = useMemo(() => {

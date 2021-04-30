@@ -1,6 +1,11 @@
 import React from 'react';
 import { DataboxVertical } from './Databox';
-import { ChartStyleOptions, HypocubeHandlers, Point } from '../../types';
+import {
+  ChartStyleOptions,
+  HypocubeEventMetaData,
+  HypocubeHandlers,
+  Point,
+} from '../../types';
 import { normalize } from '../../lib/normalize';
 import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
@@ -11,7 +16,7 @@ interface BarProps {
   y: number;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: Record<string, string | number | boolean>;
+  handlerMeta?: HypocubeEventMetaData;
 }
 
 export const BarVertical: React.FC<BarProps & HypocubeHandlers> = (props) => {
@@ -37,7 +42,7 @@ interface BarSeriesProps {
   seriesIndexOutof?: number;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: Record<string, string | number | boolean>;
+  handlerMeta?: HypocubeEventMetaData;
 }
 
 const BarVerticalSeriesDefaultComponents = {
