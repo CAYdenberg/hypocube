@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Chart, XAxis, LineSeries, GestureKind } from '../src';
 import usePannableView from '../src/addons/usePannableView';
 import { createViewbox } from '../src/lib/Viewbox';
@@ -17,9 +17,12 @@ export const Pannable: React.FC<Props> = ({
   tickPositions,
 }) => {
   const boundingBox = createViewbox([0, 0, 400, 1000]);
+  const [gesture, setGesture] = useState('');
+
   const { view, isPanning, onGesture } = usePannableView(
     [50, 0, 50, 1000],
     (data) => {
+      setGesture(`${data.state.movement[0]} : ${data.state.movement[1]}`);
       if (data.kind === GestureKind.Swipe) {
         return (time, cancel) => {
           if (time > 1) {
@@ -33,20 +36,23 @@ export const Pannable: React.FC<Props> = ({
   );
 
   return (
-    <Chart
-      height={300}
-      width={300}
-      view={view}
-      gutter={[20, 20, 50, 50]}
-      isCanvas={isCanvas || isPanning}
-      onGesture={onGesture}
-    >
-      <XAxis
-        range={view.x}
-        tickPositions={tickPositions}
-        getTickLabel={getDateLabel}
-      />
-      <LineSeries data={series} color="#5477a1" />
-    </Chart>
+    <React.Fragment>
+      <Chart
+        height={300}
+        width={300}
+        view={view}
+        gutter={[20, 20, 50, 50]}
+        isCanvas={isCanvas || isPanning}
+        onGesture={onGesture}
+      >
+        <XAxis
+          range={view.x}
+          tickPositions={tickPositions}
+          getTickLabel={getDateLabel}
+        />
+        <LineSeries data={series} color="#5477a1" />
+      </Chart>
+      <p>{gesture}</p>
+    </React.Fragment>
   );
 };

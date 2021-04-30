@@ -17,6 +17,7 @@
     "docz:build": "docz build",
     "preversion": "npm run typecheck && npm run lint && npm run test && npm run build && npm run docz:build",
     "sandbox": "parcel sandbox/index.html",
+    "sandbox:build": "parcel build sandbox/index.html",
     "autofix": "eslint src sandbox --ext .ts,.tsx --fix --max-warnings=0"
   },
   "author": "@CAYdenberg",

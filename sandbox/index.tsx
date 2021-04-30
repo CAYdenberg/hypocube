@@ -28,9 +28,9 @@ const App = () => {
       </ul>
       <hr />
       <div className="chart-area">
-        <div>{story.render({ isCanvas: false })}</div>
+        {/* <div>{story.render({ isCanvas: false })}</div> */}
         <div>{story.render({ isCanvas: true })}</div>
-        <div dangerouslySetInnerHTML={{ __html }} />
+        {/* <div dangerouslySetInnerHTML={{ __html }} /> */}
       </div>
     </div>
   );

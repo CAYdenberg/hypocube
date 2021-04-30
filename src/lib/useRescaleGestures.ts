@@ -5,19 +5,43 @@ import useChartState from '../components/base/ChartState';
 import Viewbox from '../lib/Viewbox';
 import { GestureKind, GesturePhase, HypocubeGestureData } from '../types';
 
+// The purpose of this hook is to fire an onGesture callback that allows
+// the developer to update the viewbox or perform other actions.
+
+// The nextView property passed to this callback represents Hypocube's
+// "best guess" as to where the user is trying to move the viewbox. IE
+// it takes into account the drag distance etc.. but NOT the eventual
+// bounding box. The new view can instead be bounded by the developer outside
+// of this function.
 export default (
   onGesture: (data: HypocubeGestureData) => void = () => null
 ) => {
   const { scaleX, scaleY, cartesianBox } = useChartState();
+
+  // Track the location of the box when the gesture started, for the purposes
+  // of calculating how far it has moved.
   const [boxStart, setBoxStart] = useState(cartesianBox);
 
-  const moveViewbox = (state: FullGestureState<'drag'>): Viewbox => {
+  // Generic function for panning the viewbox in response to gestures, eg
+  // drag.
+  const panViewbox = (state: FullGestureState<'drag'>): Viewbox => {
     const distanceX = scaleX.invert(0) - scaleX.invert(state.movement[0]);
     const distanceY = scaleY.invert(0) - scaleY.invert(state.movement[1]);
     return boxStart.panX(distanceX).panY(distanceY);
   };
 
+  const zoomViewbox = (state: FullGestureState<'pinch'>): Viewbox => {
+    const distanceX = scaleX.invert(0) - scaleX.invert(state.offset[0] * -1);
+    const distanceY = scaleY.invert(0) - scaleY.invert(state.offset[1] * -1);
+    return boxStart.zoomX(distanceX).zoomY(distanceY);
+  };
+
   return useGesture({
+    /**
+     * DRAG GESTURES (swipe is determined automatically by react-use-gesture)
+     */
+
+    // On start, emit the current location and save it to state.
     onDragStart: (state) => {
       setBoxStart(cartesianBox);
       onGesture({
@@ -27,8 +51,10 @@ export default (
         state,
       });
     },
+
+    // As drag proceeds, update the nextView based on how far the drag has gone.
     onDrag: (state) => {
-      const nextView = moveViewbox(state);
+      const nextView = panViewbox(state);
       onGesture({
         kind: GestureKind.Drag,
         phase: GesturePhase.Continue,
@@ -36,38 +62,75 @@ export default (
         state,
       });
     },
+
+    // onDragEnd first updates the nextView similar to onDrag.
+    // It then checks for swipe events, and if a swipe is detected, it moves
+    // the view ONE FULL chart-width over (or up/down).
     onDragEnd: (state) => {
-      const nextViewFromPan = moveViewbox(state);
+      const isSwipe = !!state.swipe.find(Boolean);
+
+      const nextView = (() => {
+        switch (true) {
+          case state.swipe[0] === -1:
+            return boxStart.panX(boxStart.width);
+
+          case state.swipe[0] === 1:
+            return boxStart.panX(boxStart.width * -1);
+
+          case state.swipe[1] === -1:
+            return boxStart.panY(boxStart.height);
+
+          case state.swipe[1] === 1:
+            return boxStart.panY(boxStart.height * -1);
+        }
+
+        return panViewbox(state);
+      })();
+
       onGesture({
-        kind: GestureKind.Drag,
+        kind: isSwipe ? GestureKind.Swipe : GestureKind.Drag,
         phase: GesturePhase.End,
-        nextView: nextViewFromPan,
+        nextView,
         state,
       });
 
-      let nextView: Viewbox | null;
-      if (state.swipe[0] === -1) {
-        nextView = boxStart.panX(boxStart.width);
-      } else if (state.swipe[0] === 1) {
-        nextView = boxStart.panX(boxStart.width * -1);
-      } else if (state.swipe[1] === -1) {
-        nextView = boxStart.panY(boxStart.height);
-      } else if (state.swipe[1] === 1) {
-        nextView = boxStart.panY(boxStart.height * -1);
-      } else {
-        nextView = null;
-      }
-
-      if (nextView) {
-        onGesture({
-          kind: GestureKind.Swipe,
-          phase: GesturePhase.End,
-          nextView,
-          state,
-        });
-      }
-      setBoxStart(nextView || nextViewFromPan);
+      // set the box start to this updated view
+      setBoxStart(nextView);
     },
-    // TODO: pinch and wheel events
+
+    /**
+     * PINCH EVENTS
+     */
+    onPinchStart: (state) => {
+      setBoxStart(cartesianBox);
+      onGesture({
+        kind: GestureKind.Pinch,
+        phase: GesturePhase.Start,
+        nextView: cartesianBox,
+        state,
+      });
+    },
+
+    onPinch: (state) => {
+      const nextView = zoomViewbox(state);
+      onGesture({
+        kind: GestureKind.Pinch,
+        phase: GesturePhase.Continue,
+        nextView: zoomViewbox(state),
+        state,
+      });
+      setBoxStart(nextView);
+    },
+
+    onPinchEnd: (state) => {
+      const nextView = zoomViewbox(state);
+      onGesture({
+        kind: GestureKind.Pinch,
+        phase: GesturePhase.End,
+        nextView,
+        state,
+      });
+      setBoxStart(nextView);
+    },
   });
 };

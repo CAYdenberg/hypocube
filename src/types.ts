@@ -110,7 +110,6 @@ export enum GestureKind {
   Drag = 'Drag',
   Swipe = 'Swipe',
   Pinch = 'Pinch',
-  Wheel = 'Wheel',
 }
 
 export enum GesturePhase {
