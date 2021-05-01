@@ -22,7 +22,7 @@ export const Pannable: React.FC<Props> = ({
   const { view, isPanning, onGesture } = usePannableView(
     [50, 0, 50, 1000],
     (data) => {
-      setGesture(`${data.state.movement[0]} : ${data.state.movement[1]}`);
+      setGesture(`${data.kind}`);
       if (data.kind === GestureKind.Swipe) {
         return (time, cancel) => {
           if (time > 1) {

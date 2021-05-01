@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { FullGestureState } from 'react-use-gesture/dist/types';
 import useChartState from '../components/base/ChartState';
@@ -18,22 +17,18 @@ export default (
 ) => {
   const { scaleX, scaleY, cartesianBox } = useChartState();
 
-  // Track the location of the box when the gesture started, for the purposes
-  // of calculating how far it has moved.
-  const [boxStart, setBoxStart] = useState(cartesianBox);
-
   // Generic function for panning the viewbox in response to gestures, eg
   // drag.
   const panViewbox = (state: FullGestureState<'drag'>): Viewbox => {
-    const distanceX = scaleX.invert(0) - scaleX.invert(state.movement[0]);
-    const distanceY = scaleY.invert(0) - scaleY.invert(state.movement[1]);
-    return boxStart.panX(distanceX).panY(distanceY);
+    const distanceX = scaleX.invert(0) - scaleX.invert(state.delta[0]);
+    const distanceY = scaleY.invert(0) - scaleY.invert(state.delta[1]);
+    return cartesianBox.panX(distanceX).panY(distanceY);
   };
 
   const zoomViewbox = (state: FullGestureState<'pinch'>): Viewbox => {
-    const distanceX = scaleX.invert(0) - scaleX.invert(state.offset[0] * -1);
-    const distanceY = scaleY.invert(0) - scaleY.invert(state.offset[1] * -1);
-    return boxStart.zoomX(distanceX).zoomY(distanceY);
+    const distanceX = scaleX.invert(0) - scaleX.invert(state.delta[0] * -1);
+    const distanceY = scaleY.invert(0) - scaleY.invert(state.delta[1] * -1);
+    return cartesianBox.zoomX(distanceX).zoomY(distanceY);
   };
 
   return useGesture({
@@ -43,7 +38,6 @@ export default (
 
     // On start, emit the current location and save it to state.
     onDragStart: (state) => {
-      setBoxStart(cartesianBox);
       onGesture({
         kind: GestureKind.Drag,
         phase: GesturePhase.Start,
@@ -72,16 +66,16 @@ export default (
       const nextView = (() => {
         switch (true) {
           case state.swipe[0] === -1:
-            return boxStart.panX(boxStart.width);
+            return cartesianBox.panX(cartesianBox.width);
 
           case state.swipe[0] === 1:
-            return boxStart.panX(boxStart.width * -1);
+            return cartesianBox.panX(cartesianBox.width * -1);
 
           case state.swipe[1] === -1:
-            return boxStart.panY(boxStart.height);
+            return cartesianBox.panY(cartesianBox.height);
 
           case state.swipe[1] === 1:
-            return boxStart.panY(boxStart.height * -1);
+            return cartesianBox.panY(cartesianBox.height * -1);
         }
 
         return panViewbox(state);
@@ -93,16 +87,12 @@ export default (
         nextView,
         state,
       });
-
-      // set the box start to this updated view
-      setBoxStart(nextView);
     },
 
     /**
      * PINCH EVENTS
      */
     onPinchStart: (state) => {
-      setBoxStart(cartesianBox);
       onGesture({
         kind: GestureKind.Pinch,
         phase: GesturePhase.Start,
@@ -116,10 +106,9 @@ export default (
       onGesture({
         kind: GestureKind.Pinch,
         phase: GesturePhase.Continue,
-        nextView: zoomViewbox(state),
+        nextView,
         state,
       });
-      setBoxStart(nextView);
     },
 
     onPinchEnd: (state) => {
@@ -130,7 +119,6 @@ export default (
         nextView,
         state,
       });
-      setBoxStart(nextView);
     },
   });
 };

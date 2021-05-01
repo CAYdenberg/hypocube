@@ -5,7 +5,7 @@
   "repository": {
     "url": "https://github.com/CAYdenberg/hypocube"
   },
-  "main": "build/js/index.ts",
+  "main": "build/js/index.js",
   "types": "build/types",
   "scripts": {
     "typecheck": "tsc --noEmit",
