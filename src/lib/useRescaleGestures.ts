@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { FullGestureState } from 'react-use-gesture/dist/types';
 import useChartState from '../components/base/ChartState';
@@ -16,6 +17,7 @@ export default (
   onGesture: (data: HypocubeGestureData) => void = () => null
 ) => {
   const { scaleX, scaleY, cartesianBox } = useChartState();
+  const handleRef = useRef();
 
   // Generic function for panning the viewbox in response to gestures, eg
   // drag.
@@ -31,94 +33,101 @@ export default (
     return cartesianBox.zoomX(distanceX).zoomY(distanceY);
   };
 
-  return useGesture({
-    /**
-     * DRAG GESTURES (swipe is determined automatically by react-use-gesture)
-     */
+  useGesture(
+    {
+      /**
+       * DRAG GESTURES (swipe is determined automatically by react-use-gesture)
+       */
 
-    // On start, emit the current location and save it to state.
-    onDragStart: (state) => {
-      onGesture({
-        kind: GestureKind.Drag,
-        phase: GesturePhase.Start,
-        nextView: cartesianBox,
-        state,
-      });
+      // On start, emit the current location and save it to state.
+      onDragStart: (state) => {
+        onGesture({
+          kind: GestureKind.Drag,
+          phase: GesturePhase.Start,
+          nextView: cartesianBox,
+          state,
+        });
+      },
+
+      // As drag proceeds, update the nextView based on how far the drag has gone.
+      onDrag: (state) => {
+        const nextView = panViewbox(state);
+        onGesture({
+          kind: GestureKind.Drag,
+          phase: GesturePhase.Continue,
+          nextView,
+          state,
+        });
+      },
+
+      // onDragEnd first updates the nextView similar to onDrag.
+      // It then checks for swipe events, and if a swipe is detected, it moves
+      // the view ONE FULL chart-width over (or up/down).
+      onDragEnd: (state) => {
+        const isSwipe = !!state.swipe.find(Boolean);
+
+        const nextView = (() => {
+          switch (true) {
+            case state.swipe[0] === -1:
+              return cartesianBox.panX(cartesianBox.width);
+
+            case state.swipe[0] === 1:
+              return cartesianBox.panX(cartesianBox.width * -1);
+
+            case state.swipe[1] === -1:
+              return cartesianBox.panY(cartesianBox.height);
+
+            case state.swipe[1] === 1:
+              return cartesianBox.panY(cartesianBox.height * -1);
+          }
+
+          return panViewbox(state);
+        })();
+
+        onGesture({
+          kind: isSwipe ? GestureKind.Swipe : GestureKind.Drag,
+          phase: GesturePhase.End,
+          nextView,
+          state,
+        });
+      },
+
+      /**
+       * PINCH EVENTS
+       */
+      onPinchStart: (state) => {
+        onGesture({
+          kind: GestureKind.Pinch,
+          phase: GesturePhase.Start,
+          nextView: cartesianBox,
+          state,
+        });
+      },
+
+      onPinch: (state) => {
+        const nextView = zoomViewbox(state);
+        onGesture({
+          kind: GestureKind.Pinch,
+          phase: GesturePhase.Continue,
+          nextView,
+          state,
+        });
+      },
+
+      onPinchEnd: (state) => {
+        const nextView = zoomViewbox(state);
+        onGesture({
+          kind: GestureKind.Pinch,
+          phase: GesturePhase.End,
+          nextView,
+          state,
+        });
+      },
     },
+    {
+      domTarget: handleRef,
+    }
+  );
 
-    // As drag proceeds, update the nextView based on how far the drag has gone.
-    onDrag: (state) => {
-      const nextView = panViewbox(state);
-      onGesture({
-        kind: GestureKind.Drag,
-        phase: GesturePhase.Continue,
-        nextView,
-        state,
-      });
-    },
-
-    // onDragEnd first updates the nextView similar to onDrag.
-    // It then checks for swipe events, and if a swipe is detected, it moves
-    // the view ONE FULL chart-width over (or up/down).
-    onDragEnd: (state) => {
-      const isSwipe = !!state.swipe.find(Boolean);
-
-      const nextView = (() => {
-        switch (true) {
-          case state.swipe[0] === -1:
-            return cartesianBox.panX(cartesianBox.width);
-
-          case state.swipe[0] === 1:
-            return cartesianBox.panX(cartesianBox.width * -1);
-
-          case state.swipe[1] === -1:
-            return cartesianBox.panY(cartesianBox.height);
-
-          case state.swipe[1] === 1:
-            return cartesianBox.panY(cartesianBox.height * -1);
-        }
-
-        return panViewbox(state);
-      })();
-
-      onGesture({
-        kind: isSwipe ? GestureKind.Swipe : GestureKind.Drag,
-        phase: GesturePhase.End,
-        nextView,
-        state,
-      });
-    },
-
-    /**
-     * PINCH EVENTS
-     */
-    onPinchStart: (state) => {
-      onGesture({
-        kind: GestureKind.Pinch,
-        phase: GesturePhase.Start,
-        nextView: cartesianBox,
-        state,
-      });
-    },
-
-    onPinch: (state) => {
-      const nextView = zoomViewbox(state);
-      onGesture({
-        kind: GestureKind.Pinch,
-        phase: GesturePhase.Continue,
-        nextView,
-        state,
-      });
-    },
-
-    onPinchEnd: (state) => {
-      const nextView = zoomViewbox(state);
-      onGesture({
-        kind: GestureKind.Pinch,
-        phase: GesturePhase.End,
-        nextView,
-        state,
-      });
-    },
-  });
+  return handleRef;
 };
