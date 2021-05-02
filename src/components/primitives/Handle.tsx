@@ -3,19 +3,19 @@ import useChartState from '../base/ChartState';
 import useHandle, { HandlerProps } from '../../lib/useHandle';
 import useRescaleGestures from '../../lib/useRescaleGestures';
 
-export const ChartHandle: React.FC<HandlerProps> = (props) => {
+export const ChartHandle: React.FC<HandlerProps> = ({ children, ...props }) => {
   const handlers = useHandle(props);
   const handleRef = useRescaleGestures(props.onGesture);
+
   const style = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     touchAction: props.onGesture ? 'none' : 'initial',
   };
 
-  return <div {...handlers} ref={handleRef} style={style} />;
+  return (
+    <div {...handlers} ref={handleRef} style={style}>
+      {children}
+    </div>
+  );
 };
 
 const Handle: React.FC<HandlerProps> = (props) => {

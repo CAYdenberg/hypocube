@@ -107,27 +107,28 @@ const Chart: React.FC<Props> = (props) => {
             position: 'relative',
           }}
         >
-          {isCanvas ? (
-            <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
-              {children}
-            </canvas>
-          ) : (
-            <svg width={pxBox.x[1]} height={pxBox.y[1]}>
-              {children}
-            </svg>
-          )}
-          {props.tooltip && props.tooltipPosition ? (
-            <div
-              style={{
-                position: 'absolute',
-                left: scaleX(props.tooltipPosition[0]),
-                top: scaleY(props.tooltipPosition[1]),
-              }}
-            >
-              {props.tooltip}
-            </div>
-          ) : null}
-          <ChartHandle {...props} />
+          <ChartHandle {...props}>
+            {isCanvas ? (
+              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+                {children}
+              </canvas>
+            ) : (
+              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+                {children}
+              </svg>
+            )}
+            {props.tooltip && props.tooltipPosition ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: scaleX(props.tooltipPosition[0]),
+                  top: scaleY(props.tooltipPosition[1]),
+                }}
+              >
+                {props.tooltip}
+              </div>
+            ) : null}
+          </ChartHandle>
         </div>
       </ChartStyleProvider>
     </ChartStateContext.Provider>

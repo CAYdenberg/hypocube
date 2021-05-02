@@ -17,7 +17,7 @@ export default (
   onGesture: (data: HypocubeGestureData) => void = () => null
 ) => {
   const { scaleX, scaleY, cartesianBox } = useChartState();
-  const handleRef = useRef();
+  const handleRef = useRef<HTMLDivElement>(null);
 
   // Generic function for panning the viewbox in response to gestures, eg
   // drag.
