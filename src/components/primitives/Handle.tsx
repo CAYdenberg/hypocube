@@ -5,14 +5,14 @@ import useRescaleGestures from '../../lib/useRescaleGestures';
 
 export const ChartHandle: React.FC<HandlerProps> = ({ children, ...props }) => {
   const handlers = useHandle(props);
-  const handleRef = useRescaleGestures(props.onGesture);
+  const bind = useRescaleGestures(props.onGesture);
 
   const style = {
     touchAction: props.onGesture ? 'none' : 'initial',
   };
 
   return (
-    <div {...handlers} ref={handleRef} style={style}>
+    <div {...bind()} {...handlers} style={style}>
       {children}
     </div>
   );
