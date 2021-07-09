@@ -14,8 +14,7 @@ import Handle from '../primitives/Handle';
 interface BarProps {
   x: number;
   y: number;
-  color?: string;
-  styles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
 }
 
@@ -38,10 +37,7 @@ interface BarVerticalSeriesComponents {
 interface BarSeriesProps {
   data: Point[];
   view?: Viewbox;
-  seriesIndex?: number;
-  seriesIndexOutof?: number;
-  color?: string;
-  styles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
 }
 

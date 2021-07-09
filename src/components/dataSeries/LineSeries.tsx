@@ -10,14 +10,13 @@ import { Line } from '../primitives/Line';
 import { useChartStyle } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
 import useChartState from '../base/ChartState';
-import Viewbox from '../../lib/Viewbox';
+import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import Handle from '../primitives/Handle';
 
 interface DataPointProps {
   x: number;
   y: number;
-  styles?: ChartStyleOptions;
-  color?: string;
+  chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
 }
 
@@ -33,10 +32,7 @@ export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
     dataPointSize,
     dataPointSymbol,
     dataPointMinTargetRadius,
-  } = useChartStyle(props.styles);
-
-  const stroke = normalize(props.color, dataPointStroke);
-  const fill = normalize(props.color, dataPointFill);
+  } = useChartStyle(props.chartStyle);
 
   return (
     <Handle {...props} elementPosition={[x, y]} meta={props.handlerMeta}>
@@ -44,9 +40,9 @@ export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
         point={[x, y]}
         symbol={dataPointSymbol}
         size={dataPointSize}
-        stroke={stroke}
+        stroke={dataPointStroke}
         strokeWidth={dataPointStrokeWidth}
-        fill={fill}
+        fill={dataPointFill}
         quietRenderRadius={dataPointMinTargetRadius}
       />
     </Handle>
@@ -55,8 +51,7 @@ export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
 
 interface DataLineProps {
   data: Point[];
-  color?: string;
-  styles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
 }
 
 export const DataLine: React.FC<DataLineProps> = (props) => {
@@ -67,9 +62,7 @@ export const DataLine: React.FC<DataLineProps> = (props) => {
     dataLineStrokeWidth,
     dataLineCurveType,
     dataLineDashType,
-  } = useChartStyle(props.styles);
-
-  const stroke = normalize(props.color, dataLineStroke);
+  } = useChartStyle(props.chartStyle);
 
   // filter out points that are out of range and both their neighbours are
   // out of range.
@@ -77,7 +70,7 @@ export const DataLine: React.FC<DataLineProps> = (props) => {
   return (
     <Line
       path={data}
-      stroke={stroke}
+      stroke={dataLineStroke}
       strokeWidth={dataLineStrokeWidth}
       curveType={dataLineCurveType}
       dash={dataLineDashType}
@@ -97,9 +90,8 @@ const LineSeriesDefaultComponents = {
 
 interface LineSeriesProps {
   data: Point[];
-  view?: Viewbox;
-  color?: string;
-  styles?: ChartStyleOptions;
+  view?: ViewboxDuck;
+  chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
 }
 
@@ -113,8 +105,8 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
     props
   ) => {
     const { cartesianBox, isCanvas } = useChartState();
-    const { dataPointSymbol } = useChartStyle(props.styles);
-    const view = normalize(props.view, cartesianBox);
+    const { dataPointSymbol } = useChartStyle(props.chartStyle);
+    const view = createViewbox(normalize(props.view, cartesianBox));
 
     const filteredPoints =
       isCanvas && dataPointSymbol === 'none'

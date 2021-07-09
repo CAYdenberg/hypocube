@@ -33,9 +33,11 @@ const BarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         <YAxis range={[0, 9000]} tickPositions={[0, 3000, 6000, 9000]} />
         <BarVerticalSeries
           data={bcVaccinations.map((point, i) => [i + 1, point[1]])}
-          color="rgb(177, 0, 0)"
           onPointerOver={onPointerOver}
           onPointerLeave={onPointerLeave}
+          chartStyle={{
+            dataBoxFill: 'rgb(177, 0, 0)',
+          }}
         />
       </Chart>
     </React.Fragment>

@@ -69,9 +69,12 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         <LineSeries
           key={labels[i]}
           data={s}
-          color={colors[i]}
           onPointerDown={setTooltip}
           handlerMeta={{ seriesName: labels[i] }}
+          chartStyle={{
+            dataLineStroke: colors[i],
+            dataPointFill: colors[i],
+          }}
         />
       ))}
       <VoronoiHandle
