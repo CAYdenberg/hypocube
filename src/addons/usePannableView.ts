@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
-import { Animation, GesturePhase, HypocubeGestureData } from '../types';
+import { ChartAnimation, GesturePhase, ChartGestureData } from '../types';
 
-type HandleGesture = (data: HypocubeGestureData) => Viewbox | Animation;
+type HandleGesture = (data: ChartGestureData) => Viewbox | ChartAnimation;
 
-const isAnimation = (input: Viewbox | Animation): input is Animation =>
-  typeof input === 'function';
+const isChartAnimation = (
+  input: Viewbox | ChartAnimation
+): input is ChartAnimation => typeof input === 'function';
 
 export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   initialViewbox = createViewbox(initialViewbox);
@@ -15,7 +16,7 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   const timer = useRef<number | null>(null);
   const startTime = useRef<number | null>(null);
 
-  const cancelAnimation = () => {
+  const cancelChartAnimation = () => {
     if (timer.current) {
       cancelAnimationFrame(timer.current);
     }
@@ -23,8 +24,8 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
     startTime.current = null;
   };
 
-  const onGesture = (data: HypocubeGestureData) => {
-    cancelAnimation();
+  const onGesture = (data: ChartGestureData) => {
+    cancelChartAnimation();
 
     if (data.phase === GesturePhase.Start) {
       setIsPanning(true);
@@ -34,14 +35,14 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
 
     const nextView = handleGesture(data);
 
-    if (isAnimation(nextView)) {
+    if (isChartAnimation(nextView)) {
       const step = (time: number) => {
         if (!startTime.current) {
           startTime.current = time;
         }
         const value = nextView(
           (time - startTime.current) / 1000,
-          cancelAnimation
+          cancelChartAnimation
         );
         setView(value);
         if (timer.current) {
@@ -56,7 +57,7 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   };
 
   useEffect(() => {
-    return cancelAnimation;
+    return cancelChartAnimation;
   }, []);
 
   return {

@@ -1,17 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import {
-  BarVerticalSeries,
-  Chart,
-  HypocubeEventData,
-  XAxis,
-  YAxis,
-} from '../src';
+import { BarVerticalSeries, Chart, ChartEventData, XAxis, YAxis } from '../src';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
 const BarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (x: number) => bcVaccinations[x - 1][0];
   const [selected, setSelected] = useState('n/a');
-  const onPointerOver = useCallback((data: HypocubeEventData) => {
+  const onPointerOver = useCallback((data: ChartEventData) => {
     if (!data.elementPosition) {
       return;
     }

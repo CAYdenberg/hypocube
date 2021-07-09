@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { HypocubeEventData, HypocubeEventMetaData, Point } from '../types';
+import { ChartEventData, ChartEventMetaData, Point } from '../types';
 
-interface TooltipData<Meta extends HypocubeEventMetaData> {
+interface TooltipData<Meta extends ChartEventMetaData> {
   position: Point;
   meta: Meta;
 }
 
-export const useTooltip = <Meta extends HypocubeEventMetaData>() => {
+export const useTooltip = <Meta extends ChartEventMetaData>() => {
   const [data, setData] = useState<TooltipData<Meta> | null>(null);
 
   const handleSetTooltip = useCallback(
-    ({ elementPosition, meta }: HypocubeEventData) => {
+    ({ elementPosition, meta }: ChartEventData) => {
       if (!elementPosition) {
         return;
       }

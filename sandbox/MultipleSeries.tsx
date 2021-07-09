@@ -49,7 +49,7 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       view={[0, 0, 255, 200]}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}
-      rootStyles={{
+      chartStyle={{
         dataPointSymbol: 'circle',
         dataPointMinTargetRadius: 10,
       }}

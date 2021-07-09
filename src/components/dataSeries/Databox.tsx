@@ -3,7 +3,7 @@ import React from 'react';
 import { PxLine } from '../primitives/Line';
 import { ChartStyleOptions, Point } from '../../types';
 import useChartState from '../base/ChartState';
-import { useChartStyles } from '../base/ChartStyle';
+import { useChartStyle } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
 
 interface DataboxVerticalProps {
@@ -22,7 +22,7 @@ export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
     dataBoxFill,
     dataBoxStroke,
     dataBoxStrokeWidth,
-  } = useChartStyles(props.styles);
+  } = useChartStyle(props.styles);
 
   const tHalf = dataBoxThickness / 2;
 

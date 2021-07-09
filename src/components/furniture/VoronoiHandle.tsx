@@ -1,17 +1,17 @@
 import { Delaunay } from 'd3-delaunay';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { extractFromFlat, flatten } from '../../lib/flatten';
 import { normalize } from '../../lib/normalize';
 import useHandle from '../../lib/useHandle';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
-import { HypocubeEventMetaData, HypocubeHandlers, Point } from '../../types';
+import { ChartEventMetaData, ChartEventHandlers, Point } from '../../types';
 import useChartState from '../base/ChartState';
 import { Line } from '../primitives/Line';
 
-interface Props extends HypocubeHandlers {
+interface Props extends ChartEventHandlers {
   series: Point[][];
   bounds?: ViewboxDuck;
-  meta?: HypocubeEventMetaData[];
+  meta?: ChartEventMetaData[];
   timeout?: number;
 }
 
@@ -24,7 +24,6 @@ const VoronoiHandle: React.FC<Props> = ({
 }) => {
   const [voronoi, setVoronoi] = useState<Delaunay<Point> | null>(null);
   const { isCanvas, cartesianBox } = useChartState();
-  const handle = useRef<number>(0);
   const bounds = createViewbox(normalize(boundsProp, cartesianBox));
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const VoronoiHandle: React.FC<Props> = ({
       return;
     }
 
-    handle.current = window.requestIdleCallback(
+    const handle = window.requestIdleCallback(
       () => {
         setVoronoi(Delaunay.from(flatten(series)));
       },
@@ -46,7 +45,7 @@ const VoronoiHandle: React.FC<Props> = ({
 
     return () => {
       // any queued callbacks are now waiting to run on obsolete data, clear them.
-      window?.cancelIdleCallback && window.cancelIdleCallback(handle.current);
+      window?.cancelIdleCallback && window.cancelIdleCallback(handle);
     };
   }, [series, isCanvas]);
 

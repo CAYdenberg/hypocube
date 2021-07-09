@@ -1,14 +1,14 @@
 import React from 'react';
 import { normalize } from '../../lib/normalize';
 import { ChartStyleOptions, Point } from '../../types';
-import { useChartStyles } from '../base/ChartStyle';
+import { useChartStyle } from '../base/ChartStyle';
 import { TranslatedLine } from '../primitives/Line';
 import Text from '../primitives/Text';
 
 export interface TickMarkProps {
   position: Point;
   label?: string;
-  overrideStyles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
 }
 
 export const XTickMarkComposer = () => {
@@ -23,7 +23,7 @@ export const XTickMarkComposer = () => {
       axisTickLength,
       axisTickOffset,
       axisTickLabelOffset,
-    } = useChartStyles(props.overrideStyles);
+    } = useChartStyle(props.chartStyle);
 
     const labelAbsoluteOffset =
       axisTickLength + axisTickLabelOffset + baseFontSize;
@@ -66,7 +66,7 @@ export const YTickMarkComposer = () => {
       axisTickLength,
       axisTickOffset,
       axisTickLabelOffset,
-    } = useChartStyles(props.overrideStyles);
+    } = useChartStyle(props.chartStyle);
 
     const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
 

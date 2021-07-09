@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   ChartStyleOptions,
-  HypocubeEventMetaData,
-  HypocubeHandlers,
+  ChartEventMetaData,
+  ChartEventHandlers,
   Point,
 } from '../../types';
 import { Symbol } from '../primitives/Symbol';
 import { Line } from '../primitives/Line';
-import { useChartStyles } from '../base/ChartStyle';
+import { useChartStyle } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
 import useChartState from '../base/ChartState';
 import Viewbox from '../../lib/Viewbox';
@@ -18,10 +18,10 @@ interface DataPointProps {
   y: number;
   styles?: ChartStyleOptions;
   color?: string;
-  handlerMeta?: HypocubeEventMetaData;
+  handlerMeta?: ChartEventMetaData;
 }
 
-export const DataPoint: React.FC<DataPointProps & HypocubeHandlers> = (
+export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
   props
 ) => {
   const { x, y } = props;
@@ -33,7 +33,7 @@ export const DataPoint: React.FC<DataPointProps & HypocubeHandlers> = (
     dataPointSize,
     dataPointSymbol,
     dataPointMinTargetRadius,
-  } = useChartStyles(props.styles);
+  } = useChartStyle(props.styles);
 
   const stroke = normalize(props.color, dataPointStroke);
   const fill = normalize(props.color, dataPointFill);
@@ -67,7 +67,7 @@ export const DataLine: React.FC<DataLineProps> = (props) => {
     dataLineStrokeWidth,
     dataLineCurveType,
     dataLineDashType,
-  } = useChartStyles(props.styles);
+  } = useChartStyle(props.styles);
 
   const stroke = normalize(props.color, dataLineStroke);
 
@@ -100,7 +100,7 @@ interface LineSeriesProps {
   view?: Viewbox;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: HypocubeEventMetaData;
+  handlerMeta?: ChartEventMetaData;
 }
 
 export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
@@ -109,9 +109,11 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
     ...Components,
   };
 
-  const LineSeries: React.FC<LineSeriesProps & HypocubeHandlers> = (props) => {
+  const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
+    props
+  ) => {
     const { cartesianBox, isCanvas } = useChartState();
-    const { dataPointSymbol } = useChartStyles(props.styles);
+    const { dataPointSymbol } = useChartStyle(props.styles);
     const view = normalize(props.view, cartesianBox);
 
     const filteredPoints =

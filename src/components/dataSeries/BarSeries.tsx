@@ -2,8 +2,8 @@ import React from 'react';
 import { DataboxVertical } from './Databox';
 import {
   ChartStyleOptions,
-  HypocubeEventMetaData,
-  HypocubeHandlers,
+  ChartEventMetaData,
+  ChartEventHandlers,
   Point,
 } from '../../types';
 import { normalize } from '../../lib/normalize';
@@ -16,10 +16,10 @@ interface BarProps {
   y: number;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: HypocubeEventMetaData;
+  handlerMeta?: ChartEventMetaData;
 }
 
-export const BarVertical: React.FC<BarProps & HypocubeHandlers> = (props) => {
+export const BarVertical: React.FC<BarProps & ChartEventHandlers> = (props) => {
   return (
     <Handle
       {...props}
@@ -42,7 +42,7 @@ interface BarSeriesProps {
   seriesIndexOutof?: number;
   color?: string;
   styles?: ChartStyleOptions;
-  handlerMeta?: HypocubeEventMetaData;
+  handlerMeta?: ChartEventMetaData;
 }
 
 const BarVerticalSeriesDefaultComponents = {
@@ -57,7 +57,7 @@ export const BarVerticalSeriesComposer = (
     ...Components,
   };
 
-  const BarVerticalSeries: React.FC<BarSeriesProps & HypocubeHandlers> = (
+  const BarVerticalSeries: React.FC<BarSeriesProps & ChartEventHandlers> = (
     props
   ) => {
     const { cartesianBox } = useChartState();
