@@ -1,5 +1,5 @@
 import { Point } from '../../types';
-import { flatten, extractFromFlat } from '../flatten';
+import { flatten, extractFromFlat } from '../voronoi';
 
 describe('flatten', () => {
   it('constructs a Voronoi diagram from a 2D series array', () => {

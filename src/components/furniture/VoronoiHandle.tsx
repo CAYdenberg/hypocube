@@ -1,6 +1,6 @@
 import { Delaunay } from 'd3-delaunay';
 import React, { useEffect, useState } from 'react';
-import { extractFromFlat, flatten } from '../../lib/flatten';
+import { extractFromFlat, flatten } from '../../lib/voronoi';
 import { normalize } from '../../lib/normalize';
 import useHandle from '../../lib/useHandle';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';

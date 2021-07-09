@@ -19,20 +19,19 @@ export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
     dataBoxFill,
     dataBoxStroke,
     dataBoxStrokeWidth,
-    dataBoxXOffset: xOffset,
+    dataBoxLeftOffset: offset,
   } = useChartStyle(props.chartStyle);
-
-  const tHalf = dataBoxThickness / 2;
 
   const yMin = scaleY(props.yMin);
   const yMax = scaleY(props.yMax);
-  const x = scaleX(props.x);
+  const dataX = scaleX(props.x);
+  const leftX = dataX + dataBoxThickness * offset;
 
   const path: Point[] = [
-    [x - tHalf + xOffset, yMax],
-    [x + tHalf + xOffset, yMax],
-    [x + tHalf + xOffset, yMin],
-    [x - tHalf + xOffset, yMin],
+    [leftX, yMax],
+    [leftX + dataBoxThickness, yMax],
+    [leftX + dataBoxThickness, yMin],
+    [leftX, yMin],
   ];
 
   return (

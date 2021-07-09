@@ -72,8 +72,12 @@ const examples: Example[] = [
         <YAxis range={[0, 2.5]} tickPositions={[0, 0.5, 1, 1.5, 2, 2.5]} />
         <LineSeries
           data={tickerTape}
-          color="#5477a1"
-          styles={{ dataLineCurveType: 'natural', dataPointSymbol: 'circle' }}
+          chartStyle={{
+            dataLineCurveType: 'natural',
+            dataPointSymbol: 'circle',
+            dataLineStroke: '#5477a1',
+            dataPointFill: '#5477a1',
+          }}
         />
       </Chart>
     ),

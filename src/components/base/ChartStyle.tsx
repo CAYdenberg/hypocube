@@ -16,7 +16,7 @@ const baseStyle: ChartStyleT = {
   dataBoxStroke: '#000',
   dataBoxStrokeWidth: 0,
   dataBoxThickness: 10,
-  dataBoxXOffset: 0,
+  dataBoxLeftOffset: -0.5,
 
   dataPointSize: 5,
   dataPointSymbol: 'none',

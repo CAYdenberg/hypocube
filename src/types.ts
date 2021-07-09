@@ -30,7 +30,7 @@ export interface ChartStyleOptions {
   dataBoxStroke?: Contextual<string>;
   dataBoxStrokeWidth?: Contextual<number>;
   dataBoxThickness?: Contextual<number>;
-  dataBoxXOffset?: Contextual<number>;
+  dataBoxLeftOffset?: Contextual<number>;
 
   dataPointSize?: Contextual<number>;
   dataPointSymbol?: Contextual<symbolType>;
@@ -58,7 +58,7 @@ export interface ChartStyleT {
   dataBoxStroke: string;
   dataBoxStrokeWidth: number;
   dataBoxThickness: number;
-  dataBoxXOffset: number;
+  dataBoxLeftOffset: number;
 
   dataPointSize: number;
   dataPointSymbol: symbolType;
