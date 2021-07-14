@@ -1,3 +1,4 @@
+import interpolate from 'color-interpolate';
 import { ChartStyleOptions, Point } from '../types';
 
 export interface SeriesWithStyle {
@@ -9,24 +10,32 @@ export type SeriesStyleFactory = (
   styleSet: ChartStyleOptions[]
 ) => ChartStyleOptions[];
 
-export type Interpolator = (fraction: number) => string;
+type Interpolator = (fraction: number) => string;
 
-export const mapStylesSequential = (
-  key: keyof ChartStyleOptions,
+export const createStylesSequential = (
+  key: keyof ChartStyleOptions | Array<keyof ChartStyleOptions>,
   values: string[]
 ): SeriesStyleFactory => (styleSet) => {
+  if (Array.isArray(key)) {
+    return key.reduce((acc, key) => {
+      return createStylesSequential(key, values)(acc);
+    }, styleSet);
+  }
+
   return styleSet.map((styles, i) => ({
     ...styles,
     [key]: values[i % values.length],
   }));
 };
 
-export const mapStylesInterpolate = (
-  key: keyof ChartStyleOptions,
+export const createStylesInterpolate = (
+  key: keyof ChartStyleOptions | Array<keyof ChartStyleOptions>,
   interpolator: Interpolator
 ): SeriesStyleFactory => (styleSet) => {
-  if (!styleSet.length) {
-    return styleSet;
+  if (Array.isArray(key)) {
+    return key.reduce((acc, key) => {
+      return createStylesInterpolate(key, interpolator)(acc);
+    }, styleSet);
   }
 
   return styleSet.map((styles, i) => ({
@@ -35,8 +44,8 @@ export const mapStylesInterpolate = (
   }));
 };
 
-export const mapBarOffsets: SeriesStyleFactory = (styleSet) => {
-  const start = styleSet.length / -2;
+export const createBarOffsets: SeriesStyleFactory = (styleSet) => {
+  const start = -1 * (styleSet.length / 2);
 
   return styleSet.map((styles, i) => ({
     ...styles,
@@ -44,13 +53,57 @@ export const mapBarOffsets: SeriesStyleFactory = (styleSet) => {
   }));
 };
 
+interface ColorEndpoints {
+  from: string;
+  to: string;
+}
+
+type Colors = string | string[] | ColorEndpoints;
+
 interface Options {
   xOffsets?: boolean;
-  colors?: string | string[] | Interpolator;
+  colors?: Colors;
 }
+
+const isColorEndpoints = (colors?: Colors): colors is ColorEndpoints => {
+  return !!(colors as ColorEndpoints).from;
+};
 
 export default (seriesSet: Point[][], options: Options): SeriesWithStyle[] => {
   let styles = new Array(seriesSet.length).fill({} as ChartStyleOptions);
+
+  if (options.xOffsets !== false) {
+    styles = createBarOffsets(styles);
+  }
+
+  if (isColorEndpoints(options.colors)) {
+    const interpolator = interpolate([options.colors.from, options.colors.to]);
+
+    styles = createStylesInterpolate(
+      [
+        'dataBoxStroke',
+        'dataBoxFill',
+        'dataLineStroke',
+        'dataPointStroke',
+        'dataPointFill',
+      ],
+      interpolator
+    )(styles);
+  } else if (options.colors) {
+    const colors = Array.isArray(options.colors)
+      ? options.colors
+      : [options.colors];
+    styles = createStylesSequential(
+      [
+        'dataBoxStroke',
+        'dataBoxFill',
+        'dataLineStroke',
+        'dataPointStroke',
+        'dataPointFill',
+      ],
+      colors
+    )(styles);
+  }
 
   return seriesSet.map((series, i) => ({
     data: series,
