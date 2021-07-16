@@ -3,11 +3,9 @@ import { useGesture } from 'react-use-gesture';
 import { FullGestureState } from 'react-use-gesture/dist/types';
 import useChartState from '../components/base/ChartState';
 import Viewbox from '../lib/Viewbox';
-import { GestureKind, GesturePhase, HypocubeGestureData } from '../types';
+import { GestureKind, GesturePhase, ChartGestureData } from '../types';
 
-export default (
-  onGesture: (data: HypocubeGestureData) => void = () => null
-) => {
+export default (onGesture: (data: ChartGestureData) => void = () => null) => {
   const { scaleX, scaleY, cartesianBox } = useChartState();
   const [boxStart, setBoxStart] = useState(cartesianBox);
 

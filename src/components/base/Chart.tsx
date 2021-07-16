@@ -24,7 +24,7 @@ interface Props extends HandlerProps {
    */
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
-  rootStyles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
   tooltip?: JSX.Element | null;
   tooltipPosition?: Point | null;
 }
@@ -32,7 +32,7 @@ interface Props extends HandlerProps {
 const Chart: React.FC<Props> = (props) => {
   const { children, height, width } = props;
   const isCanvas = normalize(props.isCanvas, false);
-  const rootStyles = normalize(props.rootStyles, {});
+  const chartStyle = normalize(props.chartStyle, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -97,7 +97,7 @@ const Chart: React.FC<Props> = (props) => {
         containerOffset,
       }}
     >
-      <ChartStyleProvider rootStyles={rootStyles}>
+      <ChartStyleProvider chartStyle={chartStyle}>
         <div
           ref={containerRef}
           style={{

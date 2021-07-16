@@ -2,18 +2,18 @@ import { useCallback, useMemo } from 'react';
 import useChartState from '../components/base/ChartState';
 import { SUPPORTED_EVENTS } from '../constants';
 import {
-  HypocubeEventData,
-  HypocubeEventMetaData,
-  HypocubeHandler,
-  HypocubeHandlers,
+  ChartEventData,
+  ChartEventMetaData,
+  ChartEventHandler,
+  ChartEventHandlers,
   ReactEvent,
   ReactHandlers,
 } from '../types';
 
-export interface HandlerProps extends HypocubeHandlers {
+export interface HandlerProps extends ChartEventHandlers {
   elementPosition?: [number, number];
-  meta?: HypocubeEventMetaData;
-  mapEventData?: (data: HypocubeEventData) => HypocubeEventData;
+  meta?: ChartEventMetaData;
+  mapEventData?: (data: ChartEventData) => ChartEventData;
 }
 
 export default ({
@@ -25,8 +25,8 @@ export default ({
   const { scaleX, scaleY, containerOffset } = useChartState();
 
   const getData = useCallback(
-    (event: ReactEvent): HypocubeEventData => {
-      const data: HypocubeEventData = {
+    (event: ReactEvent): ChartEventData => {
+      const data: ChartEventData = {
         meta: meta || {},
         elementPosition,
         event,
@@ -49,7 +49,7 @@ export default ({
 
   const reactHandlers = useMemo(() => {
     return SUPPORTED_EVENTS.reduce((rhandlers, key) => {
-      const handler = handlers[key] as HypocubeHandler;
+      const handler = handlers[key] as ChartEventHandler;
       if (handler) {
         rhandlers[key] = (event: ReactEvent) => {
           event.preventDefault();

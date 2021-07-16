@@ -1,5 +1,11 @@
 import React from 'react';
-import { Chart, XAxis, LineSeries, GestureKind } from '../src';
+import {
+  Chart,
+  XAxis,
+  LineSeries,
+  GestureKind,
+  ChartStyleOptions,
+} from '../src';
 import usePannableView from '../src/addons/usePannableView';
 import { createViewbox } from '../src/lib/Viewbox';
 
@@ -32,6 +38,12 @@ export const Pannable: React.FC<Props> = ({
     }
   );
 
+  const seriesStyle: ChartStyleOptions = {
+    dataLineStroke: '#5477a1',
+    dataPointStroke: '#5477a1',
+    dataPointFill: '#5477a1',
+  };
+
   return (
     <Chart
       height={300}
@@ -46,7 +58,7 @@ export const Pannable: React.FC<Props> = ({
         tickPositions={tickPositions}
         getTickLabel={getDateLabel}
       />
-      <LineSeries data={series} color="#5477a1" />
+      <LineSeries data={series} chartStyle={seriesStyle} />
     </Chart>
   );
 };

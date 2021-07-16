@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
+import MultipleBarGraph from './MultipleBarGraph';
 import MultipleSeries from './MultipleSeries';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
@@ -72,8 +73,12 @@ const examples: Example[] = [
         <YAxis range={[0, 2.5]} tickPositions={[0, 0.5, 1, 1.5, 2, 2.5]} />
         <LineSeries
           data={tickerTape}
-          color="#5477a1"
-          styles={{ dataLineCurveType: 'natural', dataPointSymbol: 'circle' }}
+          chartStyle={{
+            dataLineCurveType: 'natural',
+            dataPointSymbol: 'circle',
+            dataLineStroke: '#5477a1',
+            dataPointFill: '#5477a1',
+          }}
         />
       </Chart>
     ),
@@ -103,6 +108,10 @@ const examples: Example[] = [
   {
     name: 'Multiple Series',
     render: ({ isCanvas }) => <MultipleSeries isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Multiple Bar Series',
+    render: ({ isCanvas }) => <MultipleBarGraph isCanvas={isCanvas} />,
   },
 ];
 

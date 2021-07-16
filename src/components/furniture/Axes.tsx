@@ -2,7 +2,7 @@ import React from 'react';
 import { contextualize, normalize } from '../../lib/normalize';
 import { ChartState, ChartStyleOptions, Contextual } from '../../types';
 import useChartState from '../base/ChartState';
-import { useChartStyles } from '../base/ChartStyle';
+import { useChartStyle } from '../base/ChartStyle';
 import Handle from '../primitives/Handle';
 import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
@@ -16,7 +16,7 @@ interface AxisProps {
   tickPositions?: Contextual<number[]>;
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
-  overrideStyles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
 }
 
 interface XAxisComponents {
@@ -67,7 +67,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
       getTickLabel,
       // axisLabel,
     } = normalizeAxisProps(props, state);
-    const { axisColor, axisThickness } = useChartStyles(props.overrideStyles);
+    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
     return (
       <Handle elementPosition={[range[0], intercept]}>
@@ -86,7 +86,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
               <XTickMark
                 position={[pos, intercept]}
                 label={getTickLabel(pos)}
-                overrideStyles={props.overrideStyles}
+                chartStyle={props.chartStyle}
                 key={pos}
               />
             )
@@ -125,7 +125,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
       // axisLabel,
     } = normalizeAxisProps(props, state);
     // const axisLabel = normalize(props.axisLabel, null);
-    const { axisColor, axisThickness } = useChartStyles(props.overrideStyles);
+    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
     return (
       <Handle elementPosition={[intercept, range[0]]}>
@@ -144,7 +144,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
               <YTickMark
                 position={[intercept, pos]}
                 label={getTickLabel(pos)}
-                overrideStyles={props.overrideStyles}
+                chartStyle={props.chartStyle}
                 key={pos}
               />
             )

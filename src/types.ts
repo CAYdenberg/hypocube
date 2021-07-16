@@ -5,6 +5,7 @@ import { CanvasComponent } from './lib/useCanvas';
 import Viewbox from './lib/Viewbox';
 
 export type Point = [number, number];
+
 export interface ChartState {
   isCanvas: boolean;
   cartesianBox: Viewbox;
@@ -30,6 +31,7 @@ export interface ChartStyleOptions {
   dataBoxStroke?: Contextual<string>;
   dataBoxStrokeWidth?: Contextual<number>;
   dataBoxThickness?: Contextual<number>;
+  dataBoxLeftOffset?: Contextual<number>;
 
   dataPointSize?: Contextual<number>;
   dataPointSymbol?: Contextual<symbolType>;
@@ -57,6 +59,7 @@ export interface ChartStyleT {
   dataBoxStroke: string;
   dataBoxStrokeWidth: number;
   dataBoxThickness: number;
+  dataBoxLeftOffset: number;
 
   dataPointSize: number;
   dataPointSymbol: symbolType;
@@ -90,21 +93,21 @@ export interface ReactHandlers {
   onPointerOut?: (e: ReactEvent) => void;
 }
 
-export type HypocubeEventMetaData = Record<
+export type ChartEventMetaData = Record<
   string,
   string | number | boolean | null
 >;
 
-export interface HypocubeEventData {
+export interface ChartEventData {
   event: ReactEvent;
   pointerPosition: [number, number];
   pointerId: number | null;
   elementPosition?: [number, number];
   modifiers: Array<string>;
-  meta: HypocubeEventMetaData;
+  meta: ChartEventMetaData;
 }
 
-export type HypocubeHandler = (data: HypocubeEventData) => void;
+export type ChartEventHandler = (data: ChartEventData) => void;
 
 export enum GestureKind {
   Drag = 'Drag',
@@ -119,25 +122,31 @@ export enum GesturePhase {
   End = 'End',
 }
 
-export interface HypocubeGestureData {
+export interface ChartGestureData {
   kind: GestureKind;
   phase: GesturePhase;
   nextView: Viewbox;
   state: any;
 }
 
-export interface HypocubeHandlers {
-  onPointerDown?: HypocubeHandler;
-  onPointerMove?: HypocubeHandler;
-  onPointerUp?: HypocubeHandler;
-  onPointerCancel?: HypocubeHandler;
-  onGotPointerCapture?: HypocubeHandler;
-  onLostPointerCapture?: HypocubeHandler;
-  onPointerEnter?: HypocubeHandler;
-  onPointerLeave?: HypocubeHandler;
-  onPointerOver?: HypocubeHandler;
-  onPointerOut?: HypocubeHandler;
-  onGesture?: (data: HypocubeGestureData) => void;
+export interface ChartEventHandlers {
+  onPointerDown?: ChartEventHandler;
+  onPointerMove?: ChartEventHandler;
+  onPointerUp?: ChartEventHandler;
+  onPointerCancel?: ChartEventHandler;
+  onGotPointerCapture?: ChartEventHandler;
+  onLostPointerCapture?: ChartEventHandler;
+  onPointerEnter?: ChartEventHandler;
+  onPointerLeave?: ChartEventHandler;
+  onPointerOver?: ChartEventHandler;
+  onPointerOut?: ChartEventHandler;
+  onGesture?: (data: ChartGestureData) => void;
 }
 
-export type Animation = (time: number, end: () => void) => Viewbox;
+export type ChartAnimation = (time: number, end: () => void) => Viewbox;
+
+export interface Dataseries {
+  data: Point[];
+  key: string;
+  meta?: ChartEventMetaData;
+}
