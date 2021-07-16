@@ -1,8 +1,7 @@
 import interpolate from 'color-interpolate';
-import { ChartStyleOptions, Point } from '../types';
+import { ChartStyleOptions, Dataseries } from '../types';
 
-export interface SeriesWithStyle {
-  data: Point[];
+export interface DataseriesStyled extends Dataseries {
   chartStyle: ChartStyleOptions;
 }
 
@@ -69,7 +68,10 @@ const isColorEndpoints = (colors?: Colors): colors is ColorEndpoints => {
   return !!(colors as ColorEndpoints).from;
 };
 
-export default (seriesSet: Point[][], options: Options): SeriesWithStyle[] => {
+export default (
+  seriesSet: Dataseries[],
+  options: Options
+): DataseriesStyled[] => {
   let styles = new Array(seriesSet.length).fill({} as ChartStyleOptions);
 
   if (options.xOffsets !== false) {
@@ -106,7 +108,7 @@ export default (seriesSet: Point[][], options: Options): SeriesWithStyle[] => {
   }
 
   return seriesSet.map((series, i) => ({
-    data: series,
+    ...series,
     chartStyle: styles[i],
   }));
 };

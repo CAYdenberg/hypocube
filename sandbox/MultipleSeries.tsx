@@ -1,5 +1,13 @@
 import React from 'react';
-import { Chart, LineSeries, Point, VoronoiHandle, XAxis, YAxis } from '../src';
+import {
+  Chart,
+  Dataseries,
+  LineSeries,
+  Point,
+  VoronoiHandle,
+  XAxis,
+  YAxis,
+} from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
 import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
@@ -19,12 +27,9 @@ const SimpleTooltip: React.FC<{
   </div>
 );
 
-const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
-  const [tooltipData, setTooltip, handleCloseTooltip] = useTooltip<{
-    seriesName: string;
-  }>();
-
-  const series = rain.reduce(
+const labels = ['Vancouver', 'Victoria', 'Kelowna'];
+const series: Dataseries[] = rain
+  .reduce(
     (series, month, i) => {
       const ys = month.slice(1) as number[];
       const row = ys.map((y) => [i, y] as Point);
@@ -33,13 +38,22 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       });
     },
     [[], [], []] as Array<Array<Point>>
-  );
+  )
+  .map((data, i) => ({
+    data,
+    key: labels[i],
+    meta: { seriesName: labels[i] },
+  }));
 
-  const labels = ['Vancouver', 'Victoria', 'Kelowna'];
-  const tickPositions = series[0]
-    .filter((_, i) => i % 12 === 0)
-    .map((s) => s[0]);
-  const getXLabel = (pos: number) => String(rain[pos][0]);
+const tickPositions = series[0].data
+  .filter((_, i) => i % 12 === 0)
+  .map((s) => s[0]);
+const getXLabel = (pos: number) => String(rain[pos][0]);
+
+const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
+  const [tooltipData, setTooltip, handleCloseTooltip] = useTooltip<{
+    seriesName: string;
+  }>();
 
   return (
     <Chart
@@ -66,20 +80,16 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       />
       {applySeriesStyles(series, {
         colors: ['#003f5c', '#58508d', '#bc5090'],
-      }).map(({ data, chartStyle }, i) => (
+      }).map(({ data, key, chartStyle }, i) => (
         <LineSeries
-          key={labels[i]}
+          key={key}
           data={data}
           onPointerDown={setTooltip}
-          handlerMeta={{ seriesName: labels[i] }}
+          handlerMeta={{ label: key }}
           chartStyle={chartStyle}
         />
       ))}
-      <VoronoiHandle
-        series={series}
-        meta={series.map((_, i) => ({ seriesName: labels[i] }))}
-        onPointerDown={setTooltip}
-      />
+      <VoronoiHandle series={series} onPointerDown={setTooltip} />
     </Chart>
   );
 };

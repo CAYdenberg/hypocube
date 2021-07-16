@@ -4,21 +4,19 @@ import { extractFromFlat, flatten } from '../../lib/voronoi';
 import { normalize } from '../../lib/normalize';
 import useHandle from '../../lib/useHandle';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
-import { ChartEventMetaData, ChartEventHandlers, Point } from '../../types';
+import { ChartEventHandlers, Point, Dataseries } from '../../types';
 import useChartState from '../base/ChartState';
 import { Line } from '../primitives/Line';
 
 interface Props extends ChartEventHandlers {
-  series: Point[][];
+  series: Dataseries[];
   bounds?: ViewboxDuck;
-  meta?: ChartEventMetaData[];
   timeout?: number;
 }
 
 const VoronoiHandle: React.FC<Props> = ({
   series,
   bounds: boundsProp,
-  meta,
   timeout,
   ...handlers
 }) => {
@@ -62,10 +60,14 @@ const VoronoiHandle: React.FC<Props> = ({
       // pointer position by refering to the Voronoi diagram
       const convolvedIndex = voronoi.find(...rawData.pointerPosition);
       const extractedPoint = extractFromFlat(series, convolvedIndex);
+      if (!extractedPoint || !series[extractedPoint.seriesIndex]) {
+        return rawData;
+      }
+
       return {
         ...rawData,
-        elementPosition: extractedPoint?.point,
-        meta: extractedPoint && meta ? meta[extractedPoint.seriesIndex] : {},
+        elementPosition: extractedPoint.point,
+        meta: series[extractedPoint.seriesIndex].meta || {},
       };
     },
   });

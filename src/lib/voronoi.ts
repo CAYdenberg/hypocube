@@ -1,28 +1,30 @@
-import { Point } from '../types';
+import { Dataseries, Point } from '../types';
 
-export const flatten = (series: Point[][]) => {
-  return series.reduce((acc, series) => acc.concat(series), [] as Point[]);
+export const flatten = (series: Dataseries[]) => {
+  return series.reduce((acc, series) => acc.concat(series.data), [] as Point[]);
 };
 
 interface ExtractedPoint {
   seriesIndex: number;
+  seriesKey: string;
   pointIndex: number;
   point: Point;
 }
 
 export const extractFromFlat = (
-  series: Point[][],
+  series: Dataseries[],
   indexInFlat: number,
   seriesIndex = 0
 ): ExtractedPoint | null => {
   const [head, ...tail] = series;
-  if (indexInFlat < head.length) {
+  if (indexInFlat < head.data.length) {
     return {
       seriesIndex,
+      seriesKey: head.key,
       pointIndex: indexInFlat,
-      point: head[indexInFlat],
+      point: head.data[indexInFlat],
     };
   }
   if (!tail.length) return null;
-  return extractFromFlat(tail, indexInFlat - head.length, seriesIndex + 1);
+  return extractFromFlat(tail, indexInFlat - head.data.length, seriesIndex + 1);
 };

@@ -6,8 +6,14 @@ import { bc as bcVaccinations } from './__data__/vaccinations';
 const MultipleBarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (x: number) => bcVaccinations[x - 1][0];
 
-  const bars = bcVaccinations.map((point, i) => [i + 1, point[1]]) as Point[];
-  const control = bars.slice();
+  const bars = {
+    key: 'Bars',
+    data: bcVaccinations.map((point, i) => [i + 1, point[1]]) as Point[],
+  };
+  const control = {
+    key: 'Control',
+    data: bars.data.slice(),
+  };
 
   return (
     <React.Fragment>
@@ -27,8 +33,8 @@ const MultipleBarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         {applySeriesStyles([bars, control], {
           xOffsets: true,
           colors: ['rgb(177, 0, 0)', 'rgb(150, 150, 150)'],
-        }).map(({ data, chartStyle }, i) => (
-          <BarVerticalSeries data={data} chartStyle={chartStyle} key={i} />
+        }).map(({ data, key, chartStyle }, i) => (
+          <BarVerticalSeries data={data} chartStyle={chartStyle} key={key} />
         ))}
       </Chart>
     </React.Fragment>

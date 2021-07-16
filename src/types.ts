@@ -5,6 +5,7 @@ import { CanvasComponent } from './lib/useCanvas';
 import Viewbox from './lib/Viewbox';
 
 export type Point = [number, number];
+
 export interface ChartState {
   isCanvas: boolean;
   cartesianBox: Viewbox;
@@ -143,3 +144,9 @@ export interface ChartEventHandlers {
 }
 
 export type ChartAnimation = (time: number, end: () => void) => Viewbox;
+
+export interface Dataseries {
+  data: Point[];
+  key: string;
+  meta?: ChartEventMetaData;
+}
