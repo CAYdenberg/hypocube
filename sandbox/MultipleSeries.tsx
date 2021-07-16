@@ -1,5 +1,6 @@
 import React from 'react';
 import { Chart, LineSeries, Point, VoronoiHandle, XAxis, YAxis } from '../src';
+import applySeriesStyles from '../src/addons/applySeriesStyles';
 import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
 
@@ -35,8 +36,6 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   );
 
   const labels = ['Vancouver', 'Victoria', 'Kelowna'];
-  const colors = ['#003f5c', '#58508d', '#bc5090'];
-
   const tickPositions = series[0]
     .filter((_, i) => i % 12 === 0)
     .map((s) => s[0]);
@@ -65,16 +64,15 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         tickPositions={[0, 50, 100, 200]}
         getTickLabel={(pos) => String(pos)}
       />
-      {series.map((s, i) => (
+      {applySeriesStyles(series, {
+        colors: ['#003f5c', '#58508d', '#bc5090'],
+      }).map(({ data, chartStyle }, i) => (
         <LineSeries
           key={labels[i]}
-          data={s}
+          data={data}
           onPointerDown={setTooltip}
           handlerMeta={{ seriesName: labels[i] }}
-          chartStyle={{
-            dataLineStroke: colors[i],
-            dataPointFill: colors[i],
-          }}
+          chartStyle={chartStyle}
         />
       ))}
       <VoronoiHandle

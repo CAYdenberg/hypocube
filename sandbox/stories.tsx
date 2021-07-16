@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
+import MultipleBarGraph from './MultipleBarGraph';
 import MultipleSeries from './MultipleSeries';
 import { Pannable } from './Pannable';
 import { canada } from './__data__/covid-canada';
@@ -107,6 +108,10 @@ const examples: Example[] = [
   {
     name: 'Multiple Series',
     render: ({ isCanvas }) => <MultipleSeries isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Multiple Bar Series',
+    render: ({ isCanvas }) => <MultipleBarGraph isCanvas={isCanvas} />,
   },
 ];
 
