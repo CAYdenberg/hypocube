@@ -1,5 +1,6 @@
 import React from 'react';
 import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
+import ChartError from '../src/components/base/ChartError';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
 import MultipleBarGraph from './MultipleBarGraph';
@@ -116,11 +117,12 @@ const examples: Example[] = [
   {
     name: 'Rendering error',
     render: ({ isCanvas }) => (
-      <Chart isCanvas={isCanvas} height={300} width={300} view={[0, 0, 1, 2.5]}>
-        {(() => {
-          throw new Error('Test errors');
-        })()}
-      </Chart>
+      <ChartError
+        isCanvas={isCanvas}
+        height={300}
+        width={300}
+        view={[0, 0, 0, 0]}
+      ></ChartError>
     ),
   },
 ];
