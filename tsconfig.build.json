@@ -23,6 +23,6 @@
     "strictNullChecks": true,
     "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./types/**/*"],
   "exclude": ["**/*/__tests__"]
 }
