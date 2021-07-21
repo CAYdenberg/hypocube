@@ -113,6 +113,16 @@ const examples: Example[] = [
     name: 'Multiple Bar Series',
     render: ({ isCanvas }) => <MultipleBarGraph isCanvas={isCanvas} />,
   },
+  {
+    name: 'Rendering error',
+    render: ({ isCanvas }) => (
+      <Chart isCanvas={isCanvas} height={300} width={300} view={[0, 0, 1, 2.5]}>
+        {(() => {
+          throw new Error('Test errors');
+        })()}
+      </Chart>
+    ),
+  },
 ];
 
 export default examples;
