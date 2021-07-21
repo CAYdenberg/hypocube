@@ -17245,3 +17245,20 @@ exports[`Test: Pannable 1`] = `
   </div>
 </div>
 `;
+
+exports[`Test: Rendering error 1`] = `
+<div
+  style={
+    Object {
+      "background": "#ccc",
+      "color": "red",
+      "fontSize": "1.4rem",
+      "height": 300,
+      "marginBottom": "1rem",
+      "padding": "1rem",
+    }
+  }
+>
+  ⚠ Unable to render chart
+</div>
+`;

@@ -12,10 +12,11 @@ import { HandlerProps } from '../../lib/useHandle';
 import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import { ChartStyleOptions, Point } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
+import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
-interface Props extends HandlerProps {
+export interface Props extends HandlerProps {
   height: number;
   width: number;
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
@@ -27,9 +28,10 @@ interface Props extends HandlerProps {
   chartStyle?: ChartStyleOptions;
   tooltip?: JSX.Element | null;
   tooltipPosition?: Point | null;
+  renderError?: (message?: string) => React.ReactNode;
 }
 
-const Chart: React.FC<Props> = (props) => {
+const ChartInner: React.FC<Props> = (props) => {
   const { children, height, width } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const chartStyle = normalize(props.chartStyle, {});
@@ -134,5 +136,36 @@ const Chart: React.FC<Props> = (props) => {
     </ChartStateContext.Provider>
   );
 };
+
+interface State {
+  hasError: boolean;
+  errorMessage: string;
+}
+
+class Chart extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false, errorMessage: '' };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMessage: error.message };
+  }
+
+  componentDidCatch(error: Error) {
+    // eslint-disable-next-line no-console
+    console.warn('Error while rendering Hypocube chart', error);
+  }
+
+  render() {
+    if (this.state.hasError && this.props.renderError) {
+      return this.props.renderError(this.state.errorMessage);
+    } else if (this.state.hasError) {
+      return <ChartError {...this.props} />;
+    }
+
+    return <ChartInner {...this.props} />;
+  }
+}
 
 export default Chart;
