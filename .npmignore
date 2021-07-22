@@ -1,14 +1,13 @@
 #
 
-src
-sandbox
+src/*
+sandbox/*
 
 dist/*
-.docz/*
+docs/*
 dist
 report.html
 .cache
-build
 
 # Logs
 logs
