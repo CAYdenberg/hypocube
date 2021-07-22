@@ -2,13 +2,10 @@
 
 src
 sandbox
-
 dist/*
-.docz/*
-dist
 report.html
 .cache
-build
+docs
 
 # Logs
 logs
