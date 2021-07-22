@@ -13,7 +13,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src sandbox --ext .ts,.tsx --max-warnings=0",
+    "lint": "eslint src sandbox website/src --ext .ts,.tsx,.js,.jsx --max-warnings=0",
     "test": "jest --env=jsdom",
     "quickcheck": "npm run typecheck && npm run lint && npm run test",
     "build": "tsc --project tsconfig.build.json",
@@ -21,7 +21,7 @@
     "docz:build": "docz build",
     "preversion": "npm run typecheck && npm run lint && npm run test && npm run build",
     "sandbox": "parcel sandbox/index.html",
-    "autofix": "eslint src sandbox --ext .ts,.tsx --fix --max-warnings=0"
+    "autofix": "eslint src sandbox website/src --ext .ts,.tsx,.js,.jsx --fix --max-warnings=0"
   },
   "author": "@CAYdenberg",
   "license": "MIT",
@@ -37,6 +37,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
+    "@emotion/react": "^11.4.0",
     "@manuscripts/eslint-config": "^0.4.2",
     "@types/d3-delaunay": "^5.3.0",
     "@types/d3-scale": "^3.2.2",

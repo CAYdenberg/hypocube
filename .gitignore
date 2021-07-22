@@ -1,12 +1,11 @@
 #
 package-lock.json
 yarn.lock
-dist
-.docz
-dist
 report.html
 .cache
+dist
 build
+website/public
 
 # Logs
 logs

@@ -3,19 +3,13 @@ name: What is Hypocube?
 route: /
 ---
 
-import { Chart, XAxis, YAxis } from '../src';
-import { Playground } from 'docz';
+import MultipleBarGraph from '../../sandbox/MultipleBarGraph';
 
 # Hypocube
 
 ## Quick Start
 
-<Playground>
-  <Chart height={150} view={{ x: [0, 10], y: [0, 10] }}>
-    <XAxis />
-    <YAxis />
-  </Chart>
-</Playground>
+<MultipleBarGraph isCanvas={false} />
 
 ## Core Concepts
 
@@ -23,17 +17,11 @@ import { Playground } from 'docz';
 
 Edward Tufte describes the parts of a graph that do not contain information "non-data ink". For example, the two charts below both show the same data:
 
-
-
 If CSS had the appropriate properties, we could then restyle the chart based on media queries, with no loss of the actual data presented:
-
-
 
 Since we don't have those properties at our disposal, however, Hypocube provides a CSS-like set of properties that can be used by style nearly any element of a graph:
 
-
 These declarations are all optional, and are also **contextual**: they can be provided as functions of the ChartState, which include its rendered height and width.
-
 
 Like CSS, we can override those styles, and the more targeted declaration will be inherited by that element's children:
 

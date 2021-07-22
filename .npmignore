@@ -1,11 +1,11 @@
 #
 
+report.html
 src
 sandbox
-dist/*
-report.html
 .cache
-docs
+dist/*
+website
 
 # Logs
 logs
