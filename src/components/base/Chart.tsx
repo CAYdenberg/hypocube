@@ -1,82 +1,96 @@
 import { scaleLinear } from 'd3-scale';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  useMemo,
+} from 'react';
 import { normalize } from '../../lib/normalize';
-import { ChartStyleOptions, Point, Viewbox } from '../../types';
+import useCanvas from '../../lib/useCanvas';
+import { HandlerProps } from '../../lib/useHandle';
+import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
+import { ChartStyleOptions, Point } from '../../types';
+import { ChartHandle } from '../primitives/Handle';
+import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
-interface Props {
+export interface Props extends HandlerProps {
   height: number;
-  view: Viewbox;
+  width: number;
+  view: ViewboxDuck | ((width: number) => ViewboxDuck);
+  /**
+   * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
+   */
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
-  rootStyles?: ChartStyleOptions;
-  tooltip?: JSX.Element;
-  tooltipPosition?: Point;
+  chartStyle?: ChartStyleOptions;
+  tooltip?: JSX.Element | null;
+  tooltipPosition?: Point | null;
+  renderError?: (message?: string) => React.ReactNode;
 }
 
-const Chart: React.FC<Props> = props => {
-  const { children, height, view } = props;
+const ChartInner: React.FC<Props> = (props) => {
+  const { children, height, width } = props;
   const isCanvas = normalize(props.isCanvas, false);
-  const rootStyles = normalize(props.rootStyles, {});
+  const chartStyle = normalize(props.chartStyle, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const renderer = useRef<CanvasRenderingContext2D | null>(null);
 
-  useEffect(() => {
-    const canvasEl = canvasRef.current;
-    renderer.current = canvasEl ? canvasEl.getContext('2d') : null;
-  }, [canvasRef]);
+  const [pxBox, setPxBox] = useState<Viewbox>(new Viewbox(0, 0, width, height));
 
-  const [pxBox, setPxBox] = useState<Viewbox>({
-    x: [0, 1],
-    y: [0, 1],
-  });
-
-  const calculateScales = useCallback(() => {
+  const calculateSizes = useCallback(() => {
     const containerEl = containerRef.current;
     if (containerEl) {
-      setPxBox({
-        x: [0, containerEl.clientWidth],
-        y: [0, containerEl.clientHeight],
-      });
+      setPxBox(
+        new Viewbox(0, 0, containerEl.clientWidth, containerEl.clientHeight)
+      );
     }
   }, [containerRef]);
 
   useEffect(() => {
-    calculateScales();
+    calculateSizes();
 
     if (!window) {
       return;
     }
-    window.addEventListener('resize', calculateScales);
+    window.addEventListener('resize', calculateSizes);
 
     return () => {
-      window.removeEventListener('resize', calculateScales);
+      window.removeEventListener('resize', calculateSizes);
     };
-  }, [containerRef, calculateScales]);
+  }, [containerRef, calculateSizes]);
 
-  const cartesianBox = view;
-  const scaleX = scaleLinear()
-    .domain(cartesianBox.x)
-    .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]);
-  const scaleY = scaleLinear()
-    .domain(cartesianBox.y)
-    .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]);
+  const cartesianBox: Viewbox = createViewbox(
+    typeof props.view === 'function' ? props.view(width) : props.view
+  );
+
+  const scaleX = useMemo(
+    () =>
+      scaleLinear()
+        .domain(cartesianBox.x)
+        .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]),
+    [pxBox, cartesianBox]
+  );
+  const scaleY = useMemo(
+    () =>
+      scaleLinear()
+        .domain(cartesianBox.y)
+        .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]),
+    [pxBox, cartesianBox]
+  );
   const containerOffset: [number, number] = containerRef.current
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];
 
-  if (renderer.current) {
-    renderer.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
-  }
+  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, children);
 
   return (
     <ChartStateContext.Provider
       value={{
-        renderer: renderer.current,
+        pushToCanvasQueue,
         isCanvas,
         pxBox,
         cartesianBox,
@@ -85,35 +99,73 @@ const Chart: React.FC<Props> = props => {
         containerOffset,
       }}
     >
-      <ChartStyleProvider rootStyles={rootStyles}>
+      <ChartStyleProvider chartStyle={chartStyle}>
         <div
           ref={containerRef}
-          style={{ width: '100%', height, position: 'relative' }}
+          style={{
+            height,
+            maxWidth: width,
+            minWidth: '100%',
+            position: 'relative',
+          }}
         >
-          {isCanvas ? (
-            <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
-              {children}
-            </canvas>
-          ) : (
-            <svg width={pxBox.x[1]} height={pxBox.y[1]}>
-              {children}
-            </svg>
-          )}
-          {props.tooltip && props.tooltipPosition ? (
-            <div
-              style={{
-                position: 'absolute',
-                left: scaleX(props.tooltipPosition[0]),
-                top: scaleY(props.tooltipPosition[1]),
-              }}
-            >
-              {props.tooltip}
-            </div>
-          ) : null}
+          <ChartHandle {...props}>
+            {isCanvas ? (
+              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+                {children}
+              </canvas>
+            ) : (
+              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+                {children}
+              </svg>
+            )}
+            {props.tooltip && props.tooltipPosition ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: scaleX(props.tooltipPosition[0]),
+                  top: scaleY(props.tooltipPosition[1]),
+                }}
+              >
+                {props.tooltip}
+              </div>
+            ) : null}
+          </ChartHandle>
         </div>
       </ChartStyleProvider>
     </ChartStateContext.Provider>
   );
 };
+
+interface State {
+  hasError: boolean;
+  errorMessage: string;
+}
+
+class Chart extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false, errorMessage: '' };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMessage: error.message };
+  }
+
+  componentDidCatch(error: Error) {
+    // eslint-disable-next-line no-console
+    console.warn('Error while rendering Hypocube chart', error);
+  }
+
+  render() {
+    if (this.state.hasError && this.props.renderError) {
+      return this.props.renderError(this.state.errorMessage);
+    } else if (this.state.hasError) {
+      return <ChartError {...this.props} />;
+    }
+
+    return <ChartInner {...this.props} />;
+  }
+}
 
 export default Chart;

@@ -3,7 +3,7 @@ import { contextualize } from '../../lib/normalize';
 import useChartState from './ChartState';
 import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 
-const baseStyles: ChartStyleT = {
+const baseStyle: ChartStyleT = {
   baseFontSize: 16,
   axisColor: '#666',
   axisThickness: 2,
@@ -12,51 +12,57 @@ const baseStyles: ChartStyleT = {
   axisTickLabelOffset: 2,
   axisLabelOffset: 50,
 
-  dataFill: '#000',
-  dataStroke: '#000',
-  dataStrokeWidth: 1,
+  dataBoxFill: '#000',
+  dataBoxStroke: '#000',
+  dataBoxStrokeWidth: 0,
   dataBoxThickness: 10,
-  dataPointSize: 8,
-  dataPointSymbol: 'circle',
+  dataBoxLeftOffset: -0.5,
+
+  dataPointSize: 5,
+  dataPointSymbol: 'none',
+  dataPointFill: '#000',
+  dataPointStroke: '#000',
+  dataPointStrokeWidth: 0,
+  dataPointMinTargetRadius: 0,
+
   dataLineCurveType: 'linear',
   dataLineDashType: 'solid',
+  dataLineStroke: '#000',
+  dataLineStrokeWidth: 1,
 };
 
-const contextualizeStyles = (
+const contextualizeStyle = (
   overrides: ChartStyleOptions,
   defaults: ChartStyleT,
   state: ChartState
 ): ChartStyleT => {
-  return Object.keys(defaults).reduce(
-    (styles, key: keyof ChartStyleOptions) => {
-      return {
-        ...styles,
-        [key]: contextualize(overrides[key], defaults[key], state),
-      };
-    },
-    defaults
-  );
+  return Object.keys(defaults).reduce((style, key: keyof ChartStyleOptions) => {
+    return {
+      ...style,
+      [key]: contextualize(overrides[key], defaults[key], state),
+    };
+  }, defaults);
 };
 
-export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyles);
+export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyle);
 
 export const ChartStyleProvider: React.FC<{
-  rootStyles: ChartStyleOptions;
-}> = props => {
+  chartStyle: ChartStyleOptions;
+}> = (props) => {
   const state = useChartState();
 
-  const rootStyles = contextualizeStyles(props.rootStyles, baseStyles, state);
+  const chartStyle = contextualizeStyle(props.chartStyle, baseStyle, state);
 
   return (
-    <ChartStyleContext.Provider value={rootStyles}>
+    <ChartStyleContext.Provider value={chartStyle}>
       {props.children}
     </ChartStyleContext.Provider>
   );
 };
 
-export const useChartStyles = (overrides?: ChartStyleOptions): ChartStyleT => {
+export const useChartStyle = (overrides?: ChartStyleOptions): ChartStyleT => {
   const state = useChartState();
-  const rootStyles = useContext(ChartStyleContext);
-  if (!overrides) return rootStyles;
-  return contextualizeStyles(overrides, rootStyles, state);
+  const chartStyle = useContext(ChartStyleContext);
+  if (!overrides) return chartStyle;
+  return contextualizeStyle(overrides, chartStyle, state);
 };

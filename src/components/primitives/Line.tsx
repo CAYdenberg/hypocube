@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   curveBasisOpen,
   curveCardinalOpen,
@@ -18,8 +18,8 @@ export type dashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
 
 interface Props {
   path: Point[];
-  stroke?: string;
-  fill?: string;
+  stroke?: string | null;
+  fill?: string | null;
   strokeWidth?: number;
   curveType?: curveType | CurveFactoryLineOnly;
   dash?: dashType;
@@ -62,31 +62,33 @@ const getDashArray = (input: dashType): Array<number> | null => {
   }
 };
 
-export const Line: React.FC<Props> = props => {
+export const Line: React.FC<Props> = (props) => {
   const { path } = props;
   const { scaleX, scaleY } = useChartState();
 
   const pxData = path.map(
-    point => [scaleX(point[0]), scaleY(point[1])] as [number, number]
+    (point) => [scaleX(point[0]), scaleY(point[1])] as [number, number]
   );
 
   return <PxLine {...props} path={pxData} />;
 };
 
-export const TranslatedLine: React.FC<Props & { position: Point }> = props => {
+export const TranslatedLine: React.FC<Props & { position: Point }> = (
+  props
+) => {
   const { path, position } = props;
   const { scaleX, scaleY } = useChartState();
 
   const pxPosition = [scaleX(position[0]), scaleY(position[1])] as Point;
 
   const pxData = path.map(
-    point => [pxPosition[0] + point[0], pxPosition[1] + point[1]] as Point
+    (point) => [pxPosition[0] + point[0], pxPosition[1] + point[1]] as Point
   );
 
   return <PxLine {...props} path={pxData} />;
 };
 
-export const PxLine: React.FC<Props> = props => {
+export const PxLine: React.FC<Props> = (props) => {
   const { path, stroke, fill, strokeWidth, curveType, dash } = {
     stroke: '#000',
     strokeWidth: 1,
@@ -98,31 +100,30 @@ export const PxLine: React.FC<Props> = props => {
   const curveFactory = getD3Curve(curveType);
   const dashArray = getDashArray(dash);
 
-  const { renderer, isCanvas } = useChartState();
+  const { pushToCanvasQueue, isCanvas } = useChartState();
 
-  useEffect(() => {
-    if (renderer) {
-      const line = d3Line()
-        .curve(curveFactory)
-        .context(renderer);
-      renderer.beginPath();
+  pushToCanvasQueue((renderer) => {
+    const line = d3Line()
+      .curve(curveFactory)
+      .context(renderer);
+    renderer.beginPath();
+
+    if (stroke) {
       renderer.strokeStyle = stroke;
+    }
 
-      renderer.lineWidth = strokeWidth;
+    renderer.lineWidth = strokeWidth;
 
-      if (dashArray) {
-        renderer.setLineDash(dashArray);
-      }
+    if (dashArray) {
+      renderer.setLineDash(dashArray);
+    }
 
-      line(path);
-      renderer.stroke();
+    line(path);
+    renderer.stroke();
 
-      if (fill) {
-        renderer.fillStyle = fill;
-        renderer.fill();
-      }
-
-      renderer.restore();
+    if (fill) {
+      renderer.fillStyle = fill;
+      renderer.fill();
     }
   });
 
@@ -137,7 +138,7 @@ export const PxLine: React.FC<Props> = props => {
   return (
     <path
       d={line}
-      stroke={stroke}
+      stroke={stroke || 'transparent'}
       fill={fill || 'transparent'}
       strokeWidth={strokeWidth}
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}

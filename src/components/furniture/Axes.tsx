@@ -2,18 +2,21 @@ import React from 'react';
 import { contextualize, normalize } from '../../lib/normalize';
 import { ChartState, ChartStyleOptions, Contextual } from '../../types';
 import useChartState from '../base/ChartState';
-import { useChartStyles } from '../base/ChartStyle';
+import { useChartStyle } from '../base/ChartStyle';
 import Handle from '../primitives/Handle';
 import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
 
 interface AxisProps {
+  /**
+   * The start and end of the axis on the Cartesian scale. Defaults to the corresponding value in the Chart view
+   */
   range?: [number, number];
   intercept?: number;
   tickPositions?: Contextual<number[]>;
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
-  overrideStyles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
 }
 
 interface XAxisComponents {
@@ -54,7 +57,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
     ...Components,
   };
 
-  const XAxis: React.FC<AxisProps> = props => {
+  const XAxis: React.FC<AxisProps> = (props) => {
     const state = useChartState();
 
     const {
@@ -64,7 +67,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
       getTickLabel,
       // axisLabel,
     } = normalizeAxisProps(props, state);
-    const { axisColor, axisThickness } = useChartStyles(props.overrideStyles);
+    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
     return (
       <Handle elementPosition={[range[0], intercept]}>
@@ -76,14 +79,18 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map(pos => (
-          <XTickMark
-            position={[pos, intercept]}
-            label={getTickLabel(pos)}
-            overrideStyles={props.overrideStyles}
-            key={pos}
-          />
-        ))}
+        {tickPositions.map(
+          (pos) =>
+            pos >= range[0] &&
+            pos <= range[1] && (
+              <XTickMark
+                position={[pos, intercept]}
+                label={getTickLabel(pos)}
+                chartStyle={props.chartStyle}
+                key={pos}
+              />
+            )
+        )}
       </Handle>
     );
   };
@@ -107,7 +114,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
     ...Components,
   };
 
-  const YAxis: React.FC<AxisProps> = props => {
+  const YAxis: React.FC<AxisProps> = (props) => {
     const state = useChartState();
 
     const {
@@ -118,7 +125,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
       // axisLabel,
     } = normalizeAxisProps(props, state);
     // const axisLabel = normalize(props.axisLabel, null);
-    const { axisColor, axisThickness } = useChartStyles(props.overrideStyles);
+    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
     return (
       <Handle elementPosition={[intercept, range[0]]}>
@@ -130,14 +137,18 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
           strokeWidth={axisThickness}
           stroke={axisColor}
         />
-        {tickPositions.map(pos => (
-          <YTickMark
-            position={[intercept, pos]}
-            label={getTickLabel(pos)}
-            overrideStyles={props.overrideStyles}
-            key={pos}
-          />
-        ))}
+        {tickPositions.map(
+          (pos) =>
+            pos <= range[0] &&
+            pos >= range[1] && (
+              <YTickMark
+                position={[intercept, pos]}
+                label={getTickLabel(pos)}
+                chartStyle={props.chartStyle}
+                key={pos}
+              />
+            )
+        )}
       </Handle>
     );
   };

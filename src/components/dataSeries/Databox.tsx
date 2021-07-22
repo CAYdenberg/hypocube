@@ -3,48 +3,43 @@ import React from 'react';
 import { PxLine } from '../primitives/Line';
 import { ChartStyleOptions, Point } from '../../types';
 import useChartState from '../base/ChartState';
-import { useChartStyles } from '../base/ChartStyle';
-import { normalize } from '../../lib/normalize';
+import { useChartStyle } from '../base/ChartStyle';
 
 interface DataboxVerticalProps {
   yMin: number;
   yMax: number;
   x: number;
-  xOffset?: number;
-  color?: string;
-  overrideStyles?: ChartStyleOptions;
+  chartStyle?: ChartStyleOptions;
 }
 
-export const DataboxVertical: React.FC<DataboxVerticalProps> = props => {
+export const DataboxVertical: React.FC<DataboxVerticalProps> = (props) => {
   const { scaleX, scaleY } = useChartState();
   const {
     dataBoxThickness,
-    dataFill,
-    dataStroke,
-    dataStrokeWidth,
-  } = useChartStyles(props.overrideStyles);
-
-  const tHalf = dataBoxThickness / 2;
+    dataBoxFill,
+    dataBoxStroke,
+    dataBoxStrokeWidth,
+    dataBoxLeftOffset: offset,
+  } = useChartStyle(props.chartStyle);
 
   const yMin = scaleY(props.yMin);
   const yMax = scaleY(props.yMax);
-  const x = scaleX(props.x);
-  const xOffset = normalize(props.xOffset, 0);
-  const fill = props.color || dataFill;
+  const dataX = scaleX(props.x);
+  const leftX = dataX + dataBoxThickness * offset;
 
   const path: Point[] = [
-    [x - tHalf + xOffset, yMax],
-    [x + tHalf + xOffset, yMax],
-    [x + tHalf + xOffset, yMin],
-    [x - tHalf + xOffset, yMin],
+    [leftX, yMax],
+    [leftX + dataBoxThickness, yMax],
+    [leftX + dataBoxThickness, yMin],
+    [leftX, yMin],
   ];
 
   return (
     <PxLine
       path={path}
-      fill={fill}
-      stroke={dataStroke}
-      strokeWidth={dataStrokeWidth}
+      fill={dataBoxFill}
+      stroke={dataBoxStroke}
+      strokeWidth={dataBoxStrokeWidth}
     />
   );
 };

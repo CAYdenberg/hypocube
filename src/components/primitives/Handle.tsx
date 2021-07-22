@@ -1,16 +1,19 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import useChartState from '../base/ChartState';
-import { Event, Interaction } from '../../types';
+import useHandle, { HandlerProps } from '../../lib/useHandle';
+import useRescaleGestures from '../../lib/useRescaleGestures';
 
-interface Props {
-  onClick?: (data: Interaction) => void;
-  elementPosition: [number, number];
-  meta?: {
-    [key: string]: string | number | boolean;
-  };
-}
+export const ChartHandle: React.FC<HandlerProps> = ({ children, ...props }) => {
+  const handlers = useHandle(props);
+  const bind = useRescaleGestures(props.onGesture);
+  return (
+    <div {...handlers} {...bind()}>
+      {children}
+    </div>
+  );
+};
 
-const Handle: React.FC<Props> = props => {
+const Handle: React.FC<HandlerProps> = (props) => {
   const { isCanvas } = useChartState();
   if (isCanvas) {
     return <Fragment>{props.children}</Fragment>;
@@ -19,39 +22,9 @@ const Handle: React.FC<Props> = props => {
   return <HandleInner {...props} />;
 };
 
-const HandleInner: React.FC<Props> = ({
-  onClick,
-  elementPosition,
-  meta,
-  children,
-}) => {
-  const { scaleX, scaleY, containerOffset } = useChartState();
-
-  const getData = useCallback(
-    (event: Event): Interaction => {
-      return {
-        meta: meta || {},
-        elementPosition,
-        event,
-        pointerPosition: [
-          scaleX.invert(event.clientX - containerOffset[0]),
-          scaleY.invert(event.clientY - containerOffset[1]),
-        ],
-      };
-    },
-    [meta, elementPosition, scaleX, scaleY, containerOffset]
-  );
-
-  const handleClick = useCallback(
-    (event: Event) => {
-      if (onClick) {
-        onClick(getData(event));
-      }
-    },
-    [onClick, getData]
-  );
-
-  return <g onClick={handleClick}>{children}</g>;
+const HandleInner: React.FC<HandlerProps> = ({ children, ...props }) => {
+  const handlers = useHandle(props);
+  return <g {...handlers}>{children}</g>;
 };
 
 export default Handle;

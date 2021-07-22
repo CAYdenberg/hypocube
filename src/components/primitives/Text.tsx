@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
@@ -16,8 +16,8 @@ interface Props extends TextDrawProps {
   text: string;
 }
 
-const Text: React.FC<Props> = props => {
-  const { scaleX, scaleY, renderer, isCanvas } = useChartState();
+const Text: React.FC<Props> = (props) => {
+  const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
   const { position, text } = props;
 
   const font = normalize(props.font, 'Helvetica');
@@ -29,14 +29,13 @@ const Text: React.FC<Props> = props => {
   const x = scaleX(position[0]) + pxOffset[0];
   const y = scaleY(position[1]) + pxOffset[1];
 
-  useEffect(() => {
-    if (renderer) {
-      renderer.font = `${fontSize}px ${font}`;
-      renderer.textAlign = align;
-      renderer.fillStyle = color;
-      renderer.fillText(text, x, y);
-    }
+  pushToCanvasQueue((renderer) => {
+    renderer.font = `${fontSize}px ${font}`;
+    renderer.textAlign = align;
+    renderer.fillStyle = color;
+    renderer.fillText(text, x, y);
   });
+
   if (isCanvas) {
     return null;
   }
@@ -50,7 +49,7 @@ const Text: React.FC<Props> = props => {
       y={y}
       fill={color}
       fontSize={fontSize}
-      style={{ fontFamily: `${font}, sans-serif` }}
+      style={{ fontFamily: `${font}, sans-serif`, userSelect: 'none' }}
       textAnchor={svgAnchor}
     >
       {text}

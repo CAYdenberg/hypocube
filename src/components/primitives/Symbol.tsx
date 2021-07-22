@@ -9,7 +9,7 @@ import {
   symbolTriangle,
   symbolWye,
 } from 'd3-shape';
-import React, { useEffect } from 'react';
+import React from 'react';
 import useChartState from '../base/ChartState';
 
 export type symbolType =
@@ -19,7 +19,8 @@ export type symbolType =
   | 'square'
   | 'star'
   | 'triangle'
-  | 'wye';
+  | 'wye'
+  | 'none';
 
 interface SymbolProps {
   point: [number, number];
@@ -28,9 +29,10 @@ interface SymbolProps {
   stroke?: string;
   fill?: string | null;
   strokeWidth?: number;
+  quietRenderRadius?: number;
 }
 
-const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType => {
+const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType | null => {
   if (typeof input !== 'string') {
     return input;
   }
@@ -53,45 +55,56 @@ const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType => {
 
     case 'wye':
       return symbolWye;
+
+    case 'none':
+      return null;
   }
 
   return symbolCircle;
 };
 
-export const Symbol: React.FC<SymbolProps> = props => {
-  const { point, size, symbol, stroke, fill, strokeWidth } = {
-    size: 8,
+export const Symbol: React.FC<SymbolProps> = (props) => {
+  const {
+    point,
+    size,
+    symbol,
+    stroke,
+    fill,
+    strokeWidth,
+    quietRenderRadius,
+  } = {
+    size: 5,
     symbol: symbolCircle,
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
+    quietRenderRadius: 0,
     ...props,
   };
   const symbolF = getD3Symbol(symbol);
 
-  const { scaleX, scaleY, renderer, isCanvas } = useChartState();
+  if (!symbolF) {
+    return null;
+  }
+
+  const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
 
   const pxPoint: [number, number] = [scaleX(point[0]), scaleY(point[1])];
 
-  useEffect(() => {
-    if (renderer) {
-      const line = d3Symbol(symbolF, size * 8).context(renderer);
+  pushToCanvasQueue((renderer) => {
+    const line = d3Symbol(symbolF, size * 8).context(renderer);
 
-      renderer.setTransform(1, 0, 0, 1, ...pxPoint);
-      renderer.beginPath();
-      renderer.strokeStyle = stroke;
-      renderer.lineWidth = strokeWidth;
+    renderer.setTransform(1, 0, 0, 1, ...pxPoint);
+    renderer.beginPath();
+    renderer.strokeStyle = stroke;
+    renderer.lineWidth = strokeWidth;
 
-      line();
-      renderer.stroke();
+    line();
+    renderer.stroke();
 
-      if (fill) {
-        renderer.fillStyle = fill;
-        renderer.fill();
-      }
-
-      renderer.restore();
-      renderer.setTransform(1, 0, 0, 1, 0, 0);
+    if (fill) {
+      renderer.fillStyle = fill;
+      renderer.fill();
     }
   });
 
@@ -101,6 +114,7 @@ export const Symbol: React.FC<SymbolProps> = props => {
 
   return (
     <g transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}>
+      <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
       <path
         d={line}
         stroke={stroke}
