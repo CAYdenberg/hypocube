@@ -1,3 +1,5 @@
-**/*.js
-**/*.jsx
+build/**/*
+dist/**/*
+.cache/**/*
+website/public/**/*
 **/*.d.ts
