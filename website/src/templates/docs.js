@@ -21,11 +21,16 @@ export default class MDXRuntimeTest extends Component {
     if (!data) {
       return this.props.children;
     }
+
     const {
       allMdx,
       mdx,
       site: {
-        siteMetadata: { docsLocation, title },
+        siteMetadata: {
+          docsLocation,
+          description: siteDescription,
+          title: siteTitle,
+        },
       },
     } = data;
 
@@ -71,9 +76,9 @@ export default class MDXRuntimeTest extends Component {
       });
 
     // meta tags
-    const metaTitle = mdx.frontmatter.metaTitle;
-
-    const metaDescription = mdx.frontmatter.metaDescription;
+    const pageTitle = mdx.frontmatter.metaTitle;
+    const metaTitle = pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle;
+    const metaDescription = mdx.frontmatter.metaDescription || siteDescription;
 
     let canonicalUrl = config.gatsby.siteUrl;
 
