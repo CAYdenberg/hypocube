@@ -1,8 +1,7 @@
 {
-  "name": "gatsby-gitbook-boilerplate",
+  "name": "hypocube-docs",
   "private": true,
-  "description": "Documentation, built with mdx",
-  "author": "Praveen <praveen@hasura.io> (@praveenweb)",
+  "author": "@CAYdenberg",
   "version": "0.0.1",
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
@@ -58,9 +57,7 @@
   "main": "n/a",
   "scripts": {
     "start": "gatsby develop",
-    "build": "gatsby build --prefix-paths",
-    "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
-    "lint": "eslint -c ../.eslintrc --fix \"src/**/*.{js,jsx}\""
+    "build": "gatsby build --prefix-paths"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
