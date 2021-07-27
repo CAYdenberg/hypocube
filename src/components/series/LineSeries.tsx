@@ -93,8 +93,8 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
             x={x}
             y={y}
             key={`${x},${y}`}
-            {...props}
             chartStyle={chartStyle}
+            handlerMeta={props.handlerMeta}
           />
         ))}
       </React.Fragment>

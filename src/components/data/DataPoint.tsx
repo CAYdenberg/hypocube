@@ -1,4 +1,5 @@
 import React from 'react';
+import isEqual from '../../lib/isEqual';
 import {
   ChartEventHandlers,
   ChartEventMetaData,
@@ -14,7 +15,7 @@ export interface DataPointProps {
   handlerMeta?: ChartEventMetaData;
 }
 
-export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
+const DataPointInner: React.FC<DataPointProps & ChartEventHandlers> = (
   props
 ) => {
   const { x, y } = props;
@@ -33,3 +34,6 @@ export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
     </Handle>
   );
 };
+
+export const DataPoint: React.FC<DataPointProps &
+  ChartEventHandlers> = React.memo(DataPointInner, isEqual);
