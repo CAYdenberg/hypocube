@@ -44,7 +44,7 @@ export default ({
 
       return mapEventData ? mapEventData(data) : data;
     },
-    [meta, elementPosition, scaleX, scaleY, containerOffset, mapEventData]
+    [meta, elementPosition, mapEventData, scaleX, scaleY, containerOffset]
   );
 
   const reactHandlers = useMemo(() => {

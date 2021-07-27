@@ -5,41 +5,12 @@ import {
   ChartEventHandlers,
   Point,
 } from '../../types';
-import { DataPoint, DataPointProps } from '../data/DataPoint';
-import { Line } from '../primitives/Line';
 import { useChartStyle } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
-import useChartState from '../base/ChartState';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
-
-interface DataLineProps {
-  data: Point[];
-  chartStyle?: ChartStyleOptions;
-}
-
-export const DataLine: React.FC<DataLineProps> = (props) => {
-  const { data } = props;
-
-  const {
-    dataLineStroke,
-    dataLineStrokeWidth,
-    dataLineCurveType,
-    dataLineDashType,
-  } = useChartStyle(props.chartStyle);
-
-  // filter out points that are out of range and both their neighbours are
-  // out of range.
-
-  return (
-    <Line
-      path={data}
-      stroke={dataLineStroke}
-      strokeWidth={dataLineStrokeWidth}
-      curveType={dataLineCurveType}
-      dash={dataLineDashType}
-    />
-  );
-};
+import useChartState from '../base/ChartState';
+import { DataPoint, DataPointProps } from '../data/DataPoint';
+import { DataLine, DataLineProps } from '../data/DataLine';
 
 interface LineSeriesComponents {
   DataPoint?: React.FC<DataPointProps>;
@@ -87,14 +58,15 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
 
     return (
       <React.Fragment>
-        <DataLine {...props} />
+        <DataLine data={props.data} chartStyle={chartStyle} />
+
         {filteredPoints.map(([x, y]) => (
           <DataPoint
+            {...props}
             x={x}
             y={y}
             key={`${x},${y}`}
             chartStyle={chartStyle}
-            handlerMeta={props.handlerMeta}
           />
         ))}
       </React.Fragment>

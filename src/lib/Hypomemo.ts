@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, ReactFragment } from 'react';
+import React, { PropsWithChildren, ReactElement, ReactFragment } from 'react';
 import { ChartEventMetaData, ChartStyleT } from '../types';
 import Viewbox from './Viewbox';
 
@@ -22,7 +22,7 @@ const isIndexed = (prop: any): prop is ChartStyleT | ChartEventMetaData => {
   return prop && !Array.isArray(prop) && typeof prop === 'object';
 };
 
-const isEqual = (a: Props, b: Props): boolean => {
+export const isEqual = (a: Props, b: Props): boolean => {
   const aKeys = Object.keys(a);
   const missingInA = Object.keys(b).find((key) => !aKeys.includes(key));
 
@@ -53,4 +53,5 @@ const isEqual = (a: Props, b: Props): boolean => {
   );
 };
 
-export default isEqual;
+export const Hypomemo = <Props>(Component: React.FC<Props>): React.FC<Props> =>
+  React.memo(Component, isEqual);

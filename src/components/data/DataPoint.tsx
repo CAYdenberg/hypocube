@@ -1,5 +1,5 @@
 import React from 'react';
-import isEqual from '../../lib/isEqual';
+import { Hypomemo } from '../../lib/Hypomemo';
 import {
   ChartEventHandlers,
   ChartEventMetaData,
@@ -15,25 +15,22 @@ export interface DataPointProps {
   handlerMeta?: ChartEventMetaData;
 }
 
-const DataPointInner: React.FC<DataPointProps & ChartEventHandlers> = (
-  props
-) => {
-  const { x, y } = props;
+export const DataPoint = Hypomemo<DataPointProps & ChartEventHandlers>(
+  (props) => {
+    const { x, y } = props;
 
-  return (
-    <Handle {...props} elementPosition={[x, y]} meta={props.handlerMeta}>
-      <Symbol
-        point={[x, y]}
-        symbol={props.chartStyle.dataPointSymbol}
-        size={props.chartStyle.dataPointSize}
-        stroke={props.chartStyle.dataPointStroke}
-        strokeWidth={props.chartStyle.dataPointStrokeWidth}
-        fill={props.chartStyle.dataPointFill}
-        quietRenderRadius={props.chartStyle.dataPointMinTargetRadius}
-      />
-    </Handle>
-  );
-};
-
-export const DataPoint: React.FC<DataPointProps &
-  ChartEventHandlers> = React.memo(DataPointInner, isEqual);
+    return (
+      <Handle {...props} elementPosition={[x, y]} meta={props.handlerMeta}>
+        <Symbol
+          point={[x, y]}
+          symbol={props.chartStyle.dataPointSymbol}
+          size={props.chartStyle.dataPointSize}
+          stroke={props.chartStyle.dataPointStroke}
+          strokeWidth={props.chartStyle.dataPointStrokeWidth}
+          fill={props.chartStyle.dataPointFill}
+          quietRenderRadius={props.chartStyle.dataPointMinTargetRadius}
+        />
+      </Handle>
+    );
+  }
+);

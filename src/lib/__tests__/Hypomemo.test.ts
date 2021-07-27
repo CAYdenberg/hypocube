@@ -1,4 +1,4 @@
-import isEqual from '../isEqual';
+import { isEqual } from '../Hypomemo';
 import Viewbox from '../Viewbox';
 
 describe('custom isEqual', () => {
