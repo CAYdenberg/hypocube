@@ -67,48 +67,44 @@ const ChartInner: React.FC<Props> = (props) => {
     typeof props.view === 'function' ? props.view(width) : props.view
   );
 
-  const scaleX = useMemo(
-    () =>
-      scaleLinear()
-        .domain(cartesianBox.x)
-        .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]),
-    [pxBox, cartesianBox]
-  );
-  const scaleY = useMemo(
-    () =>
-      scaleLinear()
-        .domain(cartesianBox.y)
-        .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]),
-    [pxBox, cartesianBox]
-  );
+  const scaleX = scaleLinear()
+    .domain(cartesianBox.x)
+    .range([pxBox.x[0] + gutter[3], pxBox.x[1] - gutter[1]]);
+  const scaleY = scaleLinear()
+    .domain(cartesianBox.y)
+    .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]);
+
   const containerOffset: [number, number] = containerRef.current
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];
 
-  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, children);
+  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, isCanvas);
+
+  const chartState = useMemo(
+    () => ({
+      pushToCanvasQueue,
+      isCanvas,
+      pxBox,
+      cartesianBox,
+      scaleX,
+      scaleY,
+      containerOffset,
+    }),
+    [isCanvas, pxBox, props.view]
+  );
 
   return (
-    <ChartStateContext.Provider
-      value={{
-        pushToCanvasQueue,
-        isCanvas,
-        pxBox,
-        cartesianBox,
-        scaleX,
-        scaleY,
-        containerOffset,
+    <div
+      ref={containerRef}
+      style={{
+        height,
+        maxWidth: width,
+        minWidth: '100%',
+        position: 'relative',
       }}
     >
-      <ChartStyleProvider chartStyle={chartStyle}>
-        <div
-          ref={containerRef}
-          style={{
-            height,
-            maxWidth: width,
-            minWidth: '100%',
-            position: 'relative',
-          }}
-        >
+      <ChartStateContext.Provider value={chartState}>
+        <ChartStyleProvider chartStyle={chartStyle}>
           <ChartHandle {...props}>
             {isCanvas ? (
               <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
@@ -131,9 +127,9 @@ const ChartInner: React.FC<Props> = (props) => {
               </div>
             ) : null}
           </ChartHandle>
-        </div>
-      </ChartStyleProvider>
-    </ChartStateContext.Provider>
+        </ChartStyleProvider>
+      </ChartStateContext.Provider>
+    </div>
   );
 };
 

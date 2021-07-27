@@ -5,49 +5,12 @@ import {
   ChartEventHandlers,
   Point,
 } from '../../types';
-import { Symbol } from '../primitives/Symbol';
+import { DataPoint, DataPointProps } from '../data/DataPoint';
 import { Line } from '../primitives/Line';
 import { useChartStyle } from '../base/ChartStyle';
 import { normalize } from '../../lib/normalize';
 import useChartState from '../base/ChartState';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
-import Handle from '../primitives/Handle';
-
-interface DataPointProps {
-  x: number;
-  y: number;
-  chartStyle?: ChartStyleOptions;
-  handlerMeta?: ChartEventMetaData;
-}
-
-export const DataPoint: React.FC<DataPointProps & ChartEventHandlers> = (
-  props
-) => {
-  const { x, y } = props;
-
-  const {
-    dataPointFill,
-    dataPointStroke,
-    dataPointStrokeWidth,
-    dataPointSize,
-    dataPointSymbol,
-    dataPointMinTargetRadius,
-  } = useChartStyle(props.chartStyle);
-
-  return (
-    <Handle {...props} elementPosition={[x, y]} meta={props.handlerMeta}>
-      <Symbol
-        point={[x, y]}
-        symbol={dataPointSymbol}
-        size={dataPointSize}
-        stroke={dataPointStroke}
-        strokeWidth={dataPointStrokeWidth}
-        fill={dataPointFill}
-        quietRenderRadius={dataPointMinTargetRadius}
-      />
-    </Handle>
-  );
-};
 
 interface DataLineProps {
   data: Point[];
@@ -105,8 +68,10 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
     props
   ) => {
     const { cartesianBox, isCanvas } = useChartState();
-    const { dataPointSymbol } = useChartStyle(props.chartStyle);
     const view = createViewbox(normalize(props.view, cartesianBox));
+
+    const chartStyle = useChartStyle(props.chartStyle);
+    const { dataPointSymbol } = chartStyle;
 
     const filteredPoints =
       isCanvas && dataPointSymbol === 'none'
@@ -124,7 +89,13 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
       <React.Fragment>
         <DataLine {...props} />
         {filteredPoints.map(([x, y]) => (
-          <DataPoint x={x} y={y} key={`${x},${y}`} {...props} />
+          <DataPoint
+            x={x}
+            y={y}
+            key={`${x},${y}`}
+            {...props}
+            chartStyle={chartStyle}
+          />
         ))}
       </React.Fragment>
     );

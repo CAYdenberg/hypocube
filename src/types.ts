@@ -7,13 +7,13 @@ import Viewbox from './lib/Viewbox';
 export type Point = [number, number];
 
 export interface ChartState {
-  isCanvas: boolean;
   cartesianBox: Viewbox;
   pxBox: Viewbox;
   scaleX: ScaleLinear<number, number, number>;
   scaleY: ScaleLinear<number, number, number>;
   containerOffset: [number, number];
-  pushToCanvasQueue: (func: CanvasComponent) => void;
+  isCanvas: boolean;
+  pushToCanvasQueue: ((func: CanvasComponent) => void) | null;
 }
 
 export type Contextual<T> = T | ((chartState: ChartState) => T);
