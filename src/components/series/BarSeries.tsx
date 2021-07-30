@@ -10,6 +10,7 @@ import { normalize } from '../../lib/normalize';
 import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
+import selectHandlers from '../../lib/selectHandlers';
 
 interface BarVerticalSeriesComponents {
   DataBoxVertical?: React.FC<DataboxVerticalProps>;
@@ -46,7 +47,7 @@ export const BarVerticalSeriesComposer = (
         {props.data.map(([x, y]) =>
           x >= viewbox.x[0] || x <= viewbox.x[1] ? (
             <DataboxVertical
-              {...props}
+              {...selectHandlers(props)}
               x={x}
               yMin={0}
               yMax={y}

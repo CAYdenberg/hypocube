@@ -7,10 +7,11 @@ import React, {
   useMemo,
 } from 'react';
 import { normalize } from '../../lib/normalize';
+import selectHandlers from '../../lib/selectHandlers';
 import useCanvas from '../../lib/useCanvas';
 import { HandlerProps } from '../../lib/useHandle';
 import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
-import { ChartStyleOptions, Point } from '../../types';
+import { ChartGestureData, ChartStyleOptions, Point } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
 import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
@@ -20,14 +21,12 @@ export interface Props extends HandlerProps {
   height: number;
   width: number;
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
-  /**
-   * An additional number of pixels added to each side of the graph, specified as [top, right, bottom, left]
-   */
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
   chartStyle?: ChartStyleOptions;
   tooltip?: JSX.Element | null;
   tooltipPosition?: Point | null;
+  onGesture?: (data: ChartGestureData) => void;
   renderError?: (message?: string) => React.ReactNode;
 }
 
@@ -105,7 +104,7 @@ const ChartInner: React.FC<Props> = (props) => {
     >
       <ChartStateContext.Provider value={chartState}>
         <ChartStyleProvider chartStyle={chartStyle}>
-          <ChartHandle {...props}>
+          <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
             {isCanvas ? (
               <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
                 {children}

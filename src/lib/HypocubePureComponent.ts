@@ -53,5 +53,5 @@ export const isEqual = (a: Props, b: Props): boolean => {
   );
 };
 
-export const Hypomemo = <Props>(Component: React.FC<Props>): React.FC<Props> =>
+export const Pure = <Props>(Component: React.FC<Props>): React.FC<Props> =>
   React.memo(Component, isEqual);

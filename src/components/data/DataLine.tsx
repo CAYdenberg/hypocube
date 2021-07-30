@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hypomemo } from '../../lib/Hypomemo';
+import { Pure } from '../../lib/HypocubePureComponent';
 import { ChartStyleT, Point } from '../../types';
 import { Line } from '../primitives/Line';
 
@@ -8,7 +8,7 @@ export interface DataLineProps {
   chartStyle: ChartStyleT;
 }
 
-export const DataLine = Hypomemo<DataLineProps>((props) => {
+export const DataLine = Pure<DataLineProps>((props) => {
   const { data, chartStyle } = props;
 
   const {

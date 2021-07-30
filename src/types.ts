@@ -129,17 +129,11 @@ export interface ChartGestureData {
   state: any;
 }
 
-export interface ChartEventHandlers {
-  onPointerDown?: ChartEventHandler;
-  onPointerMove?: ChartEventHandler;
-  onPointerUp?: ChartEventHandler;
-  onPointerCancel?: ChartEventHandler;
-  onGotPointerCapture?: ChartEventHandler;
-  onLostPointerCapture?: ChartEventHandler;
-  onPointerEnter?: ChartEventHandler;
-  onPointerLeave?: ChartEventHandler;
-  onPointerOver?: ChartEventHandler;
-  onPointerOut?: ChartEventHandler;
+export type ChartEventHandlers = {
+  [Property in keyof ReactHandlers]: ChartEventHandler;
+};
+
+export interface ChartGestureHandlers {
   onGesture?: (data: ChartGestureData) => void;
 }
 

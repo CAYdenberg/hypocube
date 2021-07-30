@@ -2,10 +2,15 @@ import React, { Fragment } from 'react';
 import useChartState from '../base/ChartState';
 import useHandle, { HandlerProps } from '../../lib/useHandle';
 import useRescaleGestures from '../../lib/useRescaleGestures';
+import { ChartGestureHandlers } from '../../types';
 
-export const ChartHandle: React.FC<HandlerProps> = ({ children, ...props }) => {
+export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
+  children,
+  onGesture,
+  ...props
+}) => {
   const handlers = useHandle(props);
-  const bind = useRescaleGestures(props.onGesture);
+  const bind = useRescaleGestures(onGesture);
   return (
     <div {...handlers} {...bind()}>
       {children}

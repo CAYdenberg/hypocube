@@ -11,6 +11,7 @@ import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { DataPoint, DataPointProps } from '../data/DataPoint';
 import { DataLine, DataLineProps } from '../data/DataLine';
+import selectHandlers from '../../lib/selectHandlers';
 
 interface LineSeriesComponents {
   DataPoint?: React.FC<DataPointProps>;
@@ -62,7 +63,7 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
 
         {filteredPoints.map(([x, y]) => (
           <DataPoint
-            {...props}
+            {...selectHandlers(props)}
             x={x}
             y={y}
             key={`${x},${y}`}

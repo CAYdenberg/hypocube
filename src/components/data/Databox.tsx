@@ -9,6 +9,7 @@ import {
 } from '../../types';
 import useChartState from '../base/ChartState';
 import Handle from '../primitives/Handle';
+import selectHandlers from '../../lib/selectHandlers';
 
 export interface DataboxVerticalProps {
   x: number;
@@ -43,7 +44,7 @@ export const DataboxVertical: React.FC<DataboxVerticalProps &
 
   return (
     <Handle
-      {...props}
+      {...selectHandlers(props)}
       meta={props.handlerMeta}
       elementPosition={[props.x, props.yMax]}
     >
