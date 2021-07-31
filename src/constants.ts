@@ -1,8 +1,11 @@
-import { ReactHandlers } from './types';
+import { ChartEventHandlers } from './types';
 
 export const DASHED_LINE = [5, 5];
 export const DOTTED_LINE = [1, 1];
-export const SUPPORTED_EVENTS: Array<keyof ReactHandlers> = [
+export const SUPPORTED_EVENTS: Array<keyof Omit<
+  ChartEventHandlers,
+  'onGesture'
+>> = [
   'onPointerDown',
   'onPointerMove',
   'onPointerUp',

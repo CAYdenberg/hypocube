@@ -29,12 +29,13 @@ const Text: React.FC<Props> = (props) => {
   const x = scaleX(position[0]) + pxOffset[0];
   const y = scaleY(position[1]) + pxOffset[1];
 
-  pushToCanvasQueue((renderer) => {
-    renderer.font = `${fontSize}px ${font}`;
-    renderer.textAlign = align;
-    renderer.fillStyle = color;
-    renderer.fillText(text, x, y);
-  });
+  pushToCanvasQueue &&
+    pushToCanvasQueue((renderer) => {
+      renderer.font = `${fontSize}px ${font}`;
+      renderer.textAlign = align;
+      renderer.fillStyle = color;
+      renderer.fillText(text, x, y);
+    });
 
   if (isCanvas) {
     return null;

@@ -1,14 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import useChartState from '../components/base/ChartState';
-import { SUPPORTED_EVENTS } from '../constants';
 import {
   ChartEventData,
   ChartEventMetaData,
-  ChartEventHandler,
   ChartEventHandlers,
   ReactEvent,
   ReactHandlers,
 } from '../types';
+import selectHandlers from './selectHandlers';
 
 export interface HandlerProps extends ChartEventHandlers {
   elementPosition?: [number, number];
@@ -21,7 +20,7 @@ export default ({
   meta,
   mapEventData,
   ...handlers
-}: HandlerProps) => {
+}: HandlerProps): ReactHandlers => {
   const { scaleX, scaleY, containerOffset } = useChartState();
 
   const getData = useCallback(
@@ -44,20 +43,16 @@ export default ({
 
       return mapEventData ? mapEventData(data) : data;
     },
-    [meta, elementPosition, scaleX, scaleY, containerOffset, mapEventData]
+    [meta, elementPosition, mapEventData, scaleX, scaleY, containerOffset]
   );
 
   const reactHandlers = useMemo(() => {
-    return SUPPORTED_EVENTS.reduce((rhandlers, key) => {
-      const handler = handlers[key] as ChartEventHandler;
-      if (handler) {
-        rhandlers[key] = (event: ReactEvent) => {
-          event.preventDefault();
-          return handler(getData(event));
-        };
-      }
-      return rhandlers;
-    }, {} as ReactHandlers);
+    return selectHandlers(handlers, (handler) => {
+      return (event: ReactEvent) => {
+        event.preventDefault();
+        return handler(getData(event));
+      };
+    });
   }, [getData, handlers]);
 
   return reactHandlers;

@@ -3,7 +3,7 @@ import Viewbox from '../lib/Viewbox';
 
 export type CanvasComponent = (renderer: CanvasRenderingContext2D) => void;
 
-export default (pxBox: Viewbox, children: React.ReactNode) => {
+export default (pxBox: Viewbox, isCanvas: boolean) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
 
@@ -14,9 +14,11 @@ export default (pxBox: Viewbox, children: React.ReactNode) => {
   }, [canvasRef.current]);
 
   const queue: Array<CanvasComponent> = [];
-  const pushToCanvasQueue = (func: CanvasComponent) => {
-    queue.push(func);
-  };
+  const pushToCanvasQueue = isCanvas
+    ? (func: CanvasComponent) => {
+        queue.push(func);
+      }
+    : null;
 
   useEffect(() => {
     if (!context.current) return;

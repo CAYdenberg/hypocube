@@ -102,30 +102,31 @@ export const PxLine: React.FC<Props> = (props) => {
 
   const { pushToCanvasQueue, isCanvas } = useChartState();
 
-  pushToCanvasQueue((renderer) => {
-    const line = d3Line()
-      .curve(curveFactory)
-      .context(renderer);
-    renderer.beginPath();
+  pushToCanvasQueue &&
+    pushToCanvasQueue((renderer) => {
+      const line = d3Line()
+        .curve(curveFactory)
+        .context(renderer);
+      renderer.beginPath();
 
-    if (stroke) {
-      renderer.strokeStyle = stroke;
-    }
+      if (stroke) {
+        renderer.strokeStyle = stroke;
+      }
 
-    renderer.lineWidth = strokeWidth;
+      renderer.lineWidth = strokeWidth;
 
-    if (dashArray) {
-      renderer.setLineDash(dashArray);
-    }
+      if (dashArray) {
+        renderer.setLineDash(dashArray);
+      }
 
-    line(path);
-    renderer.stroke();
+      line(path);
+      renderer.stroke();
 
-    if (fill) {
-      renderer.fillStyle = fill;
-      renderer.fill();
-    }
-  });
+      if (fill) {
+        renderer.fillStyle = fill;
+        renderer.fill();
+      }
+    });
 
   if (isCanvas) {
     return null;

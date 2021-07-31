@@ -177,7 +177,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
         <g
           onPointerLeave={[Function]}
@@ -189,7 +188,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
         <g
           onPointerLeave={[Function]}
@@ -201,7 +199,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
         <g
           onPointerLeave={[Function]}
@@ -213,7 +210,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
         <g
           onPointerLeave={[Function]}
@@ -225,7 +221,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
         <g
           onPointerLeave={[Function]}
@@ -237,7 +232,6 @@ Array [
             stroke="#000"
             strokeWidth={0}
           />
-          ;
         </g>
       </svg>
     </div>
@@ -811,7 +805,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -820,7 +813,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -829,7 +821,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -838,7 +829,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -847,7 +837,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -856,7 +845,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(177, 0, 0)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -865,7 +853,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -874,7 +861,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -883,7 +869,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -892,7 +877,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -901,7 +885,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
       <g>
         <path
@@ -910,7 +893,6 @@ exports[`Test: Multiple Bar Series 1`] = `
           stroke="rgb(150, 150, 150)"
           strokeWidth={0}
         />
-        ;
       </g>
     </svg>
   </div>

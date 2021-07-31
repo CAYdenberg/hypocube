@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataboxVertical } from './Databox';
+import { DataboxVertical, DataboxVerticalProps } from '../data/Databox';
 import {
   ChartStyleOptions,
   ChartEventMetaData,
@@ -9,29 +9,11 @@ import {
 import { normalize } from '../../lib/normalize';
 import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
-import Handle from '../primitives/Handle';
-
-interface BarProps {
-  x: number;
-  y: number;
-  chartStyle?: ChartStyleOptions;
-  handlerMeta?: ChartEventMetaData;
-}
-
-export const BarVertical: React.FC<BarProps & ChartEventHandlers> = (props) => {
-  return (
-    <Handle
-      {...props}
-      meta={props.handlerMeta}
-      elementPosition={[props.x, props.y]}
-    >
-      <DataboxVertical {...props} yMin={0} yMax={props.y} x={props.x} />;
-    </Handle>
-  );
-};
+import { useChartStyle } from '../base/ChartStyle';
+import selectHandlers from '../../lib/selectHandlers';
 
 interface BarVerticalSeriesComponents {
-  BarVertical?: React.FC<BarProps>;
+  DataBoxVertical?: React.FC<DataboxVerticalProps>;
 }
 
 interface BarSeriesProps {
@@ -42,13 +24,13 @@ interface BarSeriesProps {
 }
 
 const BarVerticalSeriesDefaultComponents = {
-  BarVertical,
+  DataboxVertical,
 };
 
 export const BarVerticalSeriesComposer = (
   Components: BarVerticalSeriesComponents = {}
 ) => {
-  const { BarVertical } = {
+  const { DataboxVertical } = {
     ...BarVerticalSeriesDefaultComponents,
     ...Components,
   };
@@ -57,13 +39,21 @@ export const BarVerticalSeriesComposer = (
     props
   ) => {
     const { cartesianBox } = useChartState();
+    const chartStyle = useChartStyle(props.chartStyle);
     const viewbox = normalize(props.view, cartesianBox);
 
     return (
       <React.Fragment>
         {props.data.map(([x, y]) =>
           x >= viewbox.x[0] || x <= viewbox.x[1] ? (
-            <BarVertical x={x} y={y} key={`${x},${y}`} {...props} />
+            <DataboxVertical
+              {...selectHandlers(props)}
+              x={x}
+              yMin={0}
+              yMax={y}
+              key={`${x},${y}`}
+              chartStyle={chartStyle}
+            />
           ) : null
         )}
       </React.Fragment>

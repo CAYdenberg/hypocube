@@ -91,22 +91,23 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
   const pxPoint: [number, number] = [scaleX(point[0]), scaleY(point[1])];
 
-  pushToCanvasQueue((renderer) => {
-    const line = d3Symbol(symbolF, size * 8).context(renderer);
+  pushToCanvasQueue &&
+    pushToCanvasQueue((renderer) => {
+      const line = d3Symbol(symbolF, size * 8).context(renderer);
 
-    renderer.setTransform(1, 0, 0, 1, ...pxPoint);
-    renderer.beginPath();
-    renderer.strokeStyle = stroke;
-    renderer.lineWidth = strokeWidth;
+      renderer.setTransform(1, 0, 0, 1, ...pxPoint);
+      renderer.beginPath();
+      renderer.strokeStyle = stroke;
+      renderer.lineWidth = strokeWidth;
 
-    line();
-    renderer.stroke();
+      line();
+      renderer.stroke();
 
-    if (fill) {
-      renderer.fillStyle = fill;
-      renderer.fill();
-    }
-  });
+      if (fill) {
+        renderer.fillStyle = fill;
+        renderer.fill();
+      }
+    });
 
   if (isCanvas) return null;
   const line = d3Symbol(symbolF, size * 8)();
