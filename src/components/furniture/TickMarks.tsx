@@ -66,6 +66,7 @@ export const YTickMarkComposer = () => {
       axisTickLength,
       axisTickOffset,
       axisTickLabelOffset,
+      baseFontSize,
     } = useChartStyle(props.chartStyle);
 
     const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
@@ -83,7 +84,7 @@ export const YTickMarkComposer = () => {
         />
         <Text
           position={position}
-          pxOffset={[labelAbsoluteOffset, 0]}
+          pxOffset={[labelAbsoluteOffset, baseFontSize / 2 - axisThickness]}
           text={label}
           color={axisColor}
           align="right"

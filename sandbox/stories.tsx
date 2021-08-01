@@ -5,7 +5,8 @@ import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
 import MultipleBarGraph from './MultipleBarGraph';
 import MultipleSeries from './MultipleSeries';
-import { Pannable } from './Pannable';
+import Pannable from './Pannable';
+import DotAndTukey from './DotAndTukey';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 
@@ -113,6 +114,10 @@ const examples: Example[] = [
   {
     name: 'Multiple Bar Series',
     render: ({ isCanvas }) => <MultipleBarGraph isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Dot and Tukey plot',
+    render: ({ isCanvas }) => <DotAndTukey isCanvas={isCanvas} />,
   },
   {
     name: 'Rendering error',

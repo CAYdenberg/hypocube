@@ -23,16 +23,14 @@ interface XAxisComponents {
   XTickMark?: React.FC<TickMarkProps>;
 }
 
-const normalizeAxisProps = (props: AxisProps, state: ChartState) => {
-  const { cartesianBox } = state;
-
-  const range = normalize(props.range, cartesianBox.x);
+const normalizeAxisProps = (
+  props: AxisProps,
+  state: ChartState,
+  naturalRange: [number, number]
+) => {
+  const range = normalize(props.range, naturalRange);
   const intercept = normalize<number>(props.intercept, 0);
-  const tickPositions = contextualize(
-    props.tickPositions,
-    cartesianBox.x,
-    state
-  );
+  const tickPositions = contextualize(props.tickPositions, naturalRange, state);
   const getTickLabel = normalize(props.getTickLabel, (value: number) =>
     value.toString()
   );
@@ -66,7 +64,7 @@ export const XAxisComposer = (Components: XAxisComponents = {}) => {
       tickPositions,
       getTickLabel,
       // axisLabel,
-    } = normalizeAxisProps(props, state);
+    } = normalizeAxisProps(props, state, state.cartesianBox.x);
     const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
     return (
@@ -123,7 +121,7 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
       tickPositions,
       getTickLabel,
       // axisLabel,
-    } = normalizeAxisProps(props, state);
+    } = normalizeAxisProps(props, state, state.cartesianBox.y);
     // const axisLabel = normalize(props.axisLabel, null);
     const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
@@ -139,8 +137,8 @@ export const YAxisComposer = (Components: YAxisComponents = {}) => {
         />
         {tickPositions.map(
           (pos) =>
-            pos <= range[0] &&
-            pos >= range[1] && (
+            pos >= range[0] &&
+            pos <= range[1] && (
               <YTickMark
                 position={[intercept, pos]}
                 label={getTickLabel(pos)}
