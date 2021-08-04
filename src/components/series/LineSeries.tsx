@@ -51,10 +51,10 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
           []
         : props.data.filter(
             ([x, y], i) =>
-              x >= view.x[0] &&
-              x <= view.x[1] &&
-              y >= view.y[0] &&
-              y <= view.y[1]
+              x >= view.xMin &&
+              x <= view.xMax &&
+              y >= view.yMin &&
+              y <= view.yMax
           );
 
     return (
