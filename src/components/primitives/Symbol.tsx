@@ -97,11 +97,14 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
       renderer.setTransform(1, 0, 0, 1, ...pxPoint);
       renderer.beginPath();
-      renderer.strokeStyle = stroke;
-      renderer.lineWidth = strokeWidth;
 
       line();
-      renderer.stroke();
+
+      if (stroke && strokeWidth) {
+        renderer.strokeStyle = stroke;
+        renderer.lineWidth = strokeWidth;
+        renderer.stroke();
+      }
 
       if (fill) {
         renderer.fillStyle = fill;

@@ -1,6 +1,14 @@
 import React from 'react';
-import { Chart, XAxis, YAxis } from '../src';
+import { Chart, XAxis, YAxis, LineSeries, Point } from '../src';
+import transformWithJitter from '../src/addons/transformWithJitter';
 import { rain } from './__data__/precipitationByCity';
+
+const data: Point[] = rain
+  .map((series) => transformWithJitter(series.data, { maxDisplacement: 0.15 }))
+  .reduce((acc, data, i) => {
+    const placedData: Point[] = data.map(([x, y]) => [x + i, y]);
+    return acc.concat(placedData);
+  }, []);
 
 const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (pos: number) => rain[pos].meta.seriesName;
@@ -9,13 +17,14 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
     <Chart
       height={300}
       width={300}
-      view={[-1, 0, 3, 200]}
+      view={[-1, 0, 4, 200]}
       gutter={[20, 50, 50, 30]}
       isCanvas={isCanvas}
       chartStyle={{
         dataPointSymbol: 'circle',
         dataPointFill: '#077c3d',
         dataPointMinTargetRadius: 10,
+        dataLineStrokeWidth: 0,
       }}
     >
       <XAxis
@@ -28,6 +37,7 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         getTickLabel={(pos) => String(pos)}
         intercept={-0.5}
       />
+      <LineSeries data={data} />
     </Chart>
   );
 };

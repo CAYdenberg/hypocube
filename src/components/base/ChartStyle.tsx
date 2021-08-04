@@ -29,9 +29,6 @@ const baseStyle: ChartStyleT = {
   dataLineDashType: 'solid',
   dataLineStroke: '#000',
   dataLineStrokeWidth: 1,
-
-  jitterCollisionRadius: 5,
-  jitterMaxAbsOffset: 10,
 };
 
 const contextualizeStyle = (

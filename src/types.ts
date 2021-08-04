@@ -44,9 +44,6 @@ export interface ChartStyleT {
   dataLineDashType: dashType;
   dataLineStroke: string;
   dataLineStrokeWidth: number;
-
-  jitterCollisionRadius: number;
-  jitterMaxAbsOffset: number;
 }
 
 type CreateChartStyleOptions<T> = {
