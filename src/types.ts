@@ -18,34 +18,6 @@ export interface ChartState {
 
 export type Contextual<T> = T | ((chartState: ChartState) => T);
 
-export interface ChartStyleOptions {
-  baseFontSize?: Contextual<number>;
-  axisColor?: Contextual<string>;
-  axisThickness?: Contextual<string>;
-  axisTickLength?: Contextual<number>;
-  axisTickOffset?: Contextual<number>;
-  axisTickLabelOffset?: Contextual<number>;
-  axisLabelOffset?: Contextual<number>;
-
-  dataBoxFill?: Contextual<string>;
-  dataBoxStroke?: Contextual<string>;
-  dataBoxStrokeWidth?: Contextual<number>;
-  dataBoxThickness?: Contextual<number>;
-  dataBoxLeftOffset?: Contextual<number>;
-
-  dataPointSize?: Contextual<number>;
-  dataPointSymbol?: Contextual<symbolType>;
-  dataPointFill?: Contextual<string>;
-  dataPointStroke?: Contextual<string>;
-  dataPointStrokeWidth?: Contextual<number>;
-  dataPointMinTargetRadius?: Contextual<number>;
-
-  dataLineCurveType?: Contextual<curveType>;
-  dataLineDashType?: Contextual<dashType>;
-  dataLineStroke?: Contextual<string>;
-  dataLineStrokeWidth?: Contextual<number>;
-}
-
 export interface ChartStyleT {
   baseFontSize: number;
   axisColor: string;
@@ -73,6 +45,12 @@ export interface ChartStyleT {
   dataLineStroke: string;
   dataLineStrokeWidth: number;
 }
+
+type CreateChartStyleOptions<T> = {
+  [Property in keyof T]?: Contextual<T[Property]>;
+};
+
+export type ChartStyleOptions = CreateChartStyleOptions<ChartStyleT>;
 
 export type ReactEvent =
   | React.PointerEvent<SVGGElement>

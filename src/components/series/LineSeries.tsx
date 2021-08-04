@@ -50,23 +50,23 @@ export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
         ? // No interaction, no render: don't bother
           []
         : props.data.filter(
-            ([x, y], i) =>
-              x >= view.x[0] &&
-              x <= view.x[1] &&
-              y >= view.y[0] &&
-              y <= view.y[1]
+            ([x, y]) =>
+              x >= view.xMin &&
+              x <= view.xMax &&
+              y >= view.yMin &&
+              y <= view.yMax
           );
 
     return (
       <React.Fragment>
         <DataLine data={props.data} chartStyle={chartStyle} />
 
-        {filteredPoints.map(([x, y]) => (
+        {filteredPoints.map(([x, y], i) => (
           <DataPoint
             {...selectHandlers(props)}
             x={x}
             y={y}
-            key={`${x},${y}`}
+            key={i}
             chartStyle={chartStyle}
           />
         ))}

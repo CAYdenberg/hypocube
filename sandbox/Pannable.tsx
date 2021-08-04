@@ -16,7 +16,7 @@ interface Props {
   tickPositions: number[];
 }
 
-export const Pannable: React.FC<Props> = ({
+const Pannable: React.FC<Props> = ({
   getDateLabel,
   isCanvas,
   series,
@@ -62,3 +62,5 @@ export const Pannable: React.FC<Props> = ({
     </Chart>
   );
 };
+
+export default Pannable;

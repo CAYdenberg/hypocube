@@ -22,7 +22,7 @@ const BarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         height={300}
         width={300}
         view={[0, 0, 6, 9000]}
-        gutter={[20, 20, 50, 50]}
+        gutter={[20, 50, 50, 50]}
         isCanvas={isCanvas}
       >
         <XAxis

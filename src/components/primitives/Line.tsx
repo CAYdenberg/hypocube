@@ -109,18 +109,18 @@ export const PxLine: React.FC<Props> = (props) => {
         .context(renderer);
       renderer.beginPath();
 
-      if (stroke) {
-        renderer.strokeStyle = stroke;
-      }
-
-      renderer.lineWidth = strokeWidth;
-
-      if (dashArray) {
-        renderer.setLineDash(dashArray);
-      }
-
       line(path);
-      renderer.stroke();
+
+      if (stroke && strokeWidth) {
+        renderer.strokeStyle = stroke;
+        renderer.lineWidth = strokeWidth;
+
+        if (dashArray) {
+          renderer.setLineDash(dashArray);
+        }
+
+        renderer.stroke();
+      }
 
       if (fill) {
         renderer.fillStyle = fill;
