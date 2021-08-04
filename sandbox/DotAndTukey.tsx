@@ -1,14 +1,11 @@
 import React from 'react';
 import { Chart, XAxis, YAxis, LineSeries, Point } from '../src';
-import transformWithJitter from '../src/addons/transformWithJitter';
 import { rain } from './__data__/precipitationByCity';
 
-const data: Point[] = rain
-  .map((series) => transformWithJitter(series.data, { maxDisplacement: 0.15 }))
-  .reduce((acc, data, i) => {
-    const placedData: Point[] = data.map(([x, y]) => [x + i, y]);
-    return acc.concat(placedData);
-  }, []);
+const data: Point[] = rain.reduce(
+  (acc, series) => acc.concat(series.data),
+  [] as Point[]
+);
 
 const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (pos: number) => rain[pos].meta.seriesName;
