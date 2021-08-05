@@ -4,6 +4,8 @@ Composable, responsive React-based graphs
 
 Read the docs. TODO: create docs.
 
+TODO: create CI tasks in GitHub actions
+
 ## Motivation
 
 At a high level, React and data visualization are natural companions. React manages SVG elements just as easily as HTML, as well as attaching event handlers to those elements for interactivity. There are many great React data-vis libraries out there: ADD THEM
