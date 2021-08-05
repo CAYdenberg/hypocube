@@ -30,6 +30,7 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
     [leftX + dataBoxThickness, yMax],
     [leftX + dataBoxThickness, yMin],
     [leftX, yMin],
+    [leftX, yMax],
   ];
 
   return (

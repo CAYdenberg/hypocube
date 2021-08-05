@@ -23,6 +23,9 @@ interface RangeSeriesProps {
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
   renderAnchor?: React.FC<DataAnchorProps>;
+  renderRanges?:
+    | React.FC<DataRangeVerticalProps>
+    | Array<React.FC<DataRangeVerticalProps>>;
 }
 
 export const RangeVerticalSeries: React.FC<RangeSeriesProps &
@@ -32,6 +35,11 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
   const viewbox = normalize(props.view, cartesianBox);
 
   const Anchor = props.renderAnchor || DataAnchorLine;
+  const renderRanges = Array.isArray(props.renderRanges)
+    ? props.renderRanges
+    : props.renderRanges
+    ? [props.renderRanges]
+    : [DataWhiskerVertical];
 
   return (
     <React.Fragment>
@@ -52,15 +60,19 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
             key={x}
           >
             <Anchor x={x} y={y} chartStyle={chartStyle} />
-            {rangePairs.map((pair, i) => (
-              <DataWhiskerVertical
-                x={anchor[0]}
-                yMin={pair[0]}
-                yMax={pair[1]}
-                chartStyle={chartStyle}
-                key={i}
-              />
-            ))}
+            {rangePairs.map((pair, i) => {
+              const Range =
+                renderRanges[i % renderRanges.length] || DataWhiskerVertical;
+              return (
+                <Range
+                  x={anchor[0]}
+                  yMin={pair[0]}
+                  yMax={pair[1]}
+                  chartStyle={chartStyle}
+                  key={i}
+                />
+              );
+            })}
           </Handle>
         ) : null;
       })}

@@ -6,6 +6,8 @@ import {
   LineSeries,
   Point,
   RangeVerticalSeries,
+  DataWhiskerVertical,
+  DataBoxVertical,
 } from '../src';
 import { rain } from './__data__/precipitationByCity';
 
@@ -46,8 +48,20 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       <RangeVerticalSeries
         data={distData}
         chartStyle={{
-          dataRangeAnchorLength: 40,
+          dataBoxFill: '',
+          dataBoxStroke: '#000',
+          dataBoxStrokeWidth: 2,
+          dataBoxThickness: 20,
+          dataRangeAnchorLength: 20,
+          dataWhiskerBottomCapLength: 20,
+          dataWhiskerTopCapLength: 20,
         }}
+        renderRanges={[
+          DataWhiskerVertical,
+          DataBoxVertical,
+          DataBoxVertical,
+          DataWhiskerVertical,
+        ]}
       />
     </Chart>
   );

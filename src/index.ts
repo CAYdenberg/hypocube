@@ -4,6 +4,11 @@ export { BarVerticalSeries } from './components/series/BarSeries';
 export { LineSeries } from './components/series/LineSeries';
 export * from './components/series/RangeSeries';
 
+export * from './components/data/DataAnchor';
+export * from './components/data/DataPoint';
+export * from './components/data/DataRange';
+export * from './components/data/DataSeriesLine';
+
 export { XAxis, YAxis } from './components/furniture/Axes';
 export { default as VoronoiHandle } from './components/furniture/VoronoiHandle';
 
