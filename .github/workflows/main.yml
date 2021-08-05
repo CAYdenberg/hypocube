@@ -1,21 +1,21 @@
-# This is a basic workflow to help you get started with Actions
+name: Node.js CI
 
-name: acceptance_pr
-
-# Controls when the workflow will run
 on: pull_request
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  accept:
-    # The type of runner that the job will run on
+  build:
+
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-      # Runs a set of commands using the runners shell
-      - name: Run acceptance tests
-        run: |
-          npm install
-          npm run preversion
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run preversion
