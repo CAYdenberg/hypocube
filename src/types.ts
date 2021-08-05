@@ -44,6 +44,15 @@ export interface ChartStyleT {
   dataLineDashType: dashType;
   dataLineStroke: string;
   dataLineStrokeWidth: number;
+
+  dataRangeAnchorLength: number;
+  dataRangeAnchorStroke: string;
+  dataRangeAnchorStrokeWidth: number;
+
+  dataWhiskerTopCapLength: number;
+  dataWhiskerBottomCapLength: number;
+  dataWhiskerStroke: string;
+  dataWhiskerStrokeWidth: number;
 }
 
 type CreateChartStyleOptions<T> = {

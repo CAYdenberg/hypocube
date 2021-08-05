@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataboxVertical, DataboxVerticalProps } from '../data/Databox';
+import { DataBoxVertical, DataRangeVerticalProps } from '../data/DataRange';
 import {
   ChartStyleOptions,
   ChartEventMetaData,
@@ -11,56 +11,38 @@ import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
-
-interface BarVerticalSeriesComponents {
-  DataBoxVertical?: React.FC<DataboxVerticalProps>;
-}
+import Handle from '../primitives/Handle';
 
 interface BarSeriesProps {
   data: Point[];
   view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
+  renderBar?: React.FC<DataRangeVerticalProps>;
 }
 
-const BarVerticalSeriesDefaultComponents = {
-  DataboxVertical,
+export const BarVerticalSeries: React.FC<BarSeriesProps &
+  ChartEventHandlers> = (props) => {
+  const { cartesianBox } = useChartState();
+  const chartStyle = useChartStyle(props.chartStyle);
+  const viewbox = normalize(props.view, cartesianBox);
+
+  const Bar = props.renderBar || DataBoxVertical;
+
+  return (
+    <React.Fragment>
+      {props.data.map(([x, y]) =>
+        x >= viewbox.x[0] || x <= viewbox.x[1] ? (
+          <Handle
+            {...selectHandlers(props)}
+            meta={props.handlerMeta}
+            elementPosition={[x, y]}
+            key={`${x},${y}`}
+          >
+            <Bar x={x} yMin={0} yMax={y} chartStyle={chartStyle} />
+          </Handle>
+        ) : null
+      )}
+    </React.Fragment>
+  );
 };
-
-export const BarVerticalSeriesComposer = (
-  Components: BarVerticalSeriesComponents = {}
-) => {
-  const { DataboxVertical } = {
-    ...BarVerticalSeriesDefaultComponents,
-    ...Components,
-  };
-
-  const BarVerticalSeries: React.FC<BarSeriesProps & ChartEventHandlers> = (
-    props
-  ) => {
-    const { cartesianBox } = useChartState();
-    const chartStyle = useChartStyle(props.chartStyle);
-    const viewbox = normalize(props.view, cartesianBox);
-
-    return (
-      <React.Fragment>
-        {props.data.map(([x, y]) =>
-          x >= viewbox.x[0] || x <= viewbox.x[1] ? (
-            <DataboxVertical
-              {...selectHandlers(props)}
-              x={x}
-              yMin={0}
-              yMax={y}
-              key={`${x},${y}`}
-              chartStyle={chartStyle}
-            />
-          ) : null
-        )}
-      </React.Fragment>
-    );
-  };
-
-  return BarVerticalSeries;
-};
-
-export const BarVerticalSeries = BarVerticalSeriesComposer();
