@@ -4,7 +4,7 @@ Composable, responsive React-based graphs
 
 Read the docs. TODO: create docs.
 
-TODO: create CI tasks in GitHub actions
+TODO: create CI tasks in GitHub actions sss
 
 ## Motivation
 
