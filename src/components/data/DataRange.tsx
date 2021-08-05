@@ -41,3 +41,51 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
     />
   );
 };
+
+export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
+  props
+) => {
+  const { scaleX, scaleY } = useChartState();
+  const {
+    dataWhiskerTopCapLength,
+    dataWhiskerBottomCapLength,
+    dataWhiskerStroke,
+    dataWhiskerStrokeWidth,
+    dataBoxLeftOffset: offset,
+  } = props.chartStyle;
+
+  const yMin = scaleY(props.yMin);
+  const yMax = scaleY(props.yMax);
+  const dataX = scaleX(props.x);
+  const leftXTop = dataX + dataWhiskerTopCapLength * offset;
+  const leftXBottom = dataX + dataWhiskerBottomCapLength * offset;
+
+  return (
+    <React.Fragment>
+      <PxLine
+        path={[
+          [leftXTop, yMax],
+          [leftXTop + dataWhiskerTopCapLength, yMax],
+        ]}
+        stroke={dataWhiskerStroke}
+        strokeWidth={dataWhiskerStrokeWidth}
+      />
+      <PxLine
+        path={[
+          [dataX, yMin],
+          [dataX, yMax],
+        ]}
+        stroke={dataWhiskerStroke}
+        strokeWidth={dataWhiskerStrokeWidth}
+      />
+      <PxLine
+        path={[
+          [leftXBottom, yMin],
+          [leftXBottom + dataWhiskerBottomCapLength, yMin],
+        ]}
+        stroke={dataWhiskerStroke}
+        strokeWidth={dataWhiskerStrokeWidth}
+      />
+    </React.Fragment>
+  );
+};

@@ -1,13 +1,20 @@
 import React from 'react';
-import { Chart, XAxis, YAxis, LineSeries, Point, TukeySeries } from '../src';
+import {
+  Chart,
+  XAxis,
+  YAxis,
+  LineSeries,
+  Point,
+  RangeVerticalSeries,
+} from '../src';
 import { rain } from './__data__/precipitationByCity';
 
-const data: Point[] = rain.reduce(
+const allData: Point[] = rain.reduce(
   (acc, series) => acc.concat(series.data),
   [] as Point[]
 );
 
-const medians: Point[] = rain.map((series, i) => [i, series.median]);
+const distData = rain.map((series) => series.dist);
 
 const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (pos: number) => rain[pos].meta.seriesName;
@@ -35,14 +42,11 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         getTickLabel={(pos) => String(pos)}
         intercept={-0.5}
       />
-      <LineSeries data={data} chartStyle={{ dataLineStrokeWidth: 0 }} />
-      <TukeySeries
-        data={medians}
-        rangeUp={rain.map((series) => series.rangeUp)}
-        rangeDown={rain.map((series) => series.rangeDown)}
+      <LineSeries data={allData} chartStyle={{ dataLineStrokeWidth: 0 }} />
+      <RangeVerticalSeries
+        data={distData}
         chartStyle={{
-          dataBoxStrokeWidth: 2,
-          dataBoxThickness: 40,
+          dataRangeAnchorLength: 40,
         }}
       />
     </Chart>

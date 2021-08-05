@@ -11,64 +11,59 @@ import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
 import { DataAnchorLine, DataAnchorProps } from '../data/DataAnchor';
+import { DataWhiskerVertical, DataRangeVerticalProps } from '../data/DataRange';
 import Handle from '../primitives/Handle';
 
-interface RangeVerticalSeriesComponents {
-  Anchor?: React.FC<DataAnchorProps>;
-}
-
 interface RangeSeriesProps {
-  data: Point[];
+  data: Array<{
+    anchor: Point;
+    ranges?: number[];
+  }>;
   view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
-  rangeUp?: number | number[] | number[][];
-  rangeDown?: number | number[] | number[][];
+  renderAnchor?: React.FC<DataAnchorProps>;
 }
 
-const RangeVerticalSeriesDefaultComponents = {
-  Anchor: DataAnchorLine,
-};
+export const RangeVerticalSeries: React.FC<RangeSeriesProps &
+  ChartEventHandlers> = (props) => {
+  const { cartesianBox } = useChartState();
+  const chartStyle = useChartStyle(props.chartStyle);
+  const viewbox = normalize(props.view, cartesianBox);
 
-export const RangeVerticalSeriesComposer = (
-  Components: RangeVerticalSeriesComponents = {}
-) => {
-  const { Anchor } = {
-    ...RangeVerticalSeriesDefaultComponents,
-    ...Components,
-  };
+  const Anchor = props.renderAnchor || DataAnchorLine;
 
-  const RangeVerticalSeries: React.FC<RangeSeriesProps & ChartEventHandlers> = (
-    props
-  ) => {
-    const { cartesianBox } = useChartState();
-    const chartStyle = useChartStyle(props.chartStyle);
-    const viewbox = normalize(props.view, cartesianBox);
+  return (
+    <React.Fragment>
+      {props.data.map(({ anchor, ranges }) => {
+        const [x, y] = anchor;
 
-    return (
-      <React.Fragment>
-        {props.data.map(([x, y]) =>
-          x >= viewbox.xMin || x <= viewbox.xMax ? (
-            <Handle
-              {...selectHandlers(props)}
-              elementPosition={[x, y]}
-              meta={props.handlerMeta}
-              key={x}
-            >
-              <Anchor
-                {...selectHandlers(props)}
-                x={x}
-                y={y}
+        const rangePairs = ranges
+          ? ranges
+              .slice(0, ranges.length - 1)
+              .map((val, i) => [val, ranges[i + 1]])
+          : [];
+
+        return x >= viewbox.xMin || x <= viewbox.xMax ? (
+          <Handle
+            {...selectHandlers(props)}
+            elementPosition={[x, y]}
+            meta={props.handlerMeta}
+            key={x}
+          >
+            <Anchor x={x} y={y} chartStyle={chartStyle} />
+            {rangePairs.map((pair, i) => (
+              <DataWhiskerVertical
+                x={anchor[0]}
+                yMin={pair[0]}
+                yMax={pair[1]}
                 chartStyle={chartStyle}
+                key={i}
               />
-            </Handle>
-          ) : null
-        )}
-      </React.Fragment>
-    );
-  };
-
-  return RangeVerticalSeries;
+            ))}
+          </Handle>
+        ) : null;
+      })}
+    </React.Fragment>
+  );
 };
-
-export const TukeySeries = RangeVerticalSeriesComposer();

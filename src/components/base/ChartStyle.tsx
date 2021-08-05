@@ -5,6 +5,7 @@ import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 
 const baseStyle: ChartStyleT = {
   baseFontSize: 16,
+
   axisColor: '#666',
   axisThickness: 2,
   axisTickLength: 10,
@@ -29,6 +30,15 @@ const baseStyle: ChartStyleT = {
   dataLineDashType: 'solid',
   dataLineStroke: '#000',
   dataLineStrokeWidth: 1,
+
+  dataRangeAnchorLength: 0,
+  dataRangeAnchorStroke: '#000',
+  dataRangeAnchorStrokeWidth: 2,
+
+  dataWhiskerTopCapLength: 10,
+  dataWhiskerBottomCapLength: 10,
+  dataWhiskerStroke: '#000',
+  dataWhiskerStrokeWidth: 2,
 };
 
 const contextualizeStyle = (

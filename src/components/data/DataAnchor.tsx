@@ -11,22 +11,20 @@ export interface DataAnchorProps {
 
 export const DataAnchorLine: React.FC<DataAnchorProps> = (props) => {
   const {
-    dataBoxThickness,
-    dataBoxStroke,
-    dataBoxStrokeWidth,
-    dataBoxFill,
+    dataRangeAnchorLength,
+    dataRangeAnchorStroke,
+    dataRangeAnchorStrokeWidth,
   } = useChartStyle(props.chartStyle);
 
   return (
     <TranslatedLine
       position={[props.x, props.y]}
       path={[
-        [dataBoxThickness / -2, 0],
-        [dataBoxThickness / 2, 0],
+        [dataRangeAnchorLength / -2, 0],
+        [dataRangeAnchorLength / 2, 0],
       ]}
-      strokeWidth={dataBoxStrokeWidth}
-      stroke={dataBoxStroke}
-      fill={dataBoxFill}
+      strokeWidth={dataRangeAnchorStrokeWidth}
+      stroke={dataRangeAnchorStroke}
     />
   );
 };
