@@ -4,10 +4,9 @@ interface CitySeries {
   data: Point[];
   key: string;
   meta: { seriesName: string };
-  dist: [
-    number,
-    { q0: number; q25: number; q50: number; q75: number; q100: number }
-  ];
+  median: number;
+  rangeDown: [number, number];
+  rangeUp: [number, number];
 }
 
 export const rain: Array<CitySeries> = [
@@ -268,7 +267,9 @@ export const rain: Array<CitySeries> = [
     ],
     key: 'Vancouver',
     meta: { seriesName: 'Vancouver' },
-    dist: [0, { q0: 5.67, q25: 20.51, q50: 49.1, q75: 106.94, q100: 189.77 }],
+    median: 49.1,
+    rangeDown: [28.59, 43.43],
+    rangeUp: [57.839999999999996, 140.67000000000002],
   },
   {
     data: [
@@ -527,7 +528,9 @@ export const rain: Array<CitySeries> = [
     ],
     key: 'Victoria',
     meta: { seriesName: 'Victoria' },
-    dist: [1, { q0: 16.68, q25: 45, q50: 92.89, q75: 153.74, q100: 242.25 }],
+    median: 92.89,
+    rangeDown: [47.89, 76.21000000000001],
+    rangeUp: [60.85000000000001, 149.36],
   },
   {
     data: [
@@ -786,6 +789,8 @@ export const rain: Array<CitySeries> = [
     ],
     key: 'Kelowna',
     meta: { seriesName: 'Kelowna' },
-    dist: [2, { q0: 10.87, q25: 18, q50: 24.74, q75: 35.15, q100: 54.96 }],
+    median: 24.74,
+    rangeDown: [6.739999999999998, 13.87],
+    rangeUp: [10.41, 30.220000000000002],
   },
 ];

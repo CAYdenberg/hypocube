@@ -13805,6 +13805,30 @@ exports[`Test: Dot and Tukey plot 1`] = `
           />
         </g>
       </g>
+      <g>
+        <path
+          d="M65,193.535L105,193.535"
+          fill="#000"
+          stroke="#000"
+          strokeWidth={2}
+        />
+      </g>
+      <g>
+        <path
+          d="M120,143.17649999999998L160,143.17649999999998"
+          fill="#000"
+          stroke="#000"
+          strokeWidth={2}
+        />
+      </g>
+      <g>
+        <path
+          d="M175,221.54899999999998L215,221.54899999999998"
+          fill="#000"
+          stroke="#000"
+          strokeWidth={2}
+        />
+      </g>
     </svg>
   </div>
 </div>

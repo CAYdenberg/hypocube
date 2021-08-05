@@ -1,26 +1,16 @@
 import React from 'react';
 
 import { PxLine } from '../primitives/Line';
-import {
-  ChartEventHandlers,
-  ChartEventMetaData,
-  ChartStyleT,
-  Point,
-} from '../../types';
+import { ChartStyleT, Point } from '../../types';
 import useChartState from '../base/ChartState';
-import Handle from '../primitives/Handle';
-import selectHandlers from '../../lib/selectHandlers';
-
-export interface DataboxVerticalProps {
+export interface DataRangeVerticalProps {
   x: number;
   yMin: number;
   yMax: number;
   chartStyle: ChartStyleT;
-  handlerMeta?: ChartEventMetaData;
 }
 
-export const DataboxVertical: React.FC<DataboxVerticalProps &
-  ChartEventHandlers> = (props) => {
+export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
   const { scaleX, scaleY } = useChartState();
   const {
     dataBoxThickness,
@@ -43,17 +33,11 @@ export const DataboxVertical: React.FC<DataboxVerticalProps &
   ];
 
   return (
-    <Handle
-      {...selectHandlers(props)}
-      meta={props.handlerMeta}
-      elementPosition={[props.x, props.yMax]}
-    >
-      <PxLine
-        path={path}
-        fill={dataBoxFill}
-        stroke={dataBoxStroke}
-        strokeWidth={dataBoxStrokeWidth}
-      />
-    </Handle>
+    <PxLine
+      path={path}
+      fill={dataBoxFill}
+      stroke={dataBoxStroke}
+      strokeWidth={dataBoxStrokeWidth}
+    />
   );
 };

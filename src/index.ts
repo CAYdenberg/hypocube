@@ -2,6 +2,7 @@ export { default as Chart } from './components/base/Chart';
 
 export { BarVerticalSeries } from './components/series/BarSeries';
 export { LineSeries } from './components/series/LineSeries';
+export * from './components/series/RangeSeries';
 
 export { XAxis, YAxis } from './components/furniture/Axes';
 export { default as VoronoiHandle } from './components/furniture/VoronoiHandle';

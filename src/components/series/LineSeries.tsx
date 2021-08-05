@@ -10,7 +10,7 @@ import { normalize } from '../../lib/normalize';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { DataPoint, DataPointProps } from '../data/DataPoint';
-import { DataLine, DataLineProps } from '../data/DataLine';
+import { DataLine, DataLineProps } from '../data/DataSeriesLine';
 import selectHandlers from '../../lib/selectHandlers';
 
 interface LineSeriesComponents {

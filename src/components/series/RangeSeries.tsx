@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataBoxVertical, DataRangeVerticalProps } from '../data/DataRange';
 import {
   ChartStyleOptions,
   ChartEventMetaData,
@@ -11,32 +10,35 @@ import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
+import { DataAnchorLine, DataAnchorProps } from '../data/DataAnchor';
 import Handle from '../primitives/Handle';
 
-interface BarVerticalSeriesComponents {
-  DataBoxVertical?: React.FC<DataRangeVerticalProps>;
+interface RangeVerticalSeriesComponents {
+  Anchor?: React.FC<DataAnchorProps>;
 }
 
-interface BarSeriesProps {
+interface RangeSeriesProps {
   data: Point[];
   view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
+  rangeUp?: number | number[] | number[][];
+  rangeDown?: number | number[] | number[][];
 }
 
-const BarVerticalSeriesDefaultComponents = {
-  DataBoxVertical,
+const RangeVerticalSeriesDefaultComponents = {
+  Anchor: DataAnchorLine,
 };
 
-export const BarVerticalSeriesComposer = (
-  Components: BarVerticalSeriesComponents = {}
+export const RangeVerticalSeriesComposer = (
+  Components: RangeVerticalSeriesComponents = {}
 ) => {
-  const { DataBoxVertical } = {
-    ...BarVerticalSeriesDefaultComponents,
+  const { Anchor } = {
+    ...RangeVerticalSeriesDefaultComponents,
     ...Components,
   };
 
-  const BarVerticalSeries: React.FC<BarSeriesProps & ChartEventHandlers> = (
+  const RangeVerticalSeries: React.FC<RangeSeriesProps & ChartEventHandlers> = (
     props
   ) => {
     const { cartesianBox } = useChartState();
@@ -46,18 +48,17 @@ export const BarVerticalSeriesComposer = (
     return (
       <React.Fragment>
         {props.data.map(([x, y]) =>
-          x >= viewbox.x[0] || x <= viewbox.x[1] ? (
+          x >= viewbox.xMin || x <= viewbox.xMax ? (
             <Handle
               {...selectHandlers(props)}
-              meta={props.handlerMeta}
               elementPosition={[x, y]}
-              key={`${x},${y}`}
+              meta={props.handlerMeta}
+              key={x}
             >
-              <DataBoxVertical
+              <Anchor
                 {...selectHandlers(props)}
                 x={x}
-                yMin={0}
-                yMax={y}
+                y={y}
                 chartStyle={chartStyle}
               />
             </Handle>
@@ -67,7 +68,7 @@ export const BarVerticalSeriesComposer = (
     );
   };
 
-  return BarVerticalSeries;
+  return RangeVerticalSeries;
 };
 
-export const BarVerticalSeries = BarVerticalSeriesComposer();
+export const TukeySeries = RangeVerticalSeriesComposer();
