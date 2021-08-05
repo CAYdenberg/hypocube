@@ -8,19 +8,13 @@ import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
 
 interface AxisProps {
-  /**
-   * The start and end of the axis on the Cartesian scale. Defaults to the corresponding value in the Chart view
-   */
   range?: [number, number];
   intercept?: number;
   tickPositions?: Contextual<number[]>;
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
   chartStyle?: ChartStyleOptions;
-}
-
-interface XAxisComponents {
-  XTickMark?: React.FC<TickMarkProps>;
+  renderTickMark?: React.FC<TickMarkProps>;
 }
 
 const normalizeAxisProps = (
@@ -45,113 +39,81 @@ const normalizeAxisProps = (
   };
 };
 
-const XAxisDefaultComponents = {
-  XTickMark,
+export const XAxis: React.FC<AxisProps> = (props) => {
+  const state = useChartState();
+  const {
+    range,
+    intercept,
+    tickPositions,
+    getTickLabel,
+    // axisLabel,
+  } = normalizeAxisProps(props, state, state.cartesianBox.x);
+  const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
+
+  const TickMark = props.renderTickMark || XTickMark;
+
+  return (
+    <Handle elementPosition={[range[0], intercept]}>
+      <Line
+        path={[
+          [range[0], intercept],
+          [range[1], intercept],
+        ]}
+        strokeWidth={axisThickness}
+        stroke={axisColor}
+      />
+      {tickPositions.map(
+        (pos) =>
+          pos >= range[0] &&
+          pos <= range[1] && (
+            <TickMark
+              position={[pos, intercept]}
+              label={getTickLabel(pos)}
+              chartStyle={props.chartStyle}
+              key={pos}
+            />
+          )
+      )}
+    </Handle>
+  );
 };
 
-export const XAxisComposer = (Components: XAxisComponents = {}) => {
-  const { XTickMark } = {
-    ...XAxisDefaultComponents,
-    ...Components,
-  };
+export const YAxis: React.FC<AxisProps> = (props) => {
+  const state = useChartState();
+  const {
+    range,
+    intercept,
+    tickPositions,
+    getTickLabel,
+    // axisLabel,
+  } = normalizeAxisProps(props, state, state.cartesianBox.y);
+  // const axisLabel = normalize(props.axisLabel, null);
+  const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
 
-  const XAxis: React.FC<AxisProps> = (props) => {
-    const state = useChartState();
+  const TickMark = props.renderTickMark || YTickMark;
 
-    const {
-      range,
-      intercept,
-      tickPositions,
-      getTickLabel,
-      // axisLabel,
-    } = normalizeAxisProps(props, state, state.cartesianBox.x);
-    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
-
-    return (
-      <Handle elementPosition={[range[0], intercept]}>
-        <Line
-          path={[
-            [range[0], intercept],
-            [range[1], intercept],
-          ]}
-          strokeWidth={axisThickness}
-          stroke={axisColor}
-        />
-        {tickPositions.map(
-          (pos) =>
-            pos >= range[0] &&
-            pos <= range[1] && (
-              <XTickMark
-                position={[pos, intercept]}
-                label={getTickLabel(pos)}
-                chartStyle={props.chartStyle}
-                key={pos}
-              />
-            )
-        )}
-      </Handle>
-    );
-  };
-
-  return XAxis;
+  return (
+    <Handle elementPosition={[intercept, range[0]]}>
+      <Line
+        path={[
+          [intercept, range[0]],
+          [intercept, range[1]],
+        ]}
+        strokeWidth={axisThickness}
+        stroke={axisColor}
+      />
+      {tickPositions.map(
+        (pos) =>
+          pos >= range[0] &&
+          pos <= range[1] && (
+            <TickMark
+              position={[intercept, pos]}
+              label={getTickLabel(pos)}
+              chartStyle={props.chartStyle}
+              key={pos}
+            />
+          )
+      )}
+    </Handle>
+  );
 };
-
-export const XAxis = XAxisComposer();
-
-interface YAxisComponents {
-  YTickMark?: React.FC<TickMarkProps>;
-}
-
-const YAxisDefaultComponents = {
-  YTickMark,
-};
-
-export const YAxisComposer = (Components: YAxisComponents = {}) => {
-  const { YTickMark } = {
-    ...YAxisDefaultComponents,
-    ...Components,
-  };
-
-  const YAxis: React.FC<AxisProps> = (props) => {
-    const state = useChartState();
-
-    const {
-      range,
-      intercept,
-      tickPositions,
-      getTickLabel,
-      // axisLabel,
-    } = normalizeAxisProps(props, state, state.cartesianBox.y);
-    // const axisLabel = normalize(props.axisLabel, null);
-    const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
-
-    return (
-      <Handle elementPosition={[intercept, range[0]]}>
-        <Line
-          path={[
-            [intercept, range[0]],
-            [intercept, range[1]],
-          ]}
-          strokeWidth={axisThickness}
-          stroke={axisColor}
-        />
-        {tickPositions.map(
-          (pos) =>
-            pos >= range[0] &&
-            pos <= range[1] && (
-              <YTickMark
-                position={[intercept, pos]}
-                label={getTickLabel(pos)}
-                chartStyle={props.chartStyle}
-                key={pos}
-              />
-            )
-        )}
-      </Handle>
-    );
-  };
-
-  return YAxis;
-};
-
-export const YAxis = YAxisComposer();

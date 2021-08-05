@@ -13,61 +13,36 @@ import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
 import Handle from '../primitives/Handle';
 
-interface BarVerticalSeriesComponents {
-  DataBoxVertical?: React.FC<DataRangeVerticalProps>;
-}
-
 interface BarSeriesProps {
   data: Point[];
   view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
+  renderBar?: React.FC<DataRangeVerticalProps>;
 }
 
-const BarVerticalSeriesDefaultComponents = {
-  DataBoxVertical,
+export const BarVerticalSeries: React.FC<BarSeriesProps &
+  ChartEventHandlers> = (props) => {
+  const { cartesianBox } = useChartState();
+  const chartStyle = useChartStyle(props.chartStyle);
+  const viewbox = normalize(props.view, cartesianBox);
+
+  const Bar = props.renderBar || DataBoxVertical;
+
+  return (
+    <React.Fragment>
+      {props.data.map(([x, y]) =>
+        x >= viewbox.x[0] || x <= viewbox.x[1] ? (
+          <Handle
+            {...selectHandlers(props)}
+            meta={props.handlerMeta}
+            elementPosition={[x, y]}
+            key={`${x},${y}`}
+          >
+            <Bar x={x} yMin={0} yMax={y} chartStyle={chartStyle} />
+          </Handle>
+        ) : null
+      )}
+    </React.Fragment>
+  );
 };
-
-export const BarVerticalSeriesComposer = (
-  Components: BarVerticalSeriesComponents = {}
-) => {
-  const { DataBoxVertical } = {
-    ...BarVerticalSeriesDefaultComponents,
-    ...Components,
-  };
-
-  const BarVerticalSeries: React.FC<BarSeriesProps & ChartEventHandlers> = (
-    props
-  ) => {
-    const { cartesianBox } = useChartState();
-    const chartStyle = useChartStyle(props.chartStyle);
-    const viewbox = normalize(props.view, cartesianBox);
-
-    return (
-      <React.Fragment>
-        {props.data.map(([x, y]) =>
-          x >= viewbox.x[0] || x <= viewbox.x[1] ? (
-            <Handle
-              {...selectHandlers(props)}
-              meta={props.handlerMeta}
-              elementPosition={[x, y]}
-              key={`${x},${y}`}
-            >
-              <DataBoxVertical
-                {...selectHandlers(props)}
-                x={x}
-                yMin={0}
-                yMax={y}
-                chartStyle={chartStyle}
-              />
-            </Handle>
-          ) : null
-        )}
-      </React.Fragment>
-    );
-  };
-
-  return BarVerticalSeries;
-};
-
-export const BarVerticalSeries = BarVerticalSeriesComposer();

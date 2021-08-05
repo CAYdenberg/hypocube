@@ -12,69 +12,51 @@ import useChartState from '../base/ChartState';
 import { DataPoint, DataPointProps } from '../data/DataPoint';
 import { DataLine, DataLineProps } from '../data/DataSeriesLine';
 import selectHandlers from '../../lib/selectHandlers';
-
-interface LineSeriesComponents {
-  DataPoint?: React.FC<DataPointProps>;
-  DataLine?: React.FC<DataLineProps>;
-}
-
-const LineSeriesDefaultComponents = {
-  DataPoint,
-  DataLine,
-};
+import Handle from '../primitives/Handle';
 
 interface LineSeriesProps {
   data: Point[];
   view?: ViewboxDuck;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
+  renderLine?: React.FC<DataLineProps>;
+  renderPoint?: React.FC<DataPointProps>;
 }
 
-export const LineSeriesComposer = (Components: LineSeriesComponents = {}) => {
-  const { DataLine, DataPoint } = {
-    ...LineSeriesDefaultComponents,
-    ...Components,
-  };
+export const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
+  props
+) => {
+  const { cartesianBox, isCanvas } = useChartState();
+  const view = createViewbox(normalize(props.view, cartesianBox));
+  const chartStyle = useChartStyle(props.chartStyle);
+  const { dataPointSymbol } = chartStyle;
 
-  const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
-    props
-  ) => {
-    const { cartesianBox, isCanvas } = useChartState();
-    const view = createViewbox(normalize(props.view, cartesianBox));
+  const Line = props.renderLine || DataLine;
+  const Point = props.renderPoint || DataPoint;
 
-    const chartStyle = useChartStyle(props.chartStyle);
-    const { dataPointSymbol } = chartStyle;
+  const filteredPoints =
+    isCanvas && dataPointSymbol === 'none'
+      ? // No interaction, no render: don't bother
+        []
+      : props.data.filter(
+          ([x, y]) =>
+            x >= view.xMin && x <= view.xMax && y >= view.yMin && y <= view.yMax
+        );
 
-    const filteredPoints =
-      isCanvas && dataPointSymbol === 'none'
-        ? // No interaction, no render: don't bother
-          []
-        : props.data.filter(
-            ([x, y]) =>
-              x >= view.xMin &&
-              x <= view.xMax &&
-              y >= view.yMin &&
-              y <= view.yMax
-          );
+  return (
+    <React.Fragment>
+      <Line data={props.data} chartStyle={chartStyle} />
 
-    return (
-      <React.Fragment>
-        <DataLine data={props.data} chartStyle={chartStyle} />
-
-        {filteredPoints.map(([x, y], i) => (
-          <DataPoint
-            {...selectHandlers(props)}
-            x={x}
-            y={y}
-            key={i}
-            chartStyle={chartStyle}
-          />
-        ))}
-      </React.Fragment>
-    );
-  };
-
-  return LineSeries;
+      {filteredPoints.map(([x, y], i) => (
+        <Handle
+          {...selectHandlers(props)}
+          elementPosition={[x, y]}
+          meta={props.handlerMeta}
+          key={i}
+        >
+          <Point x={x} y={y} chartStyle={chartStyle} />
+        </Handle>
+      ))}
+    </React.Fragment>
+  );
 };
-
-export const LineSeries = LineSeriesComposer();

@@ -3,6 +3,7 @@ import useChartState from '../base/ChartState';
 import useHandle, { HandlerProps } from '../../lib/useHandle';
 import useRescaleGestures from '../../lib/useRescaleGestures';
 import { ChartGestureHandlers } from '../../types';
+import { Pure } from '../../lib/HypocubePureComponent';
 
 export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   children,
@@ -18,14 +19,14 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   );
 };
 
-const Handle: React.FC<HandlerProps> = (props) => {
+const Handle = Pure<HandlerProps>((props) => {
   const { isCanvas } = useChartState();
   if (isCanvas) {
     return <Fragment>{props.children}</Fragment>;
   }
 
   return <HandleInner {...props} />;
-};
+});
 
 const HandleInner: React.FC<HandlerProps> = ({ children, ...props }) => {
   const handlers = useHandle(props);
