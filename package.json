@@ -17,8 +17,6 @@
     "test": "jest --env=jsdom",
     "quickcheck": "npm run typecheck && npm run lint && npm run test",
     "build": "tsc --project tsconfig.build.json",
-    "docs:dev": "docz dev",
-    "docz:build": "docz build",
     "preversion": "npm run typecheck && npm run lint && npm run test && npm run build",
     "sandbox": "parcel sandbox/index.html",
     "autofix": "eslint src sandbox website/src --ext .ts,.tsx,.js,.jsx --fix --max-warnings=0"

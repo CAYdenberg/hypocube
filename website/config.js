@@ -29,8 +29,8 @@ const config = {
     },
   },
   sidebar: {
-    forcedNavOrder: ['/introduction', '/codeblock'],
-    collapsedNav: [],
+    forcedNavOrder: ['/core-concepts', '/codeblock', '/basic-charts'],
+    collapsedNav: ['/core-concepts', '/codeblock'],
     links: [{ text: 'GitHub', link: 'https://github.com/CAYdenberg/hypocube' }],
     frontline: false,
     ignoreIndex: true,
