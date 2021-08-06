@@ -18,33 +18,56 @@ import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
 export interface Props extends HandlerProps {
-  height: number;
+  /**
+   * (required) Initial rendered width in pixels. Immediately after rendering,
+   * the chart will automatically adjust to the width of its container.
+   */
   width: number;
+  /**
+   * (required) Rendered height in pixels. If a function is given, the height
+   * will be calculated from the rendered width.
+   */
+  height: number | ((width: number) => number);
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
   gutter?: [number, number, number, number];
   isCanvas?: boolean;
   chartStyle?: ChartStyleOptions;
-  tooltip?: JSX.Element | null;
-  tooltipPosition?: Point | null;
   onGesture?: (data: ChartGestureData) => void;
+  htmlLayer?: {
+    position: Point;
+    render: JSX.Element | null;
+  } | null;
   renderError?: (message?: string) => React.ReactNode;
 }
 
 const ChartInner: React.FC<Props> = (props) => {
-  const { children, height, width } = props;
+  const { children } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const chartStyle = normalize(props.chartStyle, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [pxBox, setPxBox] = useState<Viewbox>(new Viewbox(0, 0, width, height));
+  const getHeight = useCallback(
+    (width: number) =>
+      typeof props.height === 'function' ? props.height(width) : props.height,
+    [props.height]
+  );
+
+  const [pxBox, setPxBox] = useState<Viewbox>(
+    new Viewbox(0, 0, props.width, getHeight(props.width))
+  );
 
   const calculateSizes = useCallback(() => {
     const containerEl = containerRef.current;
     if (containerEl) {
       setPxBox(
-        new Viewbox(0, 0, containerEl.clientWidth, containerEl.clientHeight)
+        new Viewbox(
+          0,
+          0,
+          containerEl.clientWidth,
+          getHeight(containerEl.clientWidth)
+        )
       );
     }
   }, [containerRef]);
@@ -63,7 +86,7 @@ const ChartInner: React.FC<Props> = (props) => {
   }, [containerRef, calculateSizes]);
 
   const cartesianBox: Viewbox = createViewbox(
-    typeof props.view === 'function' ? props.view(width) : props.view
+    typeof props.view === 'function' ? props.view(props.width) : props.view
   );
 
   const scaleX = scaleLinear()
@@ -96,8 +119,8 @@ const ChartInner: React.FC<Props> = (props) => {
     <div
       ref={containerRef}
       style={{
-        height,
-        maxWidth: width,
+        height: pxBox.height,
+        maxWidth: pxBox.width,
         minWidth: '100%',
         position: 'relative',
       }}
@@ -106,23 +129,23 @@ const ChartInner: React.FC<Props> = (props) => {
         <ChartStyleProvider chartStyle={chartStyle}>
           <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
             {isCanvas ? (
-              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+              <canvas ref={canvasRef} width={pxBox.width} height={pxBox.height}>
                 {children}
               </canvas>
             ) : (
-              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+              <svg width={pxBox.width} height={pxBox.height}>
                 {children}
               </svg>
             )}
-            {props.tooltip && props.tooltipPosition ? (
+            {props.htmlLayer ? (
               <div
                 style={{
                   position: 'absolute',
-                  left: scaleX(props.tooltipPosition[0]),
-                  top: scaleY(props.tooltipPosition[1]),
+                  left: scaleX(props.htmlLayer.position[0]),
+                  top: scaleY(props.htmlLayer.position[1]),
                 }}
               >
-                {props.tooltip}
+                {props.htmlLayer.render}
               </div>
             ) : null}
           </ChartHandle>
@@ -137,6 +160,9 @@ interface State {
   errorMessage: string;
 }
 
+/**
+ * The base component for Hypocube charts.
+ */
 class Chart extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
