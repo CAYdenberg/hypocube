@@ -3,14 +3,14 @@ import Link from './link';
 
 import { StyledNextPrevious } from './styles/PageNavigationButtons';
 
-const NextPrevious = ({ nav }) => {
+const NextPrevious = ({ mdx, nav }) => {
   let currentIndex;
 
-  // const currentPaginationInfo = nav.map((el, index) => {
-  //   if (el && el.url === mdx.fields.slug) {
-  //     currentIndex = index;
-  //   }
-  // });
+  nav.map((el, index) => {
+    if (el && el.url === mdx.fields.slug) {
+      currentIndex = index;
+    }
+  });
 
   const nextInfo = {};
 
