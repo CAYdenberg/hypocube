@@ -17,6 +17,11 @@ import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
+interface HtmlLayerElement {
+  position: Point;
+  render: JSX.Element | null;
+}
+
 export interface Props extends HandlerProps {
   /**
    * (required) Initial rendered width in pixels. Immediately after rendering,
@@ -33,10 +38,7 @@ export interface Props extends HandlerProps {
   isCanvas?: boolean;
   chartStyle?: ChartStyleOptions;
   onGesture?: (data: ChartGestureData) => void;
-  htmlLayer?: {
-    position: Point;
-    render: JSX.Element | null;
-  } | null;
+  htmlLayer?: HtmlLayerElement[] | HtmlLayerElement | null;
   renderError?: (message?: string) => React.ReactNode;
 }
 
