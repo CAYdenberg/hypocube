@@ -33,13 +33,43 @@ export interface Props extends HandlerProps {
    * will be calculated from the rendered width.
    */
   height: number | ((width: number) => number);
+  /**
+   * The coordinates of the box containing the visible portion of the chart data.
+   * Given as an array in the form: [x minimum, y minimum, width, height] on
+   * the Cartesian scale.
+   */
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
+  /**
+   * Extra padding (given in pixels) added to each side of the chart. This is
+   * useful for ensuring that axes and other Chart decorations have enough space
+   * for proper rendering regardless of the actual dimensions available. Given
+   * in the form [top, right, bottom, left], on the pixel scale.
+   */
   gutter?: [number, number, number, number];
+  /**
+   * When true, render with the <canvas> element, instead of SVG.
+   */
   isCanvas?: boolean;
+  /**
+   * The global chart styles. See "the `ChartStyles` object" for more
+   * information.
+   */
   chartStyle?: ChartStyleOptions;
+  /**
+   * Event handler for drag, pinch, swipe, and wheel gestures. See "Interaction"
+   * for more information.
+   */
   onGesture?: (data: ChartGestureData) => void;
+  /**
+   * An element, or array of elements, to be rendered outside of SVG (or canvas).
+   * The Given in the form { position: [x, y], render: React element }. Useful
+   * for e.g. for tooltips.
+   */
   htmlLayer?: HtmlLayerElement[] | HtmlLayerElement | null;
-  renderError?: (message?: string) => React.ReactNode;
+  /** A  React component which will be rendered in case of an error. The error
+   * message, if any, is passed as a prop.
+   */
+  renderError?: React.FC<{ message?: string }>;
 }
 
 const ChartInner: React.FC<Props> = (props) => {
@@ -117,6 +147,12 @@ const ChartInner: React.FC<Props> = (props) => {
     [isCanvas, pxBox, props.view]
   );
 
+  const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)
+    ? props.htmlLayer
+    : props.htmlLayer
+    ? [props.htmlLayer]
+    : [];
+
   return (
     <div
       ref={containerRef}
@@ -139,17 +175,18 @@ const ChartInner: React.FC<Props> = (props) => {
                 {children}
               </svg>
             )}
-            {props.htmlLayer ? (
+            {htmlLayer.map((layer) => (
               <div
                 style={{
                   position: 'absolute',
-                  left: scaleX(props.htmlLayer.position[0]),
-                  top: scaleY(props.htmlLayer.position[1]),
+                  left: scaleX(layer.position[0]),
+                  top: scaleY(layer.position[1]),
                 }}
+                key={`${layer.position[0]}-${layer.position[1]}`}
               >
-                {props.htmlLayer.render}
+                {layer.render}
               </div>
-            ) : null}
+            ))}
           </ChartHandle>
         </ChartStyleProvider>
       </ChartStateContext.Provider>
@@ -182,7 +219,8 @@ class Chart extends React.Component<Props, State> {
 
   render() {
     if (this.state.hasError && this.props.renderError) {
-      return this.props.renderError(this.state.errorMessage);
+      const CustomError = this.props.renderError;
+      return <CustomError message={this.state.errorMessage} />;
     } else if (this.state.hasError) {
       return <ChartError {...this.props} />;
     }

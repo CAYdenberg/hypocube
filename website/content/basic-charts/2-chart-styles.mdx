@@ -1,0 +1,19 @@
+---
+title: 'Chart Styles'
+metaTitle: 'Authoring presentation an non-data ink in Hypocube charts'
+metaDescription: 'Authoring presentation an non-data ink in Hypocube charts'
+---
+
+## The Principle of Inheritance
+
+Chart styles are designed to have a CSS-like interface. First and foremost, this means that "specific declarations beat general declarations." In the chart below, there are two line series. The first has a specific style applied. The second has no specific style applied, and therefore defaults to the style given on the general Chart component.
+
+## Contextual Chart Styles
+
+In responsive design, styles often depend on the viewport width or other "device capabilities", authored in CSS either as media queries or as properties given as a fraction of container width. All ChartStyles can be given as a function of the rendered height and width of the chart, in the form `({ pxWidth, pxHeight }) => (property value)`. This means that, for example, the width of a bar or the font size on an axis label can be adjusted to fit the available space.
+
+## The styles
+
+Similar to CSS, all chart elements have access to all possible chart styles, although only a few are relevant. In the documentation of each component, we'll note the styles that are most often used to apply to that element, in particular.
+
+(list the styles)
