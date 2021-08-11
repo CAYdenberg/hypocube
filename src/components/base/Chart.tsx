@@ -47,7 +47,7 @@ export interface Props extends HandlerProps {
    */
   gutter?: [number, number, number, number];
   /**
-   * When true, render with the <canvas> element, instead of SVG.
+   * When true, render with the canvas element, instead of SVG.
    */
   isCanvas?: boolean;
   /**
