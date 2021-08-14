@@ -4,7 +4,9 @@ metaTitle: 'Core concepts in Hypocube'
 metaDescription: 'Hypocube core concepts'
 ---
 
-A key insight in web design is the separation of **content from presentation**. As the complexity of websites has grown, this distinction has become more critical. Most importantly, it allows for the adaptation of presentation to device capabilities, without altering the content (responsive design). While the web community generally now agrees that all websites should be built to be responsive, tools for applying responsive principles to visual data (charts and graphs) have lagged. This is mainly because we lack clean separation of concerns: when can space in a chart adapt to the overall space available without altering the meaning?
+An important pattern used in building websites is that **content should be authored separately from presentation**. As the complexity of websites has grown, this distinction has become more critical. Most importantly, it allows for the style of a website to adapt based on device capabilities, _without altering the content_, commonly known as responsive design.
+
+While the web community generally now agrees that all websites should be built to be responsive, tools for applying responsive principles to visual data (charts and graphs) have lagged. This is mainly because we lack clean separation of concerns: when can space in a chart adapt to the overall space available without altering the meaning?
 
 ## Content vs Presentation
 
@@ -16,19 +18,17 @@ Usually in web design, HTML is used to talk about content and CSS is used to tal
 
 ## Responsiveness
 
-What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the `ChartState`, which include the chart's rendered height and width. This allows a similar outcome to what can be acheived with media queries, except that they are constructed in response to the width of the **chart**, not the whole page.
+What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height. This allows a similar outcome to what can be acheived with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
 
-[Read more about `ChartStyle`](./basic-charts/2-chart-style).
+[Read more about `ChartStyle`.](./basic-charts/2-chart-style)
 
 ## Interactivity
 
-What if you simply don't have enough space for your data? An `onGesture` prop accepts a callback which will report the extent to which the view should be moved in response to pinch, swipe, drag and other move events. Hypocube aims to be as declarative as possible, and _won't automatically update the view_: but hooks are provided as addons that respond to these callbacks with state updates and animations.
+What if you simply don't have enough space for your data? An `onGesture` prop accepts a callback which will report the extent to which the view _should_ be moved in response to pinch, swipe, drag and other move events. (Hypocube aims to be as declarative as possible, and _won't automatically update the view_: but hooks are provided as addons that respond to these callbacks with state updates and animations).
 
-Callbacks can also be passed to most chart elements to produce other types of interactivity, for example clicking or tapping on a data point. Hypocube uses pointer events (LINK) to simplify the inconsistencies between mouse and touch devices. Event handlers are called with coordinates that are _semantically meaningful in the data_, not just the raw x and y coordinates on the chart.
+Callbacks can also be passed to most chart elements to produce other types of interactivity, for example clicking/tapping on a data point. Hypocube uses [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) to simplify the inconsistencies between mouse and touch devices. Event handlers are called with coordinates that are _semantically meaningful in the data_, not (just) the raw coordinates of the event.
 
-**NOTE:** PointerEvents are not yet supported in Safari, so be sure to add a polyfill (LINK).
-
-Read More about Hypocube events (link)
+[Read More about Hypocube events.](./interaction).
 
 ## Defining Space
 
@@ -46,17 +46,17 @@ Throughout the docs, we use the following conventions to denote different types 
 
 Elements such as axes render a number of different sub-components, most of which can be replaced with render props. In cases where the `chartStyles` don't provide enough flexibility, nearly any sub-component can be completely replaced.
 
-See a detailed example in the `XAxis` component documentation (LINK).
+[See how you can compose new types of charts with render props](./advanced-components)
 
 ## SVG vs Canvas
 
-Hypocube can render in either SVG or Canvas, with the sole difference being that event callbacks on _individual chart elements won't be called during canvas rendering_ (eventing functions on the chart still will be). The change is triggered by a single prop, so an SVG-rendered chart can be switched to canvas while animating and then switched back to re-active element interaction.
+Hypocube can render in either SVG or Canvas, with the sole difference being that event callbacks on _individual chart components won't be called during canvas rendering_ (event callbacks on the containing chart component still will be). The change is triggered by a single prop, so an SVG-rendered chart can be switched to canvas while animating and then switched back to re-active element interaction.
 
 All provided components can be rendered server-side while in SVG mode, although a server-rendered chart won't automatically adapt to its container width.
 
 All Hypocube chart components are composed out of a small number of primatives. These primatives provide both SVG and canvas rendering information: therefore if render props are used to replace sub-components, canvas rendering will still work as long as these primatives are used as the building blocks for the new elements.
 
-Read more about primatives (LINK)
+Read more about primatives. (LINK)
 
 ## HTML layer
 
