@@ -1,10 +1,17 @@
 import * as React from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import { Chart, BarVerticalSeries, XAxis, YAxis } from '../../../../src';
+import {
+  Chart,
+  BarVerticalSeries,
+  LineSeries,
+  XAxis,
+  YAxis,
+} from '../../../../src';
 
 const scope = {
   Chart,
   BarVerticalSeries,
+  LineSeries,
   XAxis,
   YAxis,
 };

@@ -48,7 +48,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
     getTickLabel,
     // axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.x);
-  const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
+  const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
 
   const TickMark = props.renderTickMark || XTickMark;
 
@@ -59,7 +59,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
           [range[0], intercept],
           [range[1], intercept],
         ]}
-        strokeWidth={axisThickness}
+        strokeWidth={axisStrokeWidth}
         stroke={axisColor}
       />
       {tickPositions.map(
@@ -88,7 +88,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
     // axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.y);
   // const axisLabel = normalize(props.axisLabel, null);
-  const { axisColor, axisThickness } = useChartStyle(props.chartStyle);
+  const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
 
   const TickMark = props.renderTickMark || YTickMark;
 
@@ -99,7 +99,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
           [intercept, range[0]],
           [intercept, range[1]],
         ]}
-        strokeWidth={axisThickness}
+        strokeWidth={axisStrokeWidth}
         stroke={axisColor}
       />
       {tickPositions.map(

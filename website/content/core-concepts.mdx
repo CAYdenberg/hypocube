@@ -14,7 +14,7 @@ Edward Tufte describes the parts of a graph that do not contain information "non
 
 The key is that **the width of the bar and the height of bar represent different things: the height is content and cannot be changed because it directly represents data**. The width, even though it also makes use of distances, is _not a representation of data and is properly thought of as a style._
 
-Usually in web design, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `bar-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph: it must be composed out of more fundamental SVG elements that represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-_like_ strategy to provide chart styles at varying levels of specificity. As with CSS, these styles are inherited from parent elements if they aren't specified.
+Usually in web design, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `bar-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph: it must be composed out of more fundamental SVG elements that represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-like scheme to provide chart styles at varying levels of specificity. As with CSS, these styles are inherited from parent elements if they aren't specified.
 
 ## Responsiveness
 
@@ -46,7 +46,7 @@ Throughout the docs, we use the following conventions to denote different types 
 
 Elements such as axes render a number of different sub-components, most of which can be replaced with render props. In cases where the `chartStyles` don't provide enough flexibility, nearly any sub-component can be completely replaced.
 
-[See how you can compose new types of charts with render props](./advanced-components)
+[See how you can compose new types of charts with render props](./composing-charts)
 
 ## SVG vs Canvas
 
@@ -56,7 +56,7 @@ All provided components can be rendered server-side while in SVG mode, although 
 
 All Hypocube chart components are composed out of a small number of primatives. These primatives provide both SVG and canvas rendering information: therefore if render props are used to replace sub-components, canvas rendering will still work as long as these primatives are used as the building blocks for the new elements.
 
-Read more about primatives. (LINK)
+[Read more about primatives.](./)
 
 ## HTML layer
 

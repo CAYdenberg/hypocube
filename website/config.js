@@ -33,7 +33,7 @@ const config = {
       '/core-concepts',
       '/basic-charts',
       '/interaction',
-      '/advanced-components',
+      '/composing-charts',
       '/addons',
     ],
     collapsedNav: [

@@ -26,9 +26,10 @@ export type Contextual<T> =
   | ((pxBox: ContextualStylesFunctionArguments) => T);
 
 export interface ChartStyleT {
-  baseFontSize: number;
+  fontSize: number;
+
   axisColor: string;
-  axisThickness: number;
+  axisStrokeWidth: number;
   axisTickLength: number;
   axisTickOffset: number;
   axisTickLabelOffset: number;
