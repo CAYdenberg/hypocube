@@ -77,9 +77,16 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 
 **Note:** In the list below, "color" indicates any color string allowed by CSS.
 
+### Text labels
+
 <PropDef name="fontSize" type="number" def="16">
   Help wanted: encode font family, and font weight.
 </PropDef>
+
+### Axis styles
+
+See also [the axes documentation](./3-axes).
+
 <PropDef name="axisColor" type="color" def="#666">
   Stroke color the axis line, tick marks, tick mark labels, and axis label.
 </PropDef>
@@ -101,12 +108,15 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 <PropDef name="axisLabelOffset" type="number" def="50">
   Total distance between the axis line and the nearest edge of the axis label.
 </PropDef>
-<PropDef name="dataBoxFill" type="color" def="#000">
-  A <strong>data box</strong> is a rectangle used to indicate a data point (by
-  stretching to the 0 value on the same axis) or a data range (by stretching
-  between two values on the same axis). It is most commonly used as the data
-  markers in a Bar series.
-</PropDef>
+
+### Data boxes
+
+A <strong>data box</strong> is a rectangle used to indicate a data point (by
+stretching to the 0 value on the same axis) or a data range (by stretching
+between two values on the same axis). It is most commonly used as the data
+markers in [a bar series](./4-bar-series).
+
+<PropDef name="dataBoxFill" type="color" def="#000"></PropDef>
 <PropDef name="dataBoxStroke" type="color" def="#000"></PropDef>
 <PropDef name="dataBoxStrokeWidth" type="number" def="0"></PropDef>
 <PropDef name="dataBoxThickness" type="number" def="10">
@@ -122,21 +132,16 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
   <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
   automatically create offsets for multiple bar series.
 </PropDef>
-<PropDef name="dataBoxLeftOffset" type="number" def="-0.5">
-  The offset of the data box along the non-data axis relative to its thickness.
-  For a single bar series, it is therefore -0.5, so that it is centered over top
-  the actual position of the datapoint. If two bar series as presented
-  side-by-side, it would be -1 for the first series and 0 for the second. The{' '}
-  <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
-  automatically create offsets for multiple bar series.
-</PropDef>
+
+### Data points
+
+A <strong>data point</strong> is a visual marker at defined
+coordinates. It is most commonly used as the markers in [a line series](./5-line-series), alone or in conjunction with a data line.
+
 <PropDef name="dataPointSize" type="number" def="5">
-  A <strong>data point</strong> is simply a visual marker at defined
-  coordinates. It is most commonly used as the markers in a LineSeries, alone or
-  in conjunction with a data line. This style property refers to the size in
-  pixels of the data point from one end to the other. In other words, the data
-  point is drawn to fit within a square of `dataPointSize` pixels along either
-  dimension.
+  The size in pixels of the data point from one end to the other. In other
+  words, the data point is drawn to fit within a square of `dataPointSize`
+  pixels along either dimension.
 </PropDef>
 <PropDef name="dataPointSymbol" type="string | D3SymbolType" def="none">
   A string refering to a type of symbol, or a{' '}
@@ -155,12 +160,15 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
   this style is left at the default zero value, or is smaller than the data
   point size itself, then the data point itself is the only event target.
 </PropDef>
+
+### Data lines
+
+A <strong>data line</strong> is a line drawn between all of the data
+points in a series. It is most commonly used as the marker in [a line series](./5-line-series), alone or in conjunction with data points.
+
 <PropDef name="dataLineCurveType" type="string | D3CurveFactory" def="linear">
-  A <strong>data line</strong> is simply a line drawn between all of the data
-  points in a series. It is most commonly used as the marker in a Line series,
-  alone or in conjunction with a data point. The "curve type" represents a
-  function to calculate the shape of the line in between the data points, and
-  can be a string or a{' '}
+  The "curve type" represents a function to calculate the shape of the line in
+  between the data points, and can be a string or a{' '}
   <a href="http://using-d3js.com/05_04_curves.html">
     d3 curve factory function
   </a>
@@ -176,3 +184,19 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 </PropDef>
 <PropDef name="dataLineStroke" type="color" def="#000"></PropDef>
 <PropDef name="dataLineStrokeWidth" type="color" def="#000"></PropDef>
+
+### Data ranges
+
+Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is a <strong>whisker</strong>, commonly associated with error bars but possibly used to represent other types of ranges. The range _must_ be "anchored" at a specific point for referencing purposes, and the _anchor may optionally be rendered_. See the [range series docs](./6-range-series) for more information about what can be done with this type of data series.
+
+<PropDef name="dataRangeAnchorLength" type="number" def="0">
+  The default range anchor is a line of this length along the non-data axis
+  (similar to drawing the top edge of an data bar). The default value is 0
+  however: change this value to render range anchors.
+</PropDef>
+<PropDef name="dataRangeAnchorStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataRangeAnchorStrokeWidth" type="number" def="2"></PropDef>
+<PropDef name="dataWhiskerTopCapLength" type="number" def="10"></PropDef>
+<PropDef name="dataWhiskerBottomCapLength" type="number" def="10"></PropDef>
+<PropDef name="dataWhiskerStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataWhiskerStrokeWidth" type="number" def="2"></PropDef>
