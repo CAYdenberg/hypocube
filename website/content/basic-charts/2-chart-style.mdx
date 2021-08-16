@@ -87,10 +87,10 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
   Stroke color the axis line, tick marks, tick mark labels, and axis label.
 </PropDef>
 <PropDef name="axisStrokeWidth" type="number" def="2">
-  Stroke width of the main axis line.
+  Stroke width of the main axis line in pixels.
 </PropDef>
 <PropDef name="axisTickLength" type="number" def="10">
-  Length of axis tick marks.
+  Length of axis tick marks in pixels.
 </PropDef>
 <PropDef name="axisTickOffset" type="number" def="0">
   Distance between the axis and the start of the tick mark. Normally, 0.
@@ -102,9 +102,10 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
   Total distance between the axis line and the nearest edge of the axis label.
 </PropDef>
 <PropDef name="dataBoxFill" type="color" def="#000">
-  A "dataBox" is a rectangle used to indicate a data point (by stretching to the
-  0 value on the same axis) or a data range (by stretching between two values on
-  the same axis). It is most commonly used in conjunction with the a Bar series.
+  A <strong>data box</strong> is a rectangle used to indicate a data point (by
+  stretching to the 0 value on the same axis) or a data range (by stretching
+  between two values on the same axis). It is most commonly used as the data
+  markers in a Bar series.
 </PropDef>
 <PropDef name="dataBoxStroke" type="color" def="#000"></PropDef>
 <PropDef name="dataBoxStrokeWidth" type="number" def="0"></PropDef>
@@ -115,5 +116,63 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 </PropDef>
 <PropDef name="dataBoxLeftOffset" type="number" def="-0.5">
   The offset of the data box along the non-data axis relative to its thickness.
-  For a single bar series, it is usually
+  For a single bar series, it is therefore -0.5, so that it is centered over top
+  the actual position of the datapoint. If two bar series as presented
+  side-by-side, it would be -1 for the first series and 0 for the second. The{' '}
+  <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
+  automatically create offsets for multiple bar series.
 </PropDef>
+<PropDef name="dataBoxLeftOffset" type="number" def="-0.5">
+  The offset of the data box along the non-data axis relative to its thickness.
+  For a single bar series, it is therefore -0.5, so that it is centered over top
+  the actual position of the datapoint. If two bar series as presented
+  side-by-side, it would be -1 for the first series and 0 for the second. The{' '}
+  <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
+  automatically create offsets for multiple bar series.
+</PropDef>
+<PropDef name="dataPointSize" type="number" def="5">
+  A <strong>data point</strong> is simply a visual marker at defined
+  coordinates. It is most commonly used as the markers in a LineSeries, alone or
+  in conjunction with a data line. This style property refers to the size in
+  pixels of the data point from one end to the other. In other words, the data
+  point is drawn to fit within a square of `dataPointSize` pixels along either
+  dimension.
+</PropDef>
+<PropDef name="dataPointSymbol" type="string | D3SymbolType" def="none">
+  A string refering to a type of symbol, or a{' '}
+  <a href="http://using-d3js.com/05_10_symbols.html">d3 symbol function</a>. The
+  available built-in types are "circle", "cross", "diamond", "square", "star",
+  "triangle", "wye" and "none". Note that the default in "none", so to make
+  symbols visible, another value will have to be provided.
+</PropDef>
+<PropDef name="dataPointFill" type="color" def="#000"></PropDef>
+<PropDef name="dataPointStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataPointStrokeWidth" type="number" def="0"></PropDef>
+<PropDef name="dataPointMinTargetRadius" type="number" def="0">
+  Small data points can be hard for users to click on. If this style is
+  provided, an invisible circle is drawn around each data point that can act as
+  a target for <a href="../interaction/1-pointer-events">pointer events</a>. If
+  this style is left at the default zero value, or is smaller than the data
+  point size itself, then the data point itself is the only event target.
+</PropDef>
+<PropDef name="dataLineCurveType" type="string | D3CurveFactory" def="linear">
+  A <strong>data line</strong> is simply a line drawn between all of the data
+  points in a series. It is most commonly used as the marker in a Line series,
+  alone or in conjunction with a data point. The "curve type" represents a
+  function to calculate the shape of the line in between the data points, and
+  can be a string or a{' '}
+  <a href="http://using-d3js.com/05_04_curves.html">
+    d3 curve factory function
+  </a>
+  . The available built-in curve types are "linear", "cardinal", "natural", "basis",
+  or "step".
+</PropDef>
+<PropDef name="dataLineDashType" type="string | [number, number]" def="solid">
+  Data lines can be solid, or dashed. This property represents the type of dash.
+  It can be a bipartite array representing the number of rendered pixels
+  followed by the number of blank pixels, or a string. The available built-in
+  dash types are "solid", "dashed" (equivalent to `[5, 5]`), or "dotted"
+  (equivalent to `[1, 1]`).
+</PropDef>
+<PropDef name="dataLineStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataLineStrokeWidth" type="color" def="#000"></PropDef>
