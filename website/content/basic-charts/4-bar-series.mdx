@@ -64,7 +64,7 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef
   name="renderBar"
-  type="({x: number, yMin: number, yMax: number, chartStyle }) => React.Element"
+  type="React.Component<{x: number; yMin: number; yMax: number; chartStyle }>"
 >
   Render prop for the data boxes rendered by this series type. See the{' '}
   <a href="../composing-charts/1-data-components">data component docs</a> for
@@ -72,4 +72,4 @@ import PropDef from '../components/PropDef';
   replacement component should accept the same props.
 </PropDef>
 
-Additionally, the bar series component accepts all the [pointer event handlers](../interaction/1-pointer-events), which are passed on to the individual bars.
+Additionally, the bar series component accepts all the [pointer event handlers](../interaction/1-pointer-events), which are rendered around each individual bar.

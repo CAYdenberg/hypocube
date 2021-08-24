@@ -4,6 +4,7 @@ import {
   Chart,
   BarVerticalSeries,
   LineSeries,
+  RangeVerticalSeries,
   XAxis,
   YAxis,
 } from '../../../../src';
@@ -12,6 +13,7 @@ const scope = {
   Chart,
   BarVerticalSeries,
   LineSeries,
+  RangeVerticalSeries,
   XAxis,
   YAxis,
 };

@@ -47,7 +47,7 @@ The Chart is the base component used to render all chart elements. It is respons
   tooltips (though they don't have to be). See{' '}
   <a href="../interaction/3-tooltips">tooltips for more information</a>.
 </PropDef>
-<PropDef name="renderError" type="({ message: string }) => React.Element">
+<PropDef name="renderError" type="React.Component{ message: string }>">
   A React component which will be rendered in case of an error that occurs while
   rendering the chart. The component may accept the error `message` as its only
   prop.

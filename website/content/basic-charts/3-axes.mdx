@@ -126,7 +126,7 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef
   name="renderTickMark"
-  type="({ position: Point, label?: string, chartStyle }) => React.Element"
+  type="React.Component<{ position: Point, label?: string, chartStyle }>"
 >
   Render prop for tick marks (both the line marker and label). See the{' '}
   <a href="../composing-charts/2-tick-marks">TickMark component docs</a> for

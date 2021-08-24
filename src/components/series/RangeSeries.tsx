@@ -10,7 +10,7 @@ import Viewbox from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
-import { DataAnchorLine, DataAnchorProps } from '../data/DataAnchor';
+import { DataAnchorLine, DataPointProps } from '../data/DataPoint';
 import { DataWhiskerVertical, DataRangeVerticalProps } from '../data/DataRange';
 import Handle from '../primitives/Handle';
 
@@ -22,7 +22,7 @@ interface RangeSeriesProps {
   view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
-  renderAnchor?: React.FC<DataAnchorProps>;
+  renderAnchor?: React.FC<DataPointProps>;
   renderRanges?:
     | React.FC<DataRangeVerticalProps>
     | Array<React.FC<DataRangeVerticalProps>>;

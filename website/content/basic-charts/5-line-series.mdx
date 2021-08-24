@@ -59,7 +59,7 @@ import PropDef from '../components/PropDef';
   Metadata to pass to{' '}
   <a href="../interaction/pointer-events">handler callbacks</a>.
 </PropDef>
-<PropDef name="renderLine" type="({ data, chartStyle }) => React.Element">
+<PropDef name="renderLine" type="React.Component<{ data; chartStyle }>">
   Render prop for the line connecting the data points. See the{' '}
   <a href="../composing-charts/1-data-components">data component docs</a> for
   more information. By default it renders a `DataLine` and a replacement
@@ -67,10 +67,12 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef
   name="renderPoint"
-  type="({ x: number, y: number, chartStyle }) => React.Element"
+  type="React.Component<{ x: number; y: number; chartStyle }>"
 >
   Render prop for the line connecting the data points. See the{' '}
   <a href="../composing-charts/1-data-components">data component docs</a> for
   more information. By default it renders a `DataPoint` and a replacement
   component should accept the same props.
 </PropDef>
+
+Additionally, the line series component accepts all the [pointer event handlers](../interaction/1-pointer-events), which are rendered around the individual data points.
