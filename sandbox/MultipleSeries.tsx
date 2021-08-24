@@ -66,12 +66,18 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         dataPointSymbol: 'circle',
         dataPointMinTargetRadius: 10,
       }}
-      tooltip={
-        <TooltipWrapper onRequestClose={handleCloseTooltip}>
-          <SimpleTooltip seriesName={tooltipData?.meta.seriesName} />
-        </TooltipWrapper>
+      htmlLayer={
+        tooltipData
+          ? {
+              position: tooltipData.position,
+              render: (
+                <TooltipWrapper onRequestClose={handleCloseTooltip}>
+                  <SimpleTooltip seriesName={tooltipData?.meta.seriesName} />
+                </TooltipWrapper>
+              ),
+            }
+          : null
       }
-      tooltipPosition={tooltipData?.position}
     >
       <XAxis tickPositions={tickPositions} getTickLabel={getXLabel} />
       <YAxis

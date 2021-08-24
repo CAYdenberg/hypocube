@@ -4,10 +4,10 @@ import useChartState from './ChartState';
 import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 
 const baseStyle: ChartStyleT = {
-  baseFontSize: 16,
+  fontSize: 16,
 
   axisColor: '#666',
-  axisThickness: 2,
+  axisStrokeWidth: 2,
   axisTickLength: 10,
   axisTickOffset: 0,
   axisTickLabelOffset: 2,

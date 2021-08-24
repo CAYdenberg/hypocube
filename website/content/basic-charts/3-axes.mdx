@@ -1,0 +1,134 @@
+---
+title: 'Axes'
+metaTitle: 'Axes and scale in Hypocube charts'
+metaDescription: 'Axes and scale in Hypocube charts'
+---
+
+An **axis** is a visual scale indicator meant to relate positions on a Cartesian plane to real-world data. Hypocube has two axis components: `XAxis` and `YAxis` which work the same way and accept the same props.
+
+Usually, axes are used in conjunction with tick marks, which indicate landmark data points with a label. Hypocube uses two props to describe tick marks: `tickPositions` is the actual position of the ticks on the Cartesian scale, while `getTickLabel` is a function which derives the tick label from the position. In the following example, we are using both axes. Notice the different functions passed to `getTickLabel`.
+
+```javascript react-live
+<Chart
+  width={300}
+  height={300}
+  view={[0, 0, 4, 1000]}
+  gutter={[20, 20, 50, 50]}
+>
+  <XAxis
+    tickPositions={[0, 1, 2, 3, 4]}
+    getTickLabel={(pos) => `#${pos + 1}`}
+  />
+  <YAxis tickPositions={[0, 500, 1000]} getTickLabel={(pos) => String(pos)} />
+</Chart>
+```
+
+## Non-linear scales
+
+What if we wish to plot the data on a log (or other non-linear) scale? It is important to note that Hypocube deals only with data on a Cartesian plane; to plot on a log scale, our scale is created differently. In this example, the endpoint of the y-axis is 3 (instead of 1000): the number of "logs". Of course, any data you plot needs to be similarly converted.
+
+```javascript
+const data = [
+  [0, 4],
+  [1, 3],
+  [2, 32],
+  [3, 190],
+  [4, 754],
+];
+
+<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+  <XAxis
+    tickPositions={[0, 1, 2, 3, 4]}
+    getTickLabel={(pos) => `#${pos + 1}`}
+  />
+  <YAxis
+    tickPositions={[0, 1, 2, 3]}
+    getTickLabel={(pos) => String(Math.pow(10, pos))}
+  />
+  <LineSeries data={data.map(([x, y]) => [x, Math.log10(y)])} />
+</Chart>;
+```
+
+## Categorical scales
+
+A special case of non-linear scales are categorical in which the position on the axis can be mapped based on its index. For example, the source data could contain strings for the x-axis data.
+
+```javascript
+const data = [
+  ['Cat A', 4],
+  ['Cat B', 3],
+  ['Cat C', 32],
+  ['Cat D', 190],
+  ['Cat E', 754],
+];
+
+<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+  <XAxis
+    tickPositions={data.map(_, i) => i}
+    getTickLabel={(pos) => String(data[pos][0])}
+  />
+  <YAxis
+    tickPositions={[0, 1, 2, 3]}
+    getTickLabel={(pos) => String(Math.pow(10, pos))}
+  />
+  <LineSeries data={data.map(([x, y], i) => [i, Math.log10(y)])} />
+</Chart>;
+```
+
+This example demonstrates a categorical x-axis and a logarithmic y-axis.
+
+import { Chart, XAxis, YAxis, LineSeries } from '../../../src';
+import { data1 as data } from '../components/data';
+
+<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+  <XAxis
+    tickPositions={[0, 1, 2, 3, 4]}
+    getTickLabel={(pos) => ['Cat A', 'Cat B', 'Cat C', 'Cat D', 'Cat E'][pos]}
+  />
+  <YAxis
+    tickPositions={[0, 1, 2, 3]}
+    getTickLabel={(pos) => String(Math.pow(10, pos))}
+  />
+  <LineSeries data={data.map(([x, y], i) => [i, Math.log10(y)])} />
+</Chart>
+
+## Props
+
+import PropDef from '../components/PropDef';
+
+<PropDef name="range" type="[number, number]">
+  The start- and end- point of axis rendering. The main axis line will render
+  between these two points; tick marks that fall beyond these points will not be
+  rendered. It defaults to the min and max values of the the Chart view along
+  the same dimension.
+</PropDef>
+<PropDef name="intercept" type="number" defVal="0">
+  The position of the axis, defined by the point at which it intercepts the
+  crossing axis.
+</PropDef>
+<PropDef name="tickPositions" type="Contextual<number[]>" def="[]">
+  An array of numbers indicating tick positions. It may be{' '}
+  <a href="./2-chart-styles#contextualchartstyles">
+    contextual and respond to chart size
+  </a>
+  .
+</PropDef>
+<PropDef name="getTickLabel" type="number => string" def="String">
+  A function which produces a tick label from the position of that label on the
+  Cartesian scale.
+</PropDef>
+<PropDef name="axisLabel" type="string" def="''">
+  A text label for the whole axis.
+</PropDef>
+<PropDef name="chartStyle">
+  Styles which will override the global{' '}
+  <a href="./2-chart-style/#axisstyles">chart style</a>.
+</PropDef>
+<PropDef
+  name="renderTickMark"
+  type="React.Component<{ position: Point, label?: string, chartStyle }>"
+>
+  Render prop for tick marks (both the line marker and label). See the{' '}
+  <a href="../composing-charts/2-tick-marks">TickMark component docs</a> for
+  more information.
+</PropDef>

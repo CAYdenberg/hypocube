@@ -5,7 +5,7 @@ const ChartError: React.FC<Props> = (props) => {
   return (
     <div
       style={{
-        height: props.height,
+        height: typeof props.height === 'number' ? props.height : 'auto',
         background: '#ccc',
 
         padding: '1rem',

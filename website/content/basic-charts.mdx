@@ -1,0 +1,50 @@
+---
+title: 'Basic Charts'
+metaTitle: 'The fundamental Hypocube charts'
+metaDescription: 'The fundamental Hypocube charts'
+---
+
+Consider the following simple Chart:
+
+```javascript react-live=true
+<div style={{ maxWidth: 1024 }}>
+  <Chart
+    width={300}
+    height={100}
+    view={[0, 0, 4, 5]}
+    isCanvas={false}
+    chartStyle={{
+      dataBoxFill: 'blue',
+      dataBoxThickness: ({ pxWidth }) => pxWidth / 10,
+    }}
+  >
+    <XAxis />
+    <YAxis />
+    <BarVerticalSeries
+      data={[
+        [1, 3],
+        [2, 2],
+        [3, 5],
+      ]}
+    />
+  </Chart>
+</div>
+```
+
+The `BarVerticalSeries` element renders three data points on a Cartesian plane. The bounds of the plane are denoted by Chart's `view` prop - irrespective of the actual pixels that are available for rendering the chart.
+
+The code above is editable! Try changing:
+
+- the `maxWidth` of the container `div`
+- the `isCanvas` prop on the `Chart` element (use Inspect Element to see the change)
+- the `dataBoxFill` color
+- the function passed to `dataBoxThickness` (or replace with a static number)
+
+Ready for the next step? Read more about the basics of Hypocube charts:
+
+- [the `Chart` component](./1-chart-component)
+- [chart style](./2-chart-style)
+- [the `XAxis` and `YAxis` components](./3-axes)
+- [the `BarVerticalSeries` component](./4-bar-series.mdx)
+- [the `LineSeries` component (used to create both line series and scatter plots)](./5-line-series)
+- [the `RangeSeries` component (can be used to create error bars or Tukey plots)](./6-range-series)

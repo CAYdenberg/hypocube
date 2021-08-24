@@ -1,0 +1,202 @@
+---
+title: 'The Chart Style Object'
+metaTitle: 'Authoring presentation of non-data ink in Hypocube charts'
+metaDescription: 'Authoring presentation an non-data ink in Hypocube charts'
+---
+
+import PropDef from '../components/PropDef';
+
+## The Principle of Inheritance
+
+Chart styles are designed to have a CSS-like interface. First and foremost, this means that "specific declarations beat general declarations." In the chart below, there are two line series. The first has a specific style applied. The second has no specific style applied, and therefore defaults to the style given on the general Chart component.
+
+```javascript react-live=true
+<Chart
+  width={300}
+  height={300}
+  view={[0, 0, 4, 5]}
+  chartStyle={{
+    dataLineStroke: 'blue',
+    dataPointFill: 'blue',
+    dataPointSymbol: 'diamond',
+  }}
+>
+  <XAxis />
+  <YAxis />
+  <LineSeries
+    data={[
+      [1, 3],
+      [2, 2],
+      [3, 5],
+    ]}
+    chartStyle={{
+      dataLineStroke: 'green',
+      dataPointFill: 'green',
+      dataPointSymbol: 'cross',
+    }}
+  />
+  <LineSeries
+    data={[
+      [1, 1],
+      [2, 3],
+      [3, 5],
+    ]}
+  />
+</Chart>
+```
+
+## Contextual Chart Styles
+
+In responsive design, styles often depend on the viewport width or other "device capabilities", authored in CSS either as media queries or as properties given as a fraction of container width. All chart styles can be given as a function of the rendered height and width of the chart, in the form `({ pxWidth, pxHeight }) => (property value)`. This means that, for example, the width of a bar or the font size on an axis label can be adjusted to fit the available space.
+
+In this example, the bar in the bar graph will always be rendered at half the width of the total chart width, and will change color depending on the width. (You can change it by adjusting the maxWidth of the containing div).
+
+```javascript react-live=true
+<div style={{ maxWidth: 1024 }}>
+  <Chart
+    width={300}
+    height={100}
+    view={[0, 0, 4, 5]}
+    isCanvas={false}
+    chartStyle={{
+      dataBoxFill: 'blue',
+      dataBoxThickness: ({ pxWidth }) => pxWidth / 2,
+      dataBoxFill: ({ pxWidth }) => `rgba(12, 12, 254, ${pxWidth / 1024})`,
+    }}
+  >
+    <XAxis />
+    <YAxis />
+    <BarVerticalSeries data={[[2, 2]]} />
+  </Chart>
+</div>
+```
+
+## The styles
+
+Similar to CSS, all chart elements have access to all possible chart styles, although only a few are relevant. In the documentation of each component, we'll note the styles that are most often used to apply to that element, in particular.
+
+**Note:** In the list below, "color" indicates any color string allowed by CSS.
+
+### Text labels
+
+<PropDef name="fontSize" type="number" def="16">
+  Help wanted: encode font family, and font weight.
+</PropDef>
+
+### Axis styles
+
+See also [the axes documentation](./3-axes).
+
+<PropDef name="axisColor" type="color" def="#666">
+  Stroke color the axis line, tick marks, tick mark labels, and axis label.
+</PropDef>
+<PropDef name="axisColor" type="color" def="#666">
+  Stroke color the axis line, tick marks, tick mark labels, and axis label.
+</PropDef>
+<PropDef name="axisStrokeWidth" type="number" def="2">
+  Stroke width of the main axis line in pixels.
+</PropDef>
+<PropDef name="axisTickLength" type="number" def="10">
+  Length of axis tick marks in pixels.
+</PropDef>
+<PropDef name="axisTickOffset" type="number" def="0">
+  Distance between the axis and the start of the tick mark. Normally, 0.
+</PropDef>
+<PropDef name="axisTickLabelOffset" type="number" def="2">
+  Distance between the end of the tick mark and the nearest edge of the label.
+</PropDef>
+<PropDef name="axisLabelOffset" type="number" def="50">
+  Total distance between the axis line and the nearest edge of the axis label.
+</PropDef>
+
+### Data boxes
+
+A <strong>data box</strong> is a rectangle used to indicate a data point (by
+stretching to the 0 value on the same axis) or a data range (by stretching
+between two values on the same axis). It is most commonly used as the data
+markers in [a bar series](./4-bar-series).
+
+<PropDef name="dataBoxFill" type="color" def="#000"></PropDef>
+<PropDef name="dataBoxStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataBoxStrokeWidth" type="number" def="0"></PropDef>
+<PropDef name="dataBoxThickness" type="number" def="10">
+  The length of the data box across the axis opposite to the one in which the
+  box indicates data. In a vertical bar series, it would be the width of the
+  data box; in a horizontal bar series, it would be the height.
+</PropDef>
+<PropDef name="dataBoxLeftOffset" type="number" def="-0.5">
+  The offset of the data box along the non-data axis relative to its thickness.
+  For a single bar series, it is therefore -0.5, so that it is centered over top
+  the actual position of the datapoint. If two bar series as presented
+  side-by-side, it would be -1 for the first series and 0 for the second. The{' '}
+  <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
+  automatically create offsets for multiple bar series.
+</PropDef>
+
+### Data points
+
+A <strong>data point</strong> is a visual marker at defined
+coordinates. It is most commonly used as the markers in [a line series](./5-line-series), alone or in conjunction with a data line.
+
+<PropDef name="dataPointSize" type="number" def="5">
+  The size in pixels of the data point from one end to the other. In other
+  words, the data point is drawn to fit within a square of `dataPointSize`
+  pixels along either dimension.
+</PropDef>
+<PropDef name="dataPointSymbol" type="string | D3SymbolType" def="none">
+  A string refering to a type of symbol, or a{' '}
+  <a href="http://using-d3js.com/05_10_symbols.html">d3 symbol function</a>. The
+  available built-in types are "circle", "cross", "diamond", "square", "star",
+  "triangle", "wye" and "none". Note that the default in "none", so to make
+  symbols visible, another value will have to be provided.
+</PropDef>
+<PropDef name="dataPointFill" type="color" def="#000"></PropDef>
+<PropDef name="dataPointStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataPointStrokeWidth" type="number" def="0"></PropDef>
+<PropDef name="dataPointMinTargetRadius" type="number" def="0">
+  Small data points can be hard for users to click on. If this style is
+  provided, an invisible circle is drawn around each data point that can act as
+  a target for <a href="../interaction/1-pointer-events">pointer events</a>. If
+  this style is left at the default zero value, or is smaller than the data
+  point size itself, then the data point itself is the only event target.
+</PropDef>
+
+### Data lines
+
+A <strong>data line</strong> is a line drawn between all of the data
+points in a series. It is most commonly used as the marker in [a line series](./5-line-series), alone or in conjunction with data points.
+
+<PropDef name="dataLineCurveType" type="string | D3CurveFactory" def="linear">
+  The "curve type" represents a function to calculate the shape of the line in
+  between the data points, and can be a string or a{' '}
+  <a href="http://using-d3js.com/05_04_curves.html">
+    d3 curve factory function
+  </a>
+  . The available built-in curve types are "linear", "cardinal", "natural", "basis",
+  or "step".
+</PropDef>
+<PropDef name="dataLineDashType" type="string | [number, number]" def="solid">
+  Data lines can be solid, or dashed. This property represents the type of dash.
+  It can be a bipartite array representing the number of rendered pixels
+  followed by the number of blank pixels, or a string. The available built-in
+  dash types are "solid", "dashed" (equivalent to `[5, 5]`), or "dotted"
+  (equivalent to `[1, 1]`).
+</PropDef>
+<PropDef name="dataLineStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataLineStrokeWidth" type="number" def="1"></PropDef>
+
+### Data ranges
+
+Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is a <strong>whisker</strong>, commonly associated with error bars but possibly used to represent other types of ranges. The range _must_ be "anchored" at a specific point for referencing purposes, and the _anchor may optionally be rendered_. See the [range series docs](./6-range-series) for more information about what can be done with this type of data series.
+
+<PropDef name="dataRangeAnchorLength" type="number" def="0">
+  The default range anchor is a line of this length along the non-data axis
+  (similar to drawing the top edge of an data bar). The default value is 0
+  however: change this value to render range anchors.
+</PropDef>
+<PropDef name="dataRangeAnchorStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataRangeAnchorStrokeWidth" type="number" def="2"></PropDef>
+<PropDef name="dataWhiskerTopCapLength" type="number" def="10"></PropDef>
+<PropDef name="dataWhiskerBottomCapLength" type="number" def="10"></PropDef>
+<PropDef name="dataWhiskerStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataWhiskerStrokeWidth" type="number" def="2"></PropDef>

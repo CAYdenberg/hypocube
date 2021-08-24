@@ -1,0 +1,56 @@
+---
+title: 'The Chart Component'
+metaTitle: 'The base component for rendering Hypocube charts'
+metaDescription: 'The base component for rendering Hypocube charts'
+---
+
+import PropDef from '../components/PropDef';
+
+The Chart is the base component used to render all chart elements. It is responsible for creating the basic dimensions of the Chart in pixels, and the visible portion of the chart coordinates on the [Cartesian scale](../core-concepts#definingspace).
+
+## Props
+
+<PropDef name="width" type="number" required={true}>
+  The default width of the Chart, in pixels. Note that after rendering, the
+  Chart will "sense" it's container width and resize to fill the available
+  space, so the specified width will usually only appear during server-side
+  rendering.
+</PropDef>
+<PropDef name="height" type="number | (number => number)" required={true}>
+  Rendered height in pixels. If a function is given, the height will be
+  calculated from the rendered width.
+</PropDef>
+<PropDef name="view" type="[number, number, number, number]" required={true}>
+  The coordinates of the box containing the visible portion of the chart data.
+  Given as an array in the form: [x minimum, y minimum, width, height] on the
+  Cartesian scale.
+</PropDef>
+<PropDef name="gutter" type="[number, number, number, number]">
+  Extra padding (given in pixels) added to each side of the chart. This is
+  useful for ensuring that axes and other Chart decorations have enough space
+  for proper rendering regardless, of the actual dimensions available. Given in
+  the form [top, right, bottom, left], on the pixel scale.
+</PropDef>
+<PropDef name="chartStyle">
+  Sets styles which will apply to all chart elements. See{' '}
+  <a href="./2-chart-style">ChartStyle</a>.
+</PropDef>
+<PropDef name="onGesture">
+  Handler for gestures, usually (but not necessarily) used to dynamically change
+  the `view`. See{' '}
+  <a href="../interaction/3-handling-gestures">how to handle gestures</a> and{' '}
+  <a href="../interaction/4-dyanamic-views">how to update the `view`</a>.
+</PropDef>
+<PropDef name="htmlLayer">
+  A React component (or array of React components) which render HTML, and are
+  absolutely positioned above the SVG (or canvas). Can be used to render
+  tooltips (though they don't have to be). See{' '}
+  <a href="../interaction/3-tooltips">tooltips for more information</a>.
+</PropDef>
+<PropDef name="renderError" type="React.Component{ message: string }>">
+  A React component which will be rendered in case of an error that occurs while
+  rendering the chart. The component may accept the error `message` as its only
+  prop.
+</PropDef>
+
+Additionally, the chart element accepts all the [pointer event handlers](../interaction/1-pointer-events).

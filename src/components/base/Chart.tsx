@@ -17,34 +17,89 @@ import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
 
+interface HtmlLayerElement {
+  position: Point;
+  render: JSX.Element | null;
+}
+
 export interface Props extends HandlerProps {
-  height: number;
+  /**
+   * (required) Initial rendered width in pixels. Immediately after rendering,
+   * the chart will automatically adjust to the width of its container.
+   */
   width: number;
+  /**
+   * (required) Rendered height in pixels. If a function is given, the height
+   * will be calculated from the rendered width.
+   */
+  height: number | ((width: number) => number);
+  /**
+   * The coordinates of the box containing the visible portion of the chart data.
+   * Given as an array in the form: [x minimum, y minimum, width, height] on
+   * the Cartesian scale.
+   */
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
+  /**
+   * Extra padding (given in pixels) added to each side of the chart. This is
+   * useful for ensuring that axes and other Chart decorations have enough space
+   * for proper rendering regardless of the actual dimensions available. Given
+   * in the form [top, right, bottom, left], on the pixel scale.
+   */
   gutter?: [number, number, number, number];
+  /**
+   * When true, render with the canvas element, instead of SVG.
+   */
   isCanvas?: boolean;
+  /**
+   * The global chart styles. See "the `ChartStyles` object" for more
+   * information.
+   */
   chartStyle?: ChartStyleOptions;
-  tooltip?: JSX.Element | null;
-  tooltipPosition?: Point | null;
+  /**
+   * Event handler for drag, pinch, swipe, and wheel gestures. See "Interaction"
+   * for more information.
+   */
   onGesture?: (data: ChartGestureData) => void;
-  renderError?: (message?: string) => React.ReactNode;
+  /**
+   * An element, or array of elements, to be rendered outside of SVG (or canvas).
+   * The Given in the form { position: [x, y], render: React element }. Useful
+   * for e.g. for tooltips.
+   */
+  htmlLayer?: HtmlLayerElement[] | HtmlLayerElement | null;
+  /** A  React component which will be rendered in case of an error. The error
+   * message, if any, is passed as a prop.
+   */
+  renderError?: React.FC<{ message?: string }>;
 }
 
 const ChartInner: React.FC<Props> = (props) => {
-  const { children, height, width } = props;
+  const { children } = props;
   const isCanvas = normalize(props.isCanvas, false);
   const chartStyle = normalize(props.chartStyle, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [pxBox, setPxBox] = useState<Viewbox>(new Viewbox(0, 0, width, height));
+  const getHeight = useCallback(
+    (width: number) =>
+      typeof props.height === 'function' ? props.height(width) : props.height,
+    [props.height]
+  );
+
+  const [pxBox, setPxBox] = useState<Viewbox>(
+    new Viewbox(0, 0, props.width, getHeight(props.width))
+  );
 
   const calculateSizes = useCallback(() => {
     const containerEl = containerRef.current;
     if (containerEl) {
       setPxBox(
-        new Viewbox(0, 0, containerEl.clientWidth, containerEl.clientHeight)
+        new Viewbox(
+          0,
+          0,
+          containerEl.clientWidth,
+          getHeight(containerEl.clientWidth)
+        )
       );
     }
   }, [containerRef]);
@@ -63,7 +118,7 @@ const ChartInner: React.FC<Props> = (props) => {
   }, [containerRef, calculateSizes]);
 
   const cartesianBox: Viewbox = createViewbox(
-    typeof props.view === 'function' ? props.view(width) : props.view
+    typeof props.view === 'function' ? props.view(props.width) : props.view
   );
 
   const scaleX = scaleLinear()
@@ -92,12 +147,18 @@ const ChartInner: React.FC<Props> = (props) => {
     [isCanvas, pxBox, props.view]
   );
 
+  const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)
+    ? props.htmlLayer
+    : props.htmlLayer
+    ? [props.htmlLayer]
+    : [];
+
   return (
     <div
       ref={containerRef}
       style={{
-        height,
-        maxWidth: width,
+        height: pxBox.height,
+        maxWidth: pxBox.width,
         minWidth: '100%',
         position: 'relative',
       }}
@@ -106,25 +167,26 @@ const ChartInner: React.FC<Props> = (props) => {
         <ChartStyleProvider chartStyle={chartStyle}>
           <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
             {isCanvas ? (
-              <canvas ref={canvasRef} width={pxBox.x[1]} height={height}>
+              <canvas ref={canvasRef} width={pxBox.width} height={pxBox.height}>
                 {children}
               </canvas>
             ) : (
-              <svg width={pxBox.x[1]} height={pxBox.y[1]}>
+              <svg width={pxBox.width} height={pxBox.height}>
                 {children}
               </svg>
             )}
-            {props.tooltip && props.tooltipPosition ? (
+            {htmlLayer.map((layer) => (
               <div
                 style={{
                   position: 'absolute',
-                  left: scaleX(props.tooltipPosition[0]),
-                  top: scaleY(props.tooltipPosition[1]),
+                  left: scaleX(layer.position[0]),
+                  top: scaleY(layer.position[1]),
                 }}
+                key={`${layer.position[0]}-${layer.position[1]}`}
               >
-                {props.tooltip}
+                {layer.render}
               </div>
-            ) : null}
+            ))}
           </ChartHandle>
         </ChartStyleProvider>
       </ChartStateContext.Provider>
@@ -137,6 +199,9 @@ interface State {
   errorMessage: string;
 }
 
+/**
+ * The base component for Hypocube charts.
+ */
 class Chart extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -154,7 +219,8 @@ class Chart extends React.Component<Props, State> {
 
   render() {
     if (this.state.hasError && this.props.renderError) {
-      return this.props.renderError(this.state.errorMessage);
+      const CustomError = this.props.renderError;
+      return <CustomError message={this.state.errorMessage} />;
     } else if (this.state.hasError) {
       return <ChartError {...this.props} />;
     }

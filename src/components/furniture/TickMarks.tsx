@@ -16,16 +16,15 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
   const label = normalize(props.label, '');
 
   const {
-    baseFontSize,
+    fontSize,
     axisColor,
-    axisThickness,
+    axisStrokeWidth,
     axisTickLength,
     axisTickOffset,
     axisTickLabelOffset,
   } = useChartStyle(props.chartStyle);
 
-  const labelAbsoluteOffset =
-    axisTickLength + axisTickLabelOffset + baseFontSize;
+  const labelAbsoluteOffset = axisTickLength + axisTickLabelOffset + fontSize;
 
   return (
     <React.Fragment>
@@ -35,7 +34,7 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
           [0, axisTickOffset],
           [0, axisTickOffset + axisTickLength],
         ]}
-        strokeWidth={axisThickness}
+        strokeWidth={axisStrokeWidth}
         stroke={axisColor}
       />
       <Text
@@ -55,11 +54,11 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
 
   const {
     axisColor,
-    axisThickness,
+    axisStrokeWidth,
     axisTickLength,
     axisTickOffset,
     axisTickLabelOffset,
-    baseFontSize,
+    fontSize,
   } = useChartStyle(props.chartStyle);
 
   const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
@@ -72,12 +71,12 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
           [0 - axisTickOffset, 0],
           [0 - axisTickLength - axisTickOffset, 0],
         ]}
-        strokeWidth={axisThickness}
+        strokeWidth={axisStrokeWidth}
         stroke={axisColor}
       />
       <Text
         position={position}
-        pxOffset={[labelAbsoluteOffset, baseFontSize / 2 - axisThickness]}
+        pxOffset={[labelAbsoluteOffset, fontSize / 2 - axisStrokeWidth]}
         text={label}
         color={axisColor}
         align="right"
