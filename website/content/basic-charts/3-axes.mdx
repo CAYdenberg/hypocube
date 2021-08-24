@@ -4,7 +4,7 @@ metaTitle: 'Axes and scale in Hypocube charts'
 metaDescription: 'Axes and scale in Hypocube charts'
 ---
 
-An **axis** is a visual scale bar meant to relate the positions on the chart to real-world data. Hypocube has two axis components: `XAxis` and `YAxis` which work the same way and accept the same props.
+An **axis** is a visual scale indicator meant to relate positions on a Cartesian plane to real-world data. Hypocube has two axis components: `XAxis` and `YAxis` which work the same way and accept the same props.
 
 Usually, axes are used in conjunction with tick marks, which indicate landmark data points with a label. Hypocube uses two props to describe tick marks: `tickPositions` is the actual position of the ticks on the Cartesian scale, while `getTickLabel` is a function which derives the tick label from the position. In the following example, we are using both axes. Notice the different functions passed to `getTickLabel`.
 
@@ -93,3 +93,42 @@ import { data1 as data } from '../components/data';
 </Chart>
 
 ## Props
+
+import PropDef from '../components/PropDef';
+
+<PropDef name="range" type="[number, number]">
+  The start- and end- point of axis rendering. The main axis line will render
+  between these two points; tick marks that fall beyond these points will not be
+  rendered. It defaults to the min and max values of the the Chart view along
+  the same dimension.
+</PropDef>
+<PropDef name="intercept" type="number" defVal="0">
+  The position of the axis, defined by the point at which it intercepts the
+  crossing axis.
+</PropDef>
+<PropDef name="tickPositions" type="Contextual<number[]>" def="[]">
+  An array of numbers indicating tick positions. It may be{' '}
+  <a href="./2-chart-styles#contextualchartstyles">
+    contextual and respond to chart size
+  </a>
+  .
+</PropDef>
+<PropDef name="getTickLabel" type="number => string" def="String">
+  A function which produces a tick label from the position of that label on the
+  Cartesian scale.
+</PropDef>
+<PropDef name="axisLabel" type="string" def="''">
+  A text label for the whole axis.
+</PropDef>
+<PropDef name="chartStyle">
+  Styles which will override the global{' '}
+  <a href="./2-chart-style/#axisstyles">chart style</a>.
+</PropDef>
+<PropDef
+  name="renderTickMark"
+  type="({ position: Point, label?: string, chartStyle }) => React.Element"
+>
+  Render prop for tick marks (both the line marker and label). See the{' '}
+  <a href="../composing-charts/2-tick-marks">TickMark component docs</a> for
+  more information.
+</PropDef>
