@@ -6,45 +6,49 @@ type HandleGesture = (data: ChartGestureData) => Viewbox | ChartAnimation;
 
 const isChartAnimation = (
   input: Viewbox | ChartAnimation
-): input is ChartAnimation => typeof input === 'function';
+): input is ChartAnimation => !!(input as ChartAnimation).step;
 
 export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   initialViewbox = createViewbox(initialViewbox);
   const [current, setView] = useState<Viewbox>(initialViewbox);
-  const [isPanning, setIsPanning] = useState<boolean>(false);
+  const [isGesturing, setIsGesturing] = useState<boolean>(false);
 
   const timer = useRef<number | null>(null);
   const startTime = useRef<number | null>(null);
 
   const cancelChartAnimation = () => {
+    timer.current = null;
+    startTime.current = null;
     if (timer.current) {
       cancelAnimationFrame(timer.current);
     }
-    timer.current = null;
-    startTime.current = null;
   };
 
   const onGesture = (data: ChartGestureData) => {
     cancelChartAnimation();
 
-    if (data.phase === GesturePhase.Start) {
-      setIsPanning(true);
-    } else if (data.phase === GesturePhase.End) {
-      setIsPanning(false);
-    }
-
     const nextView = handleGesture(data);
+
+    if (data.phase === GesturePhase.Start) {
+      setIsGesturing(true);
+    } else if (data.phase === GesturePhase.End) {
+      setIsGesturing(false);
+    }
 
     if (isChartAnimation(nextView)) {
       const step = (time: number) => {
         if (!startTime.current) {
           startTime.current = time;
         }
-        const value = nextView(
-          (time - startTime.current) / 1000,
-          cancelChartAnimation
-        );
-        setView(value);
+        const progress = (time - startTime.current) / nextView.duration;
+
+        if (progress > 1) {
+          cancelChartAnimation();
+          setView(nextView.step(1));
+        } else {
+          setView(nextView.step(progress));
+        }
+
         if (timer.current) {
           timer.current = requestAnimationFrame(step);
         }
@@ -62,7 +66,7 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
 
   return {
     view: current,
-    isPanning,
+    isPanning: isGesturing || !!startTime.current,
     onGesture,
   };
 };

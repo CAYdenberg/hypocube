@@ -24,13 +24,17 @@ interface LineSeriesProps {
 export const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
   props
 ) => {
-  const { pxBox } = useChartState();
+  const { pxBox, isCanvas } = useChartState();
   const chartStyle = useChartStyle(props.chartStyle);
 
   const Line = props.renderLine || DataLine;
   const Point = props.renderPoint || DataPoint;
 
-  const filteredPoints = filterToView(props.data, pxBox);
+  const filteredPoints =
+    isCanvas && chartStyle.dataPointSymbol === 'none'
+      ? // No interaction, no render: don't bother
+        []
+      : filterToView(props.data, pxBox);
 
   return (
     <React.Fragment>

@@ -132,7 +132,10 @@ export interface ChartGestureHandlers {
   onGesture?: (data: ChartGestureData) => void;
 }
 
-export type ChartAnimation = (time: number, end: () => void) => Viewbox;
+export interface ChartAnimation {
+  duration: number;
+  step: (progress: number) => Viewbox;
+}
 
 export interface Dataseries {
   data: Point[];

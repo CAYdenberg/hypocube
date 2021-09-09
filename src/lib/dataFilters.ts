@@ -1,6 +1,8 @@
 import { Point } from '../types';
 import Viewbox from './Viewbox';
 
+// FIXME: not working for DataLines
+
 const isAnyInView = (points: Point[], view: Viewbox): boolean => {
   return !!points.find(
     ([x, y]) =>
