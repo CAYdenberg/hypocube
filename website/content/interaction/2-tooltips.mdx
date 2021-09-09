@@ -1,0 +1,137 @@
+---
+title: 'Tooltips'
+metaTitle: 'Bringing Hypocube charts to life'
+metaDescription: 'Bringing Hypocube charts to life'
+---
+
+A common use case for event handling on data points is to display a tooltip when a point is clicked or touched. The Chart `htmlLayer` prop gives you a place to render tooltips. The tooltip addon provides a couple of useful conveniences.
+
+## useTooltip hook
+
+The `useTooltip` hook is designed to be similar to React's `useState`, except that it has two functions: one for setting the hook and one for closing it.
+
+```javascript
+import { useTooltip } from 'hypocube/addons/tooltips';
+
+const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
+```
+
+`setTooltipData` can be passed directly as a Hypocube event handler: firing the event will set `tooltipData`. When set, it is an object consisting of `position: [number, number]` and `meta: object` (containing any data you need). See [pointer events](./1-pointer-events) for more about meta data. When unset, `tooltipData` is null.
+
+```jsx
+<LineSeries onPointerDown={setTooltipData} />
+```
+
+## TooltipWrapper component
+
+`TooltipWrapper` is a simple component designed to handle clicks outside of itself (which are usually intended to close the tooltip). The `handleCloseTooltip` function be passed to this prop.
+
+```jsx
+import { TooltipWrapper } from 'hypocube/addons/tooltips';
+
+<TooltipWrapper onRequestClose={handleCloseTooltip}>
+  <MyTooltip data={tooltipData} />
+</TooltipWrapper>;
+```
+
+## Full Example
+
+Firstly, we create our tooltip component. Hypocube doesn't make assumptions about styling:
+
+```jsx
+import { TooltipWrapper } from 'hypocube/addons/tooltips';
+
+const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
+  <TooltipWrapper onRequestClose={onRequestClose}>
+    <div
+      style={{
+        padding: 2,
+        background: 'white',
+        border: '1px solid black',
+        transform: 'translate(5px, -50%)',
+      }}
+    >
+      <p>
+        Series Color: <strong>{seriesColor}</strong>
+      </p>
+      <p>
+        x: <strong>{position[0]}</strong>, y: <strong>{position[1]}</strong>
+      </p>
+    </div>
+  </TooltipWrapper>
+);
+```
+
+Next, we use that component in the `htmlLayer` of the `Chart` component:
+
+```jsx
+import { useTooltip } from 'hypocube/addons/tooltip';
+
+const MyChart = () => {
+  const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
+
+  return (
+    <Chart
+      width={300}
+      height={300}
+      view={[0, 0, 4, 5]}
+      gutter={[5, 5, 5, 5]}
+      chartStyle={{
+        dataPointSymbol: 'circle',
+        dataPointMinTargetRadius: 20,
+      }}
+      htmlLayer={
+        tooltipData
+          ? {
+              position: tooltipData.position,
+              render: (
+                <SimpleTooltip
+                  seriesColor={tooltipData.meta.seriesColor}
+                  position={tooltipData.position}
+                  onRequestClose={handleCloseTooltip}
+                />
+              ),
+            }
+          : null
+      }
+    >
+      <XAxis />
+      <YAxis />
+      <LineSeries
+        data={[
+          [1, 3],
+          [2, 2],
+          [3, 5],
+        ]}
+        chartStyle={{
+          dataLineStroke: 'green',
+          dataPointFill: 'green',
+        }}
+        onPointerDown={setTooltipData}
+        handlerMeta={{
+          seriesColor: 'Green',
+        }}
+      />
+      <LineSeries
+        data={[
+          [1, 1],
+          [2, 3],
+          [3, 4],
+        ]}
+        chartStyle={{
+          dataLineStroke: 'blue',
+          dataPointFill: 'blue',
+        }}
+        onPointerDown={setTooltipData}
+        handlerMeta={{
+          seriesColor: 'Blue',
+        }}
+      />
+    </Chart>
+  );
+};
+```
+
+import Example from '../components/tooltips';
+
+<Example />;

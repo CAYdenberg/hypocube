@@ -1,0 +1,67 @@
+---
+title: 'Primatives'
+metaTitle: 'Composing new types of Charts'
+metaDescription: 'Composing new types of Charts'
+---
+
+import PropDef from '../components/PropDef';
+
+Ultimately, all components in Hypocube are composed out of the same set of primatives. These base-layer components are responsible for SVG and canvas drawing, and converting between the Cartesian and pixel scales.
+
+## Line
+
+The simplest component: a line connecting a set of points on the Cartesian scale. The line may be curved, or dashed.
+
+<PropDef name="path" type="Array<[number, number]>" required>
+  A set of points, which are themselves a bipartite array in the form [x, y].
+</PropDef>
+<PropDef name="stroke" type="color | null" def="#000"></PropDef>
+<PropDef name="strokeWidth" type="number" def="1"></PropDef>
+<PropDef name="fill" type="color | null" def="null"></PropDef>
+<PropDef name="curveType" type="string | D3CurveFactory" def="linear">
+  The "curve type" represents a function to calculate the shape of the line in
+  between the data points, and can be a string or a{' '}
+  <a href="http://using-d3js.com/05_04_curves.html">
+    d3 curve factory function
+  </a>
+  . The available built-in curve types are "linear", "cardinal", "natural", "basis",
+  or "step".
+</PropDef>
+<PropDef name="dash" type="string | [number, number]" def="solid">
+  This property represents the type of dash. It can be a bipartite array
+  representing the number of rendered pixels followed by the number of blank
+  pixels, or a string. The available built-in dash types are "solid", "dashed"
+  (equivalent to `[5, 5]`), or "dotted" (equivalent to `[1, 1]`).
+</PropDef>
+
+### PxLine
+
+A variant of `Line`, which accepts the same props, but in which the `path` is specified on the pixel scale instead of the Cartesian scale.
+
+### TranslatedLine
+
+A variant of `Line`, in which a set of points given on the pixel scale is rendered relative to an anchor point given on the Cartesian scale. It accepts the same props as `Line` (the path is in pixels), an an additional prop:
+
+<PropDef name="point" type="[number, number]" required>
+  The anchor point for the rest of the path, on the Cartesian scale.
+</PropDef>
+
+## Text
+
+Renders the text given in the `text` prop at `position` on the Cartesian scale.
+
+<PropDef name="position" type="[number, number]" required>
+  The position of the text, given in the form [x, y].
+</PropDef>
+<PropDef name="text" type="string" required>
+  The text to be rendered.
+</PropDef>
+<PropDef name="pxOffset" type="[number, number]">
+  An optional offset added to the position, in pixels.
+</PropDef>
+<PropDef name="color" type="color" def="#000"></PropDef>
+<PropDef name="font" type="string" def="sans-serif"></PropDef>
+<PropDef name="fontSize" type="number" def="16"></PropDef>
+<PropDef name="align" type="'left' | 'center' | 'right'" def="left"></PropDef>
+
+## Symbol
