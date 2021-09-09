@@ -1,0 +1,82 @@
+---
+title: 'Pointer events'
+metaTitle: 'Bringing Hypocube charts to life'
+metaDescription: 'Bringing Hypocube charts to life'
+---
+
+import PropDef from '../components/PropDef';
+
+## Supported events
+
+Pointer events are supported on the containing `Chart` element and on most child elements. In the case of data series, the handlers are passed on to the child data points. The following handler props can be declared:
+
+- onPointerDown
+- onPointerMove
+- onPointerUp
+- onPointerCancel
+- onGotPointerCapture
+- onLostPointerCapture
+- onPointerEnter
+- onPointerLeave
+- onPointerOver
+- onPointerOut
+
+Check out this article to learn more about the [mental model behind pointer events](https://javascript.info/pointer-events). [MDN is the best place to get detailed info on when each event fill fire](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events). Finally, [the React docs](https://reactjs.org/docs/events.html#pointer-events) are always worth a look.
+
+## Event data
+
+Hypocube re-maps the argument passed to the handler so that the relevent coordinates on the Cartesian data scales are available. To see this, try clicking on the bars in the chart below - and have a look at your console.
+
+```javascript react-live=true
+<Chart
+  width={300}
+  height={100}
+  view={[0, 0, 4, 5]}
+  isCanvas={false}
+  chartStyle={{
+    dataBoxFill: 'blue',
+    dataBoxThickness: 50,
+  }}
+>
+  <XAxis />
+  <YAxis />
+  <BarVerticalSeries
+    data={[
+      [1, 3],
+      [2, 2],
+      [3, 5],
+    ]}
+    onPointerDown={console.log}
+    handlerMeta={{
+      isSoMeta: true,
+    }}
+  />
+</Chart>
+```
+
+Notice that the `elementPosition` corresponds to one of the pieces of data passed to the `BarSeries`. Similarly, the coordinates of `pointerPosition` correspond to the Cartesian scales of the chart.
+
+In detail, the object passed to handlers has the following props:
+
+<PropDef name="event" type="SyntheticEvent">
+  The original React SyntheticEvent.
+</PropDef>
+<PropDef name="elementPosition" type="[number, number]">
+  The coordinates of the element interacted with, on the Cartesian scale. For
+  data points, this is the semantically meaningful position of the data. For
+  ranges, it is the anchor point.
+</PropDef>
+<PropDef name="pointerPosition" type="[number, number]">
+  The position of the pointer, on the Cartesian scale.
+</PropDef>
+<PropDef name="modifiers" type="string[]">
+  Array of modifier keys held down during the interaction; ie "shift", "ctrl",
+  "alt".
+</PropDef>
+<PropDef name="meta">
+  When an object containing arbitrary data is passed to a component as
+  `handlerMeta`, that same data will be passed back to the event handler as
+  `meta` data. This is useful when the same event handler is passed to different
+  components, for example in a chart with multiple series. In such a case the
+  series name can be passed as a meta data.
+</PropDef>

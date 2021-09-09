@@ -1,0 +1,23 @@
+---
+title: 'Chart Furniture'
+metaTitle: 'Composing new types of Charts'
+metaDescription: 'Composing new types of Charts'
+---
+
+import PropDef from '../components/furniture';
+
+_Furniture_ here refers to parts of the chart that do not display data.
+
+## Tick Marks
+
+Tick marks are rendered by axes to indicate how a position relates to real-world data. There are two tick mark components: `XTickMark` and `YTickMark` which both accept the same props:
+
+<PropDef name="position" type="[number, number]" required>
+  The position of the tick mark on both axes, given in the form [x, y].
+</PropDef>
+<PropDef name="label" type="string" def="(empty string)">
+  Label on the tick mark.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle">
+  See also the `axisTick` and `fontSize` declarations.
+</PropDef>

@@ -1,10 +1,11 @@
 ---
 title: 'Interaction'
-metaTitle: ''
-metaDescription: ''
+metaTitle: 'Bringing Hypocube charts to life'
+metaDescription: 'Bringing Hypocube charts to life'
 ---
 
-- Pointer events
-- useTooltip and Tooltip wrapper
-- onGesture event
-- usePannableView and dynamic viewboxes
+Interactivity is supported by Hypocube at two levels: pointer events and gestures.
+
+Pointer events are [browser events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) intended to simplify the differences between mouse and touch events: therefore, Hypocube uses them instead of the more familiar mouse events, like `onClick`. Pointer event handlers can be passed to `Chart` elements, as well as most elements contained within the `Chart`; however, the handlers will not fire when rendering in canvas. A typical use for pointer events would be display a tooltip when a data point is clicked (or touched). [Read more.](./interaction/1-pointer-events)
+
+Gesture handlers are passed only to `Chart` elements. They can be used to handle click-and-drag-type mouse movements, or touch-swipe-type movements, and to pan or zoom the viewbox of the chart in response. [Read more.](./interaction/3-handling-gestures)

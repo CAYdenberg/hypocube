@@ -1,0 +1,65 @@
+---
+title: 'Data Components'
+metaTitle: 'Composing new types of Charts'
+metaDescription: 'Composing new types of Charts'
+---
+
+import PropDef from '../components/PropDef';
+
+The LineSeries, BarVerticalSeries, and RangeSeries components provide a flexible way to create the most common types of charts. Under the hood, these Series components use Data components to render individual data points. These data components are described in detail here.
+
+Since some charts contain data points that performance can be an issue, these components make use of custom prop-checking function to minimize re-rendering. A consequence of this is that `chartStyle` must be passed as a prop, rather than accessed by context.
+
+## DataPoint
+
+A symbol rendered at its actual position on both axes. Event handlers are triggered on an invisible circle surrounding the data point, which can have a larger radius based on the `dataPointMinTargetRadius` property.
+
+<PropDef name="x" type="number" required>
+  Position on the x-axis.
+</PropDef>
+<PropDef name="y" type="number" required>
+  Position on the y-axis.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle" required>
+  The *full* chart styles object.
+</PropDef>
+
+See also the [dataPoint chart styles](../basic-charts/2-chart-style#datapoints) chart styles.
+
+### DataAnchorLine
+
+This is a variant of DataPoint that renders a horizontal line at the point, instead of a symbol. See also the [dataAnchor styles](../basic-charts/2-chart-styles#dataranges).
+
+## DataSeriesLine
+
+A line connecting a set/array of data. By default, the line is a broken set of segments, but can be smoothed by changing the `dataLineCurveType` style.
+
+<PropDef name="data" type="Array<[number, number]>" required>
+  An array of data points, each of which is a bipartite ([x, y]) array.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle" required>
+  The *full* chart styles object.
+</PropDef>
+
+## DataBoxVertical
+
+A component which is rendered at a particular point on the x-axis, and between two points on the y-axis. Sometimes, only one of the points on the y-axis is meaningful: for example, in the `BarVerticalSeries` component, each `DataBoxVeritcal` is drawn from 0 to the "real" data point.
+
+See also the [dataBox styles](../basic-charts/2-chart-styles#databoxes).
+
+<PropDef name="x" type="number" required>
+  The x position of the data point.
+</PropDef>
+<PropDef name="yMin" type="number" required>
+  The lower y position of the range.
+</PropDef>
+<PropDef name="yMax" type="number" required>
+  The upper x position of the range.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle" required>
+  The *full* chart styles object.
+</PropDef>
+
+### DataWhiskerVertical
+
+This is a variant of `DataBoxVeritcal` that renders a whisker ("error bar") instead of a rectangle. See the [dataRange](../basic-charts/2-chart-styles#datarange) styles.

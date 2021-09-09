@@ -66,6 +66,5 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
       }
       setBoxStart(nextView || nextViewFromPan);
     },
-    // TODO: pinch and wheel events
   });
 };

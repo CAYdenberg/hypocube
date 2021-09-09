@@ -36,17 +36,19 @@ const data = [
   [4, 754],
 ];
 
-<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
-  <XAxis
-    tickPositions={[0, 1, 2, 3, 4]}
-    getTickLabel={(pos) => `#${pos + 1}`}
-  />
-  <YAxis
-    tickPositions={[0, 1, 2, 3]}
-    getTickLabel={(pos) => String(Math.pow(10, pos))}
-  />
-  <LineSeries data={data.map(([x, y]) => [x, Math.log10(y)])} />
-</Chart>;
+return (
+  <Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+    <XAxis
+      tickPositions={[0, 1, 2, 3, 4]}
+      getTickLabel={(pos) => `#${pos + 1}`}
+    />
+    <YAxis
+      tickPositions={[0, 1, 2, 3]}
+      getTickLabel={(pos) => String(Math.pow(10, pos))}
+    />
+    <LineSeries data={data.map(([x, y]) => [x, Math.log10(y)])} />
+  </Chart>
+);
 ```
 
 ## Categorical scales
@@ -62,17 +64,19 @@ const data = [
   ['Cat E', 754],
 ];
 
-<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
-  <XAxis
-    tickPositions={data.map(_, i) => i}
-    getTickLabel={(pos) => String(data[pos][0])}
-  />
-  <YAxis
-    tickPositions={[0, 1, 2, 3]}
-    getTickLabel={(pos) => String(Math.pow(10, pos))}
-  />
-  <LineSeries data={data.map(([x, y], i) => [i, Math.log10(y)])} />
-</Chart>;
+return (
+  <Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+    <XAxis
+      tickPositions={data.map(_, i) => i}
+      getTickLabel={(pos) => String(data[pos][0])}
+    />
+    <YAxis
+      tickPositions={[0, 1, 2, 3]}
+      getTickLabel={(pos) => String(Math.pow(10, pos))}
+    />
+    <LineSeries data={data.map(([x, y], i) => [i, Math.log10(y)])} />
+  </Chart>
+);
 ```
 
 This example demonstrates a categorical x-axis and a logarithmic y-axis.
