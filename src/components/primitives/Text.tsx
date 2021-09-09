@@ -20,7 +20,7 @@ const Text: React.FC<Props> = (props) => {
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
   const { position, text } = props;
 
-  const font = normalize(props.font, 'sans-serif');
+  const font = normalize(props.font, 'Helvetica');
   const fontSize = normalize(props.fontSize, 16);
   const color = normalize(props.color, '#000');
   const align = normalize(props.align, 'left');
