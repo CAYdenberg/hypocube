@@ -27,8 +27,8 @@ interface SymbolProps {
   size?: number;
   symbol?: D3SymbolType | symbolType;
   stroke?: string;
-  fill?: string | null;
   strokeWidth?: number;
+  fill?: string | null;
   quietRenderRadius?: number;
 }
 
