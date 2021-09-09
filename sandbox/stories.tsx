@@ -7,6 +7,7 @@ import MultipleBarGraph from './MultipleBarGraph';
 import MultipleSeries from './MultipleSeries';
 import Pannable from './Pannable';
 import DotAndTukey from './DotAndTukey';
+import HomepageTimeseries from './HomepageTimeseries';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 
@@ -129,6 +130,10 @@ const examples: Example[] = [
         view={[0, 0, 0, 0]}
       ></ChartError>
     ),
+  },
+  {
+    name: 'Homepage: Timeseries',
+    render: ({ isCanvas }) => <HomepageTimeseries isCanvas={isCanvas} />,
   },
 ];
 
