@@ -9,7 +9,6 @@ export * from './components/data/DataRange';
 export * from './components/data/DataSeriesLine';
 
 export { XAxis, YAxis } from './components/furniture/Axes';
-export { default as VoronoiHandle } from './components/furniture/VoronoiHandle';
 
 export { default as Handle } from './components/primitives/Handle';
 export { Line, PxLine } from './components/primitives/Line';

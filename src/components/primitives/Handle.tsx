@@ -13,7 +13,7 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   const handlers = useHandle(props);
   const bind = useRescaleGestures(onGesture);
   return (
-    <div {...handlers} {...bind()}>
+    <div {...bind()} {...handlers}>
       {children}
     </div>
   );
