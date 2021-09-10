@@ -10,7 +10,7 @@ const isChartAnimation = (
 
 export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   initialViewbox = createViewbox(initialViewbox);
-  const [current, setView] = useState<Viewbox>(initialViewbox);
+  const [currentView, setView] = useState<Viewbox>(initialViewbox);
   const [isGesturing, setIsGesturing] = useState<boolean>(false);
 
   const timer = useRef<number | null>(null);
@@ -65,7 +65,7 @@ export default (initialViewbox: ViewboxDuck, handleGesture: HandleGesture) => {
   }, []);
 
   return {
-    view: current,
+    view: currentView,
     isPanning: isGesturing || !!startTime.current,
     onGesture,
   };

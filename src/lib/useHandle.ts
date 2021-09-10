@@ -12,13 +12,11 @@ import selectHandlers from './selectHandlers';
 export interface HandlerProps extends ChartEventHandlers {
   elementPosition?: [number, number];
   meta?: ChartEventMetaData;
-  mapEventData?: (data: ChartEventData) => ChartEventData;
 }
 
 export default ({
   elementPosition,
   meta,
-  mapEventData,
   ...handlers
 }: HandlerProps): ReactHandlers => {
   const { scaleX, scaleY, containerOffset } = useChartState();
@@ -41,9 +39,9 @@ export default ({
         ].filter(Boolean) as Array<string>,
       };
 
-      return mapEventData ? mapEventData(data) : data;
+      return data;
     },
-    [meta, elementPosition, mapEventData, scaleX, scaleY, containerOffset]
+    [meta, elementPosition, scaleX, scaleY, containerOffset]
   );
 
   const reactHandlers = useMemo(() => {
