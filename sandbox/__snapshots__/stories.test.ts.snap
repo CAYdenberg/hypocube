@@ -28043,7 +28043,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           strokeWidth={2}
         />
         <path
-          d="M50,250L50,260"
+          d="M63.8,250L63.8,260"
           fill="transparent"
           stroke="#666"
           strokeWidth={2}
@@ -28058,13 +28058,13 @@ exports[`Test: Homepage: Timeseries 1`] = `
             }
           }
           textAnchor="middle"
-          x={50}
+          x={63.8}
           y={278}
         >
-          201
+          Jan 2017
         </text>
         <path
-          d="M280,250L280,260"
+          d="M119,250L119,260"
           fill="transparent"
           stroke="#666"
           strokeWidth={2}
@@ -28079,10 +28079,52 @@ exports[`Test: Homepage: Timeseries 1`] = `
             }
           }
           textAnchor="middle"
-          x={280}
+          x={119}
           y={278}
         >
-          251
+          Jan 2018
+        </text>
+        <path
+          d="M174.20000000000002,250L174.20000000000002,260"
+          fill="transparent"
+          stroke="#666"
+          strokeWidth={2}
+        />
+        <text
+          fill="#666"
+          fontSize={16}
+          style={
+            Object {
+              "fontFamily": "Helvetica, sans-serif",
+              "userSelect": "none",
+            }
+          }
+          textAnchor="middle"
+          x={174.20000000000002}
+          y={278}
+        >
+          Jan 2019
+        </text>
+        <path
+          d="M229.4,250L229.4,260"
+          fill="transparent"
+          stroke="#666"
+          strokeWidth={2}
+        />
+        <text
+          fill="#666"
+          fontSize={16}
+          style={
+            Object {
+              "fontFamily": "Helvetica, sans-serif",
+              "userSelect": "none",
+            }
+          }
+          textAnchor="middle"
+          x={229.4}
+          y={278}
+        >
+          Jan 2020
         </text>
       </g>
       <g>

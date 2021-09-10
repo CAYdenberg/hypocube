@@ -1,4 +1,5 @@
 import React from 'react';
+import { DateTime } from 'luxon';
 import {
   Chart,
   XAxis,
@@ -10,7 +11,19 @@ import {
 } from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
 import usePannableView from '../src/addons/usePannableView';
-import timeseriesData from './__data__/homepage-1';
+import timeseriesData, { labels } from './__data__/homepage-1';
+
+const ticks = ({ pxWidth }: { pxWidth: number }) => {
+  const interval = pxWidth > 768 ? 6 : 12;
+  return labels
+    .map((_, i) => (i % interval ? null : i))
+    .filter((val) => val !== null) as number[];
+};
+const getTickLabel = (x: number) => {
+  const raw = labels[x];
+  const dt = DateTime.fromISO(raw);
+  return dt.toLocaleString({ year: 'numeric', month: 'short' });
+};
 
 const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const boundingBox = createViewbox([0, 0, 251, 250]);
@@ -19,9 +32,11 @@ const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
     (data) => {
       if (data.kind === GestureKind.Swipe) {
         return {
-          duration: 1000,
+          duration: 600,
           step: (progress) => {
-            return view.interpolate(data.nextView, progress).bound(boundingBox);
+            return view
+              .interpolate(data.nextView, progress, true)
+              .bound(boundingBox);
           },
         };
       }
@@ -37,7 +52,7 @@ const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       gutter={[5, 20, 50, 50]}
       isCanvas={isCanvas || isPanning}
       chartStyle={{
-        dataPointSymbol: isPanning ? 'none' : 'circle',
+        dataPointSymbol: 'circle',
         dataLineCurveType: 'natural',
       }}
       onGesture={onGesture}
@@ -52,7 +67,7 @@ const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
           chartStyle={chartStyle}
         />
       ))}
-      <XAxis />
+      <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis
         tickPositions={[0, 100, 200]}
         getTickLabel={(pos) => String(pos)}
