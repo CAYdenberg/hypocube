@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { DateTime } from 'luxon';
 import {
   Chart,
   XAxis,
   LineSeries,
   GestureKind,
-  ChartStyleOptions,
   YAxis,
   createViewbox,
+  ChartEventData,
 } from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
 import usePannableView from '../src/addons/usePannableView';
 import timeseriesData, { labels } from './__data__/homepage-1';
+import useVoronoi from '../src/addons/useVoronoi';
 
 const ticks = ({ pxWidth }: { pxWidth: number }) => {
   const interval = pxWidth > 768 ? 6 : 12;
@@ -25,7 +26,15 @@ const getTickLabel = (x: number) => {
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
 
-const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
+interface Props {
+  isCanvas: boolean;
+  handlePointSelect?: (data: ChartEventData) => void;
+}
+
+const HomepageTimeseries: React.FC<Props> = ({
+  isCanvas,
+  handlePointSelect,
+}) => {
   const boundingBox = createViewbox([0, 0, 251, 250]);
   const { view, isPanning, onGesture } = usePannableView(
     [201, 0, 50, 250],
@@ -44,6 +53,18 @@ const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
     }
   );
 
+  const onPointerMove = useVoronoi(
+    timeseriesData,
+    useCallback(
+      (data: ChartEventData) => {
+        if (!handlePointSelect) return;
+
+        handlePointSelect(data);
+      },
+      [handlePointSelect]
+    )
+  );
+
   return (
     <Chart
       height={300}
@@ -56,6 +77,7 @@ const HomepageTimeseries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         dataLineCurveType: 'natural',
       }}
       onGesture={onGesture}
+      onPointerMove={onPointerMove}
     >
       {applySeriesStyles(timeseriesData, {
         colors: ['#003f5c', '#58508d', '#bc5090'],

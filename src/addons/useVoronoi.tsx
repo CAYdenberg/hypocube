@@ -1,6 +1,6 @@
 import { Delaunay } from 'd3-delaunay';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Point, Dataseries, ChartEventHandler, ChartEventData } from '../types';
+import { useCallback, useEffect, useState } from 'react';
+import { Point, Dataseries, ChartEventHandler } from '../types';
 
 export const flatten = (series: Dataseries[]) => {
   return series.reduce((acc, series) => acc.concat(series.data), [] as Point[]);
@@ -81,7 +81,7 @@ const useVoronoi = (
         meta: series[extractedPoint.seriesIndex]?.meta || {},
       });
     },
-    [voronoi]
+    [voronoi, callback]
   );
 
   return handler;
