@@ -27,11 +27,13 @@ const Pannable: React.FC<Props> = ({
     [50, 0, 50, 1000],
     (data) => {
       if (data.kind === GestureKind.Swipe) {
-        return (time, cancel) => {
-          if (time > 1) {
-            cancel();
-          }
-          return view.interpolate(data.nextView, time).bound(boundingBox);
+        return {
+          duration: 600,
+          step: (progress) => {
+            return view
+              .interpolate(data.nextView, progress, true)
+              .bound(boundingBox);
+          },
         };
       }
       return data.nextView.bound(boundingBox);

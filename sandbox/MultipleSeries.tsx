@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  Chart,
-  Dataseries,
-  LineSeries,
-  Point,
-  VoronoiHandle,
-  XAxis,
-  YAxis,
-} from '../src';
+import { Chart, Dataseries, LineSeries, Point, XAxis, YAxis } from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
+import useVoronoi from '../src/addons/useVoronoi';
 import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
 
@@ -55,6 +48,8 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
     seriesName: string;
   }>();
 
+  const handleSelectPoint = useVoronoi(series, setTooltip);
+
   return (
     <Chart
       height={300}
@@ -78,6 +73,7 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
             }
           : null
       }
+      onPointerDown={handleSelectPoint}
     >
       <XAxis tickPositions={tickPositions} getTickLabel={getXLabel} />
       <YAxis
@@ -87,15 +83,8 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       {applySeriesStyles(series, {
         colors: ['#003f5c', '#58508d', '#bc5090'],
       }).map(({ data, key, chartStyle }, i) => (
-        <LineSeries
-          key={key}
-          data={data}
-          onPointerDown={setTooltip}
-          handlerMeta={{ label: key }}
-          chartStyle={chartStyle}
-        />
+        <LineSeries key={key} data={data} chartStyle={chartStyle} />
       ))}
-      <VoronoiHandle series={series} onPointerDown={setTooltip} />
     </Chart>
   );
 };

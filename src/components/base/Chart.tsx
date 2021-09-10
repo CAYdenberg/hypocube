@@ -144,7 +144,7 @@ const ChartInner: React.FC<Props> = (props) => {
       scaleY,
       containerOffset,
     }),
-    [isCanvas, pxBox, props.view]
+    [pushToCanvasQueue, pxBox, props.view]
   );
 
   const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)
