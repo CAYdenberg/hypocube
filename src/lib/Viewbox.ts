@@ -1,5 +1,3 @@
-import { easeCubicOut } from 'd3-ease';
-
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
 export default class Viewbox {
@@ -11,6 +9,7 @@ export default class Viewbox {
   public readonly yMax: number;
   public readonly x: Range;
   public readonly y: Range;
+  public readonly hash: string;
 
   constructor(xMin: number, yMin: number, width: number, height: number) {
     this.xMin = xMin;
@@ -21,6 +20,7 @@ export default class Viewbox {
     this.yMax = yMin + height;
     this.x = [xMin, this.xMax];
     this.y = [yMin, this.yMax];
+    this.hash = `${xMin},${yMin},${width},${height}`;
   }
 
   panX(distance: number): Viewbox {

@@ -20,6 +20,8 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
       }
     : null;
 
+  // this is a "no-dependency" useEffect: it should run *after* rendering
+  // on every render
   useEffect(() => {
     if (!context.current) return;
 

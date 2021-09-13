@@ -8,7 +8,6 @@ import {
   ChartGestureData,
 } from '../src';
 import usePannable from '../src/addons/usePannable';
-import { createViewbox } from '../src/lib/Viewbox';
 
 interface Props {
   getDateLabel: (x: number) => string;

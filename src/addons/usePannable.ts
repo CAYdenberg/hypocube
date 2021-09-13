@@ -51,7 +51,9 @@ export default (
       const _nextView = createViewbox(nextView);
       setView(_nextView.bound(_boundingViewbox));
     },
-    [_boundingViewbox]
+    // viewboxes use a hash to optimize re-rendering
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [_boundingViewbox.hash]
   );
 
   const scrollToView = useCallback(
@@ -84,7 +86,9 @@ export default (
       };
       timer.current = requestAnimationFrame(step);
     },
-    [currentView, _boundingViewbox, _options]
+    // viewboxes use a hash to optimize re-rendering
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentView.hash, _boundingViewbox.hash, _options]
   );
 
   useEffect(() => {

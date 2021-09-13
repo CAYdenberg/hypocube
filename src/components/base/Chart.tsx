@@ -144,11 +144,9 @@ const ChartInner: React.FC<Props> = (props) => {
       scaleY,
       containerOffset,
     }),
-    // this is very carefully tested to re-render only when needed.
-    // Deps are intentionally overwritten.
-
+    // viewboxes use a hash to optimize re-rendering
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pushToCanvasQueue, pxBox, props.view]
+    [pushToCanvasQueue, pxBox, cartesianBox.hash]
   );
 
   const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)

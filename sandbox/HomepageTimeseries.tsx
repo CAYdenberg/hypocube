@@ -6,9 +6,9 @@ import {
   LineSeries,
   GestureKind,
   YAxis,
-  createViewbox,
   ChartEventData,
   ChartGestureData,
+  Viewbox,
 } from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
 import usePannableView from '../src/addons/usePannable';
@@ -26,21 +26,39 @@ const getTickLabel = (x: number) => {
   const dt = DateTime.fromISO(raw);
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
-
-interface Props {
+interface StoryProps {
   isCanvas: boolean;
   handlePointSelect?: (data: ChartEventData) => void;
+}
+
+export const HomepageTimeseriesStory: React.FC<StoryProps> = (props) => {
+  const [view, setView, scrollToView] = usePannableView(
+    [201, 0, 50, 250],
+    [0, 0, 251, 250]
+  );
+  return (
+    <HomepageTimeseries
+      {...props}
+      view={view}
+      setView={setView}
+      scrollToView={scrollToView}
+    />
+  );
+};
+
+interface Props extends StoryProps {
+  view: Viewbox;
+  setView: (view: Viewbox) => void;
+  scrollToView: (view: Viewbox) => void;
 }
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   handlePointSelect,
+  view,
+  setView,
+  scrollToView,
 }) => {
-  const [view, setView, scrollToView] = usePannableView(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
-
   const onGesture = useCallback(
     (data: ChartGestureData) => {
       if (data.kind === GestureKind.Swipe) {
