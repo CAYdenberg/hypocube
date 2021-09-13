@@ -59,7 +59,7 @@ const useVoronoi = (
       // any queued callbacks are now waiting to run on obsolete data, clear them.
       window?.cancelIdleCallback && window.cancelIdleCallback(handle);
     };
-  }, [series]);
+  }, [series, timeout]);
 
   const handler: ChartEventHandler = useCallback(
     (data) => {
@@ -81,7 +81,7 @@ const useVoronoi = (
         meta: series[extractedPoint.seriesIndex]?.meta || {},
       });
     },
-    [voronoi, callback]
+    [callback, series, voronoi]
   );
 
   return handler;

@@ -80,10 +80,10 @@ const ChartInner: React.FC<Props> = (props) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const { height } = props;
   const getHeight = useCallback(
-    (width: number) =>
-      typeof props.height === 'function' ? props.height(width) : props.height,
-    [props.height]
+    (width: number) => (typeof height === 'function' ? height(width) : height),
+    [height]
   );
 
   const [pxBox, setPxBox] = useState<Viewbox>(
@@ -102,7 +102,7 @@ const ChartInner: React.FC<Props> = (props) => {
         )
       );
     }
-  }, [containerRef]);
+  }, [containerRef, getHeight]);
 
   useEffect(() => {
     calculateSizes();
@@ -144,6 +144,10 @@ const ChartInner: React.FC<Props> = (props) => {
       scaleY,
       containerOffset,
     }),
+    // this is very carefully tested to re-render only when needed.
+    // Deps are intentionally overwritten.
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [pushToCanvasQueue, pxBox, props.view]
   );
 

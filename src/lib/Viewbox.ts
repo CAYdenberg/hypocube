@@ -82,13 +82,12 @@ export default class Viewbox {
     );
   }
 
-  interpolate(final: Viewbox, progress: number, ease?: boolean): Viewbox {
-    const adjProgress = ease ? easeCubicOut(progress) : progress;
+  interpolate(final: Viewbox, progress: number): Viewbox {
     return new Viewbox(
-      this.xMin + adjProgress * (final.xMin - this.xMin),
-      this.yMin + adjProgress * (final.yMin - this.yMin),
-      this.width + adjProgress * (final.width - this.width),
-      this.height + adjProgress * (final.height - this.height)
+      this.xMin + progress * (final.xMin - this.xMin),
+      this.yMin + progress * (final.yMin - this.yMin),
+      this.width + progress * (final.width - this.width),
+      this.height + progress * (final.height - this.height)
     );
   }
 }

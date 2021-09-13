@@ -8,9 +8,10 @@ import {
   YAxis,
   createViewbox,
   ChartEventData,
+  ChartGestureData,
 } from '../src';
 import applySeriesStyles from '../src/addons/applySeriesStyles';
-import usePannableView from '../src/addons/usePannableView';
+import usePannableView from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';
 
@@ -35,20 +36,21 @@ const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   handlePointSelect,
 }) => {
-  const boundingBox = createViewbox([0, 0, 251, 250]);
-  const { view, onGesture } = usePannableView([201, 0, 50, 250], (data) => {
-    if (data.kind === GestureKind.Swipe) {
-      return {
-        duration: 600,
-        step: (progress) => {
-          return view
-            .interpolate(data.nextView, progress, true)
-            .bound(boundingBox);
-        },
-      };
-    }
-    return data.nextView.bound(boundingBox);
-  });
+  const [view, setView, scrollToView] = usePannableView(
+    [201, 0, 50, 250],
+    [0, 0, 251, 250]
+  );
+
+  const onGesture = useCallback(
+    (data: ChartGestureData) => {
+      if (data.kind === GestureKind.Swipe) {
+        scrollToView(data.nextView);
+        return;
+      }
+      setView(data.nextView);
+    },
+    [setView, scrollToView]
+  );
 
   const onPointerMove = useVoronoi(
     timeseriesData,
