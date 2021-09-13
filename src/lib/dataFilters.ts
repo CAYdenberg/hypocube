@@ -1,21 +1,25 @@
-import { Point } from '../types';
-import Viewbox from './Viewbox';
+import { ChartState, Point } from '../types';
 
-// FIXME: not working for DataLines
-
-const isAnyInView = (points: Point[], view: Viewbox): boolean => {
-  return !!points.find(
-    ([x, y]) =>
-      x >= view.xMin && x <= view.xMax && y >= view.yMin && y <= view.yMax
-  );
+const isAnyInView = (points: Point[], state: ChartState): boolean => {
+  return !!points.find(([x, y]) => {
+    const pxX = state.scaleX(x);
+    const pxY = state.scaleY(y);
+    const { pxBox } = state;
+    return (
+      pxX >= pxBox.xMin &&
+      pxX <= pxBox.xMax &&
+      pxY >= pxBox.yMin &&
+      pxY <= pxBox.yMax
+    );
+  });
 };
 
-// TODO: we really need different types of filters for each data series type ...
-export const filterToView = (data: Point[], view: Viewbox) => {
+// TODO: need different type of filter for Bar (range?) that only works on one axis
+export const filterToView = (data: Point[], state: ChartState) => {
   return data.filter((_, i) => {
     if (i === 0) {
-      return isAnyInView(data.slice(0, 2), view);
+      return isAnyInView(data.slice(0, 2), state);
     }
-    return isAnyInView(data.slice(i - 1, i + 2), view);
+    return isAnyInView(data.slice(i - 1, i + 2), state);
   });
 };

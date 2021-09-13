@@ -7,7 +7,7 @@ const config = {
   },
   header: {
     logo: 'https://www.caydenberg.io/favicon.png',
-    logoLink: 'https://hypocube.space/',
+    logoLink: '/',
     title: 'Hypocube Docs',
     githubUrl: 'https://github.com/CAYdenberg/hypocube',
     helpUrl: '',

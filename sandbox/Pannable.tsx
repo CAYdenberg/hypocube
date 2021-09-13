@@ -23,22 +23,19 @@ const Pannable: React.FC<Props> = ({
   tickPositions,
 }) => {
   const boundingBox = createViewbox([0, 0, 400, 1000]);
-  const { view, isPanning, onGesture } = usePannableView(
-    [50, 0, 50, 1000],
-    (data) => {
-      if (data.kind === GestureKind.Swipe) {
-        return {
-          duration: 600,
-          step: (progress) => {
-            return view
-              .interpolate(data.nextView, progress, true)
-              .bound(boundingBox);
-          },
-        };
-      }
-      return data.nextView.bound(boundingBox);
+  const { view, onGesture } = usePannableView([50, 0, 50, 1000], (data) => {
+    if (data.kind === GestureKind.Swipe) {
+      return {
+        duration: 600,
+        step: (progress) => {
+          return view
+            .interpolate(data.nextView, progress, true)
+            .bound(boundingBox);
+        },
+      };
     }
-  );
+    return data.nextView.bound(boundingBox);
+  });
 
   const seriesStyle: ChartStyleOptions = {
     dataLineStroke: '#5477a1',
@@ -52,7 +49,7 @@ const Pannable: React.FC<Props> = ({
       width={300}
       view={view}
       gutter={[20, 20, 50, 50]}
-      isCanvas={isCanvas || isPanning}
+      isCanvas={isCanvas}
       onGesture={onGesture}
     >
       <XAxis

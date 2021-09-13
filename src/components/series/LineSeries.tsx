@@ -24,32 +24,32 @@ interface LineSeriesProps {
 export const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
   props
 ) => {
-  const { pxBox, isCanvas } = useChartState();
+  const state = useChartState();
+  const { isCanvas } = state;
   const chartStyle = useChartStyle(props.chartStyle);
 
   const Line = props.renderLine || DataLine;
   const Point = props.renderPoint || DataPoint;
 
-  const filteredPoints =
-    isCanvas && chartStyle.dataPointSymbol === 'none'
-      ? // No interaction, no render: don't bother
-        []
-      : filterToView(props.data, pxBox);
+  const filteredData = filterToView(props.data, state);
+  const renderPoints = !isCanvas || chartStyle.dataPointSymbol !== 'none';
 
   return (
     <React.Fragment>
-      <Line data={props.data} chartStyle={chartStyle} />
+      <Line data={filteredData} chartStyle={chartStyle} />
 
-      {filteredPoints.map(([x, y], i) => (
-        <Handle
-          {...selectHandlers(props)}
-          elementPosition={[x, y]}
-          meta={props.handlerMeta}
-          key={i}
-        >
-          <Point x={x} y={y} chartStyle={chartStyle} />
-        </Handle>
-      ))}
+      {renderPoints
+        ? filteredData.map(([x, y], i) => (
+            <Handle
+              {...selectHandlers(props)}
+              elementPosition={[x, y]}
+              meta={props.handlerMeta}
+              key={i}
+            >
+              <Point x={x} y={y} chartStyle={chartStyle} />
+            </Handle>
+          ))
+        : null}
     </React.Fragment>
   );
 };
