@@ -48,6 +48,7 @@ export default (
 
   const setViewBounded = useCallback(
     (nextView: ViewboxDuck) => {
+      cancelAnimation();
       const _nextView = createViewbox(nextView);
       setView(_nextView.bound(_boundingViewbox));
     },
@@ -65,13 +66,17 @@ export default (
       const step = (time: number) => {
         if (!startTime.current) {
           startTime.current = time;
+          timer.current = requestAnimationFrame(step);
+          return;
         }
+
         const progress =
           (time - startTime.current) / _options.animationDuration;
 
         if (progress > 1) {
+          const finalView = _nextView.bound(_boundingViewbox);
+          setView(finalView);
           cancelAnimation();
-          setView(_nextView);
         } else {
           const adjProgress = _options.animationStepFunction(progress);
           const stepView = currentView
