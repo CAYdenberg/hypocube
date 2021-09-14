@@ -80,10 +80,10 @@ const ChartInner: React.FC<Props> = (props) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const { height } = props;
   const getHeight = useCallback(
-    (width: number) =>
-      typeof props.height === 'function' ? props.height(width) : props.height,
-    [props.height]
+    (width: number) => (typeof height === 'function' ? height(width) : height),
+    [height]
   );
 
   const [pxBox, setPxBox] = useState<Viewbox>(
@@ -102,7 +102,7 @@ const ChartInner: React.FC<Props> = (props) => {
         )
       );
     }
-  }, [containerRef]);
+  }, [containerRef, getHeight]);
 
   useEffect(() => {
     calculateSizes();
@@ -128,11 +128,7 @@ const ChartInner: React.FC<Props> = (props) => {
     .domain(cartesianBox.y)
     .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]);
 
-  const containerOffset: [number, number] = containerRef.current
-    ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
-    : [0, 0];
-
-  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, isCanvas);
+  const { pushToCanvasQueue, onRenderCanvas } = useCanvas(pxBox, isCanvas);
 
   const chartState = useMemo(
     () => ({
@@ -142,9 +138,11 @@ const ChartInner: React.FC<Props> = (props) => {
       cartesianBox,
       scaleX,
       scaleY,
-      containerOffset,
+      container: containerRef,
     }),
-    [pushToCanvasQueue, pxBox, props.view]
+    // viewboxes use a hash to optimize re-rendering
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [pushToCanvasQueue, pxBox, cartesianBox.hash]
   );
 
   const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)
@@ -165,9 +163,17 @@ const ChartInner: React.FC<Props> = (props) => {
     >
       <ChartStateContext.Provider value={chartState}>
         <ChartStyleProvider chartStyle={chartStyle}>
-          <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
+          <ChartHandle
+            onGesture={props.onGesture}
+            containerNode={containerRef}
+            {...selectHandlers(props)}
+          >
             {isCanvas ? (
-              <canvas ref={canvasRef} width={pxBox.width} height={pxBox.height}>
+              <canvas
+                ref={onRenderCanvas}
+                width={pxBox.width}
+                height={pxBox.height}
+              >
                 {children}
               </canvas>
             ) : (

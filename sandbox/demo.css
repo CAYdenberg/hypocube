@@ -1,0 +1,58 @@
+.hp-timeseries-wrapper {
+  cursor: ew-resize;
+}
+
+.drag-direction {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.ctls-container {
+  border-top: 1px solid #3b454e;
+  display: flex;
+  flex-direction: row;
+}
+
+.ctls-left,
+.ctls-center,
+.ctls-right {
+  margin: 1rem 0;
+  width: 33.33%;
+}
+
+.ctls-radio-label {
+  display: block;
+  margin: 0.2em 0;
+}
+
+.ctls-radio-label span {
+  margin-left: 0.5em;
+}
+
+.ctls-center .legend {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.ctls-center .legend-item {
+  margin: 0.2em 0;
+  line-height: 1;
+  padding: 0;
+  vertical-align: middle;
+  color: var(--legend-color);
+}
+
+.ctls-center .legend-item-indicator {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.5em;
+}
+
+.tooltip-line {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}

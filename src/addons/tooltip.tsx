@@ -44,7 +44,7 @@ export const TooltipWrapper: React.FC<{
     return () => {
       document.removeEventListener('pointerdown', handleClickOutside);
     };
-  }, []);
+  }, [onRequestClose]);
 
   return (
     <div ref={ref} role="tooltip" aria-live="polite">

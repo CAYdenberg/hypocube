@@ -14289,6 +14289,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
   >
     <div
       onPointerMove={[Function]}
+      onPointerOut={[Function]}
     >
       <svg
         height={300}

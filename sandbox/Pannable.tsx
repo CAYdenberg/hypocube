@@ -5,9 +5,9 @@ import {
   LineSeries,
   GestureKind,
   ChartStyleOptions,
+  ChartGestureData,
 } from '../src';
-import usePannableView from '../src/addons/usePannableView';
-import { createViewbox } from '../src/lib/Viewbox';
+import usePannable from '../src/addons/usePannable';
 
 interface Props {
   getDateLabel: (x: number) => string;
@@ -22,20 +22,18 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const boundingBox = createViewbox([0, 0, 400, 1000]);
-  const { view, onGesture } = usePannableView([50, 0, 50, 1000], (data) => {
+  const [view, setView, scrollToView] = usePannable(
+    [50, 0, 50, 1000],
+    [0, 0, 400, 1000]
+  );
+
+  const handleGesture = (data: ChartGestureData) => {
     if (data.kind === GestureKind.Swipe) {
-      return {
-        duration: 600,
-        step: (progress) => {
-          return view
-            .interpolate(data.nextView, progress, true)
-            .bound(boundingBox);
-        },
-      };
+      scrollToView(data.nextView);
+      return;
     }
-    return data.nextView.bound(boundingBox);
-  });
+    setView(data.nextView);
+  };
 
   const seriesStyle: ChartStyleOptions = {
     dataLineStroke: '#5477a1',
@@ -50,7 +48,7 @@ const Pannable: React.FC<Props> = ({
       view={view}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}
-      onGesture={onGesture}
+      onGesture={handleGesture}
     >
       <XAxis
         range={view.x}

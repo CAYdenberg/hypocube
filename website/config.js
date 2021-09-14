@@ -40,7 +40,7 @@ const config = {
       '/core-concepts',
       '/basic-charts',
       '/interaction',
-      '/advanced-components',
+      '/composing-charts',
       '/addons',
     ],
     links: [{ text: 'GitHub', link: 'https://github.com/CAYdenberg/hypocube' }],

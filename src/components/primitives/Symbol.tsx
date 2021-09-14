@@ -81,13 +81,12 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     quietRenderRadius: 0,
     ...props,
   };
-  const symbolF = getD3Symbol(symbol);
+  const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
 
+  const symbolF = getD3Symbol(symbol);
   if (!symbolF) {
     return null;
   }
-
-  const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
 
   const pxPoint: [number, number] = [scaleX(point[0]), scaleY(point[1])];
 
