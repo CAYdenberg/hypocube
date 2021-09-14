@@ -1,3 +1,5 @@
+import './demo.css';
+
 import React, { useState } from 'react';
 import { Viewbox } from '../src';
 import usePannable from '../src/addons/usePannable';
@@ -6,7 +8,7 @@ import HomepageTimeseries from './HomepageTimeseries';
 interface AppState {
   isCanvas: boolean;
   tab: number;
-  selected: 'Vancouver' | 'Victoria' | 'Kelowna' | null;
+  selected: Record<string, string | number> | null;
 }
 
 interface Args {
@@ -28,9 +30,8 @@ const StateContainer: React.FC<Props> = ({ children }) => {
   );
   const [state, setState] = useState<AppState>({
     isCanvas: false,
-    selectedSeries: null,
-    selectedPoint: null,
     tab: 0,
+    selected: null,
   });
 
   const update = (nextState: Partial<AppState>) => {
@@ -45,8 +46,13 @@ const StateContainer: React.FC<Props> = ({ children }) => {
 
 const Controls: React.FC<{
   state: AppState;
-  update: (state: AppState) => void;
+  update: (state: Partial<AppState>) => void;
 }> = ({ state, update }) => {
+  const setIsCanvas = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value: boolean = e.target.value === 'true';
+    update({ isCanvas: value });
+  };
+
   return (
     <div className="ctls-container">
       <div className="ctls-left">
@@ -54,8 +60,10 @@ const Controls: React.FC<{
           <input
             type="radio"
             className="ctls-radio"
-            name="renderAs"
-            value="SVG"
+            name="isCanvas"
+            value="false"
+            checked={!state.isCanvas}
+            onChange={setIsCanvas}
           />
           <span>SVG</span>
         </label>
@@ -64,12 +72,14 @@ const Controls: React.FC<{
             type="radio"
             className="ctls-radio"
             name="renderAs"
-            value="Canvas"
+            value="true"
+            checked={state.isCanvas}
+            onChange={setIsCanvas}
           />
           <span>Canvas</span>
         </label>
       </div>
-      <div className="ctls-middle">
+      <div className="ctls-center">
         <ul className="legend">
           <li>Vancouver</li>
           <li>Victoria</li>
@@ -77,10 +87,9 @@ const Controls: React.FC<{
         </ul>
       </div>
       <div className="ctls-right">
-        {state.selectedPoint ? (
+        {state.selected ? (
           <React.Fragment>
-            <p>{state.selectedPoint.month}</p>
-            <p>{state.selectedPoint.rainfall}</p>
+            <p>{`${state.selected}`}</p>
           </React.Fragment>
         ) : null}
         <p></p>

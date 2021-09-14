@@ -132,7 +132,7 @@ const ChartInner: React.FC<Props> = (props) => {
     ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
     : [0, 0];
 
-  const { pushToCanvasQueue, canvasRef } = useCanvas(pxBox, isCanvas);
+  const { pushToCanvasQueue, onRenderCanvas } = useCanvas(pxBox, isCanvas);
 
   const chartState = useMemo(
     () => ({
@@ -169,7 +169,11 @@ const ChartInner: React.FC<Props> = (props) => {
         <ChartStyleProvider chartStyle={chartStyle}>
           <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
             {isCanvas ? (
-              <canvas ref={canvasRef} width={pxBox.width} height={pxBox.height}>
+              <canvas
+                ref={onRenderCanvas}
+                width={pxBox.width}
+                height={pxBox.height}
+              >
                 {children}
               </canvas>
             ) : (

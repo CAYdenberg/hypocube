@@ -1,0 +1,24 @@
+.ctls-container {
+  border-top: 1px solid #3b454e;
+  display: flex;
+  flex-direction: row;
+}
+
+.ctls-left,
+.ctls-center,
+.ctls-right {
+  margin: 1rem 0;
+  width: 33.33%;
+}
+
+.ctls-center .legend {
+  margin: 0;
+}
+
+.ctls-radio-label {
+  display: block;
+}
+
+.ctls-radio-label span {
+  margin-left: 0.5em;
+}
