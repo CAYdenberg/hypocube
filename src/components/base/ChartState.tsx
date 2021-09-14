@@ -9,7 +9,6 @@ export const getDefaultState = (): ChartState => ({
   pxBox: new Viewbox(0, 0, 1, 1),
   scaleX: scaleLinear(),
   scaleY: scaleLinear(),
-  containerOffset: [0, 0],
   pushToCanvasQueue: () => undefined,
 });
 

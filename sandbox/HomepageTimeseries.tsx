@@ -28,7 +28,8 @@ const getTickLabel = (x: number) => {
 };
 interface StoryProps {
   isCanvas: boolean;
-  handlePointSelect?: (data: ChartEventData) => void;
+  handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
+  handleClearSelect?: () => void;
 }
 
 export const HomepageTimeseriesStory: React.FC<StoryProps> = (props) => {
@@ -55,6 +56,7 @@ interface Props extends StoryProps {
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   handlePointSelect,
+  handleClearSelect,
   view,
   setView,
   scrollToView,
@@ -74,47 +76,53 @@ const HomepageTimeseries: React.FC<Props> = ({
     timeseriesData,
     useCallback(
       (data: ChartEventData) => {
-        if (!handlePointSelect) return;
-
-        handlePointSelect(data);
+        if (!handlePointSelect || !data.elementPosition) return;
+        handlePointSelect({
+          series: data.meta.seriesName as string,
+          x: getTickLabel(data.elementPosition[0]),
+          y: String(data.elementPosition[1]),
+        });
       },
       [handlePointSelect]
     )
   );
 
+  const onPointerOut = useCallback(() => {
+    handleClearSelect && handleClearSelect();
+  }, [handleClearSelect]);
+
   return (
-    <React.Fragment>
-      <Chart
-        height={300}
-        width={300}
-        view={view}
-        gutter={[5, 20, 50, 50]}
-        isCanvas={isCanvas}
-        chartStyle={{
-          dataPointSymbol: 'circle',
-          dataLineCurveType: 'natural',
-        }}
-        onGesture={onGesture}
-        onPointerMove={onPointerMove}
-      >
-        {applySeriesStyles(timeseriesData, {
-          colors: ['#003f5c', '#58508d', '#bc5090'],
-        }).map(({ data, key, chartStyle }) => (
-          <LineSeries
-            key={key}
-            data={data}
-            handlerMeta={{ label: key }}
-            chartStyle={chartStyle}
-          />
-        ))}
-        <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
-        <YAxis
-          tickPositions={[0, 100, 200]}
-          getTickLabel={(pos) => String(pos)}
-          intercept={view.xMin}
+    <Chart
+      height={300}
+      width={300}
+      view={view}
+      gutter={[5, 20, 50, 50]}
+      isCanvas={isCanvas}
+      chartStyle={{
+        dataPointSymbol: 'circle',
+        dataLineCurveType: 'natural',
+      }}
+      onGesture={onGesture}
+      onPointerMove={onPointerMove}
+      onPointerOut={onPointerOut}
+    >
+      {applySeriesStyles(timeseriesData, {
+        colors: ['#003f5c', '#58508d', '#bc5090'],
+      }).map(({ data, key, chartStyle }) => (
+        <LineSeries
+          key={key}
+          data={data}
+          handlerMeta={{ label: key }}
+          chartStyle={chartStyle}
         />
-      </Chart>
-    </React.Fragment>
+      ))}
+      <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
+      <YAxis
+        tickPositions={[0, 100, 200]}
+        getTickLabel={(pos) => String(pos)}
+        intercept={view.xMin}
+      />
+    </Chart>
   );
 };
 

@@ -128,10 +128,6 @@ const ChartInner: React.FC<Props> = (props) => {
     .domain(cartesianBox.y)
     .range([pxBox.y[1] - gutter[2], pxBox.y[0] + gutter[0]]);
 
-  const containerOffset: [number, number] = containerRef.current
-    ? [containerRef.current.offsetLeft, containerRef.current.offsetTop]
-    : [0, 0];
-
   const { pushToCanvasQueue, onRenderCanvas } = useCanvas(pxBox, isCanvas);
 
   const chartState = useMemo(
@@ -142,7 +138,7 @@ const ChartInner: React.FC<Props> = (props) => {
       cartesianBox,
       scaleX,
       scaleY,
-      containerOffset,
+      container: containerRef,
     }),
     // viewboxes use a hash to optimize re-rendering
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -167,7 +163,11 @@ const ChartInner: React.FC<Props> = (props) => {
     >
       <ChartStateContext.Provider value={chartState}>
         <ChartStyleProvider chartStyle={chartStyle}>
-          <ChartHandle onGesture={props.onGesture} {...selectHandlers(props)}>
+          <ChartHandle
+            onGesture={props.onGesture}
+            containerNode={containerRef}
+            {...selectHandlers(props)}
+          >
             {isCanvas ? (
               <canvas
                 ref={onRenderCanvas}

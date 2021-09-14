@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import useChartState from '../components/base/ChartState';
 import {
   ChartEventData,
@@ -12,26 +12,34 @@ import selectHandlers from './selectHandlers';
 export interface HandlerProps extends ChartEventHandlers {
   elementPosition?: [number, number];
   meta?: ChartEventMetaData;
+  containerNode?: React.RefObject<HTMLDivElement>;
 }
 
 export default ({
   elementPosition,
   meta,
+  containerNode,
   ...handlers
 }: HandlerProps): ReactHandlers => {
-  const { scaleX, scaleY, containerOffset } = useChartState();
+  const { scaleX, scaleY } = useChartState();
 
   const getData = useCallback(
     (event: ReactEvent): ChartEventData => {
+      const offsets = containerNode?.current
+        ? containerNode.current.getBoundingClientRect()
+        : null;
+
       const data: ChartEventData = {
         meta: meta || {},
         elementPosition,
         event,
         pointerId: (event as React.PointerEvent).pointerId || null,
-        pointerPosition: [
-          scaleX.invert(event.clientX - containerOffset[0]),
-          scaleY.invert(event.clientY - containerOffset[1]),
-        ],
+        pointerPosition: offsets
+          ? [
+              scaleX.invert(event.clientX - offsets.x),
+              scaleY.invert(event.clientY - offsets.y),
+            ]
+          : undefined,
         modifiers: [
           event.altKey && 'alt',
           event.ctrlKey && 'ctrl',
@@ -41,7 +49,7 @@ export default ({
 
       return data;
     },
-    [meta, elementPosition, scaleX, scaleY, containerOffset]
+    [meta, elementPosition, scaleX, scaleY, containerNode]
   );
 
   const reactHandlers = useMemo(() => {

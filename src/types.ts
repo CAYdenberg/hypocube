@@ -1,4 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
+import React from 'react';
 import { curveType, dashType } from './components/primitives/Line';
 import { symbolType } from './components/primitives/Symbol';
 import { CanvasComponent } from './lib/useCanvas';
@@ -11,7 +12,6 @@ export interface ChartState {
   pxBox: Viewbox;
   scaleX: ScaleLinear<number, number, number>;
   scaleY: ScaleLinear<number, number, number>;
-  containerOffset: [number, number];
   isCanvas: boolean;
   pushToCanvasQueue: ((func: CanvasComponent) => void) | null;
 }
@@ -95,8 +95,8 @@ export type ChartEventMetaData = Record<
 
 export interface ChartEventData {
   event: ReactEvent;
-  pointerPosition: [number, number];
   pointerId: number | null;
+  pointerPosition?: [number, number];
   elementPosition?: [number, number];
   modifiers: Array<string>;
   meta: ChartEventMetaData;
