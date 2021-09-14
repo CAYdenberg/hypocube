@@ -1,6 +1,6 @@
 import './demo.css';
 
-import React, { Children, useState } from 'react';
+import React, { useState } from 'react';
 import { Viewbox } from '../src';
 import usePannable from '../src/addons/usePannable';
 import HomepageTimeseries from './HomepageTimeseries';

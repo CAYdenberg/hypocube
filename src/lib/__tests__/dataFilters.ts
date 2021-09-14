@@ -18,7 +18,6 @@ describe('filterToView', () => {
     pxBox: view,
     scaleX,
     scaleY,
-    containerOffset: [0, 0],
     isCanvas: false,
     pushToCanvasQueue: null,
   };
