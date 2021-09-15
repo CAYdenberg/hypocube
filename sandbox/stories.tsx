@@ -8,6 +8,7 @@ import MultipleSeries from './MultipleSeries';
 import Pannable from './Pannable';
 import DotAndTukey from './DotAndTukey';
 import { HomepageTimeseriesStory } from './HomepageTimeseries';
+import HomepageBar from './HomepageBar';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 
@@ -135,6 +136,12 @@ const examples: Example[] = [
     name: 'Homepage: Timeseries',
     render: ({ isCanvas }) => {
       return <HomepageTimeseriesStory isCanvas={isCanvas} />;
+    },
+  },
+  {
+    name: 'Homepage: Bar',
+    render: ({ isCanvas }) => {
+      return <HomepageBar isCanvas={isCanvas} />;
     },
   },
 ];

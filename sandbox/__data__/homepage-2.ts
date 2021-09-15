@@ -1,4 +1,4 @@
-interface ByMonth {
+export interface ByMonth {
   data: Array<[number, number]>;
   error: Array<[number, number]>;
   key: string;
