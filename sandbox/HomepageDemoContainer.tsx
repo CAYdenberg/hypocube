@@ -44,6 +44,22 @@ const StateContainer: React.FC<Props> = ({ children }) => {
   return children({ state, update, view, setView, scrollToView });
 };
 
+const Tabs: React.FC<{
+  active: number;
+  onChange: (tab: number) => void;
+  names: string[];
+}> = ({ active, onChange, names }) => {
+  return (
+    <ul className="tabs">
+      {names.map((name, i) => (
+        <li className={`tabs-item${active === i ? ' is-active' : ''}`}>
+          <a onClick={() => onChange(i)}>{name}</a>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 const LegendItem: React.FC<{ color: string }> = ({ color, children }) => {
   return (
     <li className="legend-item" style={{ color }}>
@@ -121,24 +137,31 @@ const DemoContainer: React.FC = () => (
   <StateContainer>
     {({ state, update, view, setView, scrollToView }) => (
       <React.Fragment>
-        <p>
-          <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageTimeseries.tsx">
-            View Code
-          </a>
-        </p>
-        <div className="hp-timeseries-wrapper">
-          <HomepageTimeseries
-            isCanvas={state.isCanvas}
-            view={view}
-            setView={setView}
-            scrollToView={scrollToView}
-            handlePointSelect={(data) =>
-              update({
-                selected: data,
-              })
-            }
-            handleClearSelect={() => update({ selected: null })}
-          />
+        <Tabs
+          active={state.tab}
+          onChange={(tab) => update({ tab })}
+          names={['Tab One', 'Tab Two']}
+        />
+        <div className="tab-content">
+          <p>
+            <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageTimeseries.tsx">
+              View Code
+            </a>
+          </p>
+          <div className="hp-timeseries-wrapper">
+            <HomepageTimeseries
+              isCanvas={state.isCanvas}
+              view={view}
+              setView={setView}
+              scrollToView={scrollToView}
+              handlePointSelect={(data) =>
+                update({
+                  selected: data,
+                })
+              }
+              handleClearSelect={() => update({ selected: null })}
+            />
+          </div>
           <div className="drag-direction">Drag or swipe to move the x-axis</div>
         </div>
         <Controls state={state} update={update} />
