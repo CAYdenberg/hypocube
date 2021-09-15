@@ -94,7 +94,7 @@ const HomepageTimeseries: React.FC<Props> = ({
   return (
     <Chart
       height={300}
-      width={300}
+      width={435}
       view={view}
       gutter={[5, 20, 50, 50]}
       isCanvas={isCanvas}

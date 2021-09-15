@@ -7,7 +7,6 @@ import HomepageTimeseries from './HomepageTimeseries';
 
 interface AppState {
   isCanvas: boolean;
-  tab: number;
   selected: Record<string, string | number> | null;
 }
 
@@ -30,7 +29,6 @@ const StateContainer: React.FC<Props> = ({ children }) => {
   );
   const [state, setState] = useState<AppState>({
     isCanvas: false,
-    tab: 0,
     selected: null,
   });
 
@@ -45,18 +43,22 @@ const StateContainer: React.FC<Props> = ({ children }) => {
 };
 
 const Tabs: React.FC<{
-  active: number;
-  onChange: (tab: number) => void;
   names: string[];
-}> = ({ active, onChange, names }) => {
+}> = ({ names, children }) => {
+  const [tab, setTab] = useState<number>(0);
+  const activeChild = React.Children.toArray(children)[tab];
+
   return (
-    <ul className="tabs">
-      {names.map((name, i) => (
-        <li className={`tabs-item${active === i ? ' is-active' : ''}`}>
-          <a onClick={() => onChange(i)}>{name}</a>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className="tabs">
+        {names.map((name, i) => (
+          <li className={`tabs-item${tab === i ? ' is-active' : ''}`}>
+            <a onClick={() => setTab(i)}>{name}</a>
+          </li>
+        ))}
+      </ul>
+      {activeChild}
+    </div>
   );
 };
 
@@ -137,33 +139,33 @@ const DemoContainer: React.FC = () => (
   <StateContainer>
     {({ state, update, view, setView, scrollToView }) => (
       <React.Fragment>
-        <Tabs
-          active={state.tab}
-          onChange={(tab) => update({ tab })}
-          names={['Tab One', 'Tab Two']}
-        />
-        <div className="tab-content">
-          <p>
-            <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageTimeseries.tsx">
-              View Code
-            </a>
-          </p>
-          <div className="hp-timeseries-wrapper">
-            <HomepageTimeseries
-              isCanvas={state.isCanvas}
-              view={view}
-              setView={setView}
-              scrollToView={scrollToView}
-              handlePointSelect={(data) =>
-                update({
-                  selected: data,
-                })
-              }
-              handleClearSelect={() => update({ selected: null })}
-            />
+        <Tabs names={['Scrollable Scatter Plot', 'Responsive Bar Chart']}>
+          <div className="tab-content">
+            <p>
+              <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageTimeseries.tsx">
+                View Code
+              </a>
+            </p>
+            <div className="hp-timeseries-wrapper">
+              <HomepageTimeseries
+                isCanvas={state.isCanvas}
+                view={view}
+                setView={setView}
+                scrollToView={scrollToView}
+                handlePointSelect={(data) =>
+                  update({
+                    selected: data,
+                  })
+                }
+                handleClearSelect={() => update({ selected: null })}
+              />
+            </div>
+            <div className="drag-direction">
+              Drag or swipe to move the x-axis
+            </div>
           </div>
-          <div className="drag-direction">Drag or swipe to move the x-axis</div>
-        </div>
+          <div>Responsive bar chart</div>
+        </Tabs>
         <Controls state={state} update={update} />
       </React.Fragment>
     )}

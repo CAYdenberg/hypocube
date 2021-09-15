@@ -12,14 +12,21 @@
 
 .tabs-item {
   margin: 0;
-  padding: 0.3em 0.6em;
+  padding: 0;
   list-style-type: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   position: relative;
 }
 
+.tabs .tabs-item a {
+  display: block;
+  padding: 0.3em 0.6em;
+  color: inherit;
+  cursor: inherit;
+}
+
 .tabs-item.is-active {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
   border: 1px solid #1ed3c6;
   border-bottom: none;
 }
@@ -33,8 +40,9 @@
   border-bottom: 1px solid white;
 }
 
-.tabs .tabs-item a {
-  color: inherit;
+.tabs-item:not(.is-active):hover {
+  background: #e6ecf1;
+  cursor: pointer;
 }
 
 .tab-content {
