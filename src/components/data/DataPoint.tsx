@@ -31,14 +31,15 @@ export const DataAnchorLine: React.FC<DataPointProps> = (props) => {
     dataRangeAnchorLength,
     dataRangeAnchorStroke,
     dataRangeAnchorStrokeWidth,
+    seriesXOffset: offset,
   } = props.chartStyle;
 
   return (
     <TranslatedLine
       position={[props.x, props.y]}
       path={[
-        [dataRangeAnchorLength / -2, 0],
-        [dataRangeAnchorLength / 2, 0],
+        [offset + dataRangeAnchorLength / -2, 0],
+        [offset + dataRangeAnchorLength / 2, 0],
       ]}
       strokeWidth={dataRangeAnchorStrokeWidth}
       stroke={dataRangeAnchorStroke}

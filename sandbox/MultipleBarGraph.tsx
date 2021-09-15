@@ -1,8 +1,10 @@
 import React from 'react';
 import { BarVerticalSeries, Chart, Point, XAxis, YAxis } from '../src';
+import { getBarOffsets } from '../src/addons/seriesStyle';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
 const COLORS = ['rgb(177, 0, 0)', 'rgb(150, 150, 150)'];
+const barOffsets = getBarOffsets(10, 2);
 
 const MultipleBarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (x: number) => bcVaccinations[x - 1][0];
@@ -33,7 +35,7 @@ const MultipleBarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       {[bars, control].map(({ data, key }, i) => (
         <BarVerticalSeries
           data={data}
-          chartStyle={{ dataBoxFill: COLORS[i] }}
+          chartStyle={{ dataBoxFill: COLORS[i], seriesXOffset: barOffsets[i] }}
           key={key}
         />
       ))}
