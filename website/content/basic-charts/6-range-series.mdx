@@ -10,8 +10,6 @@ A **range series** is similar to a bar series, but it is used to represent _rang
 
 All data elements in Hypocube have an _anchor point_ that is used to report the element position when an event occurs. The Range Series (like the Line Series) does not render anything at this point by default, but the anchor point position is still reported to event callbacks. You can, however, make the anchor visible by setting the `dataRangeAnchorLength` chart style declaration.
 
-**TODO**: This is buggy (see issue 28). Need a rethink in how categorical offsets work.
-
 ```javascript react-live=true
 <Chart width={300} height={100} view={[0, 0, 4, 6]} isCanvas={false}>
   <XAxis />
@@ -24,7 +22,7 @@ All data elements in Hypocube have an _anchor point_ that is used to report the 
     ]}
     chartStyle={{
       dataWhiskerStroke: 'blue',
-      seriesXOffset: -5,
+      seriesXOffset: -8,
     }}
   />
   <RangeVerticalSeries
@@ -36,14 +34,17 @@ All data elements in Hypocube have an _anchor point_ that is used to report the 
     chartStyle={{
       dataWhiskerStroke: 'red',
       seriesXOffset: 5,
-      dataRangeAnchorLength: 15,
+      dataRangeAnchorLength: 16,
       dataRangeAnchorStroke: 'red',
+      seriesXOffset: 8,
     }}
   />
 </Chart>
 ```
 
 ## Multiple Ranges
+
+## Props
 
 import PropDef from '../components/PropDef';
 

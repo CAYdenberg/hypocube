@@ -36,6 +36,11 @@ const HomepageBar: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       view={[-0.5, 0, 12, 200]}
       gutter={[50, 0, 50, 50]}
       isCanvas={isCanvas}
+      chartStyle={{
+        dataWhiskerTopCapLength: 6,
+        dataWhiskerBottomCapLength: 6,
+        dataWhiskerStroke: '#464f58',
+      }}
     >
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis range={[0, 200]} tickPositions={[0, 100, 200]} intercept={-0.5} />
