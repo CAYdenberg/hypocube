@@ -10,7 +10,6 @@ import {
   ChartGestureData,
   Viewbox,
 } from '../src';
-import applySeriesStyles from '../src/addons/applySeriesStyles';
 import usePannableView from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';
@@ -26,6 +25,8 @@ const getTickLabel = (x: number) => {
   const dt = DateTime.fromISO(raw);
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
+
+const COLORS = ['#003f5c', '#58508d', '#bc5090'];
 interface StoryProps {
   isCanvas: boolean;
   handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
@@ -94,7 +95,7 @@ const HomepageTimeseries: React.FC<Props> = ({
   return (
     <Chart
       height={300}
-      width={300}
+      width={435}
       view={view}
       gutter={[5, 20, 50, 50]}
       isCanvas={isCanvas}
@@ -106,14 +107,15 @@ const HomepageTimeseries: React.FC<Props> = ({
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
     >
-      {applySeriesStyles(timeseriesData, {
-        colors: ['#003f5c', '#58508d', '#bc5090'],
-      }).map(({ data, key, chartStyle }) => (
+      {timeseriesData.map(({ data, key }, i) => (
         <LineSeries
           key={key}
           data={data}
           handlerMeta={{ label: key }}
-          chartStyle={chartStyle}
+          chartStyle={{
+            dataLineStroke: COLORS[i],
+            dataPointFill: COLORS[i],
+          }}
         />
       ))}
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />

@@ -13,11 +13,12 @@ const baseStyle: ChartStyleT = {
   axisTickLabelOffset: 2,
   axisLabelOffset: 50,
 
+  seriesXOffset: 0,
+
   dataBoxFill: '#000',
   dataBoxStroke: '#000',
   dataBoxStrokeWidth: 0,
   dataBoxThickness: 10,
-  dataBoxLeftOffset: -0.5,
 
   dataPointSize: 5,
   dataPointSymbol: 'none',

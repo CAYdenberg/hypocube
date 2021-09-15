@@ -109,6 +109,15 @@ See also [the axes documentation](./3-axes).
   Total distance between the axis line and the nearest edge of the axis label.
 </PropDef>
 
+### Data Series
+
+<PropDef name="seriesXOffset" type="number" def="0">
+  The offset of any data point along the x-axis. This is useful in a categorical
+  bar graph so that multiple series don't sit behind on another, for example.
+  The <a href="./7-series-styles">`seriesStyles' addon</a> can be used to
+  automatically create offsets for multiple bar series.
+</PropDef>
+
 ### Data boxes
 
 A <strong>data box</strong> is a rectangle used to indicate a data point (by
@@ -123,14 +132,6 @@ markers in [a bar series](./4-bar-series).
   The length of the data box across the axis opposite to the one in which the
   box indicates data. In a vertical bar series, it would be the width of the
   data box; in a horizontal bar series, it would be the height.
-</PropDef>
-<PropDef name="dataBoxLeftOffset" type="number" def="-0.5">
-  The offset of the data box along the non-data axis relative to its thickness.
-  For a single bar series, it is therefore -0.5, so that it is centered over top
-  the actual position of the datapoint. If two bar series as presented
-  side-by-side, it would be -1 for the first series and 0 for the second. The{' '}
-  <a href="../addons/1-series-styles">`seriesStyles' addon</a> can be used to
-  automatically create offsets for multiple bar series.
 </PropDef>
 
 ### Data points

@@ -17,13 +17,12 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
     dataBoxFill,
     dataBoxStroke,
     dataBoxStrokeWidth,
-    dataBoxLeftOffset: offset,
+    seriesXOffset: offset,
   } = props.chartStyle;
 
   const yMin = scaleY(props.yMin);
   const yMax = scaleY(props.yMax);
-  const dataX = scaleX(props.x);
-  const leftX = dataX + dataBoxThickness * offset;
+  const leftX = scaleX(props.x) - dataBoxThickness / 2 + offset;
 
   const path: Point[] = [
     [leftX, yMax],
@@ -52,14 +51,14 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
     dataWhiskerBottomCapLength,
     dataWhiskerStroke,
     dataWhiskerStrokeWidth,
-    dataBoxLeftOffset: offset,
+    seriesXOffset: offset,
   } = props.chartStyle;
 
   const yMin = scaleY(props.yMin);
   const yMax = scaleY(props.yMax);
-  const dataX = scaleX(props.x);
-  const leftXTop = dataX + dataWhiskerTopCapLength * offset;
-  const leftXBottom = dataX + dataWhiskerBottomCapLength * offset;
+  const midX = scaleX(props.x) + offset;
+  const leftXTop = midX - dataWhiskerTopCapLength / 2;
+  const leftXBottom = midX - dataWhiskerBottomCapLength / 2;
 
   return (
     <React.Fragment>
@@ -73,8 +72,8 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
       />
       <PxLine
         path={[
-          [dataX, yMin],
-          [dataX, yMax],
+          [midX, yMin],
+          [midX, yMax],
         ]}
         stroke={dataWhiskerStroke}
         strokeWidth={dataWhiskerStrokeWidth}

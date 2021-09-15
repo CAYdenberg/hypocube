@@ -35,11 +35,12 @@ export interface ChartStyleT {
   axisTickLabelOffset: number;
   axisLabelOffset: number;
 
+  seriesXOffset: number;
+
   dataBoxFill: string;
   dataBoxStroke: string;
   dataBoxStrokeWidth: number;
   dataBoxThickness: number;
-  dataBoxLeftOffset: number;
 
   dataPointSize: number;
   dataPointSymbol: symbolType;
