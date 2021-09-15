@@ -1,6 +1,5 @@
 import React from 'react';
 import { Chart, Dataseries, LineSeries, Point, XAxis, YAxis } from '../src';
-import applySeriesStyles from '../src/addons/applySeriesStyles';
 import useVoronoi from '../src/addons/useVoronoi';
 import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
 import { rain } from './__data__/precipitation';
@@ -43,6 +42,8 @@ const tickPositions = series[0].data
   .map((s) => s[0]);
 const getXLabel = (pos: number) => String(rain[pos][0]);
 
+const COLORS = ['#003f5c', '#58508d', '#bc5090'];
+
 const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const [tooltipData, setTooltip, handleCloseTooltip] = useTooltip<{
     seriesName: string;
@@ -80,10 +81,12 @@ const MultipleSeries: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         tickPositions={[0, 50, 100, 200]}
         getTickLabel={(pos) => String(pos)}
       />
-      {applySeriesStyles(series, {
-        colors: ['#003f5c', '#58508d', '#bc5090'],
-      }).map(({ data, key, chartStyle }, i) => (
-        <LineSeries key={key} data={data} chartStyle={chartStyle} />
+      {series.map(({ data, key }, i) => (
+        <LineSeries
+          key={key}
+          data={data}
+          chartStyle={{ dataLineStroke: COLORS[i], dataPointFill: COLORS[i] }}
+        />
       ))}
     </Chart>
   );
