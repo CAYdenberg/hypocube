@@ -54,6 +54,7 @@ const Pannable: React.FC<Props> = ({
         range={view.x}
         tickPositions={tickPositions}
         getTickLabel={getDateLabel}
+        axisLabel="Date"
       />
       <LineSeries data={series} chartStyle={seriesStyle} />
     </Chart>

@@ -6,6 +6,7 @@ import { useChartStyle } from '../base/ChartStyle';
 import Handle from '../primitives/Handle';
 import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
+import { XAxisLabel, YAxisLabel } from './AxisLabels';
 
 interface AxisProps {
   range?: [number, number];
@@ -46,9 +47,10 @@ export const XAxis: React.FC<AxisProps> = (props) => {
     intercept,
     tickPositions,
     getTickLabel,
-    // axisLabel,
+    axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.x);
   const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
+  const midPoint = (state.cartesianBox.xMin + state.cartesianBox.xMax) / 2;
 
   const TickMark = props.renderTickMark || XTickMark;
 
@@ -74,6 +76,13 @@ export const XAxis: React.FC<AxisProps> = (props) => {
             />
           )
       )}
+      {axisLabel && (
+        <XAxisLabel
+          position={[midPoint, intercept]}
+          label={axisLabel}
+          chartStyle={props.chartStyle}
+        />
+      )}
     </Handle>
   );
 };
@@ -85,10 +94,10 @@ export const YAxis: React.FC<AxisProps> = (props) => {
     intercept,
     tickPositions,
     getTickLabel,
-    // axisLabel,
+    axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.y);
-  // const axisLabel = normalize(props.axisLabel, null);
   const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
+  const midPoint = (state.cartesianBox.yMin + state.cartesianBox.yMax) / 2;
 
   const TickMark = props.renderTickMark || YTickMark;
 
@@ -113,6 +122,13 @@ export const YAxis: React.FC<AxisProps> = (props) => {
               key={pos}
             />
           )
+      )}
+      {axisLabel && (
+        <YAxisLabel
+          position={[intercept, midPoint]}
+          label={axisLabel}
+          chartStyle={props.chartStyle}
+        />
       )}
     </Handle>
   );

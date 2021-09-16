@@ -9,6 +9,7 @@ export interface TextDrawProps {
   font?: string;
   fontSize?: number;
   align?: 'left' | 'center' | 'right';
+  rotation?: number;
 }
 
 interface Props extends TextDrawProps {
@@ -25,6 +26,7 @@ const Text: React.FC<Props> = (props) => {
   const color = normalize(props.color, '#000');
   const align = normalize(props.align, 'left');
   const pxOffset = normalize(props.pxOffset, [0, 0]);
+  // const rotation = normalize(props.rotation, 0);
 
   const x = scaleX(position[0]) + pxOffset[0];
   const y = scaleY(position[1]) + pxOffset[1];
@@ -34,7 +36,7 @@ const Text: React.FC<Props> = (props) => {
       renderer.font = `${fontSize}px ${font}`;
       renderer.textAlign = align;
       renderer.fillStyle = color;
-      renderer.fillText(text, x, y);
+      renderer.fillText(text, 0, 0);
     });
 
   if (isCanvas) {

@@ -123,6 +123,7 @@ const HomepageTimeseries: React.FC<Props> = ({
         tickPositions={[0, 100, 200]}
         getTickLabel={(pos) => String(pos)}
         intercept={view.xMin}
+        axisLabel="Precipitation (mm)"
       />
     </Chart>
   );
