@@ -8,7 +8,6 @@ import {
   YAxis,
   ChartEventData,
   ChartGestureData,
-  Viewbox,
 } from '../src';
 import usePannableView from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
@@ -20,6 +19,7 @@ const ticks = ({ pxWidth }: { pxWidth: number }) => {
     .map((_, i) => (i % interval ? null : i))
     .filter((val) => val !== null) as number[];
 };
+
 const getTickLabel = (x: number) => {
   const raw = labels[x];
   const dt = DateTime.fromISO(raw);
@@ -27,41 +27,23 @@ const getTickLabel = (x: number) => {
 };
 
 const COLORS = ['#003f5c', '#58508d', '#bc5090'];
-interface StoryProps {
+
+interface Props {
   isCanvas: boolean;
   handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
   handleClearSelect?: () => void;
-}
-
-export const HomepageTimeseriesStory: React.FC<StoryProps> = (props) => {
-  const [view, setView, scrollToView] = usePannableView(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
-  return (
-    <HomepageTimeseries
-      {...props}
-      view={view}
-      setView={setView}
-      scrollToView={scrollToView}
-    />
-  );
-};
-
-interface Props extends StoryProps {
-  view: Viewbox;
-  setView: (view: Viewbox) => void;
-  scrollToView: (view: Viewbox) => void;
 }
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   handlePointSelect,
   handleClearSelect,
-  view,
-  setView,
-  scrollToView,
 }) => {
+  const [view, setView, scrollToView] = usePannableView(
+    [201, 0, 50, 250],
+    [0, 0, 251, 250]
+  );
+
   const onGesture = useCallback(
     (data: ChartGestureData) => {
       if (data.kind === GestureKind.Swipe) {

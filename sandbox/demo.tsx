@@ -1,8 +1,6 @@
 import './demo.css';
 
 import React, { useState } from 'react';
-import { Viewbox } from '../src';
-import usePannable from '../src/addons/usePannable';
 import HomepageTimeseries from './HomepageTimeseries';
 import HomepageBar from './HomepageBar';
 
@@ -14,9 +12,6 @@ interface AppState {
 interface Args {
   state: AppState;
   update: (state: Partial<AppState>) => void;
-  view: Viewbox;
-  setView: (view: Viewbox) => void;
-  scrollToView: (view: Viewbox) => void;
 }
 
 interface Props {
@@ -24,10 +19,6 @@ interface Props {
 }
 
 const StateContainer: React.FC<Props> = ({ children }) => {
-  const [view, setView, scrollToView] = usePannable(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
   const [state, setState] = useState<AppState>({
     isCanvas: false,
     selected: null,
@@ -40,7 +31,7 @@ const StateContainer: React.FC<Props> = ({ children }) => {
     }));
   };
 
-  return children({ state, update, view, setView, scrollToView });
+  return children({ state, update });
 };
 
 const Tabs: React.FC<{
@@ -136,9 +127,9 @@ const Controls: React.FC<{
   );
 };
 
-const DemoContainer: React.FC = () => (
+export const HomepageDemoContainer: React.FC = () => (
   <StateContainer>
-    {({ state, update, view, setView, scrollToView }) => (
+    {({ state, update }) => (
       <React.Fragment>
         <Tabs names={['Scrollable Scatter Plot', 'Responsive Bar Chart']}>
           <div className="tab-content">
@@ -150,9 +141,6 @@ const DemoContainer: React.FC = () => (
             <div className="hp-timeseries-wrapper">
               <HomepageTimeseries
                 isCanvas={state.isCanvas}
-                view={view}
-                setView={setView}
-                scrollToView={scrollToView}
                 handlePointSelect={(data) =>
                   update({
                     selected: data,
@@ -187,8 +175,6 @@ const DemoContainer: React.FC = () => (
     )}
   </StateContainer>
 );
-
-export default DemoContainer;
 
 export const CoreConceptsDemoContainer: React.FC = ({
   children: _children,
