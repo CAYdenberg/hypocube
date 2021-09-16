@@ -16,14 +16,12 @@ export interface ChartState {
   pushToCanvasQueue: ((func: CanvasComponent) => void) | null;
 }
 
-export interface ContextualStylesFunctionArguments {
+export type ChartStyleFunction<T> = (sizes: {
   pxWidth: number;
   pxHeight: number;
-}
+}) => T;
 
-export type Contextual<T> =
-  | T
-  | ((pxBox: ContextualStylesFunctionArguments) => T);
+export type Contextual<T> = T | ChartStyleFunction<T>;
 
 export interface ChartStyleT {
   fontSize: number;

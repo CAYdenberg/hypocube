@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Viewbox } from '../src';
 import usePannable from '../src/addons/usePannable';
 import HomepageTimeseries from './HomepageTimeseries';
+import HomepageBar from './HomepageBar';
 
 interface AppState {
   isCanvas: boolean;
@@ -164,7 +165,22 @@ const DemoContainer: React.FC = () => (
               Drag or swipe to move the x-axis
             </div>
           </div>
-          <div>Responsive bar chart</div>
+          <div className="tab-content">
+            <p>
+              <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageBar.tsx">
+                View Code
+              </a>
+            </p>
+            <HomepageBar
+              isCanvas={state.isCanvas}
+              handlePointSelect={(data) =>
+                update({
+                  selected: data,
+                })
+              }
+              handleClearSelect={() => update({ selected: null })}
+            />
+          </div>
         </Tabs>
         <Controls state={state} update={update} />
       </React.Fragment>

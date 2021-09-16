@@ -1,5 +1,5 @@
 import interpolate from 'color-interpolate';
-import { Contextual, ContextualStylesFunctionArguments } from '../types';
+import { Contextual, ChartStyleFunction } from '../types';
 
 export const list = <T>(
   length: number,
@@ -16,7 +16,7 @@ export const getBarOffsets = (
   const getValue =
     typeof stepSize === 'number'
       ? (index: number) => (numSeries - 1) * stepSize * -0.5 + stepSize * index
-      : (index: number) => (pxBox: ContextualStylesFunctionArguments) =>
+      : (index: number): ChartStyleFunction<number> => (pxBox) =>
           (numSeries - 1) * stepSize(pxBox) * -0.5 + stepSize(pxBox) * index;
 
   return list(numSeries, getValue as any);
