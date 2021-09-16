@@ -105,8 +105,15 @@ See also [the axes documentation](./3-axes).
 <PropDef name="axisTickLabelOffset" type="number" def="2">
   Distance between the end of the tick mark and the nearest edge of the label.
 </PropDef>
-<PropDef name="axisLabelOffset" type="number" def="50">
-  Total distance between the axis line and the nearest edge of the axis label.
+<PropDef name="xAxisLabelPosition" type="number" def="46">
+  Number of pixels between the x-axis line and the bottom edge of the label. In
+  many cases this can correspond to the bottom gutter of the chart.
+</PropDef>
+<PropDef name="yAxisLabelPosition" type="number" def="-60">
+  Number of pixels between the y-axis line and the left edge of the label
+  *rotated label*. In many cases this can correspond to the left gutter of the
+  chart. Note that when when this value is positive, the label rotation will be
+  reversed.
 </PropDef>
 
 ### Data Series

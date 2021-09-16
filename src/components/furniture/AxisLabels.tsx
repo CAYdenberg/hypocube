@@ -14,21 +14,12 @@ export const XAxisLabel: React.FC<AxisLabelProps> = ({
   chartStyle,
   position,
 }) => {
-  const {
-    fontSize,
-    axisColor,
-    axisTickLabelOffset,
-    axisTickLength,
-    axisLabelOffset,
-  } = useChartStyle(chartStyle);
-
-  const labelAbsoluteOffset =
-    axisTickLength + axisTickLabelOffset + fontSize + axisLabelOffset;
+  const { fontSize, axisColor, xAxisLabelPosition } = useChartStyle(chartStyle);
 
   return (
     <Text
       position={position}
-      pxOffset={[0, labelAbsoluteOffset]}
+      pxOffset={[0, xAxisLabelPosition]}
       text={label}
       color={axisColor}
       align="center"
@@ -42,26 +33,17 @@ export const YAxisLabel: React.FC<AxisLabelProps> = ({
   chartStyle,
   position,
 }) => {
-  const {
-    fontSize,
-    axisColor,
-    axisTickLabelOffset,
-    axisTickLength,
-    axisLabelOffset,
-  } = useChartStyle(chartStyle);
-
-  const labelAbsoluteOffset =
-    axisTickLength + axisTickLabelOffset + axisLabelOffset;
+  const { fontSize, axisColor, yAxisLabelPosition } = useChartStyle(chartStyle);
 
   return (
     <Text
       position={position}
-      pxOffset={[0, labelAbsoluteOffset]}
+      pxOffset={[yAxisLabelPosition + fontSize, 0]}
       text={label}
       color={axisColor}
-      align="right"
+      align="center"
       fontSize={fontSize}
-      rotation={1.5 * Math.PI}
+      rotation={yAxisLabelPosition < 0 ? 1.5 * Math.PI : 0.5 * Math.PI}
     />
   );
 };

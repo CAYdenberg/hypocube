@@ -68,7 +68,7 @@ const HomepageBar: React.FC<Props> = ({
       height={300}
       width={435}
       view={[-0.5, 0, 12, 200]}
-      gutter={[50, 0, 50, 50]}
+      gutter={[50, 0, 50, 60]}
       isCanvas={isCanvas}
       chartStyle={{
         dataWhiskerTopCapLength: capWidth,
@@ -80,7 +80,12 @@ const HomepageBar: React.FC<Props> = ({
       onPointerOut={onPointerOut}
     >
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
-      <YAxis range={[0, 200]} tickPositions={[0, 100, 200]} intercept={-0.5} />
+      <YAxis
+        range={[0, 200]}
+        tickPositions={[0, 100, 200]}
+        intercept={-0.5}
+        axisLabel="Precipitation (mm)"
+      />
       {byMonthSeries.map(({ data, key }, i) => (
         <React.Fragment key={key}>
           <BarVerticalSeries

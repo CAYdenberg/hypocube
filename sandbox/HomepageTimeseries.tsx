@@ -97,7 +97,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       height={300}
       width={435}
       view={view}
-      gutter={[5, 20, 50, 50]}
+      gutter={[5, 20, 50, 60]}
       isCanvas={isCanvas}
       chartStyle={{
         dataPointSymbol: 'circle',

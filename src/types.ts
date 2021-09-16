@@ -23,6 +23,8 @@ export type ChartStyleFunction<T> = (sizes: {
 
 export type Contextual<T> = T | ChartStyleFunction<T>;
 
+export type AxisLabelPosition = [number, number];
+
 export interface ChartStyleT {
   fontSize: number;
 
@@ -31,7 +33,9 @@ export interface ChartStyleT {
   axisTickLength: number;
   axisTickOffset: number;
   axisTickLabelOffset: number;
-  axisLabelOffset: number;
+
+  xAxisLabelPosition: number;
+  yAxisLabelPosition: number;
 
   seriesXOffset: number;
 
