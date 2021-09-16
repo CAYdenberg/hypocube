@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Line, LineSeries, XAxis, YAxis } from '../src';
+import { Chart, Line, Text, LineSeries, XAxis, YAxis } from '../src';
 import ChartError from '../src/components/base/ChartError';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
@@ -55,6 +55,37 @@ const examples: Example[] = [
           ]}
           fill="#000"
         />
+      </Chart>
+    ),
+  },
+  {
+    name: 'Text rotation',
+    render: ({ isCanvas }) => (
+      <Chart height={300} width={300} view={[0, 0, 5, 2]} isCanvas={isCanvas}>
+        <Line
+          path={[
+            [0, 1],
+            [5, 1],
+          ]}
+          dash="dashed"
+        />
+        {[1, 2, 3, 4].map((x) => (
+          <React.Fragment key={x}>
+            <Line
+              path={[
+                [x, 0],
+                [x, 2],
+              ]}
+              dash="dashed"
+            />
+            <Text
+              position={[x, 1]}
+              text="Lazy bog"
+              align="center"
+              rotation={-0.5 * x * Math.PI}
+            />
+          </React.Fragment>
+        ))}
       </Chart>
     ),
   },

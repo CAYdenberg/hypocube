@@ -11,7 +11,9 @@ const baseStyle: ChartStyleT = {
   axisTickLength: 10,
   axisTickOffset: 0,
   axisTickLabelOffset: 2,
-  axisLabelOffset: 50,
+
+  xAxisLabelPosition: 46,
+  yAxisLabelPosition: -60,
 
   seriesXOffset: 0,
 

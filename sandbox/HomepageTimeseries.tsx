@@ -97,7 +97,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       height={300}
       width={435}
       view={view}
-      gutter={[5, 20, 50, 50]}
+      gutter={[5, 20, 50, 60]}
       isCanvas={isCanvas}
       chartStyle={{
         dataPointSymbol: 'circle',
@@ -123,6 +123,7 @@ const HomepageTimeseries: React.FC<Props> = ({
         tickPositions={[0, 100, 200]}
         getTickLabel={(pos) => String(pos)}
         intercept={view.xMin}
+        axisLabel="Precipitation (mm)"
       />
     </Chart>
   );
