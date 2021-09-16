@@ -1,8 +1,4 @@
-import {
-  ChartState,
-  Contextual,
-  ContextualStylesFunctionArguments,
-} from '../types';
+import { ChartState, ChartStyleFunction, Contextual } from '../types';
 
 export const normalize = <T>(prop: T | undefined, defaultProp: T) => {
   return typeof prop === 'undefined' ? defaultProp : prop;
@@ -15,9 +11,7 @@ export const contextualize = <T>(
 ): T => {
   const safeProp = normalize(prop, defaultProp);
   if (typeof safeProp === 'function') {
-    const safePropF = safeProp as (
-      pxBox: ContextualStylesFunctionArguments
-    ) => T;
+    const safePropF = safeProp as ChartStyleFunction<T>;
     return safePropF({
       pxWidth: chartState.pxBox.width,
       pxHeight: chartState.pxBox.height,

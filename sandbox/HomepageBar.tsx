@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { DateTime } from 'luxon';
 
 import {
   BarVerticalSeries,
   Chart,
+  ChartEventData,
+  ChartStyleFunction,
   RangeVerticalSeries,
   XAxis,
   YAxis,
@@ -26,9 +28,41 @@ const getRanges = (series: ByMonth) =>
   });
 
 const COLORS = ['#003f5c', '#58508d', '#bc5090'];
-const barOffsets = getBarOffsets(10, 3);
+const barWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
+  pxWidth < 600 ? 6 : 10;
+const barOffsets = getBarOffsets(barWidth, 3);
+const capWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
+  pxWidth < 600 ? 0 : 6;
+const fontSize: ChartStyleFunction<number> = ({ pxWidth }) =>
+  pxWidth < 600 ? 12 : 16;
 
-const HomepageBar: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
+interface Props {
+  isCanvas: boolean;
+  handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
+  handleClearSelect?: () => void;
+}
+
+const HomepageBar: React.FC<Props> = ({
+  isCanvas,
+  handlePointSelect,
+  handleClearSelect,
+}) => {
+  const onPointerOver = useCallback(
+    (data: ChartEventData) => {
+      if (!handlePointSelect || !data.elementPosition) return;
+      handlePointSelect({
+        series: data.meta.seriesName as string,
+        x: getTickLabel(data.elementPosition[0]),
+        y: data.elementPosition[1].toFixed(1),
+      });
+    },
+    [handlePointSelect]
+  );
+
+  const onPointerOut = useCallback(() => {
+    handleClearSelect && handleClearSelect();
+  }, [handleClearSelect]);
+
   return (
     <Chart
       height={300}
@@ -37,10 +71,13 @@ const HomepageBar: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       gutter={[50, 0, 50, 50]}
       isCanvas={isCanvas}
       chartStyle={{
-        dataWhiskerTopCapLength: 6,
-        dataWhiskerBottomCapLength: 6,
+        dataWhiskerTopCapLength: capWidth,
+        dataWhiskerBottomCapLength: capWidth,
         dataWhiskerStroke: '#464f58',
+        dataBoxThickness: barWidth,
+        fontSize,
       }}
+      onPointerOut={onPointerOut}
     >
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis range={[0, 200]} tickPositions={[0, 100, 200]} intercept={-0.5} />
@@ -52,6 +89,8 @@ const HomepageBar: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
               dataBoxFill: COLORS[i],
               seriesXOffset: barOffsets[i],
             }}
+            handlerMeta={{ seriesName: key }}
+            onPointerOver={onPointerOver}
           />
           <RangeVerticalSeries
             data={getRanges(byMonthSeries[i])}

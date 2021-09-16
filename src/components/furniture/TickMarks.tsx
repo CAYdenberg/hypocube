@@ -43,6 +43,7 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
         text={label}
         color={axisColor}
         align="center"
+        fontSize={fontSize}
       />
     </React.Fragment>
   );
@@ -80,6 +81,7 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
         text={label}
         color={axisColor}
         align="right"
+        fontSize={fontSize}
       />
     </React.Fragment>
   );
