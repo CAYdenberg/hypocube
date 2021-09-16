@@ -6,15 +6,23 @@ metaDescription: 'Hypocube core concepts'
 
 ## Content vs Presentation
 
-Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. The principle insight the community has absorbed is that **content is distinct from presentation:** the style of a website can adapt based on device capabilities, but this doesn't mean that lower-capability devices have access to different content. This principle has acutally become _more_ important in the intervening years: tools such as Accelerated Mobile Pages, Facebook Instant Articles and Apple News, mean that authors rarely know the exact format in which their content will reach their readers.
+Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. From the principle insight that **content is distinct from presentation,** Marcotte developed the idea that the style of a website can adapt based on device capabilities, without changing the semantic meaning of the content. This has acutally become _more_ important in the intervening years: with media like Accelerated Mobile Pages, Facebook Instant Articles and Apple News, to say nothing of an ever-greater variety of screens, mean that authors rarely know the exact format in which their content will reach their readers.
 
-Tools for applying responsive principles to visual data (charts and graphs) have lagged. This is because charts are neither text (which can compress horizontally and expand vertically as the viewport shrinks), nor images (which can compress along both dimensions to maintain the aspect ratio). What is needed is a clean separation of concerns when talking about charts: what is content (data), and what is presentation (style)?
+Tools for applying responsive principles to charts and graphs have lagged. This is because charts are neither text (which typically compress horizontally and expand vertically as the viewport shrinks), nor images (which typically compress along both dimensions to maintain the aspect ratio). What is needed is a clean separation of concerns when talking about charts: what is content (in this case, data), and what is presentation (style)?
 
-A solution is provided by a mental paradigm totally unrelated to the web: [_The Visual Display of Quantitative Information_](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte, first published in 1975. Tufte describes the parts of a graph that do not contain information "non-data ink". For example, the two charts below both show the same data:
+A way out from a book totally unrelated to the web: [_The Visual Display of Quantitative Information_](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte, first published in 1975. Tufte describes the parts of a graph that do not contain information "non-data ink". For example, the two charts below both show the same data:
 
-The key is that **the widths and the heights of the ranges represent different things: the vertical positions are content and cannot be changed because they directly represent data**. The horizontal distances, even though they are also composed only of distances/pixels, are not a representation of data and are properly thought of as styles.
+import CoreConceptsDemo from '../../sandbox/CoreConceptsDemo';
+import { CoreConceptsDemoContainer } from '../../sandbox/HomepageDemoContainer';
 
-Usually, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `tukey-box-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph: it must be composed out of more fundamental SVG elements, that represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-like scheme to provide chart styles at varying levels of specificity. As with CSS, these styles can be inherited from parent elements.
+<CoreConceptsDemoContainer>
+  <CoreConceptsDemo />
+  <CoreConceptsDemo reduceInk={true} />
+</CoreConceptsDemoContainer>
+
+The point is that **the widths and the heights of the ranges represent different things: the vertical positions are content and cannot be changed because they directly represent data**. The horizontal distances, even though they are also composed only of distances/pixels, are not a representation of data and are properly thought of as styles.
+
+Usually, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `tukey-box-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph: it must be composed out of more fundamental SVG elements, which themselves represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-like scheme to provide chart styles at varying levels of specificity. As with CSS, these styles can be inherited from parent elements.
 
 ## Responsiveness
 
@@ -24,15 +32,13 @@ What about responsiveness? All chart styles are **contextual**: which means they
 
 ## Defining Space
 
-When specifying distance along an axis, sometimes we want to think in terms of actual data coordinates, and sometimes we need to think in pixels. For example, in the chart below, the positions of the tick marks are specified as data - the "50" tick mark represents a position with respect to actual data, but the length of the tick marks is a kind of style and doesn't have any semantic meaning:
-
-Throughout the docs, we use the following conventions to denote different types of scale:
+When specifying distance along an axis, sometimes we want to think in terms of actual data coordinates, and sometimes we need to think in pixels. Throughout the docs, we use the following conventions to denote different types of scale:
 
 - In the **pixel scale** we are specifying units of pixels. Except for chart styles and the gutter attribute, you probably won't have to think about the pixel scale often; the conversions are handled under the hood. Coordinates in the pixel scale can be used directly used in SVG or canvas to create shapes.
 
-- The **Cartesian scale** is a linear transformation of the pixel scale which is useful for thinking about our data. It is a Cartesian plane with an x-axis increasing from left to right and a y-axis increasing from bottom to top. For some kinds of graphs, the Cartesian scale is enough to plot your data.
+- The **Cartesian scale** is a linear transformation of the pixel scale which is useful for thinking about our data. It is a Cartesian plane with an x-axis increasing from left to right and a y-axis increasing from bottom to top - just like in high school math. For most kinds of graphs, the Cartesian scale is enough to plot your data.
 
-- If your data is logarithmic or categorical, or based on dates, you'll need to first convert it to a linear scale so that it can be represented on a Cartesian plane. [d3-scale](https://github.com/d3/d3-scale) is an excellent tool for this. We refer to this as the **data scale**, though mostly Hypocube doesn't touch it.
+- If some cases where the data is logarithmic or categorical, it is first converted to a linear scale so that it can be represented on a Cartesian plane. [d3-scale](https://github.com/d3/d3-scale) is an excellent tool for this. We refer to this as the **data scale**, though mostly Hypocube doesn't touch it.
 
 ## Interactivity
 
@@ -58,8 +64,10 @@ All provided components can be rendered server-side while in SVG mode, although 
 
 All Hypocube chart components are composed out of a small number of primatives. These primatives provide both SVG and canvas rendering information: therefore if render props are used to replace sub-components, canvas rendering will still work as long as these primatives are used as the building blocks for the new elements.
 
-[Read more about primatives.](./)
+[Read more about primatives.](./composing-charts/3-primatives)
 
 ## HTML layer
 
-Tooltips are a very common pattern in web charts. To allow rendering of HTML elements at particular positions, a renderHTML prop is provided that will render absolutely positioned elements outside of the SVG or canvas container.
+Tooltips are a very common pattern in web charts. Hypocube allows rendering of HTML elements at positions defined on the Cartesian scale.
+
+[Read more about tooltips.](./interaction/2-tooltips)

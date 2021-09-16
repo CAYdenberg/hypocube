@@ -189,3 +189,19 @@ const DemoContainer: React.FC = () => (
 );
 
 export default DemoContainer;
+
+export const CoreConceptsDemoContainer: React.FC = ({
+  children: _children,
+}) => {
+  const children = React.Children.toArray(_children);
+
+  return (
+    <div className="cc-container">
+      {children.map((child, i) => (
+        <div className="cc-item" key={i}>
+          {child}
+        </div>
+      ))}
+    </div>
+  );
+};
