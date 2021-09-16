@@ -156,8 +156,6 @@ const ChartInner: React.FC<Props> = (props) => {
       ref={containerRef}
       style={{
         height: pxBox.height,
-        maxWidth: pxBox.width,
-        minWidth: '100%',
         position: 'relative',
       }}
     >

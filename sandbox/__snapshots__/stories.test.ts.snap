@@ -9,8 +9,6 @@ Array [
     style={
       Object {
         "height": 300,
-        "maxWidth": 300,
-        "minWidth": "100%",
         "position": "relative",
       }
     }
@@ -334,8 +332,6 @@ Array [
     style={
       Object {
         "height": 300,
-        "maxWidth": 300,
-        "minWidth": "100%",
         "position": "relative",
       }
     }
@@ -368,13 +364,347 @@ Array [
 ]
 `;
 
+exports[`Test: Core Concepts: Tukey 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "position": "relative",
+    }
+  }
+>
+  <div
+    onPointerCancel={[Function]}
+    onPointerDown={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+  >
+    <div>
+      <svg
+        height={300}
+        width={150}
+      >
+        <g>
+          <path
+            d="M27.5,290L132.5,290"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+        </g>
+        <g>
+          <path
+            d="M27.5,290L27.5,10"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <path
+            d="M27.5,290L12.5,290"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={295.5}
+          >
+            0
+          </text>
+          <path
+            d="M27.5,234L12.5,234"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={239.5}
+          >
+            50
+          </text>
+          <path
+            d="M27.5,178L12.5,178"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={183.5}
+          >
+            100
+          </text>
+          <path
+            d="M27.5,122L12.5,122"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={127.5}
+          >
+            150
+          </text>
+          <path
+            d="M27.5,65.99999999999999L12.5,65.99999999999999"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={71.49999999999999}
+          >
+            200
+          </text>
+          <path
+            d="M27.5,10L12.5,10"
+            fill="transparent"
+            stroke="#666"
+            strokeWidth={2}
+          />
+          <text
+            fill="#666"
+            fontSize={15}
+            style={
+              Object {
+                "fontFamily": "Helvetica, sans-serif",
+                "userSelect": "none",
+              }
+            }
+            textAnchor="end"
+            x={10.5}
+            y={15.5}
+          >
+            250
+          </text>
+        </g>
+        <g>
+          <path
+            d="M35,235.00799999999998L55,235.00799999999998"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,267.0288L55,267.0288"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M45,283.6496L45,267.0288"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,283.6496L55,283.6496"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,235.00799999999998L55,235.00799999999998L55,267.0288L35,267.0288L35,235.00799999999998"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,170.22720000000004L55,170.22720000000004L55,235.00799999999998L35,235.00799999999998L35,170.22720000000004"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,77.45759999999997L55,77.45759999999997"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M45,170.22720000000004L45,77.45759999999997"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M35,170.22720000000004L55,170.22720000000004"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+        </g>
+        <g>
+          <path
+            d="M70,185.9632L90,185.9632"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,239.60000000000002L90,239.60000000000002"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M80,271.3184L80,239.60000000000002"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,271.3184L90,271.3184"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,185.9632L90,185.9632L90,239.60000000000002L70,239.60000000000002L70,185.9632"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,117.81119999999999L90,117.81119999999999L90,185.9632L70,185.9632L70,117.81119999999999"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,18.680000000000007L90,18.680000000000007"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M80,117.81119999999999L80,18.680000000000007"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M70,117.81119999999999L90,117.81119999999999"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+        </g>
+        <g>
+          <path
+            d="M105,262.2912L125,262.2912"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,269.84000000000003L125,269.84000000000003"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M115,277.8256L115,269.84000000000003"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,277.8256L125,277.8256"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,262.2912L125,262.2912L125,269.84000000000003L105,269.84000000000003L105,262.2912"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,250.63199999999998L125,250.63199999999998L125,262.2912L105,262.2912L105,250.63199999999998"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,228.4448L125,228.4448"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M115,250.63199999999998L115,228.4448"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+          <path
+            d="M105,250.63199999999998L125,250.63199999999998"
+            fill="transparent"
+            stroke="#000"
+            strokeWidth={2}
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Test: Dot and Tukey plot 1`] = `
 <div
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -14241,8 +14571,6 @@ exports[`Test: Filled line 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -14275,8 +14603,6 @@ exports[`Test: Homepage: Bar 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 435,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -15932,8 +16258,6 @@ exports[`Test: Homepage: Timeseries 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 435,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -19276,8 +19600,6 @@ exports[`Test: Line 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -19310,8 +19632,6 @@ exports[`Test: LineSeries 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -19729,8 +20049,6 @@ exports[`Test: Multiple Bar Series 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -20079,8 +20397,6 @@ exports[`Test: Multiple Series 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
@@ -34276,8 +34592,6 @@ exports[`Test: Pannable 1`] = `
   style={
     Object {
       "height": 300,
-      "maxWidth": 300,
-      "minWidth": "100%",
       "position": "relative",
     }
   }
