@@ -735,7 +735,7 @@ export const baseStyles = css`
     -webkit-transition: top 0.5s, bottom 0.5s;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     .formElement svg path {
       fill: #001934;
     }
@@ -867,33 +867,5 @@ export const baseStyles = css`
       position: static;
     }
   }
-
-  @media (min-width: 768px) and (max-width: 991px) {
-    .navBarDefault {
-      padding: 10px;
-    }
-    .navBarBrand {
-      font-size: 22px;
-    }
-    .navBarHeader {
-      min-width: 240px;
-      flex: initial;
-    }
-    .githubBtn {
-      padding: 10px 10px;
-    }
-    .divider {
-      margin: 0 5px;
-      height: 20px;
-    }
-    .hitWrapper {
-      max-width: 500px;
-    }
-    .navBarUL li a {
-      padding: 10px 5px;
-    }
-    .searchWrapper {
-      padding-left: 0px;
-    }
-  }
+}
 `;
