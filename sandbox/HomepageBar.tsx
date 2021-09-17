@@ -12,6 +12,7 @@ import {
 } from '../src';
 import { getBarOffsets } from '../src/addons/seriesStyle';
 import byMonthSeries, { ByMonth } from './__data__/homepage-2';
+import { DataPoint } from './HomepageTimeseries';
 
 const ticks = Array.from({ length: 12 }, (_, i) => i);
 const getTickLabel = (x: number) => {
@@ -27,7 +28,6 @@ const getRanges = (series: ByMonth) =>
     };
   });
 
-const COLORS = ['#003f5c', '#58508d', '#bc5090'];
 const barWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
   pxWidth < 600 ? 6 : 10;
 const barOffsets = getBarOffsets(barWidth, 3);
@@ -38,12 +38,16 @@ const fontSize: ChartStyleFunction<number> = ({ pxWidth }) =>
 
 interface Props {
   isCanvas: boolean;
-  handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
+  colors: Record<string, string>;
+  selectedPoint?: DataPoint | null;
+  handlePointSelect?: (data: DataPoint) => void;
   handleClearSelect?: () => void;
 }
 
 const HomepageBar: React.FC<Props> = ({
   isCanvas,
+  colors,
+  selectedPoint,
   handlePointSelect,
   handleClearSelect,
 }) => {
@@ -52,8 +56,9 @@ const HomepageBar: React.FC<Props> = ({
       if (!handlePointSelect || !data.elementPosition) return;
       handlePointSelect({
         series: data.meta.seriesName as string,
-        x: getTickLabel(data.elementPosition[0]),
-        y: data.elementPosition[1].toFixed(1),
+        coords: data.elementPosition,
+        xLabel: getTickLabel(data.elementPosition[0]),
+        yLabel: data.elementPosition[1].toFixed(1),
       });
     },
     [handlePointSelect]
@@ -91,15 +96,21 @@ const HomepageBar: React.FC<Props> = ({
           <BarVerticalSeries
             data={data}
             chartStyle={{
-              dataBoxFill: COLORS[i],
+              dataBoxFill: colors[key],
               seriesXOffset: barOffsets[i],
+              seriesOpacity:
+                selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
             }}
             handlerMeta={{ seriesName: key }}
             onPointerOver={onPointerOver}
           />
           <RangeVerticalSeries
             data={getRanges(byMonthSeries[i])}
-            chartStyle={{ seriesXOffset: barOffsets[i] }}
+            chartStyle={{
+              seriesXOffset: barOffsets[i],
+              seriesOpacity:
+                selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
+            }}
           />
         </React.Fragment>
       ))}

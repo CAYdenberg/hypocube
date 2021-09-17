@@ -198,12 +198,18 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                     </GitHubButton>
                   </li>
                 ) : null}
+                {/* 
+                /**
+                 * Would like to revive the dark theme, but we'll need a way
+                 * to access it from inside MDX components. Commented out 
+                 * until then.
+
                 <li>
                   <DarkModeSwitch
                     isDarkThemeActive={isDarkThemeActive}
                     toggleActiveTheme={toggleActiveTheme}
                   />
-                </li>
+                </li> */}
               </ul>
             </div>
           </nav>

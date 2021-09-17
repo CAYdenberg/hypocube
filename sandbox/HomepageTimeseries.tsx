@@ -8,9 +8,9 @@ import {
   YAxis,
   ChartEventData,
   ChartGestureData,
-  Viewbox,
+  Point,
 } from '../src';
-import usePannableView from '../src/addons/usePannable';
+import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';
 
@@ -20,48 +20,40 @@ const ticks = ({ pxWidth }: { pxWidth: number }) => {
     .map((_, i) => (i % interval ? null : i))
     .filter((val) => val !== null) as number[];
 };
+
 const getTickLabel = (x: number) => {
   const raw = labels[x];
   const dt = DateTime.fromISO(raw);
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
 
-const COLORS = ['#003f5c', '#58508d', '#bc5090'];
-interface StoryProps {
-  isCanvas: boolean;
-  handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
-  handleClearSelect?: () => void;
+export interface DataPoint {
+  series: string;
+  coords: Point;
+  xLabel: string;
+  yLabel: string;
 }
 
-export const HomepageTimeseriesStory: React.FC<StoryProps> = (props) => {
-  const [view, setView, scrollToView] = usePannableView(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
-  return (
-    <HomepageTimeseries
-      {...props}
-      view={view}
-      setView={setView}
-      scrollToView={scrollToView}
-    />
-  );
-};
-
-interface Props extends StoryProps {
-  view: Viewbox;
-  setView: (view: Viewbox) => void;
-  scrollToView: (view: Viewbox) => void;
+interface Props {
+  isCanvas: boolean;
+  colors: Record<string, string>;
+  selectedPoint?: DataPoint | null;
+  handlePointSelect?: (data: DataPoint) => void;
+  handleClearSelect?: () => void;
 }
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
+  colors,
+  selectedPoint,
   handlePointSelect,
   handleClearSelect,
-  view,
-  setView,
-  scrollToView,
 }) => {
+  const [view, setView, scrollToView] = usePannable(
+    [201, 0, 50, 250],
+    [0, 0, 251, 250]
+  );
+
   const onGesture = useCallback(
     (data: ChartGestureData) => {
       if (data.kind === GestureKind.Swipe) {
@@ -80,8 +72,9 @@ const HomepageTimeseries: React.FC<Props> = ({
         if (!handlePointSelect || !data.elementPosition) return;
         handlePointSelect({
           series: data.meta.seriesName as string,
-          x: getTickLabel(data.elementPosition[0]),
-          y: String(data.elementPosition[1]),
+          coords: data.elementPosition,
+          xLabel: getTickLabel(data.elementPosition[0]),
+          yLabel: String(data.elementPosition[1]),
         });
       },
       [handlePointSelect]
@@ -102,6 +95,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       chartStyle={{
         dataPointSymbol: 'circle',
         dataLineCurveType: 'natural',
+        svgPointerEvents: false,
       }}
       onGesture={onGesture}
       onPointerMove={onPointerMove}
@@ -111,13 +105,24 @@ const HomepageTimeseries: React.FC<Props> = ({
         <LineSeries
           key={key}
           data={data}
-          handlerMeta={{ label: key }}
           chartStyle={{
-            dataLineStroke: COLORS[i],
-            dataPointFill: COLORS[i],
+            dataLineStroke: colors[key],
+            dataPointFill: colors[key],
+            seriesOpacity:
+              selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
           }}
         />
       ))}
+      {selectedPoint && (
+        <LineSeries
+          data={[selectedPoint.coords]}
+          chartStyle={{
+            dataPointFill: '#1ed3c6',
+            dataPointSize: 30,
+            seriesOpacity: 0.6,
+          }}
+        />
+      )}
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis
         tickPositions={[0, 100, 200]}

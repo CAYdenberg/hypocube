@@ -8,25 +8,26 @@ import {
   curveStepBefore,
   line as d3Line,
 } from 'd3-shape';
-
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
 import { DASHED_LINE, DOTTED_LINE } from '../../constants';
 
-export type curveType = 'linear' | 'cardinal' | 'natural' | 'basis' | 'step';
-export type dashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
+export type CurveType = 'linear' | 'cardinal' | 'natural' | 'basis' | 'step';
+export type DashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
 
 interface Props {
   path: Point[];
   stroke?: string | null;
   fill?: string | null;
   strokeWidth?: number;
-  curveType?: curveType | CurveFactoryLineOnly;
-  dash?: dashType;
+  curveType?: CurveType | CurveFactoryLineOnly;
+  dash?: DashType;
+  opacity?: number;
+  svgPointerEvents?: boolean;
 }
 
 const getD3Curve = (
-  input: curveType | CurveFactoryLineOnly
+  input: CurveType | CurveFactoryLineOnly
 ): CurveFactoryLineOnly => {
   if (typeof input !== 'string') return input;
 
@@ -47,7 +48,7 @@ const getD3Curve = (
   return curveLinear;
 };
 
-const getDashArray = (input: dashType): Array<number> | null => {
+const getDashArray = (input: DashType): Array<number> | null => {
   if (typeof input !== 'string') return input;
 
   switch (input) {
@@ -89,12 +90,23 @@ export const TranslatedLine: React.FC<Props & { position: Point }> = (
 };
 
 export const PxLine: React.FC<Props> = (props) => {
-  const { path, stroke, fill, strokeWidth, curveType, dash } = {
+  const {
+    path,
+    stroke,
+    fill,
+    strokeWidth,
+    curveType,
+    dash,
+    opacity,
+    svgPointerEvents,
+  } = {
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
-    curveType: 'linear' as curveType,
+    curveType: 'linear' as CurveType,
     dash: null,
+    opacity: 1,
+    svgPointerEvents: true,
     ...props,
   };
   const curveFactory = getD3Curve(curveType);
@@ -110,6 +122,8 @@ export const PxLine: React.FC<Props> = (props) => {
       renderer.beginPath();
 
       line(path);
+
+      renderer.globalAlpha = opacity;
 
       if (stroke && strokeWidth) {
         renderer.strokeStyle = stroke;
@@ -143,6 +157,8 @@ export const PxLine: React.FC<Props> = (props) => {
       fill={fill || 'transparent'}
       strokeWidth={strokeWidth}
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}
+      opacity={opacity}
+      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
     />
   );
 };

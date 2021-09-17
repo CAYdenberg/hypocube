@@ -1,22 +1,17 @@
 import './demo.css';
 
 import React, { useState } from 'react';
-import { Viewbox } from '../src';
-import usePannable from '../src/addons/usePannable';
-import HomepageTimeseries from './HomepageTimeseries';
+import HomepageTimeseries, { DataPoint } from './HomepageTimeseries';
 import HomepageBar from './HomepageBar';
 
 interface AppState {
   isCanvas: boolean;
-  selected: Record<string, string | number> | null;
+  selected: DataPoint | null;
 }
 
 interface Args {
   state: AppState;
   update: (state: Partial<AppState>) => void;
-  view: Viewbox;
-  setView: (view: Viewbox) => void;
-  scrollToView: (view: Viewbox) => void;
 }
 
 interface Props {
@@ -24,10 +19,6 @@ interface Props {
 }
 
 const StateContainer: React.FC<Props> = ({ children }) => {
-  const [view, setView, scrollToView] = usePannable(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
   const [state, setState] = useState<AppState>({
     isCanvas: false,
     selected: null,
@@ -40,7 +31,7 @@ const StateContainer: React.FC<Props> = ({ children }) => {
     }));
   };
 
-  return children({ state, update, view, setView, scrollToView });
+  return children({ state, update });
 };
 
 const Tabs: React.FC<{
@@ -77,8 +68,8 @@ const LegendItem: React.FC<{ color: string }> = ({ color, children }) => {
 
 const COLORS = {
   Vancouver: '#003f5c',
-  Victoria: '#58508d',
-  Kelowna: '#bc5090',
+  Victoria: '#bc5090',
+  Kelowna: '#ff6361',
 } as Record<string, string>;
 
 const Controls: React.FC<{
@@ -127,8 +118,8 @@ const Controls: React.FC<{
         {state.selected ? (
           <div style={{ color: COLORS[state.selected.series] }}>
             <p className="tooltip-line">{state.selected.series}</p>
-            <p className="tooltip-line">{state.selected.x}</p>
-            <p className="tooltip-line">{state.selected.y} mm</p>
+            <p className="tooltip-line">{state.selected.xLabel}</p>
+            <p className="tooltip-line">{state.selected.yLabel} mm</p>
           </div>
         ) : null}
       </div>
@@ -136,9 +127,9 @@ const Controls: React.FC<{
   );
 };
 
-const DemoContainer: React.FC = () => (
+export const HomepageDemoContainer: React.FC = () => (
   <StateContainer>
-    {({ state, update, view, setView, scrollToView }) => (
+    {({ state, update }) => (
       <React.Fragment>
         <Tabs names={['Scrollable Scatter Plot', 'Responsive Bar Chart']}>
           <div className="tab-content">
@@ -150,9 +141,8 @@ const DemoContainer: React.FC = () => (
             <div className="hp-timeseries-wrapper">
               <HomepageTimeseries
                 isCanvas={state.isCanvas}
-                view={view}
-                setView={setView}
-                scrollToView={scrollToView}
+                colors={COLORS}
+                selectedPoint={state.selected}
                 handlePointSelect={(data) =>
                   update({
                     selected: data,
@@ -173,6 +163,8 @@ const DemoContainer: React.FC = () => (
             </p>
             <HomepageBar
               isCanvas={state.isCanvas}
+              colors={COLORS}
+              selectedPoint={state.selected}
               handlePointSelect={(data) =>
                 update({
                   selected: data,
@@ -187,8 +179,6 @@ const DemoContainer: React.FC = () => (
     )}
   </StateContainer>
 );
-
-export default DemoContainer;
 
 export const CoreConceptsDemoContainer: React.FC = ({
   children: _children,

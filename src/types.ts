@@ -1,7 +1,7 @@
 import { ScaleLinear } from 'd3-scale';
 import React from 'react';
-import { curveType, dashType } from './components/primitives/Line';
-import { symbolType } from './components/primitives/Symbol';
+import { CurveType, DashType } from './components/primitives/Line';
+import { SymbolType } from './components/primitives/Symbol';
 import { CanvasComponent } from './lib/useCanvas';
 import Viewbox from './lib/Viewbox';
 
@@ -27,6 +27,7 @@ export type AxisLabelPosition = [number, number];
 
 export interface ChartStyleT {
   fontSize: number;
+  svgPointerEvents: boolean;
 
   axisColor: string;
   axisStrokeWidth: number;
@@ -38,6 +39,7 @@ export interface ChartStyleT {
   yAxisLabelPosition: number;
 
   seriesXOffset: number;
+  seriesOpacity: number;
 
   dataBoxFill: string;
   dataBoxStroke: string;
@@ -45,14 +47,14 @@ export interface ChartStyleT {
   dataBoxThickness: number;
 
   dataPointSize: number;
-  dataPointSymbol: symbolType;
+  dataPointSymbol: SymbolType;
   dataPointFill: string;
   dataPointStroke: string;
   dataPointStrokeWidth: number;
   dataPointMinTargetRadius: number;
 
-  dataLineCurveType: curveType;
-  dataLineDashType: dashType;
+  dataLineCurveType: CurveType;
+  dataLineDashType: DashType;
   dataLineStroke: string;
   dataLineStrokeWidth: number;
 

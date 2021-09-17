@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import useChartState from '../base/ChartState';
 
-export type symbolType =
+export type SymbolType =
   | 'circle'
   | 'cross'
   | 'diamond'
@@ -25,14 +25,16 @@ export type symbolType =
 interface SymbolProps {
   point: [number, number];
   size?: number;
-  symbol?: D3SymbolType | symbolType;
+  symbol?: D3SymbolType | SymbolType;
   stroke?: string;
   strokeWidth?: number;
   fill?: string | null;
+  opacity?: number;
   quietRenderRadius?: number;
+  svgPointerEvents?: boolean;
 }
 
-const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType | null => {
+const getD3Symbol = (input: SymbolType | D3SymbolType): D3SymbolType | null => {
   if (typeof input !== 'string') {
     return input;
   }
@@ -71,14 +73,18 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     stroke,
     fill,
     strokeWidth,
+    opacity,
     quietRenderRadius,
+    svgPointerEvents,
   } = {
     size: 5,
     symbol: symbolCircle,
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
+    opacity: 1,
     quietRenderRadius: 0,
+    svgPointerEvents: true,
     ...props,
   };
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
@@ -96,6 +102,8 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
       renderer.setTransform(1, 0, 0, 1, ...pxPoint);
       renderer.beginPath();
+
+      renderer.globalAlpha = opacity;
 
       line();
 
@@ -116,13 +124,17 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
   if (!line) return null;
 
   return (
-    <g transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}>
+    <g
+      transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
+      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
+    >
       <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
       <path
         d={line}
         stroke={stroke}
         fill={fill || 'transparent'}
         strokeWidth={strokeWidth}
+        opacity={opacity}
       />
     </g>
   );

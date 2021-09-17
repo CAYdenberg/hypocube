@@ -1,21 +1,30 @@
 import React from 'react';
 import { contextualize, normalize } from '../../lib/normalize';
-import { ChartState, ChartStyleOptions, Contextual } from '../../types';
+import {
+  ChartEventMetaData,
+  ChartState,
+  ChartStyleOptions,
+  Contextual,
+} from '../../types';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import Handle from '../primitives/Handle';
 import { Line } from '../primitives/Line';
 import { XTickMark, YTickMark, TickMarkProps } from './TickMarks';
-import { XAxisLabel, YAxisLabel } from './AxisLabels';
+import { AxisLabelProps, XAxisLabel, YAxisLabel } from './AxisLabels';
+import { HandlerProps } from '../../lib/useHandle';
+import selectHandlers from '../../lib/selectHandlers';
 
-interface AxisProps {
+interface AxisProps extends HandlerProps {
   range?: [number, number];
   intercept?: number;
   tickPositions?: Contextual<number[]>;
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
   chartStyle?: ChartStyleOptions;
+  handlerMeta?: ChartEventMetaData;
   renderTickMark?: React.FC<TickMarkProps>;
+  renderAxisLabel?: React.FC<AxisLabelProps>;
 }
 
 const normalizeAxisProps = (
@@ -49,13 +58,20 @@ export const XAxis: React.FC<AxisProps> = (props) => {
     getTickLabel,
     axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.x);
-  const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
+  const { axisColor, axisStrokeWidth, svgPointerEvents } = useChartStyle(
+    props.chartStyle
+  );
   const midPoint = (state.cartesianBox.xMin + state.cartesianBox.xMax) / 2;
 
   const TickMark = props.renderTickMark || XTickMark;
+  const Label = props.renderAxisLabel || XAxisLabel;
 
   return (
-    <Handle elementPosition={[range[0], intercept]}>
+    <Handle
+      elementPosition={[range[0], intercept]}
+      meta={props.handlerMeta}
+      {...selectHandlers(props)}
+    >
       <Line
         path={[
           [range[0], intercept],
@@ -63,6 +79,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
         ]}
         strokeWidth={axisStrokeWidth}
         stroke={axisColor}
+        svgPointerEvents={svgPointerEvents}
       />
       {tickPositions.map(
         (pos) =>
@@ -77,7 +94,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
           )
       )}
       {axisLabel && (
-        <XAxisLabel
+        <Label
           position={[midPoint, intercept]}
           label={axisLabel}
           chartStyle={props.chartStyle}
@@ -96,13 +113,20 @@ export const YAxis: React.FC<AxisProps> = (props) => {
     getTickLabel,
     axisLabel,
   } = normalizeAxisProps(props, state, state.cartesianBox.y);
-  const { axisColor, axisStrokeWidth } = useChartStyle(props.chartStyle);
+  const { axisColor, axisStrokeWidth, svgPointerEvents } = useChartStyle(
+    props.chartStyle
+  );
   const midPoint = (state.cartesianBox.yMin + state.cartesianBox.yMax) / 2;
 
   const TickMark = props.renderTickMark || YTickMark;
+  const Label = props.renderAxisLabel || YAxisLabel;
 
   return (
-    <Handle elementPosition={[intercept, range[0]]}>
+    <Handle
+      elementPosition={[intercept, range[0]]}
+      meta={props.handlerMeta}
+      {...selectHandlers(props)}
+    >
       <Line
         path={[
           [intercept, range[0]],
@@ -110,6 +134,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
         ]}
         strokeWidth={axisStrokeWidth}
         stroke={axisColor}
+        svgPointerEvents={svgPointerEvents}
       />
       {tickPositions.map(
         (pos) =>
@@ -124,7 +149,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
           )
       )}
       {axisLabel && (
-        <YAxisLabel
+        <Label
           position={[intercept, midPoint]}
           label={axisLabel}
           chartStyle={props.chartStyle}
