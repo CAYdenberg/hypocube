@@ -1,14 +1,9 @@
 import { scaleLinear } from 'd3-scale';
-import React, {
-  useState,
-  useCallback,
-  useRef,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { useRef, useMemo } from 'react';
 import { normalize } from '../../lib/normalize';
 import selectHandlers from '../../lib/selectHandlers';
 import useCanvas from '../../lib/useCanvas';
+import useContainerSizes from '../../lib/useContainerSizes';
 import { HandlerProps } from '../../lib/useHandle';
 import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import { ChartGestureData, ChartStyleOptions, Point } from '../../types';
@@ -79,43 +74,7 @@ const ChartInner: React.FC<Props> = (props) => {
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const { height } = props;
-  const getHeight = useCallback(
-    (width: number) => (typeof height === 'function' ? height(width) : height),
-    [height]
-  );
-
-  const [pxBox, setPxBox] = useState<Viewbox>(
-    new Viewbox(0, 0, props.width, getHeight(props.width))
-  );
-
-  const calculateSizes = useCallback(() => {
-    const containerEl = containerRef.current;
-    if (containerEl) {
-      setPxBox(
-        new Viewbox(
-          0,
-          0,
-          containerEl.clientWidth,
-          getHeight(containerEl.clientWidth)
-        )
-      );
-    }
-  }, [containerRef, getHeight]);
-
-  useEffect(() => {
-    calculateSizes();
-
-    if (!window) {
-      return;
-    }
-    window.addEventListener('resize', calculateSizes);
-
-    return () => {
-      window.removeEventListener('resize', calculateSizes);
-    };
-  }, [containerRef, calculateSizes]);
+  const pxBox = useContainerSizes(props.width, props.height, containerRef);
 
   const cartesianBox: Viewbox = createViewbox(
     typeof props.view === 'function' ? props.view(props.width) : props.view
