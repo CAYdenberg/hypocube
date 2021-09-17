@@ -95,16 +95,16 @@ const HomepageTimeseries: React.FC<Props> = ({
       chartStyle={{
         dataPointSymbol: 'circle',
         dataLineCurveType: 'natural',
+        svgPointerEvents: false,
       }}
       onGesture={onGesture}
-      onPointerOver={onPointerMove}
+      onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
     >
       {timeseriesData.map(({ data, key }, i) => (
         <LineSeries
           key={key}
           data={data}
-          handlerMeta={{ label: key }}
           chartStyle={{
             dataLineStroke: COLORS[i],
             dataPointFill: COLORS[i],

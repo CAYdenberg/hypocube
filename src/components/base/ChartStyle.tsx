@@ -5,6 +5,7 @@ import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
 
 const baseStyle: ChartStyleT = {
   fontSize: 16,
+  svgPointerEvents: true,
 
   axisColor: '#666',
   axisStrokeWidth: 2,

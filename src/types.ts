@@ -27,6 +27,7 @@ export type AxisLabelPosition = [number, number];
 
 export interface ChartStyleT {
   fontSize: number;
+  svgPointerEvents: boolean;
 
   axisColor: string;
   axisStrokeWidth: number;
