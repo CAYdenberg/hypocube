@@ -68,8 +68,8 @@ const LegendItem: React.FC<{ color: string }> = ({ color, children }) => {
 
 const COLORS = {
   Vancouver: '#003f5c',
-  Victoria: '#58508d',
-  Kelowna: '#bc5090',
+  Victoria: '#bc5090',
+  Kelowna: '#ff6361',
 } as Record<string, string>;
 
 const Controls: React.FC<{
@@ -141,6 +141,7 @@ export const HomepageDemoContainer: React.FC = () => (
             <div className="hp-timeseries-wrapper">
               <HomepageTimeseries
                 isCanvas={state.isCanvas}
+                colors={COLORS}
                 selectedPoint={state.selected}
                 handlePointSelect={(data) =>
                   update({
@@ -162,6 +163,8 @@ export const HomepageDemoContainer: React.FC = () => (
             </p>
             <HomepageBar
               isCanvas={state.isCanvas}
+              colors={COLORS}
+              selectedPoint={state.selected}
               handlePointSelect={(data) =>
                 update({
                   selected: data,

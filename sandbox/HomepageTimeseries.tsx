@@ -27,8 +27,6 @@ const getTickLabel = (x: number) => {
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
 
-const COLORS = ['#003f5c', '#58508d', '#bc5090'];
-
 export interface DataPoint {
   series: string;
   coords: Point;
@@ -38,6 +36,7 @@ export interface DataPoint {
 
 interface Props {
   isCanvas: boolean;
+  colors: Record<string, string>;
   selectedPoint?: DataPoint | null;
   handlePointSelect?: (data: DataPoint) => void;
   handleClearSelect?: () => void;
@@ -45,6 +44,7 @@ interface Props {
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
+  colors,
   selectedPoint,
   handlePointSelect,
   handleClearSelect,
@@ -106,8 +106,8 @@ const HomepageTimeseries: React.FC<Props> = ({
           key={key}
           data={data}
           chartStyle={{
-            dataLineStroke: COLORS[i],
-            dataPointFill: COLORS[i],
+            dataLineStroke: colors[key],
+            dataPointFill: colors[key],
             seriesOpacity:
               selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
           }}

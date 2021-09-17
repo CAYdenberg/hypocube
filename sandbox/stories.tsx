@@ -167,13 +167,35 @@ const examples: Example[] = [
   {
     name: 'Homepage: Timeseries',
     render: ({ isCanvas }) => {
-      return <HomepageTimeseries isCanvas={isCanvas} />;
+      return (
+        <HomepageTimeseries
+          isCanvas={isCanvas}
+          colors={
+            {
+              Vancouver: '#003f5c',
+              Victoria: '#58508d',
+              Kelowna: '#bc5090',
+            } as Record<string, string>
+          }
+        />
+      );
     },
   },
   {
     name: 'Homepage: Bar',
     render: ({ isCanvas }) => {
-      return <HomepageBar isCanvas={isCanvas} />;
+      return (
+        <HomepageBar
+          isCanvas={isCanvas}
+          colors={
+            {
+              Vancouver: '#003f5c',
+              Victoria: '#58508d',
+              Kelowna: '#bc5090',
+            } as Record<string, string>
+          }
+        />
+      );
     },
   },
   {
