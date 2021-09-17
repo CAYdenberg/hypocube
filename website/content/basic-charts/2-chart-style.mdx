@@ -82,6 +82,13 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 <PropDef name="fontSize" type="number" def="16">
   Help wanted: encode font family, and font weight.
 </PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, this sets `pointer-events: "none"` on all internal SVG elements.
+  This can help reduce jittering or jankiness when the desired primary point of
+  interaction is on the `Chart` itself, rather than internally rendered
+  elements. When `isCanvas={true}` on the `Chart` component, this property has
+  no effect.
+</PropDef>
 
 ### Axes
 
