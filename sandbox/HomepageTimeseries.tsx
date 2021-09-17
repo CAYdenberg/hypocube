@@ -8,8 +8,9 @@ import {
   YAxis,
   ChartEventData,
   ChartGestureData,
+  Point,
 } from '../src';
-import usePannableView from '../src/addons/usePannable';
+import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';
 
@@ -28,18 +29,27 @@ const getTickLabel = (x: number) => {
 
 const COLORS = ['#003f5c', '#58508d', '#bc5090'];
 
+export interface DataPoint {
+  series: string;
+  coords: Point;
+  xLabel: string;
+  yLabel: string;
+}
+
 interface Props {
   isCanvas: boolean;
-  handlePointSelect?: (data: { series: string; x: string; y: string }) => void;
+  selectedPoint?: DataPoint | null;
+  handlePointSelect?: (data: DataPoint) => void;
   handleClearSelect?: () => void;
 }
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
+  selectedPoint,
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const [view, setView, scrollToView] = usePannableView(
+  const [view, setView, scrollToView] = usePannable(
     [201, 0, 50, 250],
     [0, 0, 251, 250]
   );
@@ -62,8 +72,9 @@ const HomepageTimeseries: React.FC<Props> = ({
         if (!handlePointSelect || !data.elementPosition) return;
         handlePointSelect({
           series: data.meta.seriesName as string,
-          x: getTickLabel(data.elementPosition[0]),
-          y: String(data.elementPosition[1]),
+          coords: data.elementPosition,
+          xLabel: getTickLabel(data.elementPosition[0]),
+          yLabel: String(data.elementPosition[1]),
         });
       },
       [handlePointSelect]
@@ -86,7 +97,7 @@ const HomepageTimeseries: React.FC<Props> = ({
         dataLineCurveType: 'natural',
       }}
       onGesture={onGesture}
-      onPointerMove={onPointerMove}
+      onPointerOver={onPointerMove}
       onPointerOut={onPointerOut}
     >
       {timeseriesData.map(({ data, key }, i) => (
@@ -97,9 +108,21 @@ const HomepageTimeseries: React.FC<Props> = ({
           chartStyle={{
             dataLineStroke: COLORS[i],
             dataPointFill: COLORS[i],
+            seriesOpacity:
+              selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
           }}
         />
       ))}
+      {selectedPoint && (
+        <LineSeries
+          data={[selectedPoint.coords]}
+          chartStyle={{
+            dataPointFill: '#1ed3c6',
+            dataPointSize: 30,
+            seriesOpacity: 0.6,
+          }}
+        />
+      )}
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis
         tickPositions={[0, 100, 200]}

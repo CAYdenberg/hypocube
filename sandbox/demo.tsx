@@ -1,12 +1,12 @@
 import './demo.css';
 
 import React, { useState } from 'react';
-import HomepageTimeseries from './HomepageTimeseries';
+import HomepageTimeseries, { DataPoint } from './HomepageTimeseries';
 import HomepageBar from './HomepageBar';
 
 interface AppState {
   isCanvas: boolean;
-  selected: Record<string, string | number> | null;
+  selected: DataPoint | null;
 }
 
 interface Args {
@@ -118,8 +118,8 @@ const Controls: React.FC<{
         {state.selected ? (
           <div style={{ color: COLORS[state.selected.series] }}>
             <p className="tooltip-line">{state.selected.series}</p>
-            <p className="tooltip-line">{state.selected.x}</p>
-            <p className="tooltip-line">{state.selected.y} mm</p>
+            <p className="tooltip-line">{state.selected.xLabel}</p>
+            <p className="tooltip-line">{state.selected.yLabel} mm</p>
           </div>
         ) : null}
       </div>
@@ -141,6 +141,7 @@ export const HomepageDemoContainer: React.FC = () => (
             <div className="hp-timeseries-wrapper">
               <HomepageTimeseries
                 isCanvas={state.isCanvas}
+                selectedPoint={state.selected}
                 handlePointSelect={(data) =>
                   update({
                     selected: data,
