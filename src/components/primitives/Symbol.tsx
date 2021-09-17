@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import useChartState from '../base/ChartState';
 
-export type symbolType =
+export type SymbolType =
   | 'circle'
   | 'cross'
   | 'diamond'
@@ -25,14 +25,15 @@ export type symbolType =
 interface SymbolProps {
   point: [number, number];
   size?: number;
-  symbol?: D3SymbolType | symbolType;
+  symbol?: D3SymbolType | SymbolType;
   stroke?: string;
   strokeWidth?: number;
   fill?: string | null;
+  opacity?: number;
   quietRenderRadius?: number;
 }
 
-const getD3Symbol = (input: symbolType | D3SymbolType): D3SymbolType | null => {
+const getD3Symbol = (input: SymbolType | D3SymbolType): D3SymbolType | null => {
   if (typeof input !== 'string') {
     return input;
   }
@@ -71,6 +72,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     stroke,
     fill,
     strokeWidth,
+    opacity,
     quietRenderRadius,
   } = {
     size: 5,
@@ -78,6 +80,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
+    opacity: 1,
     quietRenderRadius: 0,
     ...props,
   };
@@ -96,6 +99,8 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
       renderer.setTransform(1, 0, 0, 1, ...pxPoint);
       renderer.beginPath();
+
+      renderer.globalAlpha = opacity;
 
       line();
 
@@ -123,6 +128,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
         stroke={stroke}
         fill={fill || 'transparent'}
         strokeWidth={strokeWidth}
+        opacity={opacity}
       />
     </g>
   );

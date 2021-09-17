@@ -47,6 +47,7 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
 
     queue.forEach((func) => {
       func(canvasContext.current!);
+      canvasContext.current!.globalAlpha = 1;
       canvasContext.current!.restore();
       canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);
     });

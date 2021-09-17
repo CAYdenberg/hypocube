@@ -16,6 +16,7 @@ const baseStyle: ChartStyleT = {
   yAxisLabelPosition: -60,
 
   seriesXOffset: 0,
+  seriesOpacity: 1,
 
   dataBoxFill: '#000',
   dataBoxStroke: '#000',
