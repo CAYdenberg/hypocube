@@ -49,27 +49,16 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const [view, setView, scrollToView] = usePannable(
+  const { view, isPanning, onGesture } = usePannable(
     [201, 0, 50, 250],
     [0, 0, 251, 250]
-  );
-
-  const onGesture = useCallback(
-    (data: ChartGestureData) => {
-      if (data.kind === GestureKind.Swipe) {
-        scrollToView(data.nextView);
-        return;
-      }
-      setView(data.nextView);
-    },
-    [setView, scrollToView]
   );
 
   const onPointerMove = useVoronoi(
     timeseriesData,
     useCallback(
       (data: ChartEventData) => {
-        if (!handlePointSelect || !data.elementPosition) return;
+        if (!handlePointSelect || !data.elementPosition || isPanning) return;
         handlePointSelect({
           series: data.meta.seriesName as string,
           coords: data.elementPosition,
@@ -77,7 +66,7 @@ const HomepageTimeseries: React.FC<Props> = ({
           yLabel: String(data.elementPosition[1]),
         });
       },
-      [handlePointSelect]
+      [handlePointSelect, isPanning]
     )
   );
 
@@ -101,7 +90,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
     >
-      {timeseriesData.map(({ data, key }, i) => (
+      {timeseriesData.map(({ data, key }) => (
         <LineSeries
           key={key}
           data={data}
