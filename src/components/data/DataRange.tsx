@@ -19,6 +19,7 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
     dataBoxStrokeWidth,
     seriesXOffset: offset,
     seriesOpacity,
+    svgPointerEvents,
   } = props.chartStyle;
 
   const yMin = scaleY(props.yMin);
@@ -40,6 +41,7 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
       stroke={dataBoxStroke}
       strokeWidth={dataBoxStrokeWidth}
       opacity={seriesOpacity}
+      svgPointerEvents={svgPointerEvents}
     />
   );
 };
@@ -55,6 +57,7 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
     dataWhiskerStrokeWidth,
     seriesXOffset: offset,
     seriesOpacity,
+    svgPointerEvents,
   } = props.chartStyle;
 
   const yMin = scaleY(props.yMin);
@@ -73,6 +76,7 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
         stroke={dataWhiskerStroke}
         strokeWidth={dataWhiskerStrokeWidth}
         opacity={seriesOpacity}
+        svgPointerEvents={svgPointerEvents}
       />
       <PxLine
         path={[
@@ -82,6 +86,7 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
         stroke={dataWhiskerStroke}
         strokeWidth={dataWhiskerStrokeWidth}
         opacity={seriesOpacity}
+        svgPointerEvents={svgPointerEvents}
       />
       <PxLine
         path={[
@@ -91,6 +96,7 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
         stroke={dataWhiskerStroke}
         strokeWidth={dataWhiskerStrokeWidth}
         opacity={seriesOpacity}
+        svgPointerEvents={svgPointerEvents}
       />
     </React.Fragment>
   );

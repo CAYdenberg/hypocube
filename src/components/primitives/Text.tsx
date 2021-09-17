@@ -3,18 +3,16 @@ import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
 
-export interface TextDrawProps {
+export interface Props {
+  position: Point;
+  text: string;
   pxOffset?: [number, number];
   color?: string;
   font?: string;
   fontSize?: number;
   align?: 'left' | 'center' | 'right';
   rotation?: number;
-}
-
-interface Props extends TextDrawProps {
-  position: Point;
-  text: string;
+  svgPointerEvents?: boolean;
 }
 
 const Text: React.FC<Props> = (props) => {
@@ -27,6 +25,7 @@ const Text: React.FC<Props> = (props) => {
   const align = normalize(props.align, 'left');
   const pxOffset = normalize(props.pxOffset, [0, 0]);
   const rotation = normalize(props.rotation, 0);
+  const svgPointerEvents = normalize(props.svgPointerEvents, true);
 
   const x = scaleX(position[0]) + pxOffset[0];
   const y = scaleY(position[1]) + pxOffset[1];
@@ -54,7 +53,11 @@ const Text: React.FC<Props> = (props) => {
       y={y}
       fill={color}
       fontSize={fontSize}
-      style={{ fontFamily: `${font}, sans-serif`, userSelect: 'none' }}
+      style={{
+        fontFamily: `${font}, sans-serif`,
+        pointerEvents: svgPointerEvents ? undefined : 'none',
+        userSelect: 'none',
+      }}
       textAnchor={svgAnchor}
       transform={
         rotation ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})` : undefined

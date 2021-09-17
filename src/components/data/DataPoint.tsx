@@ -23,6 +23,7 @@ export const DataPoint = Pure<DataPointProps>((props) => {
       fill={props.chartStyle.dataPointFill}
       opacity={props.chartStyle.seriesOpacity}
       quietRenderRadius={props.chartStyle.dataPointMinTargetRadius}
+      svgPointerEvents={props.chartStyle.svgPointerEvents}
     />
   );
 });
@@ -46,6 +47,7 @@ export const DataAnchorLine: React.FC<DataPointProps> = (props) => {
       strokeWidth={dataRangeAnchorStrokeWidth}
       stroke={dataRangeAnchorStroke}
       opacity={seriesOpacity}
+      svgPointerEvents={props.chartStyle.svgPointerEvents}
     />
   );
 };

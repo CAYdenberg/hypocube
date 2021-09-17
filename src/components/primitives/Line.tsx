@@ -23,6 +23,7 @@ interface Props {
   curveType?: CurveType | CurveFactoryLineOnly;
   dash?: DashType;
   opacity?: number;
+  svgPointerEvents?: boolean;
 }
 
 const getD3Curve = (
@@ -89,13 +90,23 @@ export const TranslatedLine: React.FC<Props & { position: Point }> = (
 };
 
 export const PxLine: React.FC<Props> = (props) => {
-  const { path, stroke, fill, strokeWidth, curveType, dash, opacity } = {
+  const {
+    path,
+    stroke,
+    fill,
+    strokeWidth,
+    curveType,
+    dash,
+    opacity,
+    svgPointerEvents,
+  } = {
     stroke: '#000',
     strokeWidth: 1,
     fill: null,
     curveType: 'linear' as CurveType,
     dash: null,
     opacity: 1,
+    svgPointerEvents: true,
     ...props,
   };
   const curveFactory = getD3Curve(curveType);
@@ -147,6 +158,7 @@ export const PxLine: React.FC<Props> = (props) => {
       strokeWidth={strokeWidth}
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}
       opacity={opacity}
+      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
     />
   );
 };

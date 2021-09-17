@@ -31,6 +31,7 @@ interface SymbolProps {
   fill?: string | null;
   opacity?: number;
   quietRenderRadius?: number;
+  svgPointerEvents?: boolean;
 }
 
 const getD3Symbol = (input: SymbolType | D3SymbolType): D3SymbolType | null => {
@@ -74,6 +75,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     strokeWidth,
     opacity,
     quietRenderRadius,
+    svgPointerEvents,
   } = {
     size: 5,
     symbol: symbolCircle,
@@ -82,6 +84,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     fill: null,
     opacity: 1,
     quietRenderRadius: 0,
+    svgPointerEvents: true,
     ...props,
   };
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
@@ -121,7 +124,10 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
   if (!line) return null;
 
   return (
-    <g transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}>
+    <g
+      transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
+      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
+    >
       <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
       <path
         d={line}

@@ -22,6 +22,7 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
     axisTickLength,
     axisTickOffset,
     axisTickLabelOffset,
+    svgPointerEvents,
   } = useChartStyle(props.chartStyle);
 
   const labelAbsoluteOffset = axisTickLength + axisTickLabelOffset + fontSize;
@@ -36,6 +37,7 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
         ]}
         strokeWidth={axisStrokeWidth}
         stroke={axisColor}
+        svgPointerEvents={svgPointerEvents}
       />
       <Text
         position={position}
@@ -44,6 +46,7 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
         color={axisColor}
         align="center"
         fontSize={fontSize}
+        svgPointerEvents={svgPointerEvents}
       />
     </React.Fragment>
   );
@@ -60,6 +63,7 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
     axisTickOffset,
     axisTickLabelOffset,
     fontSize,
+    svgPointerEvents,
   } = useChartStyle(props.chartStyle);
 
   const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
@@ -74,6 +78,7 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
         ]}
         strokeWidth={axisStrokeWidth}
         stroke={axisColor}
+        svgPointerEvents={svgPointerEvents}
       />
       <Text
         position={position}
@@ -82,6 +87,7 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
         color={axisColor}
         align="right"
         fontSize={fontSize}
+        svgPointerEvents={svgPointerEvents}
       />
     </React.Fragment>
   );

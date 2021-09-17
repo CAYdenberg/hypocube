@@ -17,6 +17,7 @@ export const DataLine = Pure<DataLineProps>((props) => {
     dataLineCurveType,
     dataLineDashType,
     seriesOpacity,
+    svgPointerEvents,
   } = chartStyle;
 
   // filter out points that are out of range and both their neighbours are
@@ -30,6 +31,7 @@ export const DataLine = Pure<DataLineProps>((props) => {
       curveType={dataLineCurveType}
       dash={dataLineDashType}
       opacity={seriesOpacity}
+      svgPointerEvents={svgPointerEvents}
     />
   );
 });
