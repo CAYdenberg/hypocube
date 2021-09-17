@@ -1,6 +1,7 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import { ChartGestureData, GestureKind, GesturePhase } from '../types';
 
 export interface ChartAnimation {
   duration: number;
@@ -34,6 +35,7 @@ export default (
   }, [options]);
 
   const [currentView, setView] = useState<Viewbox>(_initialViewbox);
+  const [isPanning, setIsPanning] = useState<boolean>(false);
 
   const timer = useRef<number | null>(null);
   const startTime = useRef<number | null>(null);
@@ -41,6 +43,7 @@ export default (
   const cancelAnimation = () => {
     timer.current = null;
     startTime.current = null;
+    setIsPanning(false);
     if (timer.current) {
       cancelAnimationFrame(timer.current);
     }
@@ -59,10 +62,10 @@ export default (
 
   const scrollToView = useCallback(
     (nextView: ViewboxDuck) => {
-      const _nextView = createViewbox(nextView);
-
       cancelAnimation();
+      setIsPanning(true);
 
+      const _nextView = createViewbox(nextView);
       const step = (time: number) => {
         if (!startTime.current) {
           startTime.current = time;
@@ -100,5 +103,32 @@ export default (
     return cancelAnimation;
   }, []);
 
-  return [currentView, setViewBounded, scrollToView] as const;
+  const onGesture = useCallback(
+    (data: ChartGestureData) => {
+      if (timer.current) {
+        return;
+      }
+
+      if (data.kind === GestureKind.Swipe) {
+        scrollToView(data.nextView);
+        return;
+      }
+      if (data.phase === GesturePhase.Start) {
+        setIsPanning(true);
+      }
+      if (data.phase === GesturePhase.End) {
+        setIsPanning(false);
+      }
+      setViewBounded(data.nextView);
+    },
+    [setViewBounded, scrollToView]
+  );
+
+  return {
+    view: currentView,
+    isPanning,
+    setView: setViewBounded,
+    scrollToView,
+    onGesture,
+  };
 };

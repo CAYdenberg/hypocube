@@ -44,7 +44,10 @@ const Tabs: React.FC<{
     <div>
       <ul className="tabs">
         {names.map((name, i) => (
-          <li className={`tabs-item${tab === i ? ' is-active' : ''}`}>
+          <li
+            className={`tabs-item${tab === i ? ' is-active' : ''}`}
+            key={name}
+          >
             <a onClick={() => setTab(i)}>{name}</a>
           </li>
         ))}
@@ -132,7 +135,7 @@ export const HomepageDemoContainer: React.FC = () => (
     {({ state, update }) => (
       <React.Fragment>
         <Tabs names={['Scrollable Scatter Plot', 'Responsive Bar Chart']}>
-          <div className="tab-content">
+          <div className="tab-content" key="scrollable-scatter-plot">
             <p>
               <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageTimeseries.tsx">
                 View Code
@@ -155,7 +158,7 @@ export const HomepageDemoContainer: React.FC = () => (
               Drag or swipe to move the x-axis
             </div>
           </div>
-          <div className="tab-content">
+          <div className="tab-content" key="scrollable-scatter-plot">
             <p>
               <a href="https://github.com/CAYdenberg/hypocube/blob/main/sandbox/HomepageBar.tsx">
                 View Code

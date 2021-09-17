@@ -84,10 +84,10 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 </PropDef>
 <PropDef name="svgPointerEvents" type="boolean" def="true">
   When false, this sets `pointer-events: "none"` on all internal SVG elements.
-  This can help reduce jittering or jankiness when the desired primary point of
-  interaction is on the `Chart` itself, rather than internally rendered
-  elements. When `isCanvas={true}` on the `Chart` component, this property has
-  no effect.
+  This allows the event to trigger on an underlying element, and can help reduce
+  apparent jittering or jankiness when the desired primary point of interaction
+  is on the `Chart` itself. When `isCanvas={true}` on the `Chart` component,
+  this property has no effect.
 </PropDef>
 
 ### Axes
