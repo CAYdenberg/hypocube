@@ -1,15 +1,6 @@
 import React, { useCallback } from 'react';
 import { DateTime } from 'luxon';
-import {
-  Chart,
-  XAxis,
-  LineSeries,
-  GestureKind,
-  YAxis,
-  ChartEventData,
-  ChartGestureData,
-  Point,
-} from '../src';
+import { Chart, XAxis, LineSeries, YAxis, ChartEventData, Point } from '../src';
 import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';

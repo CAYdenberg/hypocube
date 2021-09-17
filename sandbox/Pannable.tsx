@@ -22,7 +22,7 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const [view, setView, scrollToView] = usePannable(
+  const { view, setView, scrollToView } = usePannable(
     [50, 0, 50, 1000],
     [0, 0, 400, 1000]
   );
