@@ -157,6 +157,7 @@ const ChartInner: React.FC<Props> = (props) => {
       style={{
         height: pxBox.height,
         position: 'relative',
+        touchAction: props.onGesture ? 'manipulation' : undefined,
       }}
     >
       <ChartStateContext.Provider value={chartState}>

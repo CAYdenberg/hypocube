@@ -43,7 +43,10 @@ const config = {
       '/composing-charts',
       '/addons',
     ],
-    links: [{ text: 'GitHub', link: 'https://github.com/CAYdenberg/hypocube' }],
+    links: [
+      { text: 'GitHub', link: 'https://github.com/CAYdenberg/hypocube' },
+      { text: 'Get in Touch', link: 'https://caydenberg.io/contact.html' },
+    ],
     frontline: false,
     ignoreIndex: true,
   },

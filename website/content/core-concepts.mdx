@@ -6,7 +6,7 @@ metaDescription: 'Hypocube core concepts'
 
 ## Content vs Presentation
 
-Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. From the principle insight that **content is distinct from presentation,** Marcotte developed the idea that the style of a website can adapt based on device capabilities, without changing the semantic meaning of the content. This has acutally become _more_ important in the intervening years: with media like Accelerated Mobile Pages, Facebook Instant Articles and Apple News, to say nothing of an ever-greater variety of screens, mean that authors rarely know the exact format in which their content will reach their readers.
+Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. From the principle insight that **content is distinct from presentation,** Marcotte developed the idea that the style of a website can adapt based on device capabilities, without changing the semantic meaning of the content. This has actually become _more_ important in the intervening years: with media like Accelerated Mobile Pages, Facebook Instant Articles and Apple News, to say nothing of an ever-greater variety of screens, mean that authors rarely know the exact format in which their content will reach their readers.
 
 Tools for applying responsive principles to charts and graphs have lagged. This is because charts are neither text (which typically compress horizontally and expand vertically as the viewport shrinks), nor images (which typically compress along both dimensions to maintain the aspect ratio). What is needed is a clean separation of concerns when talking about charts: what is content (in this case, data), and what is presentation (style)?
 
@@ -26,7 +26,7 @@ Usually, HTML is used to talk about content and CSS is used to talk about style.
 
 ## Responsiveness
 
-What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height. This allows a similar outcome to what can be acheived with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
+What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height. This allows a similar outcome to what can be achieved with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
 
 [Read more about `ChartStyle`.](./basic-charts/2-chart-style)
 
@@ -68,6 +68,6 @@ All Hypocube chart components are composed out of a small number of primatives. 
 
 ## HTML layer
 
-Tooltips are a very common pattern in web charts. Hypocube allows rendering of HTML elements at positions defined on the Cartesian scale.
+Tooltips are a very common pattern in web charts. Hypocube allows rendering of HTML elements at absolute positions defined on the Cartesian scale.
 
 [Read more about tooltips.](./interaction/2-tooltips)

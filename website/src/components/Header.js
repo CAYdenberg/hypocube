@@ -48,7 +48,7 @@ const StyledBgDiv = styled('div')`
   display: none;
   background: ${(props) => (props.isDarkThemeActive ? '#001932' : undefined)};
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     display: block;
   }
 `;
