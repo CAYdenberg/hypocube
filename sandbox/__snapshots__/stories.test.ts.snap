@@ -10,6 +10,7 @@ Array [
       Object {
         "height": 300,
         "position": "relative",
+        "touchAction": undefined,
       }
     }
   >
@@ -451,6 +452,7 @@ Array [
       Object {
         "height": 300,
         "position": "relative",
+        "touchAction": undefined,
       }
     }
   >
@@ -494,6 +496,7 @@ exports[`Test: Core Concepts: Tukey 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -1046,6 +1049,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -19642,6 +19646,7 @@ exports[`Test: Filled line 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -19680,6 +19685,7 @@ exports[`Test: Homepage: Bar 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -22549,6 +22555,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": "manipulation",
     }
   }
 >
@@ -27175,6 +27182,7 @@ exports[`Test: Line 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -27213,6 +27221,7 @@ exports[`Test: LineSeries 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -27771,6 +27780,7 @@ exports[`Test: Multiple Bar Series 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -28273,6 +28283,7 @@ exports[`Test: Multiple Series 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
@@ -47209,6 +47220,7 @@ exports[`Test: Pannable 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": "manipulation",
     }
   }
 >
@@ -48759,6 +48771,7 @@ exports[`Test: Text rotation 1`] = `
     Object {
       "height": 300,
       "position": "relative",
+      "touchAction": undefined,
     }
   }
 >
