@@ -17,3 +17,4 @@ export const SUPPORTED_EVENTS: Array<keyof Omit<
   'onPointerOver',
   'onPointerOut',
 ];
+export const WINDOW_RESIZE_RENDER_RATE = 500;
