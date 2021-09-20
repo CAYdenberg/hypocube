@@ -1,12 +1,12 @@
 ---
-title: 'Primatives'
+title: 'Primitives'
 metaTitle: 'Composing new types of Charts'
 metaDescription: 'Composing new types of Charts'
 ---
 
 import PropDef from '../components/PropDef';
 
-Ultimately, all components in Hypocube are composed out of the same set of primatives. These base-layer components are responsible for SVG and canvas drawing, and converting between the Cartesian and pixel scales.
+Ultimately, all components in Hypocube are composed out of the same set of primitives. These base-layer components are responsible for SVG and canvas drawing, and converting between the Cartesian and pixel scales.
 
 ## Line
 
@@ -93,3 +93,12 @@ A Symbol is a defined shape that renders at a particular point on the Cartesian 
 ## Handle
 
 TODO
+
+## Clip
+
+The children of a Clip component will visibly render only within the path passed to Clip as a prop. This primitive is used to keep data series from displaying on top of axes, for example.
+
+<PropDef name="path" type="Array<[number, number]> | null">
+  Children <em>outside</em> of this path will not render. If the value is null
+  or undefined, or an empty array, then everything will render.
+</PropDef>

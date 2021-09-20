@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
+import { ChartClipContext } from './Clip';
 
 export interface Props {
   position: Point;
@@ -17,6 +18,8 @@ export interface Props {
 
 const Text: React.FC<Props> = (props) => {
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
+  const clip = useContext(ChartClipContext);
+
   const { position, text } = props;
 
   const font = normalize(props.font, 'Helvetica');
@@ -31,7 +34,10 @@ const Text: React.FC<Props> = (props) => {
   const y = scaleY(position[1]) + pxOffset[1];
 
   pushToCanvasQueue &&
-    pushToCanvasQueue((renderer) => {
+    pushToCanvasQueue((renderer, dpr) => {
+      if (clip) {
+        clip.render(renderer, dpr);
+      }
       renderer.font = `${fontSize}px ${font}`;
       renderer.translate(x, y);
       renderer.rotate(rotation);
@@ -48,23 +54,27 @@ const Text: React.FC<Props> = (props) => {
     align === 'center' ? 'middle' : align === 'right' ? 'end' : 'start';
 
   return (
-    <text
-      x={x}
-      y={y}
-      fill={color}
-      fontSize={fontSize}
-      style={{
-        fontFamily: `${font}, sans-serif`,
-        pointerEvents: svgPointerEvents ? undefined : 'none',
-        userSelect: 'none',
-      }}
-      textAnchor={svgAnchor}
-      transform={
-        rotation ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})` : undefined
-      }
-    >
-      {text}
-    </text>
+    <g clipPath={clip ? `url(#${clip.id})` : undefined}>
+      <text
+        x={x}
+        y={y}
+        fill={color}
+        fontSize={fontSize}
+        style={{
+          fontFamily: `${font}, sans-serif`,
+          pointerEvents: svgPointerEvents ? undefined : 'none',
+          userSelect: 'none',
+        }}
+        textAnchor={svgAnchor}
+        transform={
+          rotation
+            ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})`
+            : undefined
+        }
+      >
+        {text}
+      </text>
+    </g>
   );
 };
 

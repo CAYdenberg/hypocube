@@ -1,3 +1,5 @@
+import { Point } from '../types';
+
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
 export default class Viewbox {
@@ -21,6 +23,16 @@ export default class Viewbox {
     this.x = [xMin, this.xMax];
     this.y = [yMin, this.yMax];
     this.hash = `${xMin},${yMin},${width},${height}`;
+  }
+
+  toPath(): Point[] {
+    const { xMin, xMax, yMin, yMax } = this;
+    return [
+      [xMin, yMin],
+      [xMax, yMin],
+      [xMax, yMax],
+      [xMin, yMax],
+    ];
   }
 
   panX(distance: number): Viewbox {

@@ -9,8 +9,9 @@ import {
   symbolTriangle,
   symbolWye,
 } from 'd3-shape';
-import React from 'react';
+import React, { useContext } from 'react';
 import useChartState from '../base/ChartState';
+import { ChartClipContext } from './Clip';
 
 export type SymbolType =
   | 'circle'
@@ -88,6 +89,7 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
     ...props,
   };
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
+  const clip = useContext(ChartClipContext);
 
   const symbolF = getD3Symbol(symbol);
   if (!symbolF) {
@@ -98,6 +100,9 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
 
   pushToCanvasQueue &&
     pushToCanvasQueue((renderer, dpr) => {
+      if (clip) {
+        clip.render(renderer, dpr);
+      }
       const line = d3Symbol(symbolF, size * 8).context(renderer);
 
       renderer.setTransform(dpr, 0, 0, dpr, pxPoint[0] * dpr, pxPoint[1] * dpr);
@@ -124,18 +129,20 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
   if (!line) return null;
 
   return (
-    <g
-      transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
-      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
-    >
-      <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
-      <path
-        d={line}
-        stroke={stroke}
-        fill={fill || 'transparent'}
-        strokeWidth={strokeWidth}
-        opacity={opacity}
-      />
+    <g clipPath={clip ? `url(#${clip.id})` : undefined}>
+      <g
+        style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
+        transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
+      >
+        <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
+        <path
+          d={line}
+          stroke={stroke}
+          fill={fill || 'transparent'}
+          strokeWidth={strokeWidth}
+          opacity={opacity}
+        />
+      </g>
     </g>
   );
 };

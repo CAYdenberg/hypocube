@@ -57,11 +57,6 @@ import PropDef from '../components/PropDef';
   three members, a whisker will be drawn between the first and second points,
   and another whisker will be drawn between the second and third.
 </PropDef>
-<PropDef name="view" type="[number, number, number, number]">
-  A viewbox, specified as [xMin, yMin, width, height]. Any data point that falls
-  outside of this box will not be rendered. The default value is the viewbox of
-  the Chart.
-</PropDef>
 <PropDef name="chartStyle">
   Styles declarations which will override the global{' '}
   <a href="./2-chart-style#dataranges">chart style</a>. The dataRange
@@ -70,6 +65,12 @@ import PropDef from '../components/PropDef';
 <PropDef name="handlerMeta" type="Record<any>">
   Metadata to pass to{' '}
   <a href="../interaction/pointer-events">handler callbacks</a>.
+</PropDef>
+<PropDef name="view" type="[number, number, number, number]">
+  A viewbox, specified as [xMin, yMin, width, height]. Any part of the data
+  which falls outside of this viewbox will be clipped (not shown). The default
+  value is the viewbox of the Chart. If `null` is passed explicitly, no clipping
+  will occur (data may render in the gutter).
 </PropDef>
 <PropDef
   name="renderAnchor"

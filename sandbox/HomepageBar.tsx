@@ -72,8 +72,8 @@ const HomepageBar: React.FC<Props> = ({
     <Chart
       height={300}
       width={435}
-      view={[-0.5, 0, 12, 200]}
-      gutter={[50, 0, 50, 60]}
+      view={[-0.5, 0, 12, 250]}
+      gutter={[0, 0, 50, 60]}
       isCanvas={isCanvas}
       chartStyle={{
         dataWhiskerTopCapLength: capWidth,

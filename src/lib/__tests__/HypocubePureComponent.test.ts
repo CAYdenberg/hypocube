@@ -2,11 +2,11 @@ import { isEqual } from '../HypocubePureComponent';
 import Viewbox from '../Viewbox';
 
 describe('custom isEqual', () => {
-  it('with equal primatives', () => {
+  it('with equal primitives', () => {
     expect(isEqual({ a: 1, b: 'one' }, { a: 1, b: 'one' })).toBeTruthy();
   });
 
-  it('with unequal primatives', () => {
+  it('with unequal primitives', () => {
     expect(isEqual({ a: 1, b: 'one' }, { a: 2, b: 'two' })).toBeFalsy();
   });
 
@@ -22,7 +22,7 @@ describe('custom isEqual', () => {
     expect(isEqual({ a }, { a: b })).toBeFalsy();
   });
 
-  it('with an equal object composed of primatives', () => {
+  it('with an equal object composed of primitives', () => {
     const a = {
       series: 'blue',
     };
@@ -32,7 +32,7 @@ describe('custom isEqual', () => {
     expect(isEqual({ a }, { a: b })).toBeTruthy();
   });
 
-  it('with an unequal object composed of primatives', () => {
+  it('with an unequal object composed of primitives', () => {
     const a = {
       series: 'blue',
     };
