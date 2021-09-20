@@ -1,11 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Viewbox from '../lib/Viewbox';
 
-export type CanvasComponent = (renderer: CanvasRenderingContext2D) => void;
+export type CanvasComponent = (
+  renderer: CanvasRenderingContext2D,
+  dpr: number
+) => void;
 
 export default (pxBox: Viewbox, isCanvas: boolean) => {
   const canvasNode = useRef<HTMLCanvasElement | null>(null);
   const canvasContext = useRef<CanvasRenderingContext2D | null>(null);
+  const dpr = useRef<number>(0);
 
   const [_, setHash] = useState<number>(Math.random());
   const forceUpdate = useCallback(() => {
@@ -38,15 +42,30 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (!canvasNode.current) {
+      return;
+    }
+    dpr.current = window.devicePixelRatio || 1;
+    canvasNode.current.style.width = canvasNode.current.width + 'px';
+    canvasNode.current.style.height = canvasNode.current.height + 'px';
+    canvasNode.current.width *= dpr.current;
+    canvasNode.current.height *= dpr.current;
+  }, [pxBox.hash]);
+
   // this is a "no-dependency" useEffect: it should run *after* rendering
   // every time
   useEffect(() => {
     if (!canvasContext.current) return;
 
+    canvasContext.current.scale(dpr.current, dpr.current);
     canvasContext.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
+    canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);
 
     queue.forEach((func) => {
-      func(canvasContext.current!);
+      canvasContext.current!.scale(dpr.current, dpr.current);
+      func(canvasContext.current!, dpr.current);
+
       canvasContext.current!.globalAlpha = 1;
       canvasContext.current!.restore();
       canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);

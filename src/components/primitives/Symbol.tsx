@@ -97,10 +97,10 @@ export const Symbol: React.FC<SymbolProps> = (props) => {
   const pxPoint: [number, number] = [scaleX(point[0]), scaleY(point[1])];
 
   pushToCanvasQueue &&
-    pushToCanvasQueue((renderer) => {
+    pushToCanvasQueue((renderer, dpr) => {
       const line = d3Symbol(symbolF, size * 8).context(renderer);
 
-      renderer.setTransform(1, 0, 0, 1, ...pxPoint);
+      renderer.setTransform(dpr, 0, 0, dpr, pxPoint[0] * dpr, pxPoint[1] * dpr);
       renderer.beginPath();
 
       renderer.globalAlpha = opacity;
