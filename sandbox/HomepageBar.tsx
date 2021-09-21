@@ -86,7 +86,6 @@ const HomepageBar: React.FC<Props> = ({
     >
       <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
       <YAxis
-        range={[0, 200]}
         tickPositions={[0, 100, 200]}
         intercept={-0.5}
         axisLabel="Precipitation (mm)"

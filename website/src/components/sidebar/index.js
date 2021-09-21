@@ -101,6 +101,9 @@ const SidebarLayout = ({ location }) => (
                 slug
                 title
               }
+              frontmatter {
+                noMenu
+              }
             }
           }
         }
