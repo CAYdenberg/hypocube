@@ -21,6 +21,17 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
       }
     : null;
 
+  const setDpr = useCallback(() => {
+    if (!canvasNode.current) {
+      return;
+    }
+    dpr.current = window.devicePixelRatio || 1;
+    canvasNode.current.style.width = canvasNode.current.width + 'px';
+    canvasNode.current.style.height = canvasNode.current.height + 'px';
+    canvasNode.current.width *= dpr.current;
+    canvasNode.current.height *= dpr.current;
+  }, []);
+
   const onRenderCanvas = useCallback((node: HTMLCanvasElement | null) => {
     if (!node) {
       canvasNode.current = null;
@@ -30,6 +41,9 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
     canvasNode.current = node;
     canvasContext.current = canvasNode.current.getContext('2d');
 
+    // set canvas sizes, and get the device pixel ratio for scaling
+    setDpr();
+
     // if the child components run before the canvas DOM node renders, will
     // need to re-run them to draw on canvas
     forceUpdate();
@@ -38,16 +52,10 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // when resizing occurs, set the canvas sizes again
   useEffect(() => {
-    if (!canvasNode.current) {
-      return;
-    }
-    dpr.current = window.devicePixelRatio || 1;
-    canvasNode.current.style.width = canvasNode.current.width + 'px';
-    canvasNode.current.style.height = canvasNode.current.height + 'px';
-    canvasNode.current.width *= dpr.current;
-    canvasNode.current.height *= dpr.current;
-  }, [pxBox.hash]);
+    setDpr();
+  }, [pxBox.hash, setDpr]);
 
   // this is a "no-dependency" useEffect: it should run *after* rendering
   // every time
