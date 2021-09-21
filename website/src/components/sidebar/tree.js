@@ -19,9 +19,12 @@ const calculateTreeData = (edges) => {
       {
         node: {
           fields: { slug, title },
+          frontmatter: { noMenu },
         },
       }
     ) => {
+      if (noMenu) return accu;
+
       const parts = slug.split('/');
 
       let { items: prevItems } = accu;

@@ -1,6 +1,14 @@
 import React, { useCallback } from 'react';
 import { DateTime } from 'luxon';
-import { Chart, XAxis, LineSeries, YAxis, ChartEventData, Point } from '../src';
+import {
+  Chart,
+  XAxis,
+  LineSeries,
+  YAxis,
+  ChartEventData,
+  Point,
+  ChartStyleFunction,
+} from '../src';
 import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import useVoronoi from '../src/addons/useVoronoi';
@@ -17,6 +25,9 @@ const getTickLabel = (x: number) => {
   const dt = DateTime.fromISO(raw);
   return dt.toLocaleString({ year: 'numeric', month: 'short' });
 };
+
+const getFontSize: ChartStyleFunction<number> = ({ pxWidth }) =>
+  pxWidth < 500 ? 12 : 16;
 
 export interface DataPoint {
   series: string;
@@ -75,6 +86,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       chartStyle={{
         dataPointSymbol: 'circle',
         dataLineCurveType: 'natural',
+        fontSize: getFontSize,
         svgPointerEvents: false,
       }}
       onGesture={onGesture}

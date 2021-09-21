@@ -36,8 +36,10 @@ export default class MDXRuntimeTest extends Component {
 
     const githubIcon = require('../components/images/github.svg').default;
     const navItems = allMdx.edges
+      .filter(({ node }) => {
+        return node.fields.slug !== '/' && !node.frontmatter.noMenu;
+      })
       .map(({ node }) => node.fields.slug)
-      .filter((slug) => slug !== '/')
       .sort()
       .reduce(
         (acc, cur) => {
@@ -164,6 +166,9 @@ export const pageQuery = graphql`
           fields {
             slug
             title
+          }
+          frontmatter {
+            noMenu
           }
         }
       }
