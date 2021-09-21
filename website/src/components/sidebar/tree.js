@@ -3,7 +3,6 @@ import config from '../../../config';
 import TreeNode from './treeNode';
 
 const calculateTreeData = (edges) => {
-  console.log(edges);
   const originalData = config.sidebar.ignoreIndex
     ? edges.filter(
         ({

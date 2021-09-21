@@ -23211,7 +23211,7 @@ exports[`Test: Homepage: Bar 1`] = `
         </g>
         <g>
           <path
-            d="M60,250L60,49.999999999999986"
+            d="M60,250L60,0"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -31088,7 +31088,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31098,7 +31098,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="middle"
               x={81.3}
-              y={278}
+              y={274}
             >
               Jan 2017
             </text>
@@ -31118,7 +31118,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31128,7 +31128,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="middle"
               x={166.5}
-              y={278}
+              y={274}
             >
               Jan 2018
             </text>
@@ -31148,7 +31148,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31158,7 +31158,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="middle"
               x={251.70000000000002}
-              y={278}
+              y={274}
             >
               Jan 2019
             </text>
@@ -31178,7 +31178,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31188,7 +31188,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="middle"
               x={336.9}
-              y={278}
+              y={274}
             >
               Jan 2020
             </text>
@@ -31222,7 +31222,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31232,7 +31232,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="end"
               x={48}
-              y={256}
+              y={254}
             >
               0
             </text>
@@ -31252,7 +31252,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31262,7 +31262,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="end"
               x={48}
-              y={158}
+              y={156}
             >
               100
             </text>
@@ -31282,7 +31282,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31292,7 +31292,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
               }
               textAnchor="end"
               x={48}
-              y={59.999999999999986}
+              y={57.999999999999986}
             >
               200
             </text>
@@ -31300,7 +31300,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
           <g>
             <text
               fill="#666"
-              fontSize={16}
+              fontSize={12}
               style={
                 Object {
                   "fontFamily": "Helvetica, sans-serif",
@@ -31309,8 +31309,8 @@ exports[`Test: Homepage: Timeseries 1`] = `
                 }
               }
               textAnchor="middle"
-              transform="rotate(270 16 127.5)"
-              x={16}
+              transform="rotate(270 12 127.5)"
+              x={12}
               y={127.5}
             >
               Precipitation (mm)
