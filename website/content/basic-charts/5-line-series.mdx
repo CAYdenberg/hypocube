@@ -59,6 +59,12 @@ import PropDef from '../components/PropDef';
   Metadata to pass to{' '}
   <a href="../interaction/pointer-events">handler callbacks</a>.
 </PropDef>
+<PropDef name="view" type="[number, number, number, number]">
+  A viewbox, specified as [xMin, yMin, width, height]. Any part of the data
+  which falls outside of this viewbox will be clipped (not shown). The default
+  value is the viewbox of the Chart. If `null` is passed explicitly, no clipping
+  will occur (data may render in the gutter).
+</PropDef>
 <PropDef name="renderLine" type="React.Component<{ data; chartStyle }>">
   Render prop for the line connecting the data points. See the{' '}
   <a href="../composing-charts/1-data-components">data component docs</a> for

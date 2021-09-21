@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Line, Text, LineSeries, XAxis, YAxis } from '../src';
+import { Chart, Clip, Line, Text, LineSeries, XAxis, YAxis } from '../src';
 import ChartError from '../src/components/base/ChartError';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
@@ -55,6 +55,35 @@ const examples: Example[] = [
           ]}
           fill="#000"
         />
+      </Chart>
+    ),
+  },
+  {
+    name: 'Line with clip',
+    render: ({ isCanvas }) => (
+      <Chart
+        height={300}
+        width={300}
+        view={[-10, -10, 110, 110]}
+        isCanvas={isCanvas}
+      >
+        <Clip
+          path={[
+            [0, 0],
+            [50, 0],
+            [50, 50],
+            [0, 50],
+          ]}
+        >
+          <Line
+            path={[
+              [0, 0],
+              [25, 75],
+              [50, 0],
+            ]}
+            fill="#000"
+          />
+        </Clip>
       </Chart>
     ),
   },

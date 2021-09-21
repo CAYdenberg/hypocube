@@ -62,6 +62,12 @@ import PropDef from '../components/PropDef';
   Metadata to pass to{' '}
   <a href="../interaction/pointer-events">handler callbacks</a>.
 </PropDef>
+<PropDef name="view" type="[number, number, number, number]">
+  A viewbox, specified as [xMin, yMin, width, height]. Any part of the data
+  which falls outside of this viewbox will be clipped (not shown). The default
+  value is the viewbox of the Chart. If `null` is passed explicitly, no clipping
+  will occur (data may render in the gutter).
+</PropDef>
 <PropDef
   name="renderBar"
   type="React.Component<{x: number; yMin: number; yMax: number; chartStyle }>"

@@ -6,22 +6,23 @@ import {
   Point,
 } from '../../types';
 import { normalize } from '../../lib/normalize';
-import Viewbox from '../../lib/Viewbox';
+import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';
 import { DataAnchorLine, DataPointProps } from '../data/DataPoint';
 import { DataWhiskerVertical, DataRangeVerticalProps } from '../data/DataRange';
 import Handle from '../primitives/Handle';
+import Clip from '../primitives/Clip';
 
 interface RangeSeriesProps {
   data: Array<{
     anchor: Point;
     ranges?: number[];
   }>;
-  view?: Viewbox;
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
+  view?: ViewboxDuck | null;
   renderAnchor?: React.FC<DataPointProps>;
   renderRanges?:
     | React.FC<DataRangeVerticalProps>
@@ -32,7 +33,9 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
   ChartEventHandlers> = (props) => {
   const { cartesianBox } = useChartState();
   const chartStyle = useChartStyle(props.chartStyle);
-  const viewbox = normalize(props.view, cartesianBox);
+
+  const view = normalize(props.view, cartesianBox);
+  const clipPath = view ? createViewbox(view).toPath() : null;
 
   const Anchor = props.renderAnchor || DataAnchorLine;
   const renderRanges = Array.isArray(props.renderRanges)
@@ -42,7 +45,7 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
     : [DataWhiskerVertical];
 
   return (
-    <React.Fragment>
+    <Clip path={clipPath}>
       {props.data.map(({ anchor, ranges }) => {
         const [x, y] = anchor;
 
@@ -52,7 +55,7 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
               .map((val, i) => [val, ranges[i + 1]])
           : [];
 
-        return x >= viewbox.xMin || x <= viewbox.xMax ? (
+        return (
           <Handle
             {...selectHandlers(props)}
             elementPosition={[x, y]}
@@ -74,8 +77,8 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
               );
             })}
           </Handle>
-        ) : null;
+        );
       })}
-    </React.Fragment>
+    </Clip>
   );
 };

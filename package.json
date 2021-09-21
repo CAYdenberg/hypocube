@@ -29,6 +29,7 @@
     "d3-ease": "^2.0.0",
     "d3-scale": "^3.2.3",
     "d3-shape": "^2.0.0",
+    "hashids": "^2.2.8",
     "lodash.debounce": "^4.0.8",
     "react-use-gesture": "^9.1.3"
   },

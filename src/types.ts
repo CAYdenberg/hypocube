@@ -2,10 +2,14 @@ import { ScaleLinear } from 'd3-scale';
 import React from 'react';
 import { CurveType, DashType } from './components/primitives/Line';
 import { SymbolType } from './components/primitives/Symbol';
-import { CanvasComponent } from './lib/useCanvas';
 import Viewbox from './lib/Viewbox';
 
 export type Point = [number, number];
+
+export type CanvasComponent = (
+  renderer: CanvasRenderingContext2D,
+  dpr: number
+) => void;
 
 export interface ChartState {
   cartesianBox: Viewbox;
@@ -73,6 +77,11 @@ type CreateChartStyleOptions<T> = {
 };
 
 export type ChartStyleOptions = CreateChartStyleOptions<ChartStyleT>;
+
+export interface ClipT {
+  render: CanvasComponent;
+  id: string;
+}
 
 export type ReactEvent =
   | React.PointerEvent<SVGGElement>

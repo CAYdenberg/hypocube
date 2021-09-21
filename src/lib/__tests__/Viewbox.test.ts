@@ -8,6 +8,18 @@ describe('Viewbox', () => {
     expect(initial).toHaveProperty('yMax', 65);
   });
 
+  describe('toPath', () => {
+    it('gets the rectangular path of the viewbox', () => {
+      const path = initial.toPath();
+      expect(path).toEqual([
+        [5, 50],
+        [15, 50],
+        [15, 65],
+        [5, 65],
+      ]);
+    });
+  });
+
   describe('panX', () => {
     it('slides the view right', () => {
       const result = initial.panX(5);

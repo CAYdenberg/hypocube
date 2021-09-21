@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { CanvasComponent } from '../types';
 import Viewbox from '../lib/Viewbox';
-
-export type CanvasComponent = (
-  renderer: CanvasRenderingContext2D,
-  dpr: number
-) => void;
 
 export default (pxBox: Viewbox, isCanvas: boolean) => {
   const canvasNode = useRef<HTMLCanvasElement | null>(null);
@@ -63,6 +59,7 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
     canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);
 
     queue.forEach((func) => {
+      canvasContext.current!.save();
       canvasContext.current!.scale(dpr.current, dpr.current);
       func(canvasContext.current!, dpr.current);
 
