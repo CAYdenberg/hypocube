@@ -18,7 +18,7 @@ const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
 
 `setTooltipData` can be passed directly as a Hypocube event handler: firing the event will set `tooltipData`. When set, it is an object consisting of `position: [number, number]` and `meta: object` (containing any data you need). See [pointer events](./1-pointer-events) for more about meta data. When unset, `tooltipData` is null.
 
-```jsx
+```javascript
 <LineSeries onPointerDown={setTooltipData} />
 ```
 
@@ -26,7 +26,7 @@ const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
 
 `TooltipWrapper` is a simple component designed to handle clicks outside of itself (which are usually intended to close the tooltip). The `handleCloseTooltip` function be passed to this prop.
 
-```jsx
+```javascript
 import { TooltipWrapper } from 'hypocube/addons/tooltips';
 
 <TooltipWrapper onRequestClose={handleCloseTooltip}>
@@ -38,7 +38,7 @@ import { TooltipWrapper } from 'hypocube/addons/tooltips';
 
 Firstly, we create our tooltip component. Hypocube doesn't make assumptions about styling:
 
-```jsx
+```javascript
 import { TooltipWrapper } from 'hypocube/addons/tooltips';
 
 const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
@@ -64,7 +64,7 @@ const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
 
 Next, we use that component in the `htmlLayer` of the `Chart` component:
 
-```jsx
+```javascript
 import { useTooltip } from 'hypocube/addons/tooltip';
 
 const MyChart = () => {

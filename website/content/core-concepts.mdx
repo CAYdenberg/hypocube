@@ -6,11 +6,11 @@ metaDescription: 'Hypocube core concepts'
 
 ## Content vs Presentation
 
-Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. From the principle insight that **content is distinct from presentation,** Marcotte developed the idea that the style of a website can adapt based on device capabilities, without changing the semantic meaning of the content. This has actually become _more_ important in the intervening years: with media like Accelerated Mobile Pages, Facebook Instant Articles and Apple News, to say nothing of an ever-greater variety of screens, mean that authors rarely know the exact format in which their content will reach their readers.
+Ever since Ethan Marcotte coined the term ["responsive web design"](https://alistapart.com/article/responsive-web-design/), it has been a core value of the modern web. From the principle insight that **content is distinct from presentation,** Marcotte developed the idea that the style of a website can adapt based on device capabilities, without changing the semantic meaning of the content. This has actually become _more_ important in the intervening years, thanks to media like Accelerated Mobile Pages, Facebook Instant Articles and Apple News, to say nothing of an ever-greater variety of screens. At the end of the day, authors rarely know the exact format in which their content will reach their readers.
 
 Tools for applying responsive principles to charts and graphs have lagged. This is because charts are neither text (which typically compress horizontally and expand vertically as the viewport shrinks), nor images (which typically compress along both dimensions to maintain the aspect ratio). What is needed is a clean separation of concerns when talking about charts: what is content (in this case, data), and what is presentation (style)?
 
-A way out from a book totally unrelated to the web: [_The Visual Display of Quantitative Information_](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte, first published in 1975. Tufte describes the parts of a graph that do not contain information "non-data ink". For example, the two charts below both show the same data:
+One solution comes from a book totally unrelated to the web: [_The Visual Display of Quantitative Information_](https://www.edwardtufte.com/tufte/books_vdqi) by Edward Tufte, first published in 1975. Tufte describes the parts of a graph that do not contain information "non-data ink". For example, the two charts below both show the same data:
 
 import CoreConceptsDemo from '../../sandbox/CoreConceptsDemo';
 import { CoreConceptsDemoContainer } from '../../sandbox/demo';
@@ -22,7 +22,7 @@ import { CoreConceptsDemoContainer } from '../../sandbox/demo';
 
 The point is that **the widths and the heights of the ranges represent different things: the vertical positions are content and cannot be changed because they directly represent data**. The horizontal distances, even though they are also composed only of distances/pixels, are not a representation of data and are properly thought of as styles.
 
-Usually, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `tukey-box-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph: it must be composed out of more fundamental SVG elements, which themselves represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-like scheme to provide chart styles at varying levels of specificity. As with CSS, these styles can be inherited from parent elements.
+Usually, HTML is used to talk about content and CSS is used to talk about style. If CSS had a `tukey-box-width` property, we could then restyle the chart with media queries, with no change to the content. Of course this doesn't work: there is no HTML (or SVG) element for data on a graph, so it must be composed out of more fundamental SVG elements, which themselves represent shapes. Hypocube uses React to compose fundamental shapes into semantically meaningful chart components, and uses a custom CSS-like scheme to provide chart styles at varying levels of specificity. As with CSS, these styles can be inherited from parent elements.
 
 ## Responsiveness
 
