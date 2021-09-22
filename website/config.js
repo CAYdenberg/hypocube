@@ -3,7 +3,7 @@ const config = {
     pathPrefix: '/',
     siteUrl: 'https://hypocube.space/',
     gaTrackingId: null,
-    trailingSlash: false,
+    trailingSlash: true,
   },
   header: {
     logo: 'https://www.caydenberg.io/favicon.png',
@@ -30,18 +30,16 @@ const config = {
   },
   sidebar: {
     forcedNavOrder: [
-      '/core-concepts',
-      '/basic-charts',
-      '/interaction',
-      '/composing-charts',
-      '/addons',
+      '/core-concepts/',
+      '/basic-charts/',
+      '/interaction/',
+      '/composing-charts/',
     ],
     collapsedNav: [
-      '/core-concepts',
-      '/basic-charts',
-      '/interaction',
-      '/composing-charts',
-      '/addons',
+      '/core-concepts/',
+      '/basic-charts/',
+      '/interaction/',
+      '/composing-charts/',
     ],
     links: [
       { text: 'GitHub', link: 'https://github.com/CAYdenberg/hypocube' },

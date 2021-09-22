@@ -6,7 +6,7 @@ metaDescription: 'The base component for rendering Hypocube charts'
 
 import PropDef from '../components/PropDef';
 
-The Chart is the base component used to render all chart elements. It is responsible for creating the basic dimensions of the Chart in pixels, and the visible portion of the chart coordinates on the [Cartesian scale](../core-concepts#definingspace).
+The Chart is the base component used to render all chart elements. It is responsible for creating the basic dimensions of the Chart in pixels, and the visible portion of the chart coordinates on the [Cartesian scale](/core-concepts#definingspace).
 
 ## Props
 
@@ -33,19 +33,18 @@ The Chart is the base component used to render all chart elements. It is respons
 </PropDef>
 <PropDef name="chartStyle">
   Sets styles which will apply to all chart elements. See{' '}
-  <a href="./2-chart-style">ChartStyle</a>.
+  <a href="./2-chart-style/">ChartStyle</a>.
 </PropDef>
 <PropDef name="onGesture">
   Handler for gestures, usually (but not necessarily) used to dynamically change
   the `view`. See{' '}
-  <a href="../interaction/3-handling-gestures">how to handle gestures</a> and{' '}
-  <a href="../interaction/4-dyanamic-views">how to update the `view`</a>.
+  <a href="/interaction/4-handling-gestures/">how to handle gestures</a>.
 </PropDef>
 <PropDef name="htmlLayer">
   A React component (or array of React components) which render HTML, and are
   absolutely positioned above the SVG (or canvas). Can be used to render
   tooltips (though they don't have to be). See{' '}
-  <a href="../interaction/3-tooltips">tooltips for more information</a>.
+  <a href="/interaction/2-tooltips/">tooltips for more information</a>.
 </PropDef>
 <PropDef name="renderError" type="React.Component{ message: string }>">
   A React component which will be rendered in case of an error that occurs while
@@ -53,4 +52,4 @@ The Chart is the base component used to render all chart elements. It is respons
   prop.
 </PropDef>
 
-Additionally, the chart element accepts all the [pointer event handlers](../interaction/1-pointer-events).
+Additionally, the chart element accepts all the [pointer event handlers](/interaction/1-pointer-events/).

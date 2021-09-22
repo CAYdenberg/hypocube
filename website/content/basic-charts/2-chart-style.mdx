@@ -92,7 +92,7 @@ Similar to CSS, all chart elements have access to all possible chart styles, alt
 
 ### Axes
 
-See also [the axes documentation](./3-axes).
+See also [the axes documentation](/basic-charts/3-axes/).
 
 <PropDef name="axisColor" type="color" def="#666">
   Stroke color the axis line, tick marks, tick mark labels, and axis label.
@@ -128,8 +128,8 @@ See also [the axes documentation](./3-axes).
 <PropDef name="seriesXOffset" type="number" def="0">
   The offset of any data point along the x-axis. This is useful in a categorical
   bar graph so that multiple series don't sit behind on another, for example.
-  The <a href="./7-series-styles">`seriesStyles' addon</a> can be used to
-  automatically create offsets for multiple bar series.
+  The <a href="/basic-charts/7-series-styles">`seriesStyles' addon</a> can be
+  used to automatically create offsets for multiple bar series.
 </PropDef>
 
 ### Data boxes
@@ -137,7 +137,7 @@ See also [the axes documentation](./3-axes).
 A <strong>data box</strong> is a rectangle used to indicate a data point (by
 stretching to the 0 value on the same axis) or a data range (by stretching
 between two values on the same axis). It is most commonly used as the data
-markers in [a bar series](./4-bar-series).
+markers in [a bar series](/basic-charts/4-bar-series/).
 
 <PropDef name="dataBoxFill" type="color" def="#000"></PropDef>
 <PropDef name="dataBoxStroke" type="color" def="#000"></PropDef>
@@ -151,7 +151,7 @@ markers in [a bar series](./4-bar-series).
 ### Data points
 
 A <strong>data point</strong> is a visual marker at defined
-coordinates. It is most commonly used as the markers in [a line series](./5-line-series), alone or in conjunction with a data line.
+coordinates. It is most commonly used as the markers in [a line series](/basic-charts/5-line-series/), alone or in conjunction with a data line.
 
 <PropDef name="dataPointSize" type="number" def="5">
   The size in pixels of the data point from one end to the other. In other
@@ -171,7 +171,7 @@ coordinates. It is most commonly used as the markers in [a line series](./5-line
 <PropDef name="dataPointMinTargetRadius" type="number" def="0">
   Small data points can be hard for users to click on. If this style is
   provided, an invisible circle is drawn around each data point that can act as
-  a target for <a href="../interaction/1-pointer-events">pointer events</a>. If
+  a target for <a href="/interaction/1-pointer-events">pointer events</a>. If
   this style is left at the default zero value, or is smaller than the data
   point size itself, then the data point itself is the only event target.
 </PropDef>
@@ -179,7 +179,7 @@ coordinates. It is most commonly used as the markers in [a line series](./5-line
 ### Data lines
 
 A <strong>data line</strong> is a line drawn between all of the data
-points in a series. It is most commonly used as the marker in [a line series](./5-line-series), alone or in conjunction with data points.
+points in a series. It is most commonly used as the marker in [a line series](/basic-charts/5-line-series/), alone or in conjunction with data points.
 
 <PropDef name="dataLineCurveType" type="string | D3CurveFactory" def="linear">
   The "curve type" represents a function to calculate the shape of the line in
@@ -202,7 +202,7 @@ points in a series. It is most commonly used as the marker in [a line series](./
 
 ### Data ranges
 
-Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is a <strong>whisker</strong>, commonly associated with error bars but possibly used to represent other types of ranges. The range _must_ be "anchored" at a specific point for referencing purposes, and the _anchor may optionally be rendered_. See the [range series docs](./6-range-series) for more information about what can be done with this type of data series.
+Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is a <strong>whisker</strong>, commonly associated with error bars but possibly used to represent other types of ranges. The range _must_ be "anchored" at a specific point for referencing purposes, and the _anchor may optionally be rendered_. See the [range series docs](/basic-charts/6-range-series/) for more information about what can be done with this type of data series.
 
 <PropDef name="dataRangeAnchorLength" type="number" def="0">
   The default range anchor is a line of this length along the non-data axis
