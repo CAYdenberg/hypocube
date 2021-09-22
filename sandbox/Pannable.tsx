@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Chart,
   XAxis,
@@ -22,12 +22,18 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
+  const [pinchFactor, setPinchFactor] = useState(0);
+
   const { view, setView, scrollToView } = usePannable(
     [50, 0, 50, 1000],
     [0, 0, 400, 1000]
   );
 
   const handleGesture = (data: ChartGestureData) => {
+    if (data.kind === GestureKind.Pinch) {
+      setPinchFactor(data.state.movement[0]);
+    }
+
     if (data.kind === GestureKind.Swipe) {
       scrollToView(data.nextView);
       return;
@@ -42,22 +48,25 @@ const Pannable: React.FC<Props> = ({
   };
 
   return (
-    <Chart
-      height={300}
-      width={300}
-      view={view}
-      gutter={[20, 20, 50, 50]}
-      isCanvas={isCanvas}
-      onGesture={handleGesture}
-    >
-      <XAxis
-        range={view.x}
-        tickPositions={tickPositions}
-        getTickLabel={getDateLabel}
-        axisLabel="Date"
-      />
-      <LineSeries data={series} chartStyle={seriesStyle} />
-    </Chart>
+    <React.Fragment>
+      <p>{pinchFactor}</p>
+      <Chart
+        height={300}
+        width={300}
+        view={view}
+        gutter={[20, 20, 50, 50]}
+        isCanvas={isCanvas}
+        onGesture={handleGesture}
+      >
+        <XAxis
+          range={view.x}
+          tickPositions={tickPositions}
+          getTickLabel={getDateLabel}
+          axisLabel="Date"
+        />
+        <LineSeries data={series} chartStyle={seriesStyle} />
+      </Chart>
+    </React.Fragment>
   );
 };
 
