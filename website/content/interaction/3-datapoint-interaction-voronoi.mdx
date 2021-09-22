@@ -8,7 +8,7 @@ While a major advantage of SVG is that event handlers can be attached to any ele
 
 Hypocube provides a hook as an addon for this purpose. When supplied with a set of data series and a callback, it remaps the data in the callback to the data for the nearest data point (and meta data) in the set of series. It returns an event handler to be attached to the `Chart` (not the series). **This works even when the Chart is rendered in canvas mode**.
 
-To demonstrate how this works, we'll rebuild the [Tooltip example]('./3-tooltips') from the previous article to use the Voronoi addon instead. It should work exactly the same way.
+To demonstrate how this works, we'll rebuild the [Tooltip example](/interaction/2-tooltips/) from the previous article to use the Voronoi addon instead. It should work in a similar way, except that every part of the chart area will map the nearest data point.
 
 It's good practice to construct the data above the component that will render the Chart, to avoid re-processing it on each render.
 

@@ -4,7 +4,7 @@ metaTitle: 'Drawing error bars and beyond'
 metaDescription: 'Drawing error bars and beyond'
 ---
 
-A **range series** is similar to a bar series, but it is used to represent _ranges_ of data along the primary axis, instead of a single point. Like a bar series, it has only stylistic or no meaning along the secondary axis. The `RangeSeries` component will, by default, draw **whiskers** (often used to represent error bars). By using the flexible `renderRanges` prop, however, it can be used to draw range representations in a variety of ways. See [composing charts](../composing-charts) for an example of how it can be used to create a Tukey ("box-and-whisker") plot.
+A **range series** is similar to a bar series, but it is used to represent _ranges_ of data along the primary axis, instead of a single point. Like a bar series, it has only stylistic or no meaning along the secondary axis. The `RangeSeries` component will, by default, draw **whiskers** (often used to represent error bars). By using the flexible `renderRanges` prop, however, it can be used to draw range representations in a variety of ways. See [composing charts](/composing-charts/) for an example of how it can be used to create a Tukey ("box-and-whisker") plot.
 
 ## Understanding Anchors
 
@@ -59,12 +59,12 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef name="chartStyle">
   Styles declarations which will override the global{' '}
-  <a href="./2-chart-style#dataranges">chart style</a>. The dataRange
-  declarations are mostly of interest for this type of series.
+  <a href="/basic-charts/2-chart-style#dataranges">chart style</a>. The
+  dataRange declarations are mostly of interest for this type of series.
 </PropDef>
 <PropDef name="handlerMeta" type="Record<any>">
   Metadata to pass to{' '}
-  <a href="../interaction/pointer-events">handler callbacks</a>.
+  <a href="/interaction/1-pointer-events/">handler callbacks</a>.
 </PropDef>
 <PropDef name="view" type="[number, number, number, number]">
   A viewbox, specified as [xMin, yMin, width, height]. Any part of the data
@@ -77,7 +77,7 @@ import PropDef from '../components/PropDef';
   type="React.Component<{ x: number; y: number; chartStyle }>"
 >
   Render prop for the anchors. See the{' '}
-  <a href="../composing-charts/1-data-components">data component docs</a> for
+  <a href="/composing-charts/1-data-components/">data component docs</a> for
   more information. By default it renders a `DataAnchor` and a replacement
   component should accept the same props.
 </PropDef>
@@ -86,16 +86,16 @@ import PropDef from '../components/PropDef';
   type="React.Component<{ x: number; yMin: number; yMax: number; chartStyle }>"
 >
   Render prop for the ranges. See the{' '}
-  <a href="../composing-charts/1-data-components">data component docs</a> for
-  more information. By default it renders a `DataWhiskerVertical` and a
-  replacement component should accept the same props.{' '}
+  <a href="/composing-charts/1-data-components">data component docs</a> for more
+  information. By default it renders a `DataWhiskerVertical` and a replacement
+  component should accept the same props.{' '}
   <strong>
     Unlike the other render props, this can accept an array of components.
   </strong>{' '}
   When multiple ranges are rendered (see the data property above), each
   component will be used in succession. See the example in{' '}
-  <a href="../composing-charts">Composing Charts</a> for how to use this to
+  <a href="/composing-charts/">Composing Charts</a> for how to use this to
   create Tukey plots.
 </PropDef>
 
-Additionally, the range series component accepts all the [pointer event handlers](../interaction/1-pointer-events), which are rendered around each range point.
+Additionally, the range series component accepts all the [pointer event handlers](/interaction/1-pointer-events/), which are rendered around each range point.

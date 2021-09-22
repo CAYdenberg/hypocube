@@ -6,7 +6,7 @@ metaDescription: 'Basic point and line hypocube charts'
 
 A line series can be used to represent data in two ways: (1) as data points rendered at the actual coordinates given, and as a line connecting those data points. By default, only the line is rendered; points can be shown by setting a value for the `dataPointSymbol` style declaration. Conversely, the line can be hidden by setting the `dataLineStrokeWidth` style declaration to 0.
 
-It is important to note that [event handles are created at the actual points](../interaction/pointer-events) within the series, regardless of whether the data points are visible. This is because the line does not have any data-centric meaning: it is an imaginary way of connecting data points. The actual target size of these invisible handles can be controlled with the `dataPointMinTargetRadius` style declaration.
+It is important to note that [event handles are created at the actual points](/interaction/1-pointer-events/) within the series, regardless of whether the data points are visible. This is because the line does not have any data-centric meaning: it is an imaginary way of connecting data points. The actual target size of these invisible handles can be controlled with the `dataPointMinTargetRadius` style declaration.
 
 ```javascript react-live=true
 <Chart width={300} height={300} view={[0, 0, 4, 5]} gutter={[5, 5, 5, 5]}>
@@ -52,12 +52,12 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef name="chartStyle">
   Styles declarations which will override the global{' '}
-  <a href="./2-chart-style#databoxes">chart style</a>. Usually, the databox
-  styles are used with this type of data series.
+  <a href="/basic-charts/2-chart-style#databoxes">chart style</a>. Usually, the
+  databox styles are used with this type of data series.
 </PropDef>
 <PropDef name="handlerMeta" type="Record<any>">
   Metadata to pass to{' '}
-  <a href="../interaction/pointer-events">handler callbacks</a>.
+  <a href="/interaction/1-pointer-events">handler callbacks</a>.
 </PropDef>
 <PropDef name="view" type="[number, number, number, number]">
   A viewbox, specified as [xMin, yMin, width, height]. Any part of the data
@@ -67,18 +67,18 @@ import PropDef from '../components/PropDef';
 </PropDef>
 <PropDef name="renderLine" type="React.Component<{ data; chartStyle }>">
   Render prop for the line connecting the data points. See the{' '}
-  <a href="../composing-charts/1-data-components">data component docs</a> for
-  more information. By default it renders a `DataLine` and a replacement
-  component should accept the same props.
+  <a href="/composing-charts/1-data-components">data component docs</a> for more
+  information. By default it renders a `DataLine` and a replacement component
+  should accept the same props.
 </PropDef>
 <PropDef
   name="renderPoint"
   type="React.Component<{ x: number; y: number; chartStyle }>"
 >
   Render prop for the line connecting the data points. See the{' '}
-  <a href="../composing-charts/1-data-components">data component docs</a> for
-  more information. By default it renders a `DataPoint` and a replacement
-  component should accept the same props.
+  <a href="/composing-charts/1-data-components">data component docs</a> for more
+  information. By default it renders a `DataPoint` and a replacement component
+  should accept the same props.
 </PropDef>
 
-Additionally, the line series component accepts all the [pointer event handlers](../interaction/1-pointer-events), which are rendered around the individual data points.
+Additionally, the line series component accepts all the [pointer event handlers](/interaction/1-pointer-events/), which are rendered around the individual data points.

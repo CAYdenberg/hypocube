@@ -28,7 +28,7 @@ Usually, HTML is used to talk about content and CSS is used to talk about style.
 
 What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height. This allows a similar outcome to what can be achieved with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
 
-[Read more about `ChartStyle`.](./basic-charts/2-chart-style)
+[Read more about `ChartStyle`.](/basic-charts/2-chart-style)
 
 ## Defining Space
 
@@ -48,13 +48,13 @@ Specifically, an `onGesture` prop accepts a callback which will report the exten
 
 Callbacks can also be passed to most chart elements to produce other types of interactivity, for example clicking/tapping on a data point. Hypocube uses [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) to simplify the inconsistencies between mouse and touch devices. Event handlers are called with coordinates that are _semantically meaningful in the data_, not (just) the raw coordinates of the event.
 
-[Read More about Hypocube events.](./interaction)
+[Read More about Hypocube events.](/interaction/)
 
 ## Composability
 
 Elements such as axes render a number of different sub-components, most of which can be replaced with render props. In cases where the `chartStyles` don't provide enough flexibility, nearly any sub-component can be completely replaced.
 
-[See how you can compose new types of charts with render props.](./composing-charts)
+[See how you can compose new types of charts with render props.](/composing-charts/)
 
 ## SVG vs Canvas
 
@@ -64,10 +64,10 @@ All provided components can be rendered server-side while in SVG mode, although 
 
 All Hypocube chart components are composed out of a small number of primitives. These primitives provide both SVG and canvas rendering information: therefore if render props are used to replace sub-components, canvas rendering will still work as long as these primitives are used as the building blocks for the new elements.
 
-[Read more about primitives.](./composing-charts/3-primitives)
+[Read more about primitives.](/composing-charts/3-primitives/)
 
 ## HTML layer
 
 Tooltips are a very common pattern in web charts. Hypocube allows rendering of HTML elements at absolute positions defined on the Cartesian scale.
 
-[Read more about tooltips.](./interaction/2-tooltips)
+[Read more about tooltips.](/interaction/2-tooltips/)

@@ -16,7 +16,7 @@ import { useTooltip } from 'hypocube/addons/tooltips';
 const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
 ```
 
-`setTooltipData` can be passed directly as a Hypocube event handler: firing the event will set `tooltipData`. When set, it is an object consisting of `position: [number, number]` and `meta: object` (containing any data you need). See [pointer events](./1-pointer-events) for more about meta data. When unset, `tooltipData` is null.
+`setTooltipData` can be passed directly as a Hypocube event handler: firing the event will set `tooltipData`. When set, it is an object consisting of `position: [number, number]` and `meta: object` (containing any data you need). See [pointer events](/interaction/1-pointer-events/) for more about meta data. When unset, `tooltipData` is null.
 
 ```javascript
 <LineSeries onPointerDown={setTooltipData} />
