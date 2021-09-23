@@ -10,15 +10,15 @@ Array [
       Object {
         "height": 300,
         "position": "relative",
-        "touchAction": undefined,
       }
     }
   >
     <div
-      onPointerCancel={[Function]}
-      onPointerDown={[Function]}
-      onPointerMove={[Function]}
-      onPointerUp={[Function]}
+      style={
+        Object {
+          "touchAction": undefined,
+        }
+      }
     >
       <div>
         <svg
@@ -485,15 +485,15 @@ Array [
       Object {
         "height": 300,
         "position": "relative",
-        "touchAction": undefined,
       }
     }
   >
     <div
-      onPointerCancel={[Function]}
-      onPointerDown={[Function]}
-      onPointerMove={[Function]}
-      onPointerUp={[Function]}
+      style={
+        Object {
+          "touchAction": undefined,
+        }
+      }
     >
       <div>
         <svg
@@ -529,15 +529,15 @@ exports[`Test: Core Concepts: Tukey 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -1128,15 +1128,15 @@ exports[`Test: Dot and Tukey plot 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -22779,15 +22779,15 @@ exports[`Test: Filled line 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -22818,15 +22818,15 @@ exports[`Test: Homepage: Bar 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div
       onPointerOut={[Function]}
@@ -25942,15 +25942,15 @@ exports[`Test: Homepage: Timeseries 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": "manipulation",
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": "manipulation",
+      }
+    }
   >
     <div
       onPointerMove={[Function]}
@@ -31329,15 +31329,15 @@ exports[`Test: Line 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -31368,15 +31368,15 @@ exports[`Test: Line with clip 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -31415,15 +31415,15 @@ exports[`Test: LineSeries 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -32040,15 +32040,15 @@ exports[`Test: Multiple Bar Series 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
@@ -32589,15 +32589,15 @@ exports[`Test: Multiple Series 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div
       onPointerDown={[Function]}
@@ -54624,15 +54624,15 @@ exports[`Test: Pannable 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": "manipulation",
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": "manipulation",
+      }
+    }
   >
     <div>
       <svg
@@ -56287,15 +56287,15 @@ exports[`Test: Text rotation 1`] = `
     Object {
       "height": 300,
       "position": "relative",
-      "touchAction": undefined,
     }
   }
 >
   <div
-    onPointerCancel={[Function]}
-    onPointerDown={[Function]}
-    onPointerMove={[Function]}
-    onPointerUp={[Function]}
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
   >
     <div>
       <svg
