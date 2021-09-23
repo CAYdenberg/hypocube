@@ -19,21 +19,25 @@ interface HtmlLayerElement {
 
 export interface Props extends HandlerProps {
   /**
-   * (required) Initial rendered width in pixels. Immediately after rendering,
-   * the chart will automatically adjust to the width of its container.
-   */
-  width: number;
-  /**
-   * (required) Rendered height in pixels. If a function is given, the height
-   * will be calculated from the rendered width.
-   */
-  height: number | ((width: number) => number);
-  /**
    * The coordinates of the box containing the visible portion of the chart data.
    * Given as an array in the form: [x minimum, y minimum, width, height] on
    * the Cartesian scale.
    */
   view: ViewboxDuck | ((width: number) => ViewboxDuck);
+  /**
+   * CSS max-width value.
+   */
+  maxWidth?: number | string;
+  /**
+   * Initial rendered width in pixels. Immediately after rendering,
+   * the chart will automatically adjust to the width of its container.
+   */
+  ssWidth?: number;
+  /**
+   * Rendered height in pixels. If a function is given, the height
+   * will be calculated from the rendered width.
+   */
+  height?: number | ((width: number) => number);
   /**
    * Extra padding (given in pixels) added to each side of the chart. This is
    * useful for ensuring that axes and other Chart decorations have enough space
@@ -72,12 +76,14 @@ const ChartInner: React.FC<Props> = (props) => {
   const isCanvas = normalize(props.isCanvas, false);
   const chartStyle = normalize(props.chartStyle, {});
   const gutter = normalize(props.gutter, [0, 0, 0, 0]);
+  const ssWidth = normalize(props.ssWidth, 300);
+  const height = normalize(props.height, 150);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const pxBox = useContainerSizes(props.width, props.height, containerRef);
+  const pxBox = useContainerSizes(ssWidth, height, containerRef);
 
   const cartesianBox: Viewbox = createViewbox(
-    typeof props.view === 'function' ? props.view(props.width) : props.view
+    typeof props.view === 'function' ? props.view(pxBox.width) : props.view
   );
 
   const scaleX = scaleLinear()
@@ -116,6 +122,7 @@ const ChartInner: React.FC<Props> = (props) => {
       style={{
         height: pxBox.height,
         position: 'relative',
+        maxWidth: props.maxWidth,
       }}
     >
       <ChartStateContext.Provider value={chartState}>

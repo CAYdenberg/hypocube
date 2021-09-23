@@ -22,12 +22,7 @@ const examples: Example[] = [
   {
     name: 'Line',
     render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        width={300}
-        view={[-10, -10, 110, 110]}
-        isCanvas={isCanvas}
-      >
+      <Chart height={300} view={[-10, -10, 110, 110]} isCanvas={isCanvas}>
         <Line
           path={[
             [0, 0],
@@ -41,12 +36,7 @@ const examples: Example[] = [
   {
     name: 'Filled line',
     render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        width={300}
-        view={[-10, -10, 110, 110]}
-        isCanvas={isCanvas}
-      >
+      <Chart height={300} view={[-10, -10, 110, 110]} isCanvas={isCanvas}>
         <Line
           path={[
             [0, 0],
@@ -61,12 +51,7 @@ const examples: Example[] = [
   {
     name: 'Line with clip',
     render: ({ isCanvas }) => (
-      <Chart
-        height={300}
-        width={300}
-        view={[-10, -10, 110, 110]}
-        isCanvas={isCanvas}
-      >
+      <Chart height={300} view={[-10, -10, 110, 110]} isCanvas={isCanvas}>
         <Clip
           path={[
             [0, 0],
@@ -90,7 +75,7 @@ const examples: Example[] = [
   {
     name: 'Text rotation',
     render: ({ isCanvas }) => (
-      <Chart height={300} width={300} view={[0, 0, 5, 2]} isCanvas={isCanvas}>
+      <Chart height={300} view={[0, 0, 5, 2]} isCanvas={isCanvas}>
         <Line
           path={[
             [0, 1],
@@ -127,7 +112,6 @@ const examples: Example[] = [
     render: ({ isCanvas }) => (
       <Chart
         height={300}
-        width={300}
         view={[0, 0, 1, 2.5]}
         gutter={[10, 10, 30, 50]}
         isCanvas={isCanvas}
@@ -188,7 +172,6 @@ const examples: Example[] = [
       <ChartError
         isCanvas={isCanvas}
         height={300}
-        width={300}
         view={[0, 0, 0, 0]}
       ></ChartError>
     ),

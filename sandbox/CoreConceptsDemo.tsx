@@ -17,8 +17,8 @@ const CoreConceptsDemo: React.FC<{
 }> = ({ isCanvas, reduceInk }) => {
   return (
     <Chart
-      height={300}
-      width={150}
+      ssWidth={150}
+      height={(width) => width * 2}
       view={[-1, 0, 4, 250]}
       gutter={[10, 0, 10, 10]}
       isCanvas={isCanvas}

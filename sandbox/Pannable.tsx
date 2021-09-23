@@ -44,7 +44,6 @@ const Pannable: React.FC<Props> = ({
   return (
     <Chart
       height={300}
-      width={300}
       view={view}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}

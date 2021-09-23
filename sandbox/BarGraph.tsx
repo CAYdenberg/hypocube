@@ -20,7 +20,6 @@ const BarGraph: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       <p>{selected}</p>
       <Chart
         height={300}
-        width={300}
         view={[0, 0, 6, 9000]}
         gutter={[20, 50, 50, 50]}
         isCanvas={isCanvas}

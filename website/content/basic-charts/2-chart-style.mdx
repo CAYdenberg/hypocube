@@ -12,7 +12,6 @@ Chart styles are designed to have a CSS-like interface. First and foremost, this
 
 ```javascript react-live=true
 <Chart
-  width={300}
   height={300}
   view={[0, 0, 4, 5]}
   chartStyle={{
@@ -52,23 +51,21 @@ In responsive design, styles often depend on the viewport width or other "device
 In this example, the bar in the bar graph will always be rendered at half the width of the total chart width, and will change color depending on the width. (You can change it by adjusting the maxWidth of the containing div).
 
 ```javascript react-live=true
-<div style={{ maxWidth: 1024 }}>
-  <Chart
-    width={300}
-    height={100}
-    view={[0, 0, 4, 5]}
-    isCanvas={false}
-    chartStyle={{
-      dataBoxFill: 'blue',
-      dataBoxThickness: ({ pxWidth }) => pxWidth / 2,
-      dataBoxFill: ({ pxWidth }) => `rgba(12, 12, 254, ${pxWidth / 1024})`,
-    }}
-  >
-    <XAxis />
-    <YAxis />
-    <BarVerticalSeries data={[[2, 2]]} />
-  </Chart>
-</div>
+<Chart
+  maxWidth={1024}
+  height={100}
+  view={[0, 0, 4, 5]}
+  isCanvas={false}
+  chartStyle={{
+    dataBoxFill: 'blue',
+    dataBoxThickness: ({ pxWidth }) => pxWidth / 2,
+    dataBoxFill: ({ pxWidth }) => `rgba(12, 12, 254, ${pxWidth / 1024})`,
+  }}
+>
+  <XAxis />
+  <YAxis />
+  <BarVerticalSeries data={[[2, 2]]} />
+</Chart>
 ```
 
 ## The styles

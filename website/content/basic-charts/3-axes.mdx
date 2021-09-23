@@ -9,12 +9,7 @@ An **axis** is a visual scale indicator meant to relate positions on a Cartesian
 Usually, axes are used in conjunction with tick marks, which indicate landmark data points with a label. Hypocube uses two props to describe tick marks: `tickPositions` is the actual position of the ticks on the Cartesian scale, while `getTickLabel` is a function which derives the tick label from the position. In the following example, we are using both axes. Notice the different functions passed to `getTickLabel`.
 
 ```javascript react-live
-<Chart
-  width={300}
-  height={300}
-  view={[0, 0, 4, 1000]}
-  gutter={[20, 20, 50, 50]}
->
+<Chart height={300} view={[0, 0, 4, 1000]} gutter={[20, 20, 50, 50]}>
   <XAxis
     tickPositions={[0, 1, 2, 3, 4]}
     getTickLabel={(pos) => `#${pos + 1}`}
@@ -37,7 +32,7 @@ const data = [
 ];
 
 return (
-  <Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+  <Chart height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
     <XAxis
       tickPositions={[0, 1, 2, 3, 4]}
       getTickLabel={(pos) => `#${pos + 1}`}
@@ -65,7 +60,7 @@ const data = [
 ];
 
 return (
-  <Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+  <Chart height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
     <XAxis
       tickPositions={data.map(_, i) => i}
       getTickLabel={(pos) => String(data[pos][0])}
@@ -84,7 +79,7 @@ This example demonstrates a categorical x-axis and a logarithmic y-axis.
 import { Chart, XAxis, YAxis, LineSeries } from '../../../src';
 import { data1 as data } from '../components/data';
 
-<Chart width={300} height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
+<Chart height={300} view={[0, 0, 4, 3]} gutter={[20, 20, 50, 50]}>
   <XAxis
     tickPositions={[0, 1, 2, 3, 4]}
     getTickLabel={(pos) => ['Cat A', 'Cat B', 'Cat C', 'Cat D', 'Cat E'][pos]}

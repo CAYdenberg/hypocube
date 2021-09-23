@@ -9,6 +9,7 @@ Array [
     style={
       Object {
         "height": 300,
+        "maxWidth": undefined,
         "position": "relative",
       }
     }
@@ -484,6 +485,7 @@ Array [
     style={
       Object {
         "height": 300,
+        "maxWidth": undefined,
         "position": "relative",
       }
     }
@@ -528,6 +530,7 @@ exports[`Test: Core Concepts: Tukey 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -1127,6 +1130,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -22778,6 +22782,7 @@ exports[`Test: Filled line 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -22817,6 +22822,7 @@ exports[`Test: Homepage: Bar 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -25941,6 +25947,7 @@ exports[`Test: Homepage: Timeseries 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -31328,6 +31335,7 @@ exports[`Test: Line 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -31367,6 +31375,7 @@ exports[`Test: Line with clip 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -31414,6 +31423,7 @@ exports[`Test: LineSeries 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -32039,6 +32049,7 @@ exports[`Test: Multiple Bar Series 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -32588,6 +32599,7 @@ exports[`Test: Multiple Series 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -54623,6 +54635,7 @@ exports[`Test: Pannable 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
@@ -56286,6 +56299,7 @@ exports[`Test: Text rotation 1`] = `
   style={
     Object {
       "height": 300,
+      "maxWidth": undefined,
       "position": "relative",
     }
   }
