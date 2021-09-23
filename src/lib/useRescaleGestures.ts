@@ -113,14 +113,15 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
         }
 
         const nextView = boxStart
-          .zoomX(disp(scaleX, state.movement[1]))
-          .zoomY(disp(scaleY, state.movement[1]));
+          .zoomX(disp(scaleX, state.delta[1]) * -1)
+          .zoomY(disp(scaleY, state.delta[1]));
         onGesture({
           kind: GestureKind.Wheel,
           phase: GesturePhase.Continue,
           nextView,
           state,
         });
+        setBoxStart(nextView);
       },
       onWheelEnd: (state) => {
         if (state.axis === 'x') {
@@ -135,12 +136,11 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
             state,
           });
           setBoxStart(nextView);
-          return;
         }
 
         const nextView = boxStart
-          .zoomX(disp(scaleX, state.movement[1]))
-          .zoomY(disp(scaleY, state.movement[1]));
+          .zoomX(disp(scaleX, state.delta[1]) * -1)
+          .zoomY(disp(scaleY, state.delta[1]));
         onGesture({
           kind: GestureKind.Wheel,
           phase: GesturePhase.End,
@@ -148,7 +148,6 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
           state,
         });
         setBoxStart(nextView);
-        return;
       },
 
       onPinchStart: (state) => {
@@ -162,20 +161,28 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
       },
 
       onPinch: (state) => {
-        const factor = state.movement[0];
+        const nextView = boxStart
+          .zoomX(disp(scaleX, state.movement[0]))
+          .zoomY(disp(scaleY, state.movement[0]));
         onGesture({
           kind: GestureKind.Pinch,
           phase: GesturePhase.Continue,
-          nextView: boxStart,
+          nextView,
           state,
         });
-        return false;
       },
 
       onPinchEnd: (state) => {
-        state.event.preventDefault();
-        state.event.stopPropagation();
-        return false;
+        const nextView = boxStart
+          .zoomX(disp(scaleX, state.movement[0]))
+          .zoomY(disp(scaleY, state.movement[0]));
+        onGesture({
+          kind: GestureKind.Pinch,
+          phase: GesturePhase.Continue,
+          nextView,
+          state,
+        });
+        setBoxStart(nextView);
       },
     },
     {

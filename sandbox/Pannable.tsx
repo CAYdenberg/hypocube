@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import {
   Chart,
   XAxis,
+  YAxis,
   LineSeries,
   GestureKind,
   ChartStyleOptions,
   ChartGestureData,
+  Viewbox,
 } from '../src';
 import usePannable from '../src/addons/usePannable';
 
@@ -22,16 +24,14 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const [pinchFactor, setPinchFactor] = useState(0);
-
   const { view, setView, scrollToView } = usePannable(
     [50, 0, 50, 1000],
     [0, 0, 400, 1000]
   );
 
   const handleGesture = (data: ChartGestureData) => {
-    if (data.kind === GestureKind.Pinch) {
-      setPinchFactor(data.state.movement[0]);
+    if (data.kind === GestureKind.Wheel) {
+      console.log(data.phase, data.nextView.y);
     }
 
     if (data.kind === GestureKind.Swipe) {
@@ -49,7 +49,7 @@ const Pannable: React.FC<Props> = ({
 
   return (
     <React.Fragment>
-      <p>{pinchFactor}</p>
+      <p>{`Width: ${view.width}, Height: ${view.height}`}</p>
       <Chart
         height={300}
         width={300}
@@ -59,10 +59,13 @@ const Pannable: React.FC<Props> = ({
         onGesture={handleGesture}
       >
         <XAxis
-          range={view.x}
           tickPositions={tickPositions}
           getTickLabel={getDateLabel}
-          axisLabel="Date"
+          intercept={view.yMin}
+        />
+        <YAxis
+          tickPositions={[0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]}
+          intercept={view.xMin}
         />
         <LineSeries data={series} chartStyle={seriesStyle} />
       </Chart>

@@ -163,7 +163,7 @@ const examples: Example[] = [
       return (
         <Pannable
           isCanvas={isCanvas}
-          getDateLabel={(x) => canada[x][0]}
+          getDateLabel={(x) => ''}
           series={series}
           tickPositions={canada.map((_, i) => i)}
         />
