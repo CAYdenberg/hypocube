@@ -55,7 +55,7 @@ const TooltipDocsExample = () => {
         data={[
           [1, 3],
           [2, 2],
-          [3, 5],
+          [3, 3.5],
         ]}
         chartStyle={{
           dataLineStroke: 'green',
