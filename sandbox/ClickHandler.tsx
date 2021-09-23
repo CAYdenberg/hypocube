@@ -7,12 +7,7 @@ const ClickHandler: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   return (
     <React.Fragment>
       <p>{count}</p>
-      <Chart
-        height={300}
-        width={300}
-        view={[-10, -10, 110, 110]}
-        isCanvas={isCanvas}
-      >
+      <Chart height={300} view={[-10, -10, 110, 110]} isCanvas={isCanvas}>
         <Handle onPointerDown={bump} elementPosition={[0, 0]}>
           <Line
             path={[

@@ -11,7 +11,7 @@ A **range series** is similar to a bar series, but it is used to represent _rang
 All data elements in Hypocube have an _anchor point_ that is used to report the element position when an event occurs. The Range Series (like the Line Series) does not render anything at this point by default, but the anchor point position is still reported to event callbacks. You can, however, make the anchor visible by setting the `dataRangeAnchorLength` chart style declaration.
 
 ```javascript react-live=true
-<Chart width={300} height={100} view={[0, 0, 4, 6]} isCanvas={false}>
+<Chart height={100} view={[0, 0, 4, 6]} isCanvas={false}>
   <XAxis />
   <YAxis />
   <RangeVerticalSeries

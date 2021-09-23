@@ -24,7 +24,6 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   return (
     <Chart
       height={300}
-      width={300}
       view={[-1, 0, 4, 200]}
       gutter={[20, 50, 50, 30]}
       isCanvas={isCanvas}

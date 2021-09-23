@@ -27,7 +27,6 @@ const TooltipDocsExample = () => {
 
   return (
     <Chart
-      width={300}
       height={300}
       view={[0, 0, 4, 5]}
       gutter={[5, 5, 5, 5]}

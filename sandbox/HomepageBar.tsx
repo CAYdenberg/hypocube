@@ -71,7 +71,7 @@ const HomepageBar: React.FC<Props> = ({
   return (
     <Chart
       height={300}
-      width={435}
+      ssWidth={435}
       view={[-0.5, 0, 12, 250]}
       gutter={[0, 0, 50, 60]}
       isCanvas={isCanvas}
