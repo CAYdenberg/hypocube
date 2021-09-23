@@ -113,7 +113,7 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
         }
 
         const nextView = boxStart
-          .zoomX(disp(scaleX, state.movement[0]))
+          .zoomX(disp(scaleX, state.movement[1]))
           .zoomY(disp(scaleY, state.movement[1]));
         onGesture({
           kind: GestureKind.Wheel,
@@ -139,7 +139,7 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
         }
 
         const nextView = boxStart
-          .zoomX(disp(scaleX, state.movement[0]))
+          .zoomX(disp(scaleX, state.movement[1]))
           .zoomY(disp(scaleY, state.movement[1]));
         onGesture({
           kind: GestureKind.Wheel,
