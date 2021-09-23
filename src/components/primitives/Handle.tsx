@@ -10,10 +10,15 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   onGesture,
   ...props
 }) => {
+  const ref = useRescaleGestures(onGesture);
   const handlers = useHandle(props);
-  const bind = useRescaleGestures(onGesture);
   return (
-    <div {...bind()}>
+    <div
+      ref={ref}
+      style={{
+        touchAction: onGesture ? 'manipulation' : undefined,
+      }}
+    >
       <div {...handlers}>{children}</div>
     </div>
   );
