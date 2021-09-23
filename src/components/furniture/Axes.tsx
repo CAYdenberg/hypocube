@@ -34,7 +34,7 @@ const normalizeAxisProps = (
 ) => {
   const range = normalize(props.range, naturalRange);
   const intercept = normalize<number>(props.intercept, 0);
-  const tickPositions = contextualize(props.tickPositions, naturalRange, state);
+  const tickPositions = contextualize(props.tickPositions, [], state);
   const getTickLabel = normalize(props.getTickLabel, (value: number) =>
     value.toString()
   );

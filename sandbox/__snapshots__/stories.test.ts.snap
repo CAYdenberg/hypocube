@@ -529,7 +529,7 @@ exports[`Test: Core Concepts: Tukey 1`] = `
 <div
   style={
     Object {
-      "height": 300,
+      "height": 150,
       "maxWidth": undefined,
       "position": "relative",
     }
@@ -544,12 +544,12 @@ exports[`Test: Core Concepts: Tukey 1`] = `
   >
     <div>
       <svg
-        height={300}
+        height={150}
         width={150}
       >
         <g>
           <path
-            d="M27.5,290L132.5,290"
+            d="M27.5,140L132.5,140"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -563,7 +563,7 @@ exports[`Test: Core Concepts: Tukey 1`] = `
         </g>
         <g>
           <path
-            d="M27.5,290L27.5,10"
+            d="M27.5,140L27.5,10"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -575,7 +575,7 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            d="M27.5,290L12.5,290"
+            d="M27.5,140L12.5,140"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -599,13 +599,13 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               }
               textAnchor="end"
               x={10.5}
-              y={295.5}
+              y={145.5}
             >
-              0
+              
             </text>
           </g>
           <path
-            d="M27.5,234L12.5,234"
+            d="M27.5,114L12.5,114"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -629,13 +629,13 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               }
               textAnchor="end"
               x={10.5}
-              y={239.5}
+              y={119.5}
             >
-              50
+              
             </text>
           </g>
           <path
-            d="M27.5,178L12.5,178"
+            d="M27.5,88L12.5,88"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -659,13 +659,13 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               }
               textAnchor="end"
               x={10.5}
-              y={183.5}
+              y={93.5}
             >
-              100
+              
             </text>
           </g>
           <path
-            d="M27.5,122L12.5,122"
+            d="M27.5,62L12.5,62"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -689,13 +689,13 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               }
               textAnchor="end"
               x={10.5}
-              y={127.5}
+              y={67.5}
             >
-              150
+              
             </text>
           </g>
           <path
-            d="M27.5,65.99999999999999L12.5,65.99999999999999"
+            d="M27.5,35.99999999999999L12.5,35.99999999999999"
             fill="transparent"
             opacity={1}
             stroke="#666"
@@ -719,9 +719,9 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               }
               textAnchor="end"
               x={10.5}
-              y={71.49999999999999}
+              y={41.49999999999999}
             >
-              200
+              
             </text>
           </g>
           <path
@@ -751,21 +751,21 @@ exports[`Test: Core Concepts: Tukey 1`] = `
               x={10.5}
               y={15.5}
             >
-              250
+              
             </text>
           </g>
         </g>
         <clipPath
-          id="gMIRKUykUqVhGBcpIkID"
+          id="opInnfrRuAAszgIRIMIA"
         >
           <path
-            d="M10,290L150,290L150,10L10,10"
+            d="M10,140L150,140L150,10L10,10"
           />
         </clipPath>
         <g>
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,235.00799999999998L55,235.00799999999998"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,114.46799999999999L55,114.46799999999999"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -777,8 +777,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,267.0288L55,267.0288"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,129.3348L55,129.3348"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -790,8 +790,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M45,283.6496L45,267.0288"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M45,137.05159999999998L45,129.3348"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -803,8 +803,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,283.6496L55,283.6496"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,137.05159999999998L55,137.05159999999998"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -816,8 +816,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,235.00799999999998L55,235.00799999999998L55,267.0288L35,267.0288L35,235.00799999999998"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,114.46799999999999L55,114.46799999999999L55,129.3348L35,129.3348L35,114.46799999999999"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -829,8 +829,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,170.22720000000004L55,170.22720000000004L55,235.00799999999998L35,235.00799999999998L35,170.22720000000004"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,84.3912L55,84.3912L55,114.46799999999999L35,114.46799999999999L35,84.3912"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -842,8 +842,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,77.45759999999997L55,77.45759999999997"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,41.31959999999999L55,41.31959999999999"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -855,8 +855,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M45,170.22720000000004L45,77.45759999999997"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M45,84.3912L45,41.31959999999999"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -868,127 +868,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M35,170.22720000000004L55,170.22720000000004"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-        </g>
-        <g>
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,185.9632L90,185.9632"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,239.60000000000002L90,239.60000000000002"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M80,271.3184L80,239.60000000000002"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,271.3184L90,271.3184"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,185.9632L90,185.9632L90,239.60000000000002L70,239.60000000000002L70,185.9632"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,117.81119999999999L90,117.81119999999999L90,185.9632L70,185.9632L70,117.81119999999999"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,18.680000000000007L90,18.680000000000007"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M80,117.81119999999999L80,18.680000000000007"
-            fill="transparent"
-            opacity={1}
-            stroke="#000"
-            strokeWidth={2}
-            style={
-              Object {
-                "pointerEvents": undefined,
-              }
-            }
-          />
-          <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M70,117.81119999999999L90,117.81119999999999"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M35,84.3912L55,84.3912"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1002,8 +883,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
         </g>
         <g>
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,262.2912L125,262.2912"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,91.6972L90,91.6972"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1015,8 +896,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,269.84000000000003L125,269.84000000000003"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,116.60000000000001L90,116.60000000000001"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1028,8 +909,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M115,277.8256L115,269.84000000000003"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M80,131.3264L80,116.60000000000001"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1041,8 +922,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,277.8256L125,277.8256"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,131.3264L90,131.3264"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1054,8 +935,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,262.2912L125,262.2912L125,269.84000000000003L105,269.84000000000003L105,262.2912"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,91.6972L90,91.6972L90,116.60000000000001L70,116.60000000000001L70,91.6972"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1067,8 +948,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,250.63199999999998L125,250.63199999999998L125,262.2912L105,262.2912L105,250.63199999999998"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,60.05519999999999L90,60.05519999999999L90,91.6972L70,91.6972L70,60.05519999999999"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1080,8 +961,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,228.4448L125,228.4448"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,14.030000000000003L90,14.030000000000003"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1093,8 +974,8 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M115,250.63199999999998L115,228.4448"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M80,60.05519999999999L80,14.030000000000003"
             fill="transparent"
             opacity={1}
             stroke="#000"
@@ -1106,8 +987,127 @@ exports[`Test: Core Concepts: Tukey 1`] = `
             }
           />
           <path
-            clipPath="url(#gMIRKUykUqVhGBcpIkID)"
-            d="M105,250.63199999999998L125,250.63199999999998"
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M70,60.05519999999999L90,60.05519999999999"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+        </g>
+        <g>
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,127.1352L125,127.1352"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,130.64000000000001L125,130.64000000000001"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M115,134.3476L115,130.64000000000001"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,134.3476L125,134.3476"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,127.1352L125,127.1352L125,130.64000000000001L105,130.64000000000001L105,127.1352"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,121.722L125,121.722L125,127.1352L105,127.1352L105,121.722"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,111.4208L125,111.4208"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M115,121.722L115,111.4208"
+            fill="transparent"
+            opacity={1}
+            stroke="#000"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            clipPath="url(#opInnfrRuAAszgIRIMIA)"
+            d="M105,121.722L125,121.722"
             fill="transparent"
             opacity={1}
             stroke="#000"

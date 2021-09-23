@@ -18,7 +18,7 @@ const CoreConceptsDemo: React.FC<{
   return (
     <Chart
       ssWidth={150}
-      height={(width) => width * 2}
+      height={(width) => (width > 250 ? 250 : width)}
       view={[-1, 0, 4, 250]}
       gutter={[10, 0, 10, 10]}
       isCanvas={isCanvas}
@@ -37,7 +37,7 @@ const CoreConceptsDemo: React.FC<{
       <XAxis range={[-0.5, 2.5]} />
       <YAxis
         tickPositions={[0, 50, 100, 150, 200, 250]}
-        getTickLabel={(pos) => String(pos)}
+        getTickLabel={() => ''}
         intercept={-0.5}
       />
       <RangeVerticalSeries
