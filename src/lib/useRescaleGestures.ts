@@ -53,9 +53,9 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
         } else if (state.swipe[0] === 1) {
           nextView = boxStart.panX(boxStart.width * -1);
         } else if (state.swipe[1] === -1) {
-          nextView = boxStart.panY(boxStart.height);
-        } else if (state.swipe[1] === 1) {
           nextView = boxStart.panY(boxStart.height * -1);
+        } else if (state.swipe[1] === 1) {
+          nextView = boxStart.panY(boxStart.height);
         } else {
           nextView = null;
         }
@@ -112,6 +112,7 @@ export default (onGesture: (data: ChartGestureData) => void = () => null) => {
           return;
         }
 
+        console.log(state.movement, state.delta);
         const nextView = boxStart
           .zoomX(disp(scaleX, state.delta[1]) * -1)
           .zoomY(disp(scaleY, state.delta[1]));
