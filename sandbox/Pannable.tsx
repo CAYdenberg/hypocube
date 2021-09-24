@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Chart,
-  XAxis,
-  LineSeries,
-  GestureKind,
-  ChartStyleOptions,
-  ChartGestureData,
-} from '../src';
+import { Chart, XAxis, LineSeries, ChartStyleOptions, YAxis } from '../src';
 import usePannable from '../src/addons/usePannable';
 
 interface Props {
@@ -22,18 +15,10 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const { view, setView, scrollToView } = usePannable(
+  const { state: view, onGesture } = usePannable(
     [50, 0, 50, 1000],
     [0, 0, 400, 1000]
   );
-
-  const handleGesture = (data: ChartGestureData) => {
-    if (data.kind === GestureKind.Swipe) {
-      scrollToView(data.nextView);
-      return;
-    }
-    setView(data.nextView);
-  };
 
   const seriesStyle: ChartStyleOptions = {
     dataLineStroke: '#5477a1',
@@ -47,13 +32,19 @@ const Pannable: React.FC<Props> = ({
       view={view}
       gutter={[20, 20, 50, 50]}
       isCanvas={isCanvas}
-      onGesture={handleGesture}
+      onGesture={onGesture}
     >
       <XAxis
         range={view.x}
         tickPositions={tickPositions}
         getTickLabel={getDateLabel}
         axisLabel="Date"
+        intercept={view.yMin}
+      />
+      <YAxis
+        tickPositions={[100, 200, 300, 400, 500, 600, 700, 800, 900]}
+        getTickLabel={() => ''}
+        intercept={view.xMin}
       />
       <LineSeries data={series} chartStyle={seriesStyle} />
     </Chart>

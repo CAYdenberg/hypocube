@@ -51,10 +51,11 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { view, isPanning, onGesture } = usePannable(
+  const { state: view, onGesture } = usePannable(
     [201, 0, 50, 250],
     [0, 0, 251, 250]
   );
+  const isPanning = false;
 
   const onPointerMove = useVoronoi(
     timeseriesData,

@@ -53,24 +53,24 @@ export default class Viewbox {
     );
   }
 
-  zoomX(amount: number, anchor: number = 0.5): Viewbox {
-    const slideLeftMargin = amount * anchor;
-    return new Viewbox(
-      this.xMin + slideLeftMargin,
-      this.yMin,
-      this.width - amount,
-      this.height
-    );
-  }
+  zoom(factor: number, anchor?: Point): Viewbox {
+    // default anchor is the center of the box:
+    anchor =
+      anchor ||
+      ([this.width / 2 + this.xMin, this.height / 2 + this.yMin] as Point);
 
-  zoomY(amount: number, anchor: number = 0.5): Viewbox {
-    const slideBottomMargin = amount * anchor;
-    return new Viewbox(
-      this.xMin,
-      this.yMin + slideBottomMargin,
-      this.width,
-      this.height - amount
-    );
+    const relativeAnchor = [
+      (anchor[0] - this.xMin) / this.width,
+      (anchor[1] - this.yMin) / this.height,
+    ];
+
+    const width = this.width / factor;
+    const dXMin = (this.width - width) * relativeAnchor[0];
+
+    const height = this.height / factor;
+    const dYMin = (this.height - height) * relativeAnchor[1];
+
+    return new Viewbox(this.xMin + dXMin, this.yMin + dYMin, width, height);
   }
 
   bound(boundingBox: Viewbox): Viewbox {

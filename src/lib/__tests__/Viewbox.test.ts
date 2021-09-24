@@ -36,19 +36,24 @@ describe('Viewbox', () => {
     });
   });
 
-  describe('zoomX', () => {
-    it('zooms out on the x axis', () => {
-      const result = initial.zoomX(-5);
-      expect(result).toHaveProperty('xMin', 2.5);
-      expect(result).toHaveProperty('xMax', 17.5);
+  describe('zoom', () => {
+    it('zooms in to 200% of the original size', () => {
+      const result = initial.zoom(2);
+      expect(result).toHaveProperty('width', 5);
+      expect(result).toHaveProperty('xMin', 7.5);
+      expect(result).toHaveProperty('height', 7.5);
     });
-  });
-
-  describe('zoomY', () => {
-    it('zooms out on the y axis', () => {
-      const result = initial.zoomY(-5, 0);
+    it('zooms out to 50% of the original size', () => {
+      const result = initial.zoom(0.5);
+      expect(result).toHaveProperty('width', 20);
+      expect(result).toHaveProperty('height', 30);
+    });
+    it('preserves the anchor point', () => {
+      const result = initial.zoom(2, [5, 50]);
+      expect(result).toHaveProperty('width', 5);
+      expect(result).toHaveProperty('height', 7.5);
+      expect(result.xMin).toEqual(initial.xMin);
       expect(result.yMin).toEqual(initial.yMin);
-      expect(result).toHaveProperty('yMax', 70);
     });
   });
 

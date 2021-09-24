@@ -1,12 +1,84 @@
 import { easeCubicOut } from 'd3-ease';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
-import { ChartGestureData, GestureKind, GesturePhase } from '../types';
+import { ChartGestureData, GestureIntent } from '../types';
 
-export interface ChartAnimation {
+export interface TransitionAnimation<T> {
   duration: number;
-  step: (progress: number) => Viewbox;
+  step: (progress: number) => T;
 }
+
+const isTransitionAnimation = (
+  input: any
+): input is TransitionAnimation<any> => {
+  return !!input.duration;
+};
+
+export type TransitionReducer<T> = (
+  initialState: T,
+  action: any
+) => T | TransitionAnimation<T>;
+
+export const useTransitionReducer = <T>(
+  initialState: T,
+  reducer: TransitionReducer<T>,
+  ease = easeCubicOut
+) => {
+  const [currentState, setCurrentState] = useState<T>(initialState);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const timer = useRef<number | null>(null);
+  const startTime = useRef<number | null>(null);
+
+  const cancelAnimation = () => {
+    if (timer.current) {
+      cancelAnimationFrame(timer.current);
+    }
+    timer.current = null;
+    startTime.current = null;
+    setIsAnimating(false);
+  };
+
+  const dispatch = useCallback(
+    (action: any) => {
+      cancelAnimation();
+
+      const result = reducer(currentState, action);
+
+      if (!isTransitionAnimation(result)) {
+        setCurrentState(result);
+        return;
+      }
+
+      const step = (time: number) => {
+        if (!startTime.current) {
+          startTime.current = time;
+          timer.current = requestAnimationFrame(step);
+          return;
+        }
+
+        const progress = (time - startTime.current) / result.duration;
+
+        if (progress > 1) {
+          setCurrentState(result.step(1));
+          cancelAnimation();
+        } else {
+          const adjProgress = ease(progress);
+          setCurrentState(result.step(adjProgress));
+        }
+
+        if (timer.current) {
+          timer.current = requestAnimationFrame(step);
+        }
+      };
+      timer.current = requestAnimationFrame(step);
+      setIsAnimating(true);
+    },
+    [currentState, ease, reducer]
+  );
+
+  return [currentState, dispatch, isAnimating] as const;
+};
 
 interface Options {
   animationDuration: number;
@@ -16,6 +88,28 @@ interface Options {
 const defaultOptions: Options = {
   animationDuration: 600,
   animationStepFunction: easeCubicOut,
+};
+
+const reducer: TransitionReducer<Viewbox> = (
+  state: Viewbox,
+  action: ChartGestureData
+): Viewbox | TransitionAnimation<Viewbox> => {
+  switch (action.intent) {
+    case GestureIntent.Scroll: {
+      return action.next;
+      // .bound(_boundingViewbox);
+    }
+    case GestureIntent.Swipe: {
+      return {
+        duration: 600,
+        step: (progress: number) => state.interpolate(action.next, progress),
+      };
+    }
+    case GestureIntent.Zoom: {
+      return action.next;
+    }
+  }
+  return state;
 };
 
 export default (
@@ -34,101 +128,20 @@ export default (
       : defaultOptions;
   }, [options]);
 
-  const [currentView, setView] = useState<Viewbox>(_initialViewbox);
-  const [isPanning, setIsPanning] = useState<boolean>(false);
-
-  const timer = useRef<number | null>(null);
-  const startTime = useRef<number | null>(null);
-
-  const cancelAnimation = () => {
-    timer.current = null;
-    startTime.current = null;
-    setIsPanning(false);
-    if (timer.current) {
-      cancelAnimationFrame(timer.current);
-    }
-  };
-
-  const setViewBounded = useCallback(
-    (nextView: ViewboxDuck) => {
-      cancelAnimation();
-      const _nextView = createViewbox(nextView);
-      setView(_nextView.bound(_boundingViewbox));
-    },
-    // viewboxes use a hash to optimize re-rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [_boundingViewbox.hash]
+  const [state, dispatch] = useTransitionReducer<Viewbox>(
+    _initialViewbox,
+    reducer
   );
-
-  const scrollToView = useCallback(
-    (nextView: ViewboxDuck) => {
-      cancelAnimation();
-      setIsPanning(true);
-
-      const _nextView = createViewbox(nextView);
-      const step = (time: number) => {
-        if (!startTime.current) {
-          startTime.current = time;
-          timer.current = requestAnimationFrame(step);
-          return;
-        }
-
-        const progress =
-          (time - startTime.current) / _options.animationDuration;
-
-        if (progress > 1) {
-          const finalView = _nextView.bound(_boundingViewbox);
-          setView(finalView);
-          cancelAnimation();
-        } else {
-          const adjProgress = _options.animationStepFunction(progress);
-          const stepView = currentView
-            .interpolate(_nextView, adjProgress)
-            .bound(_boundingViewbox);
-          setView(stepView);
-        }
-
-        if (timer.current) {
-          timer.current = requestAnimationFrame(step);
-        }
-      };
-      timer.current = requestAnimationFrame(step);
-    },
-    // viewboxes use a hash to optimize re-rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentView.hash, _boundingViewbox.hash, _options]
-  );
-
-  useEffect(() => {
-    return cancelAnimation;
-  }, []);
 
   const onGesture = useCallback(
     (data: ChartGestureData) => {
-      if (timer.current) {
-        return;
-      }
-
-      if (data.kind === GestureKind.Swipe) {
-        scrollToView(data.nextView);
-        return;
-      }
-      if (data.phase === GesturePhase.Start) {
-        setIsPanning(true);
-      }
-      if (data.phase === GesturePhase.End) {
-        setIsPanning(false);
-      }
-      setViewBounded(data.nextView);
+      dispatch(data);
     },
-    [setViewBounded, scrollToView]
+    [dispatch]
   );
 
   return {
-    view: currentView,
-    isPanning,
-    setView: setViewBounded,
-    scrollToView,
+    state,
     onGesture,
   };
 };
