@@ -1,11 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 
-export interface TransitionAnimation<T> {
+export interface ChartAnimation<T> {
   duration: number;
   step: (progress: number) => T;
 }
 
-const isTransitionAnimation = (input: any): input is TransitionAnimation<any> =>
+const isTransitionAnimation = (input: any): input is ChartAnimation<any> =>
   !!input.duration;
 
 export const useTransition = <T>(initialState: T) => {
@@ -24,7 +24,7 @@ export const useTransition = <T>(initialState: T) => {
     setIsAnimating(false);
   };
 
-  const setState = useCallback((next: T | TransitionAnimation<T>) => {
+  const setState = useCallback((next: T | ChartAnimation<T>) => {
     cancelAnimation();
 
     const result = next;

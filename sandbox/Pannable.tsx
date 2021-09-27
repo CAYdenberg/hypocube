@@ -9,16 +9,15 @@ interface Props {
   tickPositions: number[];
 }
 
+const bounds: [number, number, number, number] = [0, 0, 400, 1000];
+
 const Pannable: React.FC<Props> = ({
   getDateLabel,
   isCanvas,
   series,
   tickPositions,
 }) => {
-  const { state: view, onGesture } = usePannable(
-    [50, 0, 50, 1000],
-    [0, 0, 400, 1000]
-  );
+  const { state: view, onGesture } = usePannable([50, 0, 50, 1000], { bounds });
 
   const seriesStyle: ChartStyleOptions = {
     dataLineStroke: '#5477a1',

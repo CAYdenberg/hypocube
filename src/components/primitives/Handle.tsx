@@ -14,7 +14,7 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   const handlers = useHandle(props);
   return (
     <div
-      ref={ref}
+      ref={onGesture ? ref : undefined}
       style={{
         touchAction: onGesture ? 'manipulation' : undefined,
       }}

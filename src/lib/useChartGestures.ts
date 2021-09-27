@@ -5,8 +5,40 @@ import Viewbox from './Viewbox';
 import { GesturePhase, ChartGestureData, GestureIntent, Point } from '../types';
 import { ScaleLinear } from 'd3-scale';
 
-const disp = (scale: ScaleLinear<number, number, number>, movement: number) => {
+type SL = ScaleLinear<number, number, number>;
+
+const disp = (scale: SL, movement: number) => {
   return scale.invert(0) - scale.invert(movement);
+};
+
+const pan = (
+  box: Viewbox,
+  movement: [number, number],
+  scaleX: SL,
+  scaleY: SL
+) => box.panX(disp(scaleX, movement[0])).panY(disp(scaleY, movement[1]));
+
+const zoom = (
+  box: Viewbox,
+  factor: number,
+  event: any,
+  scaleX: SL,
+  scaleY: SL,
+  containerNode?: React.RefObject<HTMLDivElement>
+) => {
+  // if ref to the Chart node is availabe, use that to determine the
+  // anchor point for the zoom operation
+  const offsets = containerNode?.current
+    ? containerNode.current.getBoundingClientRect()
+    : null;
+  const position =
+    offsets && event.clientX && event.clientY
+      ? ([
+          scaleX.invert(event.clientX - offsets.x),
+          scaleY.invert(event.clientY - offsets.y),
+        ] as Point)
+      : undefined;
+  return box.zoom(factor, position);
 };
 
 export default (
@@ -17,25 +49,6 @@ export default (
   const ref = useRef(null);
   const { cartesianBox, scaleX, scaleY } = useChartState();
   const [start, setStart] = useState<Viewbox>(cartesianBox);
-
-  const pan = (box: Viewbox, movement: [number, number]) =>
-    box.panX(disp(scaleX, movement[0])).panY(disp(scaleY, movement[1]));
-
-  const zoom = (box: Viewbox, factor: number, event: any) => {
-    // if ref to the Chart node is availabe, use that to determine the
-    // anchor point for the zoom operation
-    const offsets = containerNode?.current
-      ? containerNode.current.getBoundingClientRect()
-      : null;
-    const position =
-      offsets && event.clientX && event.clientY
-        ? ([
-            scaleX.invert(event.clientX - offsets.x),
-            scaleY.invert(event.clientY - offsets.y),
-          ] as Point)
-        : undefined;
-    return box.zoom(factor, position);
-  };
 
   useGesture(
     {
@@ -54,7 +67,7 @@ export default (
           phase: GesturePhase.Continue,
           intent: GestureIntent.Scroll,
           start,
-          next: pan(start, state.movement),
+          next: pan(start, state.movement, scaleX, scaleY),
           state,
         });
       },
@@ -69,7 +82,7 @@ export default (
         } else if (state.swipe[1] === 1) {
           nextView = start.panY(start.height);
         } else {
-          nextView = pan(start, state.movement);
+          nextView = pan(start, state.movement, scaleX, scaleY);
         }
 
         onGesture({
@@ -82,6 +95,7 @@ export default (
           next: nextView,
           state,
         });
+        setStart(nextView);
       },
 
       /**
@@ -129,7 +143,14 @@ export default (
         } else if (enableMousewheelZoom) {
           const zoomIn = state.direction[1] > 0;
           // TODO: get the zoom anchor point from the container node offsets
-          const next = zoom(start, zoomIn ? 1.2 : 0.8, state.event);
+          const next = zoom(
+            start,
+            zoomIn ? 1.2 : 0.8,
+            state.event,
+            scaleX,
+            scaleY,
+            containerNode
+          );
           setStart(next);
 
           onGesture({
@@ -146,13 +167,15 @@ export default (
           state.event.preventDefault();
           state.event.stopPropagation();
 
+          const next = start.panX(disp(scaleX, state.movement[0]) * -1);
           onGesture({
             phase: GesturePhase.End,
             intent: GestureIntent.Scroll,
             start,
-            next: start.panX(disp(scaleX, state.movement[0]) * -1),
+            next,
             state,
           });
+          setStart(next);
         } else if (enableMousewheelZoom) {
           onGesture({
             intent: GestureIntent.Zoom,
@@ -183,7 +206,10 @@ export default (
         const next = zoom(
           start,
           1 * Math.pow(2, state.movement[0]),
-          state.event
+          state.event,
+          scaleX,
+          scaleY,
+          containerNode
         );
 
         onGesture({
@@ -201,7 +227,10 @@ export default (
         const next = zoom(
           start,
           1 * Math.pow(2, state.movement[0]),
-          state.event
+          state.event,
+          scaleX,
+          scaleY,
+          containerNode
         );
 
         onGesture({
@@ -211,6 +240,7 @@ export default (
           next,
           state,
         });
+        setStart(next);
       },
     },
     {
