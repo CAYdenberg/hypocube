@@ -56214,6 +56214,290 @@ exports[`Test: Pannable 1`] = `
             </text>
           </g>
         </g>
+        <g>
+          <path
+            d="M50,250L50,20"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            d="M50,227L40,227"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={233}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,204L40,204"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={210}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,181L40,181"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={187}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,158L40,158"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={164}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,135L40,135"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={141}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,112L40,112"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={118}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,89.00000000000001L40,89.00000000000001"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={95.00000000000001}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,65.99999999999999L40,65.99999999999999"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={71.99999999999999}
+            >
+              
+            </text>
+          </g>
+          <path
+            d="M50,42.99999999999999L40,42.99999999999999"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={48.99999999999999}
+            >
+              
+            </text>
+          </g>
+        </g>
         <clipPath
           id="olRFXLhzzsqDsnnIvuBXFy"
         >

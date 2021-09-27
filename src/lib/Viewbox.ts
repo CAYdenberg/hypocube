@@ -53,45 +53,24 @@ export default class Viewbox {
     );
   }
 
-  zoomX(amount: number, anchor: number = 0.5): Viewbox {
-    const slideLeftMargin = amount * anchor;
-    return new Viewbox(
-      this.xMin + slideLeftMargin,
-      this.yMin,
-      this.width - amount,
-      this.height
-    );
-  }
+  zoom(factor: number, anchor?: Point): Viewbox {
+    // default anchor is the center of the box:
+    anchor =
+      anchor ||
+      ([this.width / 2 + this.xMin, this.height / 2 + this.yMin] as Point);
 
-  zoomY(amount: number, anchor: number = 0.5): Viewbox {
-    const slideBottomMargin = amount * anchor;
-    return new Viewbox(
-      this.xMin,
-      this.yMin + slideBottomMargin,
-      this.width,
-      this.height - amount
-    );
-  }
+    const relativeAnchor = [
+      (anchor[0] - this.xMin) / this.width,
+      (anchor[1] - this.yMin) / this.height,
+    ];
 
-  bound(boundingBox: Viewbox): Viewbox {
-    return new Viewbox(
-      Math.max(
-        this.xMax > boundingBox.xMax
-          ? boundingBox.xMax - this.width
-          : this.xMin,
-        boundingBox.xMin
-      ),
+    const width = this.width / factor;
+    const dXMin = (this.width - width) * relativeAnchor[0];
 
-      Math.max(
-        this.yMax > boundingBox.yMax
-          ? boundingBox.yMax - this.height
-          : this.yMin,
-        boundingBox.yMin
-      ),
+    const height = this.height / factor;
+    const dYMin = (this.height - height) * relativeAnchor[1];
 
-      Math.min(this.width, boundingBox.width),
-      Math.min(this.height, boundingBox.height)
-    );
+    return new Viewbox(this.xMin + dXMin, this.yMin + dYMin, width, height);
   }
 
   interpolate(final: Viewbox, progress: number): Viewbox {
@@ -106,3 +85,30 @@ export default class Viewbox {
 
 export const createViewbox = (input: ViewboxDuck): Viewbox =>
   Array.isArray(input) ? new Viewbox(...input) : input;
+
+export const bound = (
+  view: ViewboxDuck,
+  boundingBox?: ViewboxDuck | null
+): Viewbox => {
+  const _view = createViewbox(view);
+  if (!boundingBox) {
+    return _view;
+  }
+
+  const _bound = createViewbox(boundingBox);
+
+  return new Viewbox(
+    Math.max(
+      _view.xMax > _bound.xMax ? _bound.xMax - _view.width : _view.xMin,
+      _bound.xMin
+    ),
+
+    Math.max(
+      _view.yMax > _bound.yMax ? _bound.yMax - _view.height : _view.yMin,
+      _bound.yMin
+    ),
+
+    Math.min(_view.width, _bound.width),
+    Math.min(_view.height, _bound.height)
+  );
+};

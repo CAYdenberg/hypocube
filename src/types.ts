@@ -4,6 +4,9 @@ import { CurveType, DashType } from './components/primitives/Line';
 import { SymbolType } from './components/primitives/Symbol';
 import Viewbox from './lib/Viewbox';
 
+/**
+ * CHART STATE AND GENERAL DEFINITIONS
+ */
 export type Point = [number, number];
 
 export type CanvasComponent = (
@@ -19,6 +22,10 @@ export interface ChartState {
   isCanvas: boolean;
   pushToCanvasQueue: ((func: CanvasComponent) => void) | null;
 }
+
+/**
+ * CHART STYLE DEFINITIONS
+ */
 
 export type ChartStyleFunction<T> = (sizes: {
   pxWidth: number;
@@ -78,10 +85,9 @@ type CreateChartStyleOptions<T> = {
 
 export type ChartStyleOptions = CreateChartStyleOptions<ChartStyleT>;
 
-export interface ClipT {
-  render: CanvasComponent;
-  id: string;
-}
+/**
+ * EVENT DEFINITIONS
+ */
 
 export type ReactEvent =
   | React.PointerEvent<SVGGElement>
@@ -118,12 +124,13 @@ export interface ChartEventData {
 
 export type ChartEventHandler = (data: ChartEventData) => void;
 
-export enum GestureKind {
-  Drag = 'Drag',
-  Swipe = 'Swipe',
-  Pinch = 'Pinch',
-  Wheel = 'Wheel',
-}
+export type ChartEventHandlers = {
+  [Property in keyof ReactHandlers]: ChartEventHandler;
+};
+
+/**
+ * GESTURE DEFINITIONS
+ */
 
 export enum GesturePhase {
   Start = 'Start',
@@ -131,19 +138,33 @@ export enum GesturePhase {
   End = 'End',
 }
 
+export enum GestureIntent {
+  Scroll = 'Scroll',
+  Swipe = 'Swipe',
+  Zoom = 'Zoom',
+}
+
+export enum GestureMeta {
+  Wheel = 'Wheel',
+  Trackpad = 'Trackpad',
+}
+
 export interface ChartGestureData {
-  kind: GestureKind;
   phase: GesturePhase;
-  nextView: Viewbox;
+  intent: GestureIntent;
+  start: Viewbox;
+  next: Viewbox;
+  // meta: Array<GestureMeta>;
   state: any;
 }
 
-export type ChartEventHandlers = {
-  [Property in keyof ReactHandlers]: ChartEventHandler;
-};
-
 export interface ChartGestureHandlers {
   onGesture?: (data: ChartGestureData) => void;
+}
+
+export interface ClipT {
+  render: CanvasComponent;
+  id: string;
 }
 
 export interface Dataseries {

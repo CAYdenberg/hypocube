@@ -44,6 +44,8 @@ interface Props {
   handleClearSelect?: () => void;
 }
 
+const bounds: [number, number, number, number] = [0, 0, 251, 250];
+
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   colors,
@@ -51,10 +53,9 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { view, isPanning, onGesture } = usePannable(
-    [201, 0, 50, 250],
-    [0, 0, 251, 250]
-  );
+  const { state: view, onGesture, isPanning } = usePannable([201, 0, 50, 250], {
+    bounds,
+  });
 
   const onPointerMove = useVoronoi(
     timeseriesData,

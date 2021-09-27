@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import useChartState from '../base/ChartState';
 import useHandle, { HandlerProps } from '../../lib/useHandle';
-import useRescaleGestures from '../../lib/useRescaleGestures';
+import useChartGestures from '../../lib/useChartGestures';
 import { ChartGestureHandlers } from '../../types';
 import { Pure } from '../../lib/HypocubePureComponent';
 
@@ -10,11 +10,11 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   onGesture,
   ...props
 }) => {
-  const ref = useRescaleGestures(onGesture);
+  const ref = useChartGestures(onGesture, props.containerNode);
   const handlers = useHandle(props);
   return (
     <div
-      ref={ref}
+      ref={onGesture ? ref : undefined}
       style={{
         touchAction: onGesture ? 'manipulation' : undefined,
       }}
