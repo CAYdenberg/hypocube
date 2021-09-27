@@ -1,84 +1,8 @@
 import { easeCubicOut } from 'd3-ease';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent } from '../types';
-
-export interface TransitionAnimation<T> {
-  duration: number;
-  step: (progress: number) => T;
-}
-
-const isTransitionAnimation = (
-  input: any
-): input is TransitionAnimation<any> => {
-  return !!input.duration;
-};
-
-export type TransitionReducer<T> = (
-  initialState: T,
-  action: any
-) => T | TransitionAnimation<T>;
-
-export const useTransitionReducer = <T>(
-  initialState: T,
-  reducer: TransitionReducer<T>,
-  ease = easeCubicOut
-) => {
-  const [currentState, setCurrentState] = useState<T>(initialState);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const timer = useRef<number | null>(null);
-  const startTime = useRef<number | null>(null);
-
-  const cancelAnimation = () => {
-    if (timer.current) {
-      cancelAnimationFrame(timer.current);
-    }
-    timer.current = null;
-    startTime.current = null;
-    setIsAnimating(false);
-  };
-
-  const dispatch = useCallback(
-    (action: any) => {
-      cancelAnimation();
-
-      const result = reducer(currentState, action);
-
-      if (!isTransitionAnimation(result)) {
-        setCurrentState(result);
-        return;
-      }
-
-      const step = (time: number) => {
-        if (!startTime.current) {
-          startTime.current = time;
-          timer.current = requestAnimationFrame(step);
-          return;
-        }
-
-        const progress = (time - startTime.current) / result.duration;
-
-        if (progress > 1) {
-          setCurrentState(result.step(1));
-          cancelAnimation();
-        } else {
-          const adjProgress = ease(progress);
-          setCurrentState(result.step(adjProgress));
-        }
-
-        if (timer.current) {
-          timer.current = requestAnimationFrame(step);
-        }
-      };
-      timer.current = requestAnimationFrame(step);
-      setIsAnimating(true);
-    },
-    [currentState, ease, reducer]
-  );
-
-  return [currentState, dispatch, isAnimating] as const;
-};
+import { useTransition } from './useTransition';
 
 interface Options {
   animationDuration: number;
@@ -90,26 +14,8 @@ const defaultOptions: Options = {
   animationStepFunction: easeCubicOut,
 };
 
-const reducer: TransitionReducer<Viewbox> = (
-  state: Viewbox,
-  action: ChartGestureData
-): Viewbox | TransitionAnimation<Viewbox> => {
-  switch (action.intent) {
-    case GestureIntent.Scroll: {
-      return action.next;
-      // .bound(_boundingViewbox);
-    }
-    case GestureIntent.Swipe: {
-      return {
-        duration: 600,
-        step: (progress: number) => state.interpolate(action.next, progress),
-      };
-    }
-    case GestureIntent.Zoom: {
-      return action.next;
-    }
-  }
-  return state;
+const getNextView = (current: Viewbox, next: Viewbox): Viewbox => {
+  return next;
 };
 
 export default (
@@ -128,17 +34,26 @@ export default (
       : defaultOptions;
   }, [options]);
 
-  const [state, dispatch] = useTransitionReducer<Viewbox>(
-    _initialViewbox,
-    reducer
-  );
+  const [state, dispatch] = useTransition<Viewbox>(_initialViewbox);
 
   const onGesture = useCallback(
     (data: ChartGestureData) => {
-      dispatch(data);
+      const next = getNextView(state, data.next);
+      console.log(data);
+      if (data.intent === GestureIntent.Swipe) {
+        dispatch({
+          duration: 600,
+          step: (progress: number) =>
+            state.interpolate(next, easeCubicOut(progress)),
+        });
+        return;
+      }
+      dispatch(next);
     },
     [dispatch]
   );
+
+  console.log('rerender');
 
   return {
     state,
