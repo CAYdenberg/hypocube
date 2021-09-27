@@ -1,7 +1,7 @@
 import { easeCubicOut } from 'd3-ease';
-import { useCallback, useMemo } from 'react';
-import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
-import { ChartGestureData, GestureIntent } from '../types';
+import { useCallback, useMemo, useState } from 'react';
+import Viewbox, { bound, createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import { useTransition, ChartAnimation } from './useTransition';
 
 export type InterpretGesture = (
@@ -31,16 +31,18 @@ const makeInterpreter = (options: Options): InterpretGesture => (
   current: Viewbox,
   data: ChartGestureData
 ) => {
-  const { animationDuration, animationStepFunction } = options;
+  const { animationDuration, animationStepFunction, bounds } = options;
+
+  const next = bound(data.next, bounds);
 
   if (data.intent === GestureIntent.Swipe) {
     return {
       duration: animationDuration,
       step: (progress: number) =>
-        current.interpolate(data.next, animationStepFunction(progress)),
+        current.interpolate(next, animationStepFunction(progress)),
     };
   }
-  return data.next;
+  return next;
 };
 
 export default (
@@ -53,10 +55,19 @@ export default (
     [options]
   );
 
-  const [state, dispatch] = useTransition<Viewbox>(_initialViewbox);
+  const [state, dispatch, isAnimating] = useTransition<Viewbox>(
+    _initialViewbox
+  );
+  const [isGesturing, setIsGesturing] = useState(false);
 
   const onGesture = useCallback(
     (data: ChartGestureData) => {
+      if (data.phase === GesturePhase.Start) {
+        setIsGesturing(true);
+      } else if (data.phase === GesturePhase.End) {
+        setIsGesturing(false);
+      }
+
       const command = interpreter(state, data);
       dispatch(command);
     },
@@ -66,5 +77,6 @@ export default (
   return {
     state,
     onGesture,
+    isPanning: isGesturing || isAnimating,
   };
 };

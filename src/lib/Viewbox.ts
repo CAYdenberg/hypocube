@@ -73,27 +73,6 @@ export default class Viewbox {
     return new Viewbox(this.xMin + dXMin, this.yMin + dYMin, width, height);
   }
 
-  bound(boundingBox: Viewbox): Viewbox {
-    return new Viewbox(
-      Math.max(
-        this.xMax > boundingBox.xMax
-          ? boundingBox.xMax - this.width
-          : this.xMin,
-        boundingBox.xMin
-      ),
-
-      Math.max(
-        this.yMax > boundingBox.yMax
-          ? boundingBox.yMax - this.height
-          : this.yMin,
-        boundingBox.yMin
-      ),
-
-      Math.min(this.width, boundingBox.width),
-      Math.min(this.height, boundingBox.height)
-    );
-  }
-
   interpolate(final: Viewbox, progress: number): Viewbox {
     return new Viewbox(
       this.xMin + progress * (final.xMin - this.xMin),
@@ -106,3 +85,30 @@ export default class Viewbox {
 
 export const createViewbox = (input: ViewboxDuck): Viewbox =>
   Array.isArray(input) ? new Viewbox(...input) : input;
+
+export const bound = (
+  view: ViewboxDuck,
+  boundingBox?: ViewboxDuck | null
+): Viewbox => {
+  const _view = createViewbox(view);
+  if (!boundingBox) {
+    return _view;
+  }
+
+  const _bound = createViewbox(boundingBox);
+
+  return new Viewbox(
+    Math.max(
+      _view.xMax > _bound.xMax ? _bound.xMax - _view.width : _view.xMin,
+      _bound.xMin
+    ),
+
+    Math.max(
+      _view.yMax > _bound.yMax ? _bound.yMax - _view.height : _view.yMin,
+      _bound.yMin
+    ),
+
+    Math.min(_view.width, _bound.width),
+    Math.min(_view.height, _bound.height)
+  );
+};
