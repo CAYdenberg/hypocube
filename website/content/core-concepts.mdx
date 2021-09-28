@@ -44,7 +44,7 @@ When specifying distance along an axis, sometimes we want to think in terms of a
 
 What if you simply don't have enough space for your data? We are working in a programmatic medium, and can solve this through interaction! In other words, the chart `view` can be updated to give users access to data which isn't initially visible.
 
-Specifically, an `onGesture` prop accepts a callback which will report the extent to which the view _should_ be moved in response to pinch, swipe, drag and other move events. (Hypocube aims to be as declarative as possible, and _won't automatically update the view_: but hooks are provided as addons that respond to these callbacks with state updates and animations).
+Specifically, an `onGesture` prop accepts a callback which will report the extent to which the view _should_ be moved in response to pinch, swipe, drag and other move events. (Hypocube aims to be as declarative as possible, and _won't automatically update the view_: but hooks are provided as addons that respond to these callbacks with state updates and animations). This is possible largely to the fabulous [@use-gesture](https://use-gesture.netlify.app/) library.
 
 Callbacks can also be passed to most chart elements to produce other types of interactivity, for example clicking/tapping on a data point. Hypocube uses [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) to simplify the inconsistencies between mouse and touch devices. Event handlers are called with coordinates that are _semantically meaningful in the data_, not (just) the raw coordinates of the event.
 

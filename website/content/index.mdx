@@ -5,19 +5,25 @@ metaDescription: 'Composable, responsive, React-based data visualization'
 ---
 
 import { HomepageDemoContainer } from '../../sandbox/demo';
+import Hero from './components/Hero';
 
-Composable, responsive, React-based data visualization
+<Hero>Composable, responsive, React-based data visualization</Hero>
 
 <HomepageDemoContainer />
 
-## Motivation
+## Why?
 
-The visual presentation of quantitative data has always been a challenge on the web, and how to adapt to the world of responsive design is still unclear. During the COVID-19 pandemic, many of us spent too much time consulting graphs and charts that were either hard to use, misleading/inaccurate, or both. The smaller the screen, the more frustrating to the user.
-Adapting a chart to a screen of unknown size might seem an impossible task - but interactivity gives us an added dimension to create data experiences which are just as content-rich, and just as accurate, regardless of the pixels available.
+I've worked with a few great, battle-tested React data-vis libraries, including [Formidable](https://github.com/FormidableLabs/victory), [Nivo](https://github.com/plouc/nivo) and [React-Vis](https://github.com/uber/react-vis). While these are often enough to produce beautiful charts with very few lines of code, they have limitations when attempting to integrate with more complicated data-centered apps.
 
-Hypocube is partly a distillation of a few years publishing scientific papers, and a few more as a freelance frontend developer serving research organizations. It is lessons learned from working at the interface of science and the web. It is also a passion project I started in the dark pandemic winter of 2020-21. In a time when we've never had access to more data, how we present that data matters more than ever.
+Some of the things I struggled with were:
 
--- Casey Ydenberg
+- applying responsive design principles to alter text or visual design depending on screen size
+- rescaling axes in response to user interaction or container size
+- supporting non-mouse events that modern users tend to expect, like swipe and pinch gestures
+- seemlessly interconverting between SVG (server-side rendering!) and canvas (animations! performance!)
+- using component-centric engineering to mix chart types or creates new types
+
+Hypocube introduces a layer of indirection between the "data", as mapped on a Cartesian plane, and the "design", authored in units of pixels. A base Chart component manages the scaling and passes it down via context. Hypocube uses several parts of [d3](https://github.com/d3/d3) to manipulate drawing instructions, but takes a React-based approach to managing the DOM - and the canvas context.
 
 ## Quick Start
 
