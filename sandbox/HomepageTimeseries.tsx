@@ -46,6 +46,25 @@ interface Props {
 
 const bounds: [number, number, number, number] = [0, 0, 251, 250];
 
+const HomepageTimeseriesData: React.FC<{
+  selected: DataPoint | null | undefined;
+  colors: Record<string, string>;
+}> = ({ selected, colors }) => (
+  <React.Fragment>
+    {timeseriesData.map(({ data, key }) => (
+      <LineSeries
+        key={key}
+        data={data}
+        chartStyle={{
+          dataLineStroke: colors[key],
+          dataPointFill: colors[key],
+          seriesOpacity: selected && selected.series !== key ? 0.5 : 1,
+        }}
+      />
+    ))}
+  </React.Fragment>
+);
+
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   colors,
@@ -94,18 +113,7 @@ const HomepageTimeseries: React.FC<Props> = ({
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
     >
-      {timeseriesData.map(({ data, key }) => (
-        <LineSeries
-          key={key}
-          data={data}
-          chartStyle={{
-            dataLineStroke: colors[key],
-            dataPointFill: colors[key],
-            seriesOpacity:
-              selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
-          }}
-        />
-      ))}
+      <HomepageTimeseriesData colors={colors} selected={selectedPoint} />
       {selectedPoint && (
         <LineSeries
           data={[selectedPoint.coords]}
