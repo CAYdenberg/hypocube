@@ -1,4 +1,4 @@
-import Viewbox, { bound } from '../Viewbox';
+import Viewbox, { bound, constrainZoom } from '../Viewbox';
 
 const initial = new Viewbox(5, 50, 10, 15);
 
@@ -97,6 +97,33 @@ describe('constraints', () => {
       expect(result.height).toEqual(boundingBox.height);
       expect(result.yMin).toEqual(boundingBox.yMin);
       expect(result.yMax).toEqual(boundingBox.yMax);
+    });
+  });
+
+  describe('constrainZoom', () => {
+    it('returns the initial view if the constraints are met', () => {
+      const result = constrainZoom(initial, {
+        maxZoomX: 10,
+        maxZoomY: 15,
+      });
+      expect(result.hash).toEqual(initial.hash);
+    });
+
+    it('should back out if the view is too zoomed in', () => {
+      const result = constrainZoom(initial, {
+        maxZoomX: 15,
+        maxZoomY: 15,
+      });
+      expect(result.width).toEqual(15);
+      expect(result.xMin).toEqual(2.5);
+    });
+
+    it('ignores zero values and returns the original', () => {
+      const result = constrainZoom(initial, {
+        maxZoomX: 0,
+        maxZoomY: 0,
+      });
+      expect(result.hash).toEqual(initial.hash);
     });
   });
 });

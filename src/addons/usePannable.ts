@@ -1,6 +1,11 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useMemo, useState } from 'react';
-import Viewbox, { bound, createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import Viewbox, {
+  bound,
+  constrainZoom,
+  createViewbox,
+  ViewboxDuck,
+} from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import { useTransition, ChartAnimation } from './useTransition';
 
@@ -31,18 +36,28 @@ const makeInterpreter = (options: Options): InterpretGesture => (
   current: Viewbox,
   data: ChartGestureData
 ) => {
-  const { animationDuration, animationStepFunction, bounds } = options;
+  const {
+    animationDuration,
+    animationStepFunction,
+    bounds,
+    maxZoomX,
+    maxZoomY,
+  } = options;
 
-  const next = bound(data.next, bounds);
+  const bounded = bound(data.next, bounds);
+  const constrained = constrainZoom(bounded, {
+    maxZoomX,
+    maxZoomY,
+  });
 
   if (data.intent === GestureIntent.Swipe) {
     return {
       duration: animationDuration,
       step: (progress: number) =>
-        current.interpolate(next, animationStepFunction(progress)),
+        current.interpolate(constrained, animationStepFunction(progress)),
     };
   }
-  return next;
+  return constrained;
 };
 
 export default (
@@ -76,6 +91,7 @@ export default (
 
   return {
     state,
+    setView: dispatch,
     onGesture,
     isPanning: isGesturing || isAnimating,
   };
