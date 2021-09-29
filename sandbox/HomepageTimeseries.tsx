@@ -11,12 +11,6 @@ import {
 } from '../src';
 import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
-import { ZoomControlsContainer, ZoomControl } from './resources/ZoomControls';
-import {
-  ChevronDoubleRightIcon,
-  ZoomOutIcon,
-  ZoomInIcon,
-} from './resources/icons';
 
 const ticks = ({ pxWidth }: { pxWidth: number }) => {
   const interval = pxWidth > 768 ? 6 : 12;
@@ -61,14 +55,11 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { view, scrollToView, onGesture, isPanning, can } = usePannable(
-    [201, 0, 50, 250],
-    {
-      bounds,
-      maxZoomX,
-      maxZoomY,
-    }
-  );
+  const { view, onGesture, isPanning } = usePannable(initial, {
+    bounds,
+    maxZoomX,
+    maxZoomY,
+  });
 
   const handleSelectPoint = useCallback(
     (data: ChartEventData) => {
@@ -85,26 +76,8 @@ const HomepageTimeseries: React.FC<Props> = ({
 
   return (
     <React.Fragment>
-      <ZoomControlsContainer>
-        <ZoomControl
-          icon={<ZoomOutIcon />}
-          text="Zoom Out"
-          isDisabled={!can.zoomOut}
-          onClick={() => scrollToView(view.zoom(0.5))}
-        />
-        <ZoomControl
-          icon={<ZoomInIcon />}
-          text="Zoom In"
-          isDisabled={!can.zoomIn}
-          onClick={() => scrollToView(view.zoom(2))}
-        />
-        <ZoomControl
-          icon={<ChevronDoubleRightIcon />}
-          text="Current"
-          isDisabled={!can.panRight}
-          onClick={() => scrollToView(initial)}
-        />
-      </ZoomControlsContainer>
+      <div className="drag-direction">Drag or swipe to move the x-axis</div>
+
       <div className="hp-timeseries-wrapper">
         <Chart
           height={300}

@@ -1,5 +1,4 @@
 import { easeCubicOut } from 'd3-ease';
-import { create } from 'lodash';
 import { useCallback, useMemo, useState } from 'react';
 import Viewbox, {
   bound,
