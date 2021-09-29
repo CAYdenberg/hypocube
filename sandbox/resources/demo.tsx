@@ -1,8 +1,8 @@
 import './demo.css';
 
 import React, { useState } from 'react';
-import HomepageTimeseries, { DataPoint } from './HomepageTimeseries';
-import HomepageBar from './HomepageBar';
+import HomepageTimeseries, { DataPoint } from '../HomepageTimeseries';
+import HomepageBar from '../HomepageBar';
 
 interface AppState {
   isCanvas: boolean;
@@ -141,22 +141,17 @@ export const HomepageDemoContainer: React.FC = () => (
                 View Code
               </a>
             </p>
-            <div className="hp-timeseries-wrapper">
-              <HomepageTimeseries
-                isCanvas={state.isCanvas}
-                colors={COLORS}
-                selectedPoint={state.selected}
-                handlePointSelect={(data) =>
-                  update({
-                    selected: data,
-                  })
-                }
-                handleClearSelect={() => update({ selected: null })}
-              />
-            </div>
-            <div className="drag-direction">
-              Drag or swipe to move the x-axis
-            </div>
+            <HomepageTimeseries
+              isCanvas={state.isCanvas}
+              colors={COLORS}
+              selectedPoint={state.selected}
+              handlePointSelect={(data) =>
+                update({
+                  selected: data,
+                })
+              }
+              handleClearSelect={() => update({ selected: null })}
+            />
           </div>
           <div className="tab-content" key="scrollable-scatter-plot">
             <p>

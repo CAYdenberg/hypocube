@@ -49,12 +49,6 @@
   padding: 1rem 0;
 }
 
-.drag-direction {
-  text-align: center;
-  font-style: italic;
-  font-size: 1.1rem;
-}
-
 .ctls-container {
   border-top: 1px solid #1ed3c6;
   display: flex;
@@ -96,6 +90,52 @@
   width: 0.9rem;
   height: 0.9rem;
   margin-right: 0.5em;
+}
+
+.zoom-controls-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drag-direction {
+  font-style: italic;
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+.zoom-list.zoom-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: right;
+}
+
+.zoom-list-item {
+  display: inline-block;
+  margin: 0;
+  padding: 0 0.5em;
+}
+
+.zoom-btn {
+  padding: 0.5em;
+  border: 1px solid;
+  border-radius: 3px;
+  background-color: transparent;
+  min-width: 60px;
+  cursor: pointer;
+  color: #001934;
+}
+
+.zoom-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zoom-text {
+  display: block;
+  font-size: 0.75em;
 }
 
 .tooltip-line {

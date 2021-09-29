@@ -1,6 +1,11 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useMemo, useState } from 'react';
-import Viewbox, { bound, createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import Viewbox, {
+  bound,
+  constrainZoom,
+  createViewbox,
+  ViewboxDuck,
+} from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import { useTransition, ChartAnimation } from './useTransition';
 
@@ -27,22 +32,24 @@ const defaultOptions: Options = {
   maxZoomY: 0,
 };
 
-const makeInterpreter = (options: Options): InterpretGesture => (
-  current: Viewbox,
-  data: ChartGestureData
-) => {
-  const { animationDuration, animationStepFunction, bounds } = options;
+const makeAnimation = (current: Viewbox, next: Viewbox, options: Options) => {
+  const { animationDuration, animationStepFunction } = options;
+  return {
+    duration: animationDuration,
+    step: (progress: number) =>
+      current.interpolate(next, animationStepFunction(progress)),
+  };
+};
 
-  const next = bound(data.next, bounds);
+const applyConstaints = (current: Viewbox, next: Viewbox, options: Options) => {
+  const { bounds, maxZoomX, maxZoomY } = options;
 
-  if (data.intent === GestureIntent.Swipe) {
-    return {
-      duration: animationDuration,
-      step: (progress: number) =>
-        current.interpolate(next, animationStepFunction(progress)),
-    };
-  }
-  return next;
+  const bounded = bound(next, bounds);
+  const constained = constrainZoom(bounded, {
+    maxZoomX,
+    maxZoomY,
+  });
+  return constained;
 };
 
 export default (
@@ -50,10 +57,10 @@ export default (
   options: Partial<Options> = {}
 ) => {
   const _initialViewbox = createViewbox(initialViewbox);
-  const interpreter: InterpretGesture = useMemo(
-    () => makeInterpreter({ ...defaultOptions, ...options }),
-    [options]
-  );
+  const _options: Options = useMemo(() => ({ ...defaultOptions, ...options }), [
+    options,
+  ]);
+  const _bounds = _options.bounds && createViewbox(_options.bounds);
 
   const [state, dispatch, isAnimating] = useTransition<Viewbox>(
     _initialViewbox
@@ -68,15 +75,42 @@ export default (
         setIsGesturing(false);
       }
 
-      const command = interpreter(state, data);
-      dispatch(command);
+      const next = applyConstaints(state, data.next, _options);
+
+      if (data.intent === GestureIntent.Swipe) {
+        dispatch(makeAnimation(state, next, _options));
+      } else {
+        dispatch(next);
+      }
     },
-    [dispatch, interpreter]
+    [dispatch, _options]
   );
 
+  const scrollToView = useCallback(
+    (view: ViewboxDuck) => {
+      const _v = createViewbox(view);
+      const next = applyConstaints(state, _v, _options);
+      dispatch(makeAnimation(state, next, _options));
+    },
+    [dispatch, _options]
+  );
+
+  const can = {
+    zoomIn: state.width > _options.maxZoomX || state.height > _options.maxZoomY,
+    zoomOut:
+      !_bounds || state.width < _bounds.width || state.height < _bounds.height,
+    panUp: !_bounds || state.yMax < _bounds.yMax,
+    panRight: !_bounds || state.xMax < _bounds.xMax,
+    panDown: !_bounds || state.yMin > _bounds.yMin,
+    panLeft: !_bounds || state.xMin > _bounds.xMin,
+  };
+
   return {
-    state,
+    view: state,
+    setView: dispatch,
+    scrollToView,
     onGesture,
     isPanning: isGesturing || isAnimating,
+    can,
   };
 };

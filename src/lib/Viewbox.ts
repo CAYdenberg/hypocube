@@ -112,3 +112,24 @@ export const bound = (
     Math.min(_view.height, _bound.height)
   );
 };
+
+interface ConstrainOptions {
+  maxZoomX?: number;
+  maxZoomY?: number;
+}
+
+export const constrainZoom = (view: ViewboxDuck, options: ConstrainOptions) => {
+  const _v = createViewbox(view);
+
+  const _x =
+    options.maxZoomX && _v.width < options.maxZoomX
+      ? _v.zoom(_v.width / options.maxZoomX)
+      : _v;
+
+  const _y =
+    options.maxZoomY && _x.height < options.maxZoomY
+      ? _x.zoom(_x.height / options.maxZoomY)
+      : _x;
+
+  return _y;
+};
