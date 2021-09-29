@@ -9,7 +9,6 @@ import Pannable from './Pannable';
 import DotAndTukey from './DotAndTukey';
 import HomepageTimeseries from './HomepageTimeseries';
 import HomepageBar from './HomepageBar';
-import CoreConceptsDemo from './CoreConceptsDemo';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 
@@ -208,12 +207,6 @@ const examples: Example[] = [
           }
         />
       );
-    },
-  },
-  {
-    name: 'Core Concepts: Tukey',
-    render: ({ isCanvas }) => {
-      return <CoreConceptsDemo isCanvas={isCanvas} />;
     },
   },
 ];

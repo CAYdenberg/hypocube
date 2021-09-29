@@ -11,7 +11,12 @@ import {
 } from '../src';
 import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
-import useVoronoi from '../src/addons/useVoronoi';
+import { ZoomControlsContainer, ZoomControl } from './resources/ZoomControls';
+import {
+  ChevronDoubleRightIcon,
+  ZoomOutIcon,
+  ZoomInIcon,
+} from './resources/icons';
 
 const ticks = ({ pxWidth }: { pxWidth: number }) => {
   const interval = pxWidth > 768 ? 6 : 12;
@@ -45,25 +50,9 @@ interface Props {
 }
 
 const bounds: [number, number, number, number] = [0, 0, 251, 250];
-
-const HomepageTimeseriesData: React.FC<{
-  selected: DataPoint | null | undefined;
-  colors: Record<string, string>;
-}> = ({ selected, colors }) => (
-  <React.Fragment>
-    {timeseriesData.map(({ data, key }) => (
-      <LineSeries
-        key={key}
-        data={data}
-        chartStyle={{
-          dataLineStroke: colors[key],
-          dataPointFill: colors[key],
-          seriesOpacity: selected && selected.series !== key ? 0.5 : 1,
-        }}
-      />
-    ))}
-  </React.Fragment>
-);
+const initial: [number, number, number, number] = [201, 0, 50, 250];
+const maxZoomX = 12;
+const maxZoomY = 250;
 
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
@@ -72,66 +61,102 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { state: view, onGesture, isPanning } = usePannable([201, 0, 50, 250], {
-    bounds,
-  });
-
-  const onPointerMove = useVoronoi(
-    timeseriesData,
-    useCallback(
-      (data: ChartEventData) => {
-        if (!handlePointSelect || !data.elementPosition || isPanning) return;
-        handlePointSelect({
-          series: data.meta.seriesName as string,
-          coords: data.elementPosition,
-          xLabel: getTickLabel(data.elementPosition[0]),
-          yLabel: String(data.elementPosition[1]),
-        });
-      },
-      [handlePointSelect, isPanning]
-    )
+  const { view, scrollToView, onGesture, isPanning, can } = usePannable(
+    [201, 0, 50, 250],
+    {
+      bounds,
+      maxZoomX,
+      maxZoomY,
+    }
   );
 
-  const onPointerOut = useCallback(() => {
-    handleClearSelect && handleClearSelect();
-  }, [handleClearSelect]);
+  const handleSelectPoint = useCallback(
+    (data: ChartEventData) => {
+      if (!handlePointSelect || !data.elementPosition || isPanning) return;
+      handlePointSelect({
+        series: data.meta.seriesName as string,
+        coords: data.elementPosition,
+        xLabel: getTickLabel(data.elementPosition[0]),
+        yLabel: String(data.elementPosition[1]),
+      });
+    },
+    [handlePointSelect, isPanning]
+  );
 
   return (
-    <Chart
-      height={300}
-      ssWidth={435}
-      view={view}
-      gutter={[5, 20, 50, 60]}
-      isCanvas={isCanvas}
-      chartStyle={{
-        dataPointSymbol: 'circle',
-        dataLineCurveType: 'natural',
-        fontSize: getFontSize,
-        svgPointerEvents: false,
-      }}
-      onGesture={onGesture}
-      onPointerMove={onPointerMove}
-      onPointerOut={onPointerOut}
-    >
-      <HomepageTimeseriesData colors={colors} selected={selectedPoint} />
-      {selectedPoint && (
-        <LineSeries
-          data={[selectedPoint.coords]}
-          chartStyle={{
-            dataPointFill: '#1ed3c6',
-            dataPointSize: 30,
-            seriesOpacity: 0.6,
-          }}
+    <React.Fragment>
+      <ZoomControlsContainer>
+        <ZoomControl
+          icon={<ZoomOutIcon />}
+          text="Zoom Out"
+          isDisabled={!can.zoomOut}
+          onClick={() => scrollToView(view.zoom(0.5))}
         />
-      )}
-      <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
-      <YAxis
-        tickPositions={[0, 100, 200]}
-        getTickLabel={(pos) => String(pos)}
-        intercept={view.xMin}
-        axisLabel="Precipitation (mm)"
-      />
-    </Chart>
+        <ZoomControl
+          icon={<ZoomInIcon />}
+          text="Zoom In"
+          isDisabled={!can.zoomIn}
+          onClick={() => scrollToView(view.zoom(2))}
+        />
+        <ZoomControl
+          icon={<ChevronDoubleRightIcon />}
+          text="Current"
+          isDisabled={!can.panRight}
+          onClick={() => scrollToView(initial)}
+        />
+      </ZoomControlsContainer>
+      <div className="hp-timeseries-wrapper">
+        <Chart
+          height={300}
+          ssWidth={435}
+          view={view}
+          gutter={[5, 20, 50, 60]}
+          isCanvas={isCanvas}
+          chartStyle={{
+            dataPointSymbol: 'circle',
+            dataLineCurveType: 'natural',
+            fontSize: getFontSize,
+          }}
+          onGesture={onGesture}
+          onPointerOut={handleClearSelect}
+        >
+          {timeseriesData.map(({ data, meta, key }) => (
+            <LineSeries
+              key={key}
+              data={data}
+              chartStyle={{
+                dataLineStroke: colors[key],
+                dataPointFill: colors[key],
+                seriesOpacity:
+                  selectedPoint && selectedPoint.series !== key ? 0.5 : 1,
+                dataPointMinTargetRadius: 10,
+              }}
+              onPointerMove={handleSelectPoint}
+              onPointerDown={handleSelectPoint}
+              handlerMeta={{ seriesName: meta.seriesName }}
+            />
+          ))}
+          {selectedPoint && (
+            <LineSeries
+              data={[selectedPoint.coords]}
+              chartStyle={{
+                dataPointFill: '#1ed3c6',
+                dataPointSize: 30,
+                seriesOpacity: 0.6,
+                svgPointerEvents: false,
+              }}
+            />
+          )}
+          <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
+          <YAxis
+            tickPositions={[0, 100, 200]}
+            getTickLabel={(pos) => String(pos)}
+            intercept={view.xMin}
+            axisLabel="Precipitation (mm)"
+          />
+        </Chart>
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -6,8 +6,8 @@ import {
   RangeVerticalSeries,
   DataWhiskerVertical,
   DataBoxVertical,
-} from '../src';
-import { rain } from './__data__/precipitationByCity';
+} from '../../src';
+import { rain } from '../__data__/precipitationByCity';
 
 const distData = rain.map((series) => series.dist);
 

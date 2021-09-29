@@ -20,9 +20,6 @@ export const DataLine = Pure<DataLineProps>((props) => {
     svgPointerEvents,
   } = chartStyle;
 
-  // filter out points that are out of range and both their neighbours are
-  // out of range.
-
   return (
     <Line
       path={data}

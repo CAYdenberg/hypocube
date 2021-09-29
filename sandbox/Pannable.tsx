@@ -17,7 +17,7 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const { state: view, onGesture } = usePannable([50, 0, 50, 1000], { bounds });
+  const { view, onGesture } = usePannable([50, 0, 50, 1000], { bounds });
 
   const seriesStyle: ChartStyleOptions = {
     dataLineStroke: '#5477a1',
