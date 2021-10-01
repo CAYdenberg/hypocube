@@ -19,9 +19,9 @@ Some of the things I struggled with were:
 
 - applying responsive design principles to alter text or visual design depending on screen size
 - rescaling axes in response to user interaction or container size
-- supporting non-mouse events that modern users tend to expect, like swipe and pinch gestures
+- supporting non-mouse events that modern users expect, like swipe and pinch gestures
 - seemlessly interconverting between SVG (server-side rendering!) and canvas (animations! performance!)
-- using component-centric engineering to mix chart types or creates new types
+- using component-centric engineering to mix chart types or create new types
 
 Hypocube introduces a layer of indirection between the "data", as mapped on a Cartesian plane, and the "design", authored in units of pixels. A base Chart component manages the scaling and passes it down via context. Hypocube uses several parts of [d3](https://github.com/d3/d3) to manipulate drawing instructions, but takes a React-based approach to managing the DOM - and the canvas context.
 
