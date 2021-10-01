@@ -40,8 +40,8 @@ const myData = [
 In our chart component, we accept the data as a prop to use it construct the Voronoi _and_ draw our data series.
 
 ```javascript
-import { useTooltip } from 'hypocube/addons/tooltip';
-import { useVoronoi } from 'hypocube/addons/useVoronoi';
+import { useTooltip } from 'hypocube/build/js/addons/tooltips';
+import { useVoronoi } from 'hypocube/build/js/addons/useVoronoi';
 
 const MyChart = (data) => {
   const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();

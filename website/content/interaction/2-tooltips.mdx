@@ -11,7 +11,7 @@ A common use case for event handling on data points is to display a tooltip when
 The `useTooltip` hook is designed to be similar to React's `useState`, except that it has two functions: one for setting the hook and one for closing it.
 
 ```javascript
-import { useTooltip } from 'hypocube/addons/tooltips';
+import { useTooltip } from 'hypocube/build/js/addons/tooltips';
 
 const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
 ```
@@ -27,7 +27,7 @@ const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
 `TooltipWrapper` is a simple component designed to handle clicks outside of itself (which are usually intended to close the tooltip). The `handleCloseTooltip` function be passed to this prop.
 
 ```javascript
-import { TooltipWrapper } from 'hypocube/addons/tooltips';
+import { TooltipWrapper } from 'hypocube/build/js/addons/tooltips';
 
 <TooltipWrapper onRequestClose={handleCloseTooltip}>
   <MyTooltip data={tooltipData} />
@@ -39,7 +39,7 @@ import { TooltipWrapper } from 'hypocube/addons/tooltips';
 Firstly, we create our tooltip component. Hypocube doesn't make assumptions about styling:
 
 ```javascript
-import { TooltipWrapper } from 'hypocube/addons/tooltips';
+import { TooltipWrapper } from 'hypocube/build/js/addons/tooltips';
 
 const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
   <TooltipWrapper onRequestClose={onRequestClose}>
@@ -65,7 +65,7 @@ const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
 Next, we use that component in the `htmlLayer` of the `Chart` component:
 
 ```javascript
-import { useTooltip } from 'hypocube/addons/tooltip';
+import { useTooltip } from 'hypocube/build/js/addons/tooltips';
 
 const MyChart = () => {
   const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
