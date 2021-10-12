@@ -33,6 +33,10 @@ The simplest component: a line connecting a set of points on the Cartesian scale
   pixels, or a string. The available built-in dash types are "solid", "dashed"
   (equivalent to `[5, 5]`), or "dotted" (equivalent to `[1, 1]`).
 </PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
+</PropDef>
 
 ### PxLine
 
@@ -63,10 +67,18 @@ Renders the text given in the `text` prop at `position` on the Cartesian scale.
 <PropDef name="font" type="string" def="Helvetica"></PropDef>
 <PropDef name="fontSize" type="number" def="16"></PropDef>
 <PropDef name="align" type="'left' | 'center' | 'right'" def="left"></PropDef>
+<PropDef name="rotation" type="number" def="0">
+  Text rotation, in radians. (For vertical, bottom-to-top text, set to `0.5 *
+  Math.PI`).
+</PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
+</PropDef>
 
 ## Symbol
 
-A Symbol is a defined shape that renders at a particular point on the Cartesian scale. The type of Symbol can be given by a keyword, or a [D3 Symbol](https://observablehq.com/@d3/fitted-symbols). An invisible circle is also drawn around each symbol to help with interaction.
+A Symbol is a defined shape that renders at a particular point on the Cartesian scale. The type of Symbol can be given by a keyword, or a [D3 Symbol](https://observablehq.com/@d3/fitted-symbols).
 
 <PropDef name="point" type="[number, number]" required>
   The position of the symbol on the Cartesian scale.
@@ -88,6 +100,10 @@ A Symbol is a defined shape that renders at a particular point on the Cartesian 
   the symbol. This ensures that the Symbol is clickable, even when the actual
   symbol drawn is very small. Note that by default the value is 0, which means
   only the symbol itself is rendered.
+</PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
 </PropDef>
 
 ## Handle
