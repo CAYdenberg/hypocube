@@ -1,11 +1,6 @@
 import React from 'react';
-import { contextualize, normalize } from '../../lib/normalize';
-import {
-  ChartEventMetaData,
-  ChartState,
-  ChartStyleOptions,
-  Contextual,
-} from '../../types';
+import { normalize } from '../../lib/normalize';
+import { ChartEventMetaData, ChartState, ChartStyleOptions } from '../../types';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import Handle from '../primitives/Handle';
@@ -18,7 +13,7 @@ import selectHandlers from '../../lib/selectHandlers';
 interface AxisProps extends HandlerProps {
   range?: [number, number];
   intercept?: number;
-  tickPositions?: Contextual<number[]>;
+  tickPositions?: number[];
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
   chartStyle?: ChartStyleOptions;
@@ -34,7 +29,7 @@ const normalizeAxisProps = (
 ) => {
   const range = normalize(props.range, naturalRange);
   const intercept = normalize<number>(props.intercept, 0);
-  const tickPositions = contextualize(props.tickPositions, [], state);
+  const tickPositions = normalize(props.tickPositions, []);
   const getTickLabel = normalize(props.getTickLabel, (value: number) =>
     value.toString()
   );
@@ -82,7 +77,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
         svgPointerEvents={svgPointerEvents}
       />
       {tickPositions.map(
-        (pos) =>
+        (pos, index) =>
           pos >= range[0] &&
           pos <= range[1] && (
             <TickMark
@@ -90,6 +85,7 @@ export const XAxis: React.FC<AxisProps> = (props) => {
               label={getTickLabel(pos)}
               chartStyle={props.chartStyle}
               key={pos}
+              index={index}
             />
           )
       )}
@@ -137,7 +133,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
         svgPointerEvents={svgPointerEvents}
       />
       {tickPositions.map(
-        (pos) =>
+        (pos, index) =>
           pos >= range[0] &&
           pos <= range[1] && (
             <TickMark
@@ -145,6 +141,7 @@ export const YAxis: React.FC<AxisProps> = (props) => {
               label={getTickLabel(pos)}
               chartStyle={props.chartStyle}
               key={pos}
+              index={index}
             />
           )
       )}

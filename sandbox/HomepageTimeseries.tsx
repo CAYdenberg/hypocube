@@ -18,12 +18,7 @@ import {
   ZoomInIcon,
 } from './resources/icons';
 
-const ticks = ({ pxWidth }: { pxWidth: number }) => {
-  const interval = pxWidth > 768 ? 6 : 12;
-  return labels
-    .map((_, i) => (i % interval ? null : i))
-    .filter((val) => val !== null) as number[];
-};
+const ticks = labels.map((_, i) => i);
 
 const getTickLabel = (x: number) => {
   const raw = labels[x];
@@ -147,7 +142,20 @@ const HomepageTimeseries: React.FC<Props> = ({
               }}
             />
           )}
-          <XAxis tickPositions={ticks} getTickLabel={getTickLabel} />
+          <XAxis
+            tickPositions={ticks}
+            getTickLabel={getTickLabel}
+            chartStyle={{
+              axisTickModulus: ({ pxWidth, view }) => {
+                const pxPerTick = pxWidth / view.width;
+                return pxPerTick > 10 ? 6 : 12;
+              },
+              axisTickLabelModulus: ({ pxWidth, view }) => {
+                const pxPerTick = pxWidth / view.width;
+                return pxPerTick > 5 ? 12 : 24;
+              },
+            }}
+          />
           <YAxis
             tickPositions={[0, 100, 200]}
             getTickLabel={(pos) => String(pos)}

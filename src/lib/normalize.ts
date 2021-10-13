@@ -15,6 +15,7 @@ export const contextualize = <T>(
     return safePropF({
       pxWidth: chartState.pxBox.width,
       pxHeight: chartState.pxBox.height,
+      view: chartState.cartesianBox,
     });
   }
   return safeProp;

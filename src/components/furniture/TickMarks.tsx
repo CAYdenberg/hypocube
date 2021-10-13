@@ -7,6 +7,7 @@ import Text from '../primitives/Text';
 
 export interface TickMarkProps {
   position: Point;
+  index?: number;
   label?: string;
   chartStyle?: ChartStyleOptions;
 }
@@ -21,9 +22,22 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
     axisStrokeWidth,
     axisTickLength,
     axisTickOffset,
+    axisTickModulus,
     axisTickLabelOffset,
+    axisTickLabelModulus,
     svgPointerEvents,
   } = useChartStyle(props.chartStyle);
+
+  const showTick =
+    typeof props.index === 'undefined' || props.index % axisTickModulus === 0;
+
+  if (!showTick) {
+    return null;
+  }
+
+  const showLabel =
+    typeof props.index === 'undefined' ||
+    props.index % axisTickLabelModulus === 0;
 
   const labelAbsoluteOffset = axisTickLength + axisTickLabelOffset + fontSize;
 
@@ -39,15 +53,17 @@ export const XTickMark: React.FC<TickMarkProps> = (props) => {
         stroke={axisColor}
         svgPointerEvents={svgPointerEvents}
       />
-      <Text
-        position={position}
-        pxOffset={[0, labelAbsoluteOffset]}
-        text={label}
-        color={axisColor}
-        align="center"
-        fontSize={fontSize}
-        svgPointerEvents={svgPointerEvents}
-      />
+      {showLabel && (
+        <Text
+          position={position}
+          pxOffset={[0, labelAbsoluteOffset]}
+          text={label}
+          color={axisColor}
+          align="center"
+          fontSize={fontSize}
+          svgPointerEvents={svgPointerEvents}
+        />
+      )}
     </React.Fragment>
   );
 };
@@ -61,13 +77,25 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
     axisStrokeWidth,
     axisTickLength,
     axisTickOffset,
+    axisTickModulus,
     axisTickLabelOffset,
+    axisTickLabelModulus,
     fontSize,
     svgPointerEvents,
   } = useChartStyle(props.chartStyle);
 
-  const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
+  const showTick =
+    typeof props.index === 'undefined' || props.index % axisTickModulus === 0;
 
+  if (!showTick) {
+    return null;
+  }
+
+  const showLabel =
+    typeof props.index === 'undefined' ||
+    props.index % axisTickLabelModulus === 0;
+
+  const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
   return (
     <React.Fragment>
       <TranslatedLine
@@ -80,15 +108,17 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
         stroke={axisColor}
         svgPointerEvents={svgPointerEvents}
       />
-      <Text
-        position={position}
-        pxOffset={[labelAbsoluteOffset, fontSize / 2 - axisStrokeWidth]}
-        text={label}
-        color={axisColor}
-        align="right"
-        fontSize={fontSize}
-        svgPointerEvents={svgPointerEvents}
-      />
+      {showLabel && (
+        <Text
+          position={position}
+          pxOffset={[labelAbsoluteOffset, fontSize / 2 - axisStrokeWidth]}
+          text={label}
+          color={axisColor}
+          align="right"
+          fontSize={fontSize}
+          svgPointerEvents={svgPointerEvents}
+        />
+      )}
     </React.Fragment>
   );
 };
