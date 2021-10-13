@@ -1,4 +1,4 @@
-import Viewbox, { bound, constrainZoom } from '../Viewbox';
+import Viewbox from '../Viewbox';
 
 const initial = new Viewbox(5, 50, 10, 15);
 
@@ -78,13 +78,14 @@ describe('Viewbox', () => {
       expect(result).toEqual(final);
     });
   });
-});
 
-describe('constraints', () => {
   describe('bound', () => {
     it('pans the viewbox so that it can be enitrely contained within the bounding box', () => {
       const boundingBox = new Viewbox(0, 50, 20, 15);
-      const result = bound(initial.panX(-100).panY(500), boundingBox);
+      const result = initial
+        .panX(-100)
+        .panY(500)
+        .bound(boundingBox);
       expect(result.xMin).toEqual(boundingBox.xMin);
       expect(result.width).toEqual(initial.width);
       expect(result.yMax).toEqual(boundingBox.yMax);
@@ -93,7 +94,7 @@ describe('constraints', () => {
 
     it('returns the bounds of the bounding box if the width cannot be preserved', () => {
       const boundingBox = new Viewbox(5, 55, 10, 5);
-      const result = bound(initial, boundingBox);
+      const result = initial.bound(boundingBox);
       expect(result.height).toEqual(boundingBox.height);
       expect(result.yMin).toEqual(boundingBox.yMin);
       expect(result.yMax).toEqual(boundingBox.yMax);
@@ -102,7 +103,7 @@ describe('constraints', () => {
 
   describe('constrainZoom', () => {
     it('returns the initial view if the constraints are met', () => {
-      const result = constrainZoom(initial, {
+      const result = initial.constrainZoom({
         maxZoomX: 10,
         maxZoomY: 15,
       });
@@ -110,7 +111,7 @@ describe('constraints', () => {
     });
 
     it('should back out if the view is too zoomed in', () => {
-      const result = constrainZoom(initial, {
+      const result = initial.constrainZoom({
         maxZoomX: 15,
         maxZoomY: 15,
       });
@@ -118,8 +119,28 @@ describe('constraints', () => {
       expect(result.xMin).toEqual(2.5);
     });
 
+    it('backs out in one dimension if the constraints in that dimension are not met', () => {
+      const result = initial.constrainZoom({
+        maxZoomX: 15,
+        maxZoomY: 1,
+      });
+      expect(result.width).toEqual(15);
+      expect(result.height).toEqual(initial.height);
+      expect(result.yMin).toEqual(initial.yMin);
+    });
+
+    it('backs out in one dimension if the constraints in that dimension are not met', () => {
+      const result = initial.constrainZoom({
+        maxZoomX: 1,
+        maxZoomY: 30,
+      });
+      expect(result.width).toEqual(initial.width);
+      expect(result.xMin).toEqual(initial.xMin);
+      expect(result.height).toEqual(30);
+    });
+
     it('ignores zero values and returns the original', () => {
-      const result = constrainZoom(initial, {
+      const result = initial.constrainZoom({
         maxZoomX: 0,
         maxZoomY: 0,
       });
