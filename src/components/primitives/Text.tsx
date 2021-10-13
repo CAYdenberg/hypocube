@@ -8,11 +8,31 @@ export interface Props {
   position: Point;
   text: string;
   pxOffset?: [number, number];
+  /**
+   * Default: #000
+   */
   color?: string;
+  /**
+   * Default: "Helvetica"
+   */
   font?: string;
+  /**
+   * Default: 16
+   */
   fontSize?: number;
+  /**
+   * Default: left
+   */
   align?: 'left' | 'center' | 'right';
+  /**
+   * Rotation of the text, in radians. 0 is horizontal ltr text,
+   */
   rotation?: number;
+  /**
+   * When false, sets pointer-events: none as an inline style. Useful for
+   * for restricting events to the underlying elements, especially the Chart
+   * element. Default: true.
+   */
   svgPointerEvents?: boolean;
 }
 

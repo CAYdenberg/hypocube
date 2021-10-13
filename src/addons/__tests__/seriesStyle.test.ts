@@ -16,7 +16,7 @@ describe('getColors', () => {
   });
 });
 
-describe('createBarOffsets', () => {
+describe('getBarOffsets', () => {
   it('always produces an offset of 0 if there is one series', () => {
     const result = lib.getBarOffsets(10, 1);
     expect(result).toEqual([0]);

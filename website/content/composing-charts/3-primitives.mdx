@@ -33,6 +33,10 @@ The simplest component: a line connecting a set of points on the Cartesian scale
   pixels, or a string. The available built-in dash types are "solid", "dashed"
   (equivalent to `[5, 5]`), or "dotted" (equivalent to `[1, 1]`).
 </PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
+</PropDef>
 
 ### PxLine
 
@@ -63,10 +67,18 @@ Renders the text given in the `text` prop at `position` on the Cartesian scale.
 <PropDef name="font" type="string" def="Helvetica"></PropDef>
 <PropDef name="fontSize" type="number" def="16"></PropDef>
 <PropDef name="align" type="'left' | 'center' | 'right'" def="left"></PropDef>
+<PropDef name="rotation" type="number" def="0">
+  Text rotation, in radians. (For vertical, bottom-to-top text, set to `0.5 *
+  Math.PI`).
+</PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
+</PropDef>
 
 ## Symbol
 
-A Symbol is a defined shape that renders at a particular point on the Cartesian scale. The type of Symbol can be given by a keyword, or a [D3 Symbol](https://observablehq.com/@d3/fitted-symbols). An invisible circle is also drawn around each symbol to help with interaction.
+A Symbol is a defined shape that renders at a particular point on the Cartesian scale. The type of Symbol can be given by a keyword, or a [D3 Symbol](https://observablehq.com/@d3/fitted-symbols).
 
 <PropDef name="point" type="[number, number]" required>
   The position of the symbol on the Cartesian scale.
@@ -89,10 +101,26 @@ A Symbol is a defined shape that renders at a particular point on the Cartesian 
   symbol drawn is very small. Note that by default the value is 0, which means
   only the symbol itself is rendered.
 </PropDef>
+<PropDef name="svgPointerEvents" type="boolean" def="true">
+  When false, sets pointer-events: none as an inline style. Useful for for
+  restricting events to the underlying elements, especially the Chart element.
+</PropDef>
 
 ## Handle
 
-TODO
+The `Handle` component renders an SVG `g` element that binds all passed event handlers to it. It "remaps" the callbacks passed to these handlers to extract positional information about the event, and return it in a form meaningful on the Cartesian scale. In addition to the [pointer event handlers themselves](/interaction/1-pointer-events), the `Handle` component accepts the following props:
+
+<PropDef name="elementPosition" type="[number, number]">
+  A semantically meaningful position for the element on the Cartesian scale. For
+  example, for a data point, this would be the actual position of the point. For
+  a "range"-type element, it would be the anchor point of the range. The prop is
+  not required, but callbacks triggered on a Handle without it will have an
+  undefined `elementPosition` in the passed event object.
+</PropDef>
+<PropDef name="meta" type="Record<string | boolean | number>">
+  Any meta data that needs to be passed back to the event handlers. If not
+  specified, an empty object will be passed instead.
+</PropDef>
 
 ## Clip
 

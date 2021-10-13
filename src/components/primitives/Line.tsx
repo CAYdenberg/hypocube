@@ -18,12 +18,36 @@ export type DashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
 
 interface Props {
   path: Point[];
+  /**
+   * Default: #000;
+   */
   stroke?: string | null;
+  /**
+   * Default: null.
+   */
   fill?: string | null;
+  /**
+   * Default: 1.
+   */
   strokeWidth?: number;
+  /**
+   * Default: "linear"
+   */
   curveType?: CurveType | CurveFactoryLineOnly;
+  /**
+   * Default: "solid"
+   */
   dash?: DashType;
+  /**
+   * Opacity of both stroke and fill, ranging from 0 (fully transparent) to 1
+   * (fully opaque). Default: 1.
+   */
   opacity?: number;
+  /**
+   * When false, sets pointer-events: none as an inline style. Useful for
+   * for restricting events to the underlying elements, especially the Chart
+   * element. Default: true.
+   */
   svgPointerEvents?: boolean;
 }
 

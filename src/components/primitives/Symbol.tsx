@@ -25,13 +25,29 @@ export type SymbolType =
 
 interface SymbolProps {
   point: [number, number];
+  /**
+   * Default: 5
+   */
   size?: number;
+  /**
+   * Default: "circle"
+   */
   symbol?: D3SymbolType | SymbolType;
   stroke?: string;
   strokeWidth?: number;
   fill?: string | null;
   opacity?: number;
+  /**
+   * When rendering as SVG, an invisible circle of the given radius is rendered
+   * around the symbol. This can help with interaction, ensuring the symbol is
+   * clickable even when the actual symbol drawn is very small.
+   */
   quietRenderRadius?: number;
+  /**
+   * When false, sets pointer-events: none as an inline style. Useful for
+   * for restricting events to the underlying elements, especially the Chart
+   * element. Default: true.
+   */
   svgPointerEvents?: boolean;
 }
 

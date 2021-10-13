@@ -1,0 +1,43 @@
+---
+title: 'Chart Furniture'
+metaTitle: 'Composing new types of Charts'
+metaDescription: 'Composing new types of Charts'
+---
+
+import PropDef from '../components/PropDef';
+
+_Furniture_ here refers to parts of the chart that do not display data.
+
+## Tick Marks
+
+Tick marks are rendered by axes to indicate how a position relates to real-world data. There are two tick mark components: `XTickMark` and `YTickMark` which both accept the same props:
+
+<PropDef name="position" type="[number, number]" required>
+  The position of the tick mark on both axes, given in the form [x, y].
+</PropDef>
+<PropDef name="label" type="string" def="(empty string)">
+  Label on the tick mark.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle">
+  See also the `axisTick` and `fontSize` declarations.
+</PropDef>
+
+## Axis Label
+
+These components (`XAxisLabel` and `YAxisLabel`) render a label for the entire axis, and typically are displayed below the tick marks on the x-axis and to the left of the tick marks on the y-axis. The y-axis label is usually rotated to display bottom-to-top.
+
+Calculating the position of the label is non-trivial. The position passed by the `XAxis` and `YAxis` components, without applying chartStyles, is at the center of the axis being labelled. The styles `xAxisLabelPosition` and `yAxisLabelPosition` styles control the position of the label relative to the axis line, in pixels. This number needs to be great enough to push the label past the tick marks and their text labels. Both components accept the same props:
+
+<PropDef name="position" required>
+  The root position of the label before offsets are applied. The values passed
+  from the Axis components correspond to halfway along that axis and the
+  intercept position on the crossing axis. Chart styles are used to offset the
+  label relative to this root position.
+</PropDef>
+<PropDef name="label" type="string">
+  The text label being displayed.
+</PropDef>
+<PropDef name="chartStyle" type="ChartStyle">
+  See also `fontSize`, `axisColor`, `xAxisLabelPosition` and
+  `yAxisLabelPosition` declarations.
+</PropDef>
