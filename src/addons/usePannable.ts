@@ -1,11 +1,6 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useMemo, useState } from 'react';
-import Viewbox, {
-  bound,
-  constrainZoom,
-  createViewbox,
-  ViewboxDuck,
-} from '../lib/Viewbox';
+import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import { useTransition, ChartAnimation } from './useTransition';
 
@@ -41,17 +36,6 @@ const makeAnimation = (current: Viewbox, next: Viewbox, options: Options) => {
   };
 };
 
-const applyConstaints = (current: Viewbox, next: Viewbox, options: Options) => {
-  const { bounds, maxZoomX, maxZoomY } = options;
-
-  const bounded = bound(next, bounds);
-  const constained = constrainZoom(bounded, {
-    maxZoomX,
-    maxZoomY,
-  });
-  return constained;
-};
-
 export default (
   initialViewbox: ViewboxDuck,
   options: Partial<Options> = {}
@@ -61,6 +45,7 @@ export default (
     options,
   ]);
   const _bounds = _options.bounds && createViewbox(_options.bounds);
+  const { maxZoomX, maxZoomY } = _options;
 
   const [state, dispatch, isAnimating] = useTransition<Viewbox>(
     _initialViewbox
@@ -75,7 +60,10 @@ export default (
         setIsGesturing(false);
       }
 
-      const next = applyConstaints(state, data.next, _options);
+      const next = data.next.bound(_bounds).constrainZoom({
+        maxZoomX,
+        maxZoomY,
+      });
 
       if (data.intent === GestureIntent.Swipe) {
         dispatch(makeAnimation(state, next, _options));
@@ -83,16 +71,21 @@ export default (
         dispatch(next);
       }
     },
-    [dispatch, _options]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state, dispatch, maxZoomX, maxZoomY, _bounds && _bounds.hash]
   );
 
   const scrollToView = useCallback(
     (view: ViewboxDuck) => {
       const _v = createViewbox(view);
-      const next = applyConstaints(state, _v, _options);
+      const next = _v.bound(_bounds).constrainZoom({
+        maxZoomX,
+        maxZoomY,
+      });
       dispatch(makeAnimation(state, next, _options));
     },
-    [dispatch, _options]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state, dispatch, maxZoomX, maxZoomY, _bounds && _bounds.hash]
   );
 
   const can = {

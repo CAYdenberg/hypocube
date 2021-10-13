@@ -2,6 +2,11 @@ import { Point } from '../types';
 
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
+
+interface ConstrainOptions {
+  maxZoomX?: number;
+  maxZoomY?: number;
+}
 export default class Viewbox {
   public readonly xMin: number;
   public readonly yMin: number;
@@ -81,55 +86,57 @@ export default class Viewbox {
       this.height + progress * (final.height - this.height)
     );
   }
+
+  bisectX(fraction: number = 0.5): number {
+    return fraction * this.width + this.xMin;
+  }
+
+  bisectY(fraction: number = 0.5): number {
+    return fraction * this.height + this.yMin;
+  }
+
+  bound(boundingBox: Viewbox | null): Viewbox {
+    if (!boundingBox) return this;
+
+    return new Viewbox(
+      Math.max(
+        this.xMax > boundingBox.xMax
+          ? boundingBox.xMax - this.width
+          : this.xMin,
+        boundingBox.xMin
+      ),
+
+      Math.max(
+        this.yMax > boundingBox.yMax
+          ? boundingBox.yMax - this.height
+          : this.yMin,
+        boundingBox.yMin
+      ),
+
+      Math.min(this.width, boundingBox.width),
+      Math.min(this.height, boundingBox.height)
+    );
+  }
+
+  constrainZoom({ maxZoomX, maxZoomY }: ConstrainOptions) {
+    const _x =
+      maxZoomX && this.width < maxZoomX
+        ? new Viewbox(
+            this.bisectX() - maxZoomX / 2,
+            this.yMin,
+            maxZoomX,
+            this.height
+          )
+        : this;
+
+    const _y =
+      maxZoomY && _x.height < maxZoomY
+        ? new Viewbox(_x.xMin, _x.bisectY() - maxZoomY / 2, _x.width, maxZoomY)
+        : _x;
+
+    return _y;
+  }
 }
 
 export const createViewbox = (input: ViewboxDuck): Viewbox =>
   Array.isArray(input) ? new Viewbox(...input) : input;
-
-export const bound = (
-  view: ViewboxDuck,
-  boundingBox?: ViewboxDuck | null
-): Viewbox => {
-  const _view = createViewbox(view);
-  if (!boundingBox) {
-    return _view;
-  }
-
-  const _bound = createViewbox(boundingBox);
-
-  return new Viewbox(
-    Math.max(
-      _view.xMax > _bound.xMax ? _bound.xMax - _view.width : _view.xMin,
-      _bound.xMin
-    ),
-
-    Math.max(
-      _view.yMax > _bound.yMax ? _bound.yMax - _view.height : _view.yMin,
-      _bound.yMin
-    ),
-
-    Math.min(_view.width, _bound.width),
-    Math.min(_view.height, _bound.height)
-  );
-};
-
-interface ConstrainOptions {
-  maxZoomX?: number;
-  maxZoomY?: number;
-}
-
-export const constrainZoom = (view: ViewboxDuck, options: ConstrainOptions) => {
-  const _v = createViewbox(view);
-
-  const _x =
-    options.maxZoomX && _v.width < options.maxZoomX
-      ? _v.zoom(_v.width / options.maxZoomX)
-      : _v;
-
-  const _y =
-    options.maxZoomY && _x.height < options.maxZoomY
-      ? _x.zoom(_x.height / options.maxZoomY)
-      : _x;
-
-  return _y;
-};

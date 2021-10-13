@@ -22,10 +22,13 @@ const keyIsSupported = (key: string): key is keyof ChartEventHandlers => {
  */
 export default (props: Props, map?: (handler: ChartEventHandler) => any) => {
   return Object.keys(props).reduce((acc, key) => {
+    if (typeof props[key] === 'undefined') return acc;
+
     if (keyIsSupported(key)) {
       acc[key] = map ? map(props[key] as ChartEventHandler) : props[key];
       return acc;
     }
+
     return acc;
   }, {} as Mapped);
 };
