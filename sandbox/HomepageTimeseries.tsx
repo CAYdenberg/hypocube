@@ -146,10 +146,7 @@ const HomepageTimeseries: React.FC<Props> = ({
             tickPositions={ticks}
             getTickLabel={getTickLabel}
             chartStyle={{
-              axisTickModulus: ({ pxWidth, view }) => {
-                const pxPerTick = pxWidth / view.width;
-                return pxPerTick > 10 ? 6 : 12;
-              },
+              axisTickModulus: 6,
               axisTickLabelModulus: ({ pxWidth, view }) => {
                 const pxPerTick = pxWidth / view.width;
                 return pxPerTick > 5 ? 12 : 24;
