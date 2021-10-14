@@ -106,8 +106,21 @@ See also [the axes documentation](/basic-charts/3-axes/).
 <PropDef name="axisTickOffset" type="number" def="0">
   Distance between the axis and the start of the tick mark. Normally, 0.
 </PropDef>
+<PropDef name="axisTickModulus" type="integer" def="1">
+  The frequency with which the tick marks passed to an axis will be rendered. By
+  default (value `1`) all tick marks will be rendered. If the value is `2`, then
+  every other tick will be rendered and so on. This property is useful to
+  selectively remove ticks as the chart becomes smaller.
+</PropDef>
 <PropDef name="axisTickLabelOffset" type="number" def="2">
   Distance between the end of the tick mark and the nearest edge of the label.
+</PropDef>
+<PropDef name="axisTickLabelModulus" type="integer" def="1">
+  The frequency with which the tick mark labels on an axis will be rendered. By
+  default (value `1`) all labels will be rendered. If the value is `2`, then
+  every other label will be rendered and so on. This property is useful to
+  selectively remove labels as the chart becomes smaller. This value compounds
+  with `axisTickModulus` and so generally it should be a multiple of that value.
 </PropDef>
 <PropDef name="xAxisLabelPosition" type="number" def="46">
   Number of pixels between the x-axis line and the bottom edge of the label. In
