@@ -105,12 +105,8 @@ import PropDef from '../components/PropDef';
   The position of the axis, defined by the point at which it intercepts the
   crossing axis.
 </PropDef>
-<PropDef name="tickPositions" type="Contextual<number[]>" def="[]">
-  An array of numbers indicating tick positions. It may be{' '}
-  <a href="/basic-charts/2-chart-style#contextualchartstyles">
-    contextual and respond to chart size
-  </a>
-  .
+<PropDef name="tickPositions" type="number[]>" def="[]">
+  An array of numbers indicating tick positions on the Cartesian scale.
 </PropDef>
 <PropDef name="getTickLabel" type="number => string" def="String">
   A function which produces a tick label from the position of that label on the
@@ -130,6 +126,16 @@ import PropDef from '../components/PropDef';
   Render prop for tick marks (both the line marker and label). See the{' '}
   <a href="/composing-charts/2-chart-furniture#tickmarks">
     TickMark component docs
+  </a>{' '}
+  for more information.
+</PropDef>
+<PropDef
+  name="renderAxisLabel"
+  type="React.Component<{ position: Point, label: string, chartStyle }>"
+>
+  Render prop for the axis label. See the{' '}
+  <a href="/composing-charts/2-chart-furniture#axislabel">
+    AxisLabel component docs
   </a>{' '}
   for more information.
 </PropDef>

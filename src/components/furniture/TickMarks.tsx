@@ -67,7 +67,6 @@ export const YTickMark: React.FC<TickMarkProps> = (props) => {
   } = useChartStyle(props.chartStyle);
 
   const labelAbsoluteOffset = 0 - axisTickLength - axisTickLabelOffset;
-
   return (
     <React.Fragment>
       <TranslatedLine

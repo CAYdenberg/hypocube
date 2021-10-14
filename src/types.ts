@@ -30,6 +30,7 @@ export interface ChartState {
 export type ChartStyleFunction<T> = (sizes: {
   pxWidth: number;
   pxHeight: number;
+  view: Viewbox;
 }) => T;
 
 export type Contextual<T> = T | ChartStyleFunction<T>;
@@ -44,7 +45,9 @@ export interface ChartStyleT {
   axisStrokeWidth: number;
   axisTickLength: number;
   axisTickOffset: number;
+  axisTickModulus: number;
   axisTickLabelOffset: number;
+  axisTickLabelModulus: number;
 
   xAxisLabelPosition: number;
   yAxisLabelPosition: number;
