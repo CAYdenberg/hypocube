@@ -1,14 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
-
-export interface ChartAnimation<T> {
-  duration: number;
-  step: (progress: number) => T;
-}
+import { ChartAnimation } from '../types';
 
 const isTransitionAnimation = (input: any): input is ChartAnimation<any> =>
   !!input.duration;
 
-export const useTransition = <T>(initialState: T) => {
+const useTransition = <T>(initialState: T) => {
   const [currentState, setCurrentState] = useState<T>(initialState);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -60,3 +56,5 @@ export const useTransition = <T>(initialState: T) => {
 
   return [currentState, setState, isAnimating] as const;
 };
+
+export default useTransition;

@@ -8,8 +8,8 @@ import {
   ChartEventData,
   Point,
   ChartStyleFunction,
+  usePannable,
 } from '../src';
-import usePannable from '../src/addons/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import { ZoomControlsContainer, ZoomControl } from './resources/ZoomControls';
 import {

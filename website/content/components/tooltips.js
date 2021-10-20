@@ -1,6 +1,12 @@
 import React from 'react';
-import { Chart, XAxis, YAxis, LineSeries } from '../../../src';
-import { useTooltip, TooltipWrapper } from '../../../src/addons/tooltip';
+import {
+  Chart,
+  XAxis,
+  YAxis,
+  LineSeries,
+  useTooltip,
+  TooltipWrapper,
+} from '../../../src';
 
 const SimpleTooltip = ({ seriesColor, position, onRequestClose }) => (
   <TooltipWrapper onRequestClose={onRequestClose}>

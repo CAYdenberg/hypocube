@@ -6,9 +6,9 @@ metaDescription: 'Bringing Hypocube charts to life'
 
 While a major advantage of SVG is that event handlers can be attached to any element, in some cases it may be simpler (and more performant) to attach handlers to the parent `Chart` element, and map back to the nearest data point using a [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram).
 
-Hypocube provides a hook as an addon for this purpose. When supplied with a set of data series and a callback, it remaps the data in the callback to the data for the nearest data point (and meta data) in the set of series. It returns an event handler to be attached to the `Chart` (not the series). **This works even when the Chart is rendered in canvas mode**.
+Hypocube provides a hook for this purpose. When supplied with a set of data series and a callback, it remaps the data in the callback to the data for the nearest data point (and meta data) in the set of series. It returns an event handler to be attached to the `Chart` (not the series). **This works even when the Chart is rendered in canvas mode**.
 
-To demonstrate how this works, we'll rebuild the [Tooltip example](/interaction/2-tooltips/) from the previous article to use the Voronoi addon instead. It should work in a similar way, except that every part of the chart area will map the nearest data point.
+To demonstrate how this works, we'll rebuild the [Tooltip example](/interaction/2-tooltips/) from the previous article to use the Voronoi hook instead. It should work in a similar way, except that every part of the chart area will map the nearest data point.
 
 It's good practice to construct the data above the component that will render the Chart, to avoid re-processing it on each render.
 
@@ -40,9 +40,6 @@ const myData = [
 In our chart component, we accept the data as a prop to use it construct the Voronoi _and_ draw our data series.
 
 ```javascript
-import { useTooltip } from 'hypocube/build/js/addons/tooltips';
-import { useVoronoi } from 'hypocube/build/js/addons/useVoronoi';
-
 const MyChart = (data) => {
   const [tooltipData, setTooltipData, handleCloseTooltip] = useTooltip();
   const handleSelectPoint = useVoronoi(data, setTooltipData);

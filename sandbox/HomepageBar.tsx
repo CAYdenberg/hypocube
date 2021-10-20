@@ -9,8 +9,8 @@ import {
   RangeVerticalSeries,
   XAxis,
   YAxis,
+  getSeriesOffsets,
 } from '../src';
-import { getBarOffsets } from '../src/addons/seriesStyle';
 import byMonthSeries, { ByMonth } from './__data__/homepage-2';
 import { DataPoint } from './HomepageTimeseries';
 
@@ -30,7 +30,7 @@ const getRanges = (series: ByMonth) =>
 
 const barWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
   pxWidth < 600 ? 6 : 10;
-const barOffsets = getBarOffsets(barWidth, 3);
+const barOffsets = getSeriesOffsets(barWidth, 3);
 const capWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
   pxWidth < 600 ? 0 : 6;
 const fontSize: ChartStyleFunction<number> = ({ pxWidth }) =>
