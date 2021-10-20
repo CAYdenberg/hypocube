@@ -1,6 +1,12 @@
 import React from 'react';
-import { BarVerticalSeries, Chart, Point, XAxis, YAxis } from '../src';
-import { getSeriesOffsets } from '../src/api/seriesStyle';
+import {
+  BarVerticalSeries,
+  Chart,
+  Point,
+  XAxis,
+  YAxis,
+  getSeriesOffsets,
+} from '../src';
 import { bc as bcVaccinations } from './__data__/vaccinations';
 
 const COLORS = ['rgb(177, 0, 0)', 'rgb(150, 150, 150)'];

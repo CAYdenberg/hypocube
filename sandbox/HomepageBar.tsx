@@ -9,8 +9,8 @@ import {
   RangeVerticalSeries,
   XAxis,
   YAxis,
+  getSeriesOffsets,
 } from '../src';
-import { getSeriesOffsets } from '../src/api/seriesStyle';
 import byMonthSeries, { ByMonth } from './__data__/homepage-2';
 import { DataPoint } from './HomepageTimeseries';
 
