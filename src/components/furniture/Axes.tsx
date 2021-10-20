@@ -1,5 +1,6 @@
 import React from 'react';
 import { normalize } from '../../lib/normalize';
+import { tickPos, normalizeGetTickLabel, tickIsShown } from '../../lib/ticks';
 import { ChartEventMetaData, ChartStyleOptions } from '../../types';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
@@ -13,7 +14,7 @@ import selectHandlers from '../../lib/selectHandlers';
 interface AxisProps extends HandlerProps {
   range?: [number, number];
   intercept?: number;
-  tickPositions?: number[];
+  tickPositions?: Array<number | [number, string]>;
   getTickLabel?: (value: number) => string;
   axisLabel?: string | null;
   chartStyle?: ChartStyleOptions;
@@ -29,10 +30,8 @@ const normalizeAxisProps = (
   const range = normalize(props.range, naturalRange);
   const intercept = normalize<number>(props.intercept, 0);
   const tickPositions = normalize(props.tickPositions, []);
-  const getTickLabel = normalize(props.getTickLabel, (value: number) =>
-    value.toString()
-  );
   const axisLabel = normalize(props.axisLabel, null);
+  const getTickLabel = normalizeGetTickLabel(props.getTickLabel);
 
   return {
     range,
@@ -42,8 +41,6 @@ const normalizeAxisProps = (
     axisLabel,
   };
 };
-
-const isShown = (index: number, modulus: number): boolean => !(index % modulus);
 
 export const XAxis: React.FC<AxisProps> = (props) => {
   const state = useChartState();
@@ -81,21 +78,27 @@ export const XAxis: React.FC<AxisProps> = (props) => {
         stroke={axisColor}
         svgPointerEvents={svgPointerEvents}
       />
-      {tickPositions.map(
-        (pos, index) =>
-          pos >= range[0] &&
-          pos <= range[1] &&
-          isShown(index, axisTickModulus) && (
-            <TickMark
-              position={[pos, intercept]}
-              label={
-                isShown(index, axisTickLabelModulus) ? getTickLabel(pos) : ''
-              }
-              chartStyle={props.chartStyle}
-              key={pos}
-            />
-          )
-      )}
+      {tickPositions.map((tick, index) => {
+        const pos = tickPos(tick);
+        if (
+          pos < range[0] ||
+          pos > range[1] ||
+          !tickIsShown(index, axisTickModulus)
+        ) {
+          return null;
+        }
+
+        return (
+          <TickMark
+            position={[pos, intercept]}
+            label={
+              tickIsShown(index, axisTickLabelModulus) ? getTickLabel(tick) : ''
+            }
+            chartStyle={props.chartStyle}
+            key={pos}
+          />
+        );
+      })}
       {axisLabel && (
         <Label
           position={[midPoint, intercept]}
@@ -143,21 +146,26 @@ export const YAxis: React.FC<AxisProps> = (props) => {
         stroke={axisColor}
         svgPointerEvents={svgPointerEvents}
       />
-      {tickPositions.map(
-        (pos, index) =>
-          pos >= range[0] &&
-          pos <= range[1] &&
-          isShown(index, axisTickModulus) && (
-            <TickMark
-              position={[intercept, pos]}
-              label={
-                isShown(index, axisTickLabelModulus) ? getTickLabel(pos) : ''
-              }
-              chartStyle={props.chartStyle}
-              key={pos}
-            />
-          )
-      )}
+      {tickPositions.map((tick, index) => {
+        const pos = tickPos(tick);
+        if (
+          pos < range[0] ||
+          pos > range[1] ||
+          !tickIsShown(index, axisTickModulus)
+        ) {
+          return null;
+        }
+        return (
+          <TickMark
+            position={[intercept, pos]}
+            label={
+              tickIsShown(index, axisTickLabelModulus) ? getTickLabel(tick) : ''
+            }
+            chartStyle={props.chartStyle}
+            key={pos}
+          />
+        );
+      })}
       {axisLabel && (
         <Label
           position={[intercept, midPoint]}
