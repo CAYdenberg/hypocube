@@ -32219,6 +32219,332 @@ exports[`Test: LineSeries 1`] = `
 </div>
 `;
 
+exports[`Test: Mixed axis labels 1`] = `
+<div
+  style={
+    Object {
+      "height": 300,
+      "maxWidth": undefined,
+      "position": "relative",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "touchAction": undefined,
+      }
+    }
+  >
+    <div>
+      <svg
+        height={300}
+        width={300}
+      >
+        <g>
+          <path
+            d="M50,270L290,270"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            d="M50,270L50,280"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="middle"
+              x={50}
+              y={298}
+            >
+              1
+            </text>
+          </g>
+          <path
+            d="M170,270L170,280"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="middle"
+              x={170}
+              y={298}
+            >
+              fizz
+            </text>
+          </g>
+          <path
+            d="M290,270L290,280"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="middle"
+              x={290}
+              y={298}
+            >
+              2
+            </text>
+          </g>
+        </g>
+        <g>
+          <path
+            d="M50,270L50,10"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <path
+            d="M50,270L40,270"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={276}
+            >
+              0
+            </text>
+          </g>
+          <path
+            d="M50,218L40,218"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={224}
+            >
+              half
+            </text>
+          </g>
+          <path
+            d="M50,166L40,166"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={172}
+            >
+              1
+            </text>
+          </g>
+          <path
+            d="M50,114L40,114"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={120}
+            >
+              fizz
+            </text>
+          </g>
+          <path
+            d="M50,61.999999999999986L40,61.999999999999986"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={67.99999999999999}
+            >
+              2
+            </text>
+          </g>
+          <path
+            d="M50,10L40,10"
+            fill="transparent"
+            opacity={1}
+            stroke="#666"
+            strokeWidth={2}
+            style={
+              Object {
+                "pointerEvents": undefined,
+              }
+            }
+          />
+          <g>
+            <text
+              fill="#666"
+              fontSize={16}
+              style={
+                Object {
+                  "fontFamily": "Helvetica, sans-serif",
+                  "pointerEvents": undefined,
+                  "userSelect": "none",
+                }
+              }
+              textAnchor="end"
+              x={38}
+              y={16}
+            >
+              buzz
+            </text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Test: Multiple Bar Series 1`] = `
 <div
   style={

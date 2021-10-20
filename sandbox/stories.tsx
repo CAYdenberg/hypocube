@@ -132,6 +132,27 @@ const examples: Example[] = [
     ),
   },
   {
+    name: 'Mixed axis labels',
+    render: ({ isCanvas }) => (
+      <Chart
+        height={300}
+        view={[0, 0, 1, 2.5]}
+        gutter={[10, 10, 30, 50]}
+        isCanvas={isCanvas}
+      >
+        <XAxis
+          range={[0, 1]}
+          tickPositions={[0, [0.5, 'fizz'], 1]}
+          getTickLabel={(pos) => String(pos + 1)}
+        />
+        <YAxis
+          range={[0, 2.5]}
+          tickPositions={[0, [0.5, 'half'], 1, [1.5, 'fizz'], 2, [2.5, 'buzz']]}
+        />
+      </Chart>
+    ),
+  },
+  {
     name: 'Bar Graph',
     render: ({ isCanvas }) => <BarGraph isCanvas={isCanvas} />,
   },
