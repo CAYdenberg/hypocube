@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pure } from '../../lib/HypocubePureComponent';
 import { ChartStyleT } from '../../types';
-import { Symbol } from '../primitives/Symbol';
+import Symbol from '../primitives/Symbol';
 import { TranslatedLine } from '../primitives/Line';
 
 export interface DataPointProps {

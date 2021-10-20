@@ -175,3 +175,8 @@ export interface Dataseries {
   key: string;
   meta?: ChartEventMetaData;
 }
+
+export interface ChartAnimation<T> {
+  duration: number;
+  step: (progress: number) => T;
+}

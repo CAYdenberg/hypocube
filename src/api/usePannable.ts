@@ -2,7 +2,8 @@ import { easeCubicOut } from 'd3-ease';
 import { useCallback, useMemo, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
-import { useTransition, ChartAnimation } from './useTransition';
+import useTransition from './useTransition';
+import { ChartAnimation } from '../types';
 
 export type InterpretGesture = (
   current: Viewbox,

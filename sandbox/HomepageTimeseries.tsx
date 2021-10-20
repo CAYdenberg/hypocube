@@ -9,7 +9,7 @@ import {
   Point,
   ChartStyleFunction,
 } from '../src';
-import usePannable from '../src/addons/usePannable';
+import usePannable from '../src/api/usePannable';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import { ZoomControlsContainer, ZoomControl } from './resources/ZoomControls';
 import {

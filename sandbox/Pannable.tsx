@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart, XAxis, LineSeries, ChartStyleOptions, YAxis } from '../src';
-import usePannable from '../src/addons/usePannable';
+import usePannable from '../src/api/usePannable';
 
 interface Props {
   getDateLabel: (x: number) => string;

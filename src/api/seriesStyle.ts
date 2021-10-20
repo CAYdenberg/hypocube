@@ -6,7 +6,7 @@ export const list = <T>(
   getValue: (index: number) => T
 ): Array<T> => Array.from({ length }, (_, i) => getValue(i));
 
-export const getBarOffsets = (
+export const getSeriesOffsets = (
   stepSize: Contextual<number>,
   numSeries: number
 ): Array<Contextual<number>> => {
@@ -22,7 +22,7 @@ export const getBarOffsets = (
   return list(numSeries, getValue as any);
 };
 
-export const getColors = (
+export const getSeriesColors = (
   palette: string[],
   numSeries: number,
   interpolator: typeof interpolate = interpolate

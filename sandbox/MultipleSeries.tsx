@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chart, Dataseries, LineSeries, Point, XAxis, YAxis } from '../src';
-import useVoronoi from '../src/addons/useVoronoi';
-import { useTooltip, TooltipWrapper } from '../src/addons/tooltip';
+import useVoronoi from '../src/api/useVoronoi';
+import { useTooltip, TooltipWrapper } from '../src/api/tooltip';
 import { rain } from './__data__/precipitation';
 
 const SimpleTooltip: React.FC<{
