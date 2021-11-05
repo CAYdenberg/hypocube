@@ -57,7 +57,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -87,7 +87,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -117,7 +117,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -147,7 +147,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -177,7 +177,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -207,7 +207,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -251,7 +251,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -281,7 +281,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -311,7 +311,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -341,7 +341,7 @@ Array [
                 fontSize={16}
                 style={
                   Object {
-                    "fontFamily": "Helvetica, sans-serif",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                     "pointerEvents": undefined,
                     "userSelect": "none",
                   }
@@ -578,7 +578,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -608,7 +608,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -638,7 +638,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -682,7 +682,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -712,7 +712,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -742,7 +742,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -772,7 +772,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -802,7 +802,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22272,7 +22272,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22302,7 +22302,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22332,7 +22332,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22362,7 +22362,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22392,7 +22392,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22422,7 +22422,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22452,7 +22452,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22482,7 +22482,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22512,7 +22512,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22542,7 +22542,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22572,7 +22572,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22602,7 +22602,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22646,7 +22646,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22676,7 +22676,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22706,7 +22706,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -22724,7 +22724,7 @@ exports[`Test: Homepage: Bar 1`] = `
               fontSize={12}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31151,7 +31151,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31181,7 +31181,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31211,7 +31211,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31241,7 +31241,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31271,7 +31271,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31301,7 +31301,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31331,7 +31331,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31361,7 +31361,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31405,7 +31405,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31435,7 +31435,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31465,7 +31465,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31483,7 +31483,7 @@ Array [
                   fontSize={12}
                   style={
                     Object {
-                      "fontFamily": "Helvetica, sans-serif",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                       "pointerEvents": undefined,
                       "userSelect": "none",
                     }
@@ -31646,7 +31646,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31676,7 +31676,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31706,7 +31706,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31750,7 +31750,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31780,7 +31780,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31810,7 +31810,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31840,7 +31840,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31870,7 +31870,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -31900,7 +31900,7 @@ exports[`Test: LineSeries 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32272,7 +32272,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32302,7 +32302,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32332,7 +32332,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32376,7 +32376,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32406,7 +32406,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32436,7 +32436,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32466,7 +32466,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32496,7 +32496,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32526,7 +32526,7 @@ exports[`Test: Mixed axis labels 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32598,7 +32598,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32628,7 +32628,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32658,7 +32658,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32688,7 +32688,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32718,7 +32718,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32748,7 +32748,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32792,7 +32792,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32822,7 +32822,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32852,7 +32852,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -32882,7 +32882,7 @@ exports[`Test: Multiple Bar Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33150,7 +33150,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33180,7 +33180,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33210,7 +33210,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33240,7 +33240,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33270,7 +33270,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33300,7 +33300,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33330,7 +33330,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33360,7 +33360,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33390,7 +33390,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33420,7 +33420,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33450,7 +33450,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33480,7 +33480,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33510,7 +33510,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33540,7 +33540,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33570,7 +33570,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33600,7 +33600,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33630,7 +33630,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33660,7 +33660,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33690,7 +33690,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33720,7 +33720,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33750,7 +33750,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33794,7 +33794,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33824,7 +33824,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33854,7 +33854,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -33884,7 +33884,7 @@ exports[`Test: Multiple Series 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55184,7 +55184,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55214,7 +55214,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55244,7 +55244,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55274,7 +55274,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55304,7 +55304,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55334,7 +55334,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55364,7 +55364,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55394,7 +55394,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55424,7 +55424,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55454,7 +55454,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55484,7 +55484,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55514,7 +55514,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55544,7 +55544,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55574,7 +55574,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55604,7 +55604,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55634,7 +55634,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55664,7 +55664,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55694,7 +55694,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55724,7 +55724,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55754,7 +55754,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55784,7 +55784,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55814,7 +55814,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55844,7 +55844,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55874,7 +55874,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55904,7 +55904,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55934,7 +55934,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55964,7 +55964,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -55994,7 +55994,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56024,7 +56024,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56054,7 +56054,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56084,7 +56084,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56114,7 +56114,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56144,7 +56144,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56174,7 +56174,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56204,7 +56204,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56234,7 +56234,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56264,7 +56264,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56294,7 +56294,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56324,7 +56324,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56354,7 +56354,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56384,7 +56384,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56414,7 +56414,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56444,7 +56444,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56474,7 +56474,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56504,7 +56504,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56534,7 +56534,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56564,7 +56564,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56594,7 +56594,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56624,7 +56624,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56654,7 +56654,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56684,7 +56684,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56702,7 +56702,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56746,7 +56746,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56776,7 +56776,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56806,7 +56806,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56836,7 +56836,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56866,7 +56866,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56896,7 +56896,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56926,7 +56926,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56956,7 +56956,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -56986,7 +56986,7 @@ exports[`Test: Pannable 1`] = `
               fontSize={16}
               style={
                 Object {
-                  "fontFamily": "Helvetica, sans-serif",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                   "pointerEvents": undefined,
                   "userSelect": "none",
                 }
@@ -57133,7 +57133,7 @@ exports[`Test: Text rotation 1`] = `
             fontSize={16}
             style={
               Object {
-                "fontFamily": "Helvetica, sans-serif",
+                "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                 "pointerEvents": undefined,
                 "userSelect": "none",
               }
@@ -57165,7 +57165,7 @@ exports[`Test: Text rotation 1`] = `
             fontSize={16}
             style={
               Object {
-                "fontFamily": "Helvetica, sans-serif",
+                "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                 "pointerEvents": undefined,
                 "userSelect": "none",
               }
@@ -57197,7 +57197,7 @@ exports[`Test: Text rotation 1`] = `
             fontSize={16}
             style={
               Object {
-                "fontFamily": "Helvetica, sans-serif",
+                "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                 "pointerEvents": undefined,
                 "userSelect": "none",
               }
@@ -57229,7 +57229,7 @@ exports[`Test: Text rotation 1`] = `
             fontSize={16}
             style={
               Object {
-                "fontFamily": "Helvetica, sans-serif",
+                "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
                 "pointerEvents": undefined,
                 "userSelect": "none",
               }
