@@ -92,4 +92,9 @@ describe('trim to view', () => {
       [6, 4],
     ]);
   });
+
+  it('works with very large arrays', () => {
+    const data: Point[] = Array.from({ length: 1e6 }, () => [1, 1]);
+    return expect(() => lib.trimToView(data, state)).not.toThrow();
+  });
 });
