@@ -27,6 +27,9 @@ export const filterToView = (data: Point[], state: ChartState) => {
 
 // NOTE: Purposefully implemented with for loops, as recursive functions
 // can exceed stack size on large data sets.
+
+// NOTE: Not using this as it seems to slow things down more than it helps
+
 export const trimToView = (data: Point[], state: ChartState): Point[] => {
   let trimmed: Point[] = data;
 

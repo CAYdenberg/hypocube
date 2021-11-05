@@ -11,7 +11,7 @@ import { DataPoint, DataPointProps } from '../data/DataPoint';
 import { DataLine, DataLineProps } from '../data/DataSeriesLine';
 import selectHandlers from '../../lib/selectHandlers';
 import Handle from '../primitives/Handle';
-import { filterToView, trimToView } from '../../lib/dataFilters';
+import { filterToView } from '../../lib/dataFilters';
 import Clip from '../primitives/Clip';
 import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
 import { normalize } from '../../lib/normalize';
@@ -38,15 +38,14 @@ export const LineSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
   const Line = props.renderLine || DataLine;
   const Point = props.renderPoint || DataPoint;
 
-  const filteredData = filterToView(props.data, state);
   const showPoints = !isCanvas || chartStyle.dataPointSymbol !== 'none';
 
   return (
     <Clip path={clipPath}>
-      <Line data={trimToView(props.data, state)} chartStyle={chartStyle} />
+      <Line data={props.data} chartStyle={chartStyle} />
 
       {showPoints
-        ? filteredData.map(([x, y], i) => (
+        ? filterToView(props.data, state).map(([x, y], i) => (
             <Handle
               {...selectHandlers(props)}
               elementPosition={[x, y]}
