@@ -18,3 +18,5 @@ export const SUPPORTED_EVENTS: Array<keyof Omit<
   'onPointerOut',
 ];
 export const WINDOW_RESIZE_RENDER_RATE = 500;
+export const DEFAULT_FONT_FAMILY =
+  "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";

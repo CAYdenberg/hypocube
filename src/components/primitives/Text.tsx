@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { DEFAULT_FONT_FAMILY } from '../../constants';
 import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
@@ -42,7 +43,7 @@ const Text: React.FC<Props> = (props) => {
 
   const { position, text } = props;
 
-  const font = normalize(props.font, 'Helvetica');
+  const font = normalize(props.font, DEFAULT_FONT_FAMILY);
   const fontSize = normalize(props.fontSize, 16);
   const color = normalize(props.color, '#000');
   const align = normalize(props.align, 'left');
@@ -81,7 +82,7 @@ const Text: React.FC<Props> = (props) => {
         fill={color}
         fontSize={fontSize}
         style={{
-          fontFamily: `${font}, sans-serif`,
+          fontFamily: font,
           pointerEvents: svgPointerEvents ? undefined : 'none',
           userSelect: 'none',
         }}
