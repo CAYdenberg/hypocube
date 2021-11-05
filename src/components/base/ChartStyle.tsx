@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { contextualize } from '../../lib/normalize';
 import useChartState from './ChartState';
 import { ChartState, ChartStyleOptions, ChartStyleT } from '../../types';
+import { DEFAULT_FONT_FAMILY } from '../../constants';
 
 const baseStyle: ChartStyleT = {
   fontSize: 16,
+  fontFamily: DEFAULT_FONT_FAMILY,
   svgPointerEvents: true,
 
   axisColor: '#666',
