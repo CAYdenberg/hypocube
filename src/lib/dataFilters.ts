@@ -15,6 +15,7 @@ const isAnyInView = (points: Point[], state: ChartState): boolean => {
 };
 
 // TODO: need different type of filter for Bar (range?) that only works on one axis
+
 export const filterToView = (data: Point[], state: ChartState) => {
   return data.filter((_, i) => {
     if (i === 0) {
@@ -24,13 +25,34 @@ export const filterToView = (data: Point[], state: ChartState) => {
   });
 };
 
+// NOTE: Purposefully implemented with for loops, as recursive functions
+// can exceed stack size on large data sets.
 export const trimToView = (data: Point[], state: ChartState): Point[] => {
-  const startRemoved = isAnyInView(data.slice(0, 2), state)
-    ? data
-    : data.slice(1);
-  const endRemoved = isAnyInView(startRemoved.slice(data.length - 2), state)
-    ? startRemoved
-    : startRemoved.slice(0, startRemoved.length - 1);
+  let trimmed: Point[] = data;
 
-  return endRemoved.length < data.length ? trimToView(endRemoved, state) : data;
+  for (let i = 0; i < data.length; i++) {
+    const point = data[i];
+    if (isAnyInView([point], state) && i === 0) {
+      break;
+    }
+
+    if (isAnyInView([point], state)) {
+      trimmed = trimmed.slice(i - 1);
+      break;
+    }
+  }
+
+  for (let i = trimmed.length - 1; i > 0; i--) {
+    const point = data[i];
+    if (isAnyInView([point], state) && i === trimmed.length - 1) {
+      break;
+    }
+
+    if (isAnyInView([point], state)) {
+      trimmed = trimmed.slice(0, i + 1);
+      break;
+    }
+  }
+
+  return trimmed;
 };
