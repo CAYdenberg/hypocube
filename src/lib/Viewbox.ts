@@ -95,26 +95,23 @@ export default class Viewbox {
     return fraction * this.height + this.yMin;
   }
 
-  bound(boundingBox: Viewbox | null): Viewbox {
+  bound(boundingBox: ViewboxDuck | null): Viewbox {
     if (!boundingBox) return this;
+    const _bound = createViewbox(boundingBox);
 
     return new Viewbox(
       Math.max(
-        this.xMax > boundingBox.xMax
-          ? boundingBox.xMax - this.width
-          : this.xMin,
-        boundingBox.xMin
+        this.xMax > _bound.xMax ? _bound.xMax - this.width : this.xMin,
+        _bound.xMin
       ),
 
       Math.max(
-        this.yMax > boundingBox.yMax
-          ? boundingBox.yMax - this.height
-          : this.yMin,
-        boundingBox.yMin
+        this.yMax > _bound.yMax ? _bound.yMax - this.height : this.yMin,
+        _bound.yMin
       ),
 
-      Math.min(this.width, boundingBox.width),
-      Math.min(this.height, boundingBox.height)
+      Math.min(this.width, _bound.width),
+      Math.min(this.height, _bound.height)
     );
   }
 
@@ -135,6 +132,11 @@ export default class Viewbox {
         : _x;
 
     return _y;
+  }
+
+  isEqual(test: ViewboxDuck) {
+    const _test = createViewbox(test);
+    return _test.hash === this.hash;
   }
 }
 
