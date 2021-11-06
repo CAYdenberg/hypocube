@@ -1,3 +1,4 @@
+import { Point } from '../..';
 import * as lib from '../seriesStyle';
 
 describe('getColors', () => {
@@ -40,5 +41,44 @@ describe('getBarOffsets', () => {
     expect(resultFunc).toBeInstanceOf(Function);
 
     expect(resultFunc()).toEqual(-15);
+  });
+});
+
+describe('findExtremes', () => {
+  const data: Point[] = [
+    [-1, 0],
+    [-1, 1],
+    [0, 2],
+    [4, 7],
+    [4, 7],
+    [4, 7],
+    [5, 3],
+    [6, 4],
+    [6, 5],
+  ];
+
+  it('finds the extremes of a series', () => {
+    expect(lib.findExtremes(data)).toEqual({
+      xMin: -1,
+      xMax: 6,
+      yMin: 0,
+      yMax: 7,
+    });
+  });
+
+  it('finds the extremes of a dataseries', () => {
+    const dataseries = [
+      {
+        data,
+        key: 'mydata',
+      },
+    ];
+
+    expect(lib.findExtremes(dataseries)).toEqual({
+      xMin: -1,
+      xMax: 6,
+      yMin: 0,
+      yMax: 7,
+    });
   });
 });

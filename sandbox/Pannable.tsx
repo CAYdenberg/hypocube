@@ -6,6 +6,7 @@ import {
   ChartStyleOptions,
   YAxis,
   usePannable,
+  findExtremes,
 } from '../src';
 
 interface Props {
@@ -17,6 +18,12 @@ interface Props {
 
 const bounds: [number, number, number, number] = [0, 0, 400, 1000];
 
+const seriesStyle: ChartStyleOptions = {
+  dataLineStroke: '#5477a1',
+  dataPointStroke: '#5477a1',
+  dataPointFill: '#5477a1',
+};
+
 const Pannable: React.FC<Props> = ({
   getDateLabel,
   isCanvas,
@@ -24,14 +31,14 @@ const Pannable: React.FC<Props> = ({
   tickPositions,
 }) => {
   const { view, onGesture } = usePannable([50, 0, 50, 1000], {
-    rescale: (view) => view.bound(bounds),
+    rescale: (view) => {
+      const bounded = view.bound(bounds);
+      return bounded.setEdges({
+        yMax: findExtremes(bounded.pointsWithinX(series)).yMax + 20,
+        yMin: 0,
+      });
+    },
   });
-
-  const seriesStyle: ChartStyleOptions = {
-    dataLineStroke: '#5477a1',
-    dataPointStroke: '#5477a1',
-    dataPointFill: '#5477a1',
-  };
 
   return (
     <Chart

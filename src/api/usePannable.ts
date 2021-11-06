@@ -1,5 +1,5 @@
 import { easeCubicOut } from 'd3-ease';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import useTransition from './useTransition';
@@ -76,6 +76,13 @@ export default (
     },
     [state, dispatch, _options]
   );
+
+  // run rescale ONE TIME at mount:
+  useEffect(() => {
+    const next = createViewbox(_options.rescale(state));
+    dispatch(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     view: state,
