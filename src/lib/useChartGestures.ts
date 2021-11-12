@@ -118,7 +118,7 @@ export default (
             next: cartesianBox,
             state,
           });
-        } else {
+        } else if (enableMousewheelZoom) {
           onGesture({
             phase: GesturePhase.Start,
             intent: GestureIntent.Zoom,
