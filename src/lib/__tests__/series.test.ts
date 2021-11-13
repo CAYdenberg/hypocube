@@ -1,5 +1,5 @@
 import { Dataseries } from '../../types';
-import { flatten, extractFromFlat } from '../useVoronoi';
+import { flatten, extractFromFlat } from '../series';
 
 describe('flatten', () => {
   it('constructs a Voronoi diagram from a 2D series array', () => {

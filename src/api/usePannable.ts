@@ -1,5 +1,5 @@
 import { easeCubicOut } from 'd3-ease';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import useTransition from './useTransition';
@@ -13,19 +13,13 @@ export type InterpretGesture = (
 interface Options {
   animationDuration: number;
   animationStepFunction: (progress: number) => number;
-  bounds: ViewboxDuck | null;
-  edgeLock: Array<'top' | 'right' | 'bottom' | 'left'>;
-  maxZoomX: number;
-  maxZoomY: number;
+  rescale: (view: Viewbox) => ViewboxDuck;
 }
 
 const defaultOptions: Options = {
   animationDuration: 600,
   animationStepFunction: easeCubicOut,
-  bounds: null,
-  edgeLock: [],
-  maxZoomX: 0,
-  maxZoomY: 0,
+  rescale: (x: Viewbox) => x,
 };
 
 const makeAnimation = (current: Viewbox, next: Viewbox, options: Options) => {
@@ -42,11 +36,13 @@ export default (
   options: Partial<Options> = {}
 ) => {
   const _initialViewbox = createViewbox(initialViewbox);
-  const _options: Options = useMemo(() => ({ ...defaultOptions, ...options }), [
-    options,
-  ]);
-  const _bounds = _options.bounds && createViewbox(_options.bounds);
-  const { maxZoomX, maxZoomY } = _options;
+  const _options: Options = useMemo(
+    () => ({
+      ...defaultOptions,
+      ...options,
+    }),
+    [options]
+  );
 
   const [state, dispatch, isAnimating] = useTransition<Viewbox>(
     _initialViewbox
@@ -61,10 +57,7 @@ export default (
         setIsGesturing(false);
       }
 
-      const next = data.next.bound(_bounds).constrainZoom({
-        maxZoomX,
-        maxZoomY,
-      });
+      const next = createViewbox(_options.rescale(data.next));
 
       if (data.intent === GestureIntent.Swipe) {
         dispatch(makeAnimation(state, next, _options));
@@ -72,32 +65,24 @@ export default (
         dispatch(next);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state, dispatch, maxZoomX, maxZoomY, _bounds && _bounds.hash]
+    [state, dispatch, _options]
   );
 
   const scrollToView = useCallback(
     (view: ViewboxDuck) => {
       const _v = createViewbox(view);
-      const next = _v.bound(_bounds).constrainZoom({
-        maxZoomX,
-        maxZoomY,
-      });
+      const next = createViewbox(_options.rescale(_v));
       dispatch(makeAnimation(state, next, _options));
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state, dispatch, maxZoomX, maxZoomY, _bounds && _bounds.hash]
+    [state, dispatch, _options]
   );
 
-  const can = {
-    zoomIn: state.width > _options.maxZoomX || state.height > _options.maxZoomY,
-    zoomOut:
-      !_bounds || state.width < _bounds.width || state.height < _bounds.height,
-    panUp: !_bounds || state.yMax < _bounds.yMax,
-    panRight: !_bounds || state.xMax < _bounds.xMax,
-    panDown: !_bounds || state.yMin > _bounds.yMin,
-    panLeft: !_bounds || state.xMin > _bounds.xMin,
-  };
+  // run rescale ONE TIME at mount:
+  useEffect(() => {
+    const next = createViewbox(_options.rescale(state));
+    dispatch(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     view: state,
@@ -105,6 +90,5 @@ export default (
     scrollToView,
     onGesture,
     isPanning: isGesturing || isAnimating,
-    can,
   };
 };

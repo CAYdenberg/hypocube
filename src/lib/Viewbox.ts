@@ -1,7 +1,16 @@
+import { Dataseries } from '..';
 import { Point } from '../types';
+import { flatten } from './series';
 
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
+
+interface Edges {
+  xMin?: number;
+  xMax?: number;
+  yMin?: number;
+  yMax?: number;
+}
 
 interface ConstrainOptions {
   maxZoomX?: number;
@@ -30,14 +39,12 @@ export default class Viewbox {
     this.hash = `${xMin},${yMin},${width},${height}`;
   }
 
-  toPath(): Point[] {
-    const { xMin, xMax, yMin, yMax } = this;
-    return [
-      [xMin, yMin],
-      [xMax, yMin],
-      [xMax, yMax],
-      [xMin, yMax],
-    ];
+  setEdges(input: Edges) {
+    const { xMin, xMax, yMin, yMax } = {
+      ...this,
+      ...input,
+    };
+    return new Viewbox(xMin, yMin, xMax - xMin, yMax - yMin);
   }
 
   panX(distance: number): Viewbox {
@@ -87,38 +94,27 @@ export default class Viewbox {
     );
   }
 
-  bisectX(fraction: number = 0.5): number {
-    return fraction * this.width + this.xMin;
-  }
-
-  bisectY(fraction: number = 0.5): number {
-    return fraction * this.height + this.yMin;
-  }
-
-  bound(boundingBox: Viewbox | null): Viewbox {
+  bound(boundingBox: ViewboxDuck | null): Viewbox {
     if (!boundingBox) return this;
+    const _bound = createViewbox(boundingBox);
 
     return new Viewbox(
       Math.max(
-        this.xMax > boundingBox.xMax
-          ? boundingBox.xMax - this.width
-          : this.xMin,
-        boundingBox.xMin
+        this.xMax > _bound.xMax ? _bound.xMax - this.width : this.xMin,
+        _bound.xMin
       ),
 
       Math.max(
-        this.yMax > boundingBox.yMax
-          ? boundingBox.yMax - this.height
-          : this.yMin,
-        boundingBox.yMin
+        this.yMax > _bound.yMax ? _bound.yMax - this.height : this.yMin,
+        _bound.yMin
       ),
 
-      Math.min(this.width, boundingBox.width),
-      Math.min(this.height, boundingBox.height)
+      Math.min(this.width, _bound.width),
+      Math.min(this.height, _bound.height)
     );
   }
 
-  constrainZoom({ maxZoomX, maxZoomY }: ConstrainOptions) {
+  constrainZoom({ maxZoomX, maxZoomY }: ConstrainOptions): Viewbox {
     const _x =
       maxZoomX && this.width < maxZoomX
         ? new Viewbox(
@@ -135,6 +131,41 @@ export default class Viewbox {
         : _x;
 
     return _y;
+  }
+
+  toPath(): Point[] {
+    const { xMin, xMax, yMin, yMax } = this;
+    return [
+      [xMin, yMin],
+      [xMax, yMin],
+      [xMax, yMax],
+      [xMin, yMax],
+    ];
+  }
+
+  isEqual(test: ViewboxDuck): boolean {
+    const _test = createViewbox(test);
+    return _test.hash === this.hash;
+  }
+
+  pointsWithinX(points: Point[] | Dataseries[]): Point[] {
+    return flatten(points).filter(
+      (point) => point[0] >= this.xMin && point[0] <= this.xMax
+    );
+  }
+
+  pointsWithinY(points: Point[] | Dataseries[]): Point[] {
+    return flatten(points).filter(
+      (point) => point[1] >= this.yMin && point[1] <= this.yMax
+    );
+  }
+
+  private bisectX(fraction: number = 0.5): number {
+    return fraction * this.width + this.xMin;
+  }
+
+  private bisectY(fraction: number = 0.5): number {
+    return fraction * this.height + this.yMin;
   }
 }
 

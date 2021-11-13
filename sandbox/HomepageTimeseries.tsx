@@ -56,12 +56,11 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { view, scrollToView, onGesture, isPanning, can } = usePannable(
+  const { view, scrollToView, onGesture, isPanning } = usePannable(
     [201, 0, 50, 250],
     {
-      bounds,
-      maxZoomX,
-      maxZoomY,
+      rescale: (view) =>
+        view.bound(bounds).constrainZoom({ maxZoomX, maxZoomY }),
     }
   );
 
@@ -84,19 +83,19 @@ const HomepageTimeseries: React.FC<Props> = ({
         <ZoomControl
           icon={<ZoomOutIcon />}
           text="Zoom Out"
-          isDisabled={!can.zoomOut}
+          isDisabled={view.isEqual(view.zoom(0.5))}
           onClick={() => scrollToView(view.zoom(0.5))}
         />
         <ZoomControl
           icon={<ZoomInIcon />}
           text="Zoom In"
-          isDisabled={!can.zoomIn}
+          isDisabled={view.isEqual(view.zoom(2))}
           onClick={() => scrollToView(view.zoom(2))}
         />
         <ZoomControl
           icon={<ChevronDoubleRightIcon />}
           text="Current"
-          isDisabled={!can.panRight}
+          isDisabled={view.isEqual(initial)}
           onClick={() => scrollToView(initial)}
         />
       </ZoomControlsContainer>
