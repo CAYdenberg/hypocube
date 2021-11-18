@@ -138,9 +138,8 @@ See also [the axes documentation](/basic-charts/3-axes/).
 <PropDef name="seriesXOffset" type="number" def="0">
   The offset of any data point along the x-axis. This is useful in a categorical
   bar graph so that multiple series don't sit behind on another, for example.
-  The{' '}
-  <a href="/basic-charts/7-series-styles">`seriesStyles' helper functions</a>{' '}
-  can be used to automatically create offsets for multiple bar series.
+  The <a href="#getseriesoffsets">`seriesStyles' helper functions</a> can be
+  used to automatically create offsets for multiple bar series.
 </PropDef>
 <PropDef name="seriesOpacity" type="number" def="0">
   Overall opacity level (ranging from 0 to 1) for all elements (boxes, ranges
@@ -230,3 +229,40 @@ Data ranges represent a span of data along one axis (usually the y-axis), at a d
 <PropDef name="dataWhiskerBottomCapLength" type="number" def="10"></PropDef>
 <PropDef name="dataWhiskerStroke" type="color" def="#000"></PropDef>
 <PropDef name="dataWhiskerStrokeWidth" type="number" def="2"></PropDef>
+
+## Series Style Helpers
+
+To generate styles for multiple series that will appear on the same chart, Hypocube provides a couple of helper functions.
+
+### getSeriesColors
+
+```
+(palette: Color[], numSeries: number) => Color[]
+```
+
+When provided a color palette (usually two colors), and the number of colors to generate, will generate a set of colors within that palette.
+
+```javascript react-live=true
+<div style={{ height: 30 }}>
+  {getSeriesColors(['#003f5c', '#ffa600'], 7).map((color) => (
+    <div
+      style={{
+        backgroundColor: color,
+        width: 30,
+        height: '100%',
+        float: 'left',
+      }}
+    ></div>
+  ))}
+</div>
+```
+
+### getSeriesOffsets
+
+This function can be used to generate `seriesXOffset` values.
+
+```
+(stepSize: number, numSeries: number) => number[]
+```
+
+Given the distance between series (eg. the width of a bar) and the number of series to use, it will generate a set of offsets, which can be plugged into the `seriesXOffset` style. Note that a [contextual function](#contextualchartstyles) can be passed to step size, in which case `getSeriesOffsets` will generate an array of contextual functions.
