@@ -4,6 +4,12 @@ import { flatten } from './series';
 
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
+export type ViewboxFactory = (
+  input: ViewboxDuck | number,
+  yMin?: number,
+  width?: number,
+  height?: number
+) => Viewbox;
 
 interface Edges {
   xMin?: number;
@@ -94,9 +100,13 @@ export default class Viewbox {
     );
   }
 
-  bound(boundingBox: ViewboxDuck | null): Viewbox {
-    if (!boundingBox) return this;
-    const _bound = createViewbox(boundingBox);
+  bound(
+    input: ViewboxDuck | number,
+    yMin?: number,
+    width?: number,
+    height?: number
+  ): Viewbox {
+    const _bound = createViewbox(input, yMin, width, height);
 
     return new Viewbox(
       Math.max(
@@ -169,5 +179,23 @@ export default class Viewbox {
   }
 }
 
-export const createViewbox = (input: ViewboxDuck): Viewbox =>
-  Array.isArray(input) ? new Viewbox(...input) : input;
+export const createViewbox: ViewboxFactory = (
+  input,
+  yMin?,
+  width?,
+  height?
+) => {
+  if (typeof input === 'number' && yMin && width && height) {
+    return new Viewbox(input, yMin, width, height);
+  }
+  if (Array.isArray(input)) {
+    return new Viewbox(...input);
+  }
+  if ((input as Viewbox).hash) {
+    return input as Viewbox;
+  }
+
+  throw new Error(
+    `Unable to create Viewbox from arguments ${input}, ${yMin}, ${width}, ${height}`
+  );
+};

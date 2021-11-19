@@ -26,10 +26,9 @@ export const getSeriesOffsets = (
 
 export const getSeriesColors = (
   palette: string[],
-  numSeries: number,
-  interpolator: typeof interpolate = interpolate
+  numSeries: number
 ): string[] => {
-  const map = interpolator(palette);
+  const map = interpolate(palette);
   return Array.from({ length: numSeries }, (_, i) => map(i / (numSeries - 1)));
 };
 

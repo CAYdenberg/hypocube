@@ -7,6 +7,7 @@ import {
   RangeVerticalSeries,
   XAxis,
   YAxis,
+  getSeriesColors,
 } from '../../../../src';
 
 const scope = {
@@ -16,6 +17,7 @@ const scope = {
   RangeVerticalSeries,
   XAxis,
   YAxis,
+  getSeriesColors,
 };
 
 const ReactLiveProvider = ({ code }) => {
