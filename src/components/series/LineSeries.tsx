@@ -13,7 +13,7 @@ import selectHandlers from '../../lib/selectHandlers';
 import Handle from '../primitives/Handle';
 import { filterToView } from '../../lib/dataFilters';
 import Clip from '../primitives/Clip';
-import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
+import { createViewbox, ViewboxDuck } from '../../api/Viewbox';
 import { normalize } from '../../lib/normalize';
 
 interface LineSeriesProps {

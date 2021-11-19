@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
-import Viewbox from './Viewbox';
+import Viewbox from '../api/Viewbox';
 import { WINDOW_RESIZE_RENDER_RATE } from '../constants';
 
 export default (

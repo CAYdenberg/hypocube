@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import useChartState from '../components/base/ChartState';
-import Viewbox from './Viewbox';
+import Viewbox from '../api/Viewbox';
 import { GesturePhase, ChartGestureData, GestureIntent, Point } from '../types';
 import { ScaleLinear } from 'd3-scale';
 

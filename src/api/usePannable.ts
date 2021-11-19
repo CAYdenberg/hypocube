@@ -1,6 +1,6 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Viewbox, { createViewbox, ViewboxDuck } from '../lib/Viewbox';
+import Viewbox, { createViewbox, ViewboxDuck } from './Viewbox';
 import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
 import useTransition from './useTransition';
 import { ChartAnimation } from '../types';

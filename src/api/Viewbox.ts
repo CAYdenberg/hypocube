@@ -1,6 +1,6 @@
 import { Dataseries } from '..';
 import { Point } from '../types';
-import { flatten } from './series';
+import { flatten } from '../lib/series';
 
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];

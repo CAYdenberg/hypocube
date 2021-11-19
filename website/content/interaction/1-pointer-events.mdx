@@ -21,11 +21,11 @@ Pointer events are supported on the containing `Chart` element and on most child
 - onPointerOver
 - onPointerOut
 
-Check out this article to learn more about the [mental model behind pointer events](https://javascript.info/pointer-events). [MDN is the best place to get detailed info on when each event fill fire](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events). Finally, [the React docs](https://reactjs.org/docs/events.html#pointer-events) are always worth a look.
+Check out this article to learn more about the [mental model behind pointer events](https://javascript.info/pointer-events). [MDN is the best place to get detailed info on when each event will fire](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events). Finally, [the React docs](https://reactjs.org/docs/events.html#pointer-events) are always worth a look.
 
 ## Event data
 
-Hypocube re-maps the argument passed to the handler so that the relevent coordinates on the Cartesian data scales are available. To see this, try clicking on the bars in the chart below - and have a look at your console.
+Hypocube re-maps the event argument passed to the handler so that the relevent coordinates on the Cartesian data scales are available. To see this, try clicking on the bars in the chart below - and have a look at your console.
 
 ```javascript react-live=true
 <Chart
@@ -53,7 +53,7 @@ Hypocube re-maps the argument passed to the handler so that the relevent coordin
 </Chart>
 ```
 
-Notice that the `elementPosition` corresponds to one of the pieces of data passed to the `BarSeries`. Similarly, the coordinates of `pointerPosition` correspond to the Cartesian scales of the chart.
+Notice that the `elementPosition` corresponds to the real position of the data point. Similarly, the coordinates of `pointerPosition` correspond to the event position on the Cartesian scale.
 
 In detail, the object passed to handlers has the following props:
 

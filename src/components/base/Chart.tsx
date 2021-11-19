@@ -5,7 +5,7 @@ import selectHandlers from '../../lib/selectHandlers';
 import useCanvas from '../../lib/useCanvas';
 import useContainerSizes from '../../lib/useContainerSizes';
 import { HandlerProps } from '../../lib/useHandle';
-import Viewbox, { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
+import Viewbox, { createViewbox, ViewboxDuck } from '../../api/Viewbox';
 import { ChartGestureData, ChartStyleOptions, Point } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
 import ChartError from './ChartError';
