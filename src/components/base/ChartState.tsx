@@ -1,6 +1,6 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useContext } from 'react';
-import Viewbox from '../../lib/Viewbox';
+import Viewbox from '../../api/Viewbox';
 import { ChartState } from '../../types';
 
 export const getDefaultState = (): ChartState => ({

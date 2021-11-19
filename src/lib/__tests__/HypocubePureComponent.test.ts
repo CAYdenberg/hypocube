@@ -1,5 +1,5 @@
 import { isEqual } from '../HypocubePureComponent';
-import Viewbox from '../Viewbox';
+import Viewbox from '../../api/Viewbox';
 
 describe('custom isEqual', () => {
   it('with equal primitives', () => {

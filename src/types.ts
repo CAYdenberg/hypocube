@@ -2,7 +2,7 @@ import { ScaleLinear } from 'd3-scale';
 import React from 'react';
 import { CurveType, DashType } from './components/primitives/Line';
 import { SymbolType } from './components/primitives/Symbol';
-import Viewbox from './lib/Viewbox';
+import Viewbox from './api/Viewbox';
 
 /**
  * CHART STATE AND GENERAL DEFINITIONS

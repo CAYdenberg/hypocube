@@ -20,6 +20,7 @@ export { default as Clip } from './components/primitives/Clip';
 
 export * from './api/seriesStyle';
 export * from './api/tooltip';
+export { default as Viewbox, createViewbox } from './api/Viewbox';
 export { default as useTransition } from './api/useTransition';
 export { default as usePannable } from './api/usePannable';
 export { default as useVoronoi } from './api/useVoronoi';

@@ -7,7 +7,7 @@ import {
   Point,
 } from '../../types';
 import { normalize } from '../../lib/normalize';
-import { createViewbox, ViewboxDuck } from '../../lib/Viewbox';
+import { createViewbox, ViewboxDuck } from '../../api/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
 import selectHandlers from '../../lib/selectHandlers';

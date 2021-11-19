@@ -4,8 +4,14 @@ metaTitle: 'Bringing Hypocube charts to life'
 metaDescription: 'Bringing Hypocube charts to life'
 ---
 
-TODO: https://github.com/CAYdenberg/hypocube/issues/30
+Hypocube aims to make it easy to change the chart viewbox in response to basic mouse and touch gestures, including swipe and pinch zoom. To see how this works, consider the following example:
+
+As you might have guessed, `TheChart` is not the interesting part here, it merely renders a bunch of concentric diamonds centered on the origin. This gives us a sense of what's happening. Try clicking and dragging, or, if you have a touch device, try swiping or pinch-zooming the chart.
+
+The "magic" is made possible by the `usePannable` hook, which works a bit like `useState`. The initial view (in the form `[xMin, yMin, width, height]`) is passed as an argument, and the hook returns some stuff that leds us read and manipulate the view. `view` and `onGesture` are just passed down to the `Chart` as props. We can also manipulate the view directly with `setView` and `scrollToView`. To do that, we first have to discuss how views are handled within Hypocube.
+
+## Manipulating the Viewbox
+
+## usePannable options
 
 ## onGesture
-
-## usePannable

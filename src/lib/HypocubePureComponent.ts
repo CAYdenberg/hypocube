@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactElement, ReactFragment } from 'react';
 import { ChartEventMetaData, ChartStyleT } from '../types';
-import Viewbox from './Viewbox';
+import Viewbox from '../api/Viewbox';
 
 export type Props = PropsWithChildren<
   Record<

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CanvasComponent } from '../types';
-import Viewbox from '../lib/Viewbox';
+import Viewbox from '../api/Viewbox';
 
 export default (pxBox: Viewbox, isCanvas: boolean) => {
   const canvasNode = useRef<HTMLCanvasElement | null>(null);
