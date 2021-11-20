@@ -12,6 +12,24 @@ The "magic" is made possible by the `usePannable` hook, which works a bit like `
 
 ## Manipulating the Viewbox
 
+When we create a chart, we generally pass a `view` prop consisting of an array of four numbers: `[xMin, yMin, width, height]`. Under the hood, Hypocube converts this to a `Viewbox` object that contains this data, and other useful properties (like the xMax). It also has a few useful methods for manipulating the view. (Note: `Viewbox` objects are immutable: the methods that return Viewboxes actually create new ones, leaving the original in tact).
+
+To create a Viewbox, use the `createViewbox` function, which can accept: (1) an array in the form above, or the four numbers as separate arguments.
+
+### Viewbox methods
+
+`setEdges({ xMin: number, yMin: number, xMax: number, yMax: number }) => Viewbox` Replaces any edge (which is not undefinied), leaves the others in tact.
+
+`panX(distance: number) => Viewbox` Move the viewbox horizontally to the right. To move left, use a negative number.
+
+`panY(distance: number) => Viewbox` Move the viewbox vertically down. To move up, use a negative number.
+
+`zoom(factor: number, anchor?: [x, y]) => Viewbox` Zoom in (factors greater than 1) or out (factors less than 1). `anchor` defaults to the center of the current viewbox.
+
+`interpolate(final: Viewbox, progress: number) => Viewbox`. Returns a viewbox interpolated between `final` and the current view. `progress` should be between 0 and 1.
+
+`bound(boundingBox: Viewbox) => Viewbox`. Move the current viewbox so that it retains its current width and height but fits within the bounding box.
+
 ## usePannable options
 
 ## onGesture
