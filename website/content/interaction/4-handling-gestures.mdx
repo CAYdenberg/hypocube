@@ -28,7 +28,7 @@ To create a Viewbox, use the `createViewbox` function, which can accept: (1) an 
 
 `interpolate(final: Viewbox, progress: number) => Viewbox`. Returns a viewbox interpolated between `final` and the current view. `progress` should be between 0 and 1.
 
-`bound(boundingBox: Viewbox) => Viewbox`. Move the current viewbox so that it retains its current width and height but fits within the bounding box.
+`bound(boundingBox: Viewbox) => Viewbox`. Slide the current viewbox to fit within the bounding box. If the current view is too big, it will shrink just enough to fit.
 
 ## usePannable options
 
