@@ -1,6 +1,5 @@
-import { Dataseries } from '..';
-import { Point } from '../types';
-import { flatten } from '../lib/series';
+import { Point, Dataseries } from '../types';
+import { flatten } from './utility';
 
 export type Range = [number, number];
 export type ViewboxDuck = Viewbox | [number, number, number, number];
@@ -198,4 +197,29 @@ export const createViewbox: ViewboxFactory = (
   throw new Error(
     `Unable to create Viewbox from arguments ${input}, ${yMin}, ${width}, ${height}`
   );
+};
+
+export const createViewboxFromData = (data: Point[] | Dataseries[]) => {
+  const flat = flatten(data);
+  let xMin = flat[0][0];
+  let xMax = flat[0][0];
+  let yMin = flat[0][1];
+  let yMax = flat[0][1];
+  flat.forEach((point) => {
+    const [x, y] = point;
+    if (x < xMin) {
+      xMin = x;
+    }
+    if (x > xMax) {
+      xMax = x;
+    }
+    if (y < yMin) {
+      yMin = y;
+    }
+    if (y > yMax) {
+      yMax = y;
+    }
+  });
+
+  return new Viewbox(xMin, yMin, xMax - xMin, yMax - yMin);
 };

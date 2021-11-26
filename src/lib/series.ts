@@ -1,16 +1,5 @@
 import { Dataseries, Point } from '../types';
 
-const isDataseries = (input: Point[] | Dataseries[]): input is Dataseries[] => {
-  if (!input.length) return false;
-  if ((input[0] as Dataseries).data) return true;
-  return false;
-};
-
-export const flatten = (series: Dataseries[] | Point[]) => {
-  if (!isDataseries(series)) return series;
-  return series.reduce((acc, series) => acc.concat(series.data), [] as Point[]);
-};
-
 interface ExtractedPoint {
   seriesIndex: number;
   seriesKey: string;

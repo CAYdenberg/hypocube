@@ -1,7 +1,8 @@
 import { Delaunay } from 'd3-delaunay';
 import { useCallback, useEffect, useState } from 'react';
 import { Point, Dataseries, ChartEventHandler } from '../types';
-import { flatten, extractFromFlat } from '../lib/series';
+import { flatten } from './utility';
+import { extractFromFlat } from '../lib/series';
 
 const useVoronoi = (
   series: Dataseries[],
