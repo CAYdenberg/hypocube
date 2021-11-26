@@ -30,6 +30,38 @@ To create a Viewbox, use the `createViewbox` function, which can accept: (1) an 
 
 `bound(boundingBox: Viewbox) => Viewbox`. Slide the current viewbox to fit within the bounding box. If the current view is too big, it will shrink just enough to fit.
 
-## usePannable options
+## usePannable
+
+`usePannable` acts like React's `useState`, but for viewboxes.
+
+```javascript
+const { view, setView, scrollToView, onGesture, isPanning } = usePannable(
+  [0, 0, 10, 10],
+  options
+);
+```
+
+The `onGesture` return value can be plugged directly into `<Chart />`
+
+```javascript
+const { view, setView, scrollToView, onGesture, isPanning } = usePannable(
+  [0, 0, 10, 10],
+  options
+);
+
+<Chart view={view} onGesture={onGesture}></Chart>;
+```
+
+while `setView` and `scrollToView` are used to otherwise manipulate the viewbox (e.g., with buttons). `isPanning` is a boolean that tells you whether the chart is currently in motion.
+
+### Options
+
+The following options are passed to `usePannable`:
+
+- `animationDuration: number` Total time for animation when a swipe gesture occurs or when `scrollToView` is called. Default: 600 ms.
+
+- `animationStepFunction: (progress: number) => number` Easing function to for the animation. Default: d3's [`easeCubicOut`](https://github.com/d3/d3-ease#easeCubicOut)
+
+- `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` When `onGesture` fires, it will return Hypocube's _best guess_ as to what the next viewbox should be. `rescale` is used to contain the viewbox to within certain bounds, or to change the axes in response to where the new viewbox is. See the examples above for how viewbox methods can be composed to produce different rescaling effects. The default is the identity function `view => view`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
 
 ## onGesture
