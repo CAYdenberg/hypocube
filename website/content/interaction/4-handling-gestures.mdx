@@ -65,3 +65,21 @@ The following options are passed to `usePannable`:
 - `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` When `onGesture` fires, it will return Hypocube's _best guess_ as to what the next viewbox should be. `rescale` is used to contain the viewbox to within certain bounds, or to change the axes in response to where the new viewbox is. See the examples above for how viewbox methods can be composed to produce different rescaling effects. The default is the identity function `view => view`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
 
 ## onGesture
+
+Similar to Chart pointer events, Hypocube rescales and remaps the event associated with gestures to provide useful information about the chart. While in most cases it will be enough to plug the `onGesture` function returned by `usePannable` directly into the chart, it is also possible to compose your own gesture event handlers. The `ChartGestureEvent` objects created by Hypocube have the following properties:
+
+<PropDef name="next" type="Viewbox">
+  Hypocube's "guess" as to the Viewbox that should be created by scrolled to by
+  the gesture.
+</PropDef>
+<PropDef name="start" type="Viewbox">
+  The original viewbox before the gesture.
+</PropDef>
+<PropDef name="phase" type="'start' | 'continue' | 'end'"></PropDef>
+<PropDef name="intent" type="'scroll' | 'swipe' | 'zoom'"></PropDef>
+<PropDef name="state">
+  This contains the full{' '}
+  <a href="https://use-gesture.netlify.app/docs/state/">
+    gesture state object from '@use-gesture/react'
+  </a>
+</PropDef>

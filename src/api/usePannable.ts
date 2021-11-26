@@ -1,25 +1,25 @@
 import { easeCubicOut } from 'd3-ease';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Viewbox, { createViewbox, ViewboxDuck } from './Viewbox';
-import { ChartGestureData, GestureIntent, GesturePhase } from '../types';
+import { ChartGestureEvent, GestureIntent, GesturePhase } from '../types';
 import useTransition from './useTransition';
 import { ChartAnimation } from '../types';
 
 export type InterpretGesture = (
   current: Viewbox,
-  data: ChartGestureData
+  data: ChartGestureEvent
 ) => Viewbox | ChartAnimation<Viewbox>;
 
 interface Options {
   animationDuration: number;
   animationStepFunction: (progress: number) => number;
-  rescale: (view: Viewbox) => ViewboxDuck;
+  rescale: (view: Viewbox, event?: ChartGestureEvent) => ViewboxDuck;
 }
 
 const defaultOptions: Options = {
   animationDuration: 600,
   animationStepFunction: easeCubicOut,
-  rescale: (x: Viewbox) => x,
+  rescale: (v: Viewbox) => v,
 };
 
 const makeAnimation = (current: Viewbox, next: Viewbox, options: Options) => {
@@ -50,14 +50,14 @@ export default (
   const [isGesturing, setIsGesturing] = useState(false);
 
   const onGesture = useCallback(
-    (data: ChartGestureData) => {
+    (data: ChartGestureEvent) => {
       if (data.phase === GesturePhase.Start) {
         setIsGesturing(true);
       } else if (data.phase === GesturePhase.End) {
         setIsGesturing(false);
       }
 
-      const next = createViewbox(_options.rescale(data.next));
+      const next = createViewbox(_options.rescale(data.next, data));
 
       if (data.intent === GestureIntent.Swipe) {
         dispatch(makeAnimation(state, next, _options));

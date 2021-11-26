@@ -5,7 +5,7 @@ import {
   XAxis,
   LineSeries,
   YAxis,
-  ChartEventData,
+  ChartEvent,
   Point,
   ChartStyleFunction,
   usePannable,
@@ -65,7 +65,7 @@ const HomepageTimeseries: React.FC<Props> = ({
   );
 
   const handleSelectPoint = useCallback(
-    (data: ChartEventData) => {
+    (data: ChartEvent) => {
       if (!handlePointSelect || !data.elementPosition || isPanning) return;
       handlePointSelect({
         series: data.meta.seriesName as string,

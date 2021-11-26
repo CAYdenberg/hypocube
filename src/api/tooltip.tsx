@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ChartEventData, ChartEventMetaData, Point } from '../types';
+import { ChartEvent, ChartEventMetaData, Point } from '../types';
 
 interface TooltipData<Meta extends ChartEventMetaData> {
   position: Point;
@@ -10,7 +10,7 @@ export const useTooltip = <Meta extends ChartEventMetaData>() => {
   const [data, setData] = useState<TooltipData<Meta> | null>(null);
 
   const handleSetTooltip = useCallback(
-    ({ elementPosition, meta }: ChartEventData) => {
+    ({ elementPosition, meta }: ChartEvent) => {
       if (!elementPosition) {
         return;
       }
