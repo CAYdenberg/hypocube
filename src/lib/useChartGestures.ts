@@ -48,8 +48,7 @@ const zoom = (
 
 export default (
   onGesture: (data: ChartGestureEvent) => void = () => null,
-  containerNode?: React.RefObject<HTMLDivElement>,
-  enableMousewheelZoom?: boolean
+  containerNode?: React.RefObject<HTMLDivElement>
 ) => {
   const ref = useRef(null);
   const { cartesianBox, scaleX, scaleY } = useChartState();
@@ -65,6 +64,7 @@ export default (
           start: cartesianBox,
           next: cartesianBox,
           state,
+          meta: [],
         });
       },
       onDrag: (state) => {
@@ -74,6 +74,7 @@ export default (
           start,
           next: pan(start, state.movement, scaleX, scaleY),
           state,
+          meta: [],
         });
       },
       onDragEnd: (state) => {
@@ -99,6 +100,7 @@ export default (
           start,
           next: nextView,
           state,
+          meta: [],
         });
         setStart(nextView);
       },
@@ -122,14 +124,16 @@ export default (
             start: cartesianBox,
             next: cartesianBox,
             state,
+            meta: ['trackpad'],
           });
-        } else if (enableMousewheelZoom) {
+        } else {
           onGesture({
             phase: GesturePhase.Start,
             intent: GestureIntent.Zoom,
             start: cartesianBox,
             next: cartesianBox,
             state,
+            meta: ['wheel'],
           });
         }
       },
@@ -144,10 +148,10 @@ export default (
             start,
             next: start.panX(disp(scaleX, state.movement[0]) * -1),
             state,
+            meta: ['trackpad'],
           });
-        } else if (enableMousewheelZoom) {
+        } else {
           const zoomIn = state.direction[1] > 0;
-          // TODO: get the zoom anchor point from the container node offsets
           const next = zoom(
             start,
             zoomIn ? 1.2 : 0.8,
@@ -164,6 +168,7 @@ export default (
             start,
             next,
             state,
+            meta: ['wheel'],
           });
         }
       },
@@ -179,15 +184,17 @@ export default (
             start,
             next,
             state,
+            meta: ['trackpad'],
           });
           setStart(next);
-        } else if (enableMousewheelZoom) {
+        } else {
           onGesture({
             intent: GestureIntent.Zoom,
             phase: GesturePhase.End,
             start,
             next: start,
             state,
+            meta: ['wheel'],
           });
         }
       },
@@ -202,12 +209,14 @@ export default (
           start: cartesianBox,
           next: cartesianBox,
           state,
+          meta: ['pinch'],
         });
       },
 
       onPinch: (state) => {
         state.event.preventDefault();
         state.event.stopPropagation();
+        console.log(state.movement[0], Math.pow(2, state.movement[0]));
         const next = zoom(
           start,
           1 * Math.pow(2, state.movement[0]),
@@ -223,6 +232,7 @@ export default (
           start: cartesianBox,
           next,
           state,
+          meta: ['pinch'],
         });
       },
 
@@ -244,6 +254,7 @@ export default (
           start: cartesianBox,
           next,
           state,
+          meta: ['pinch'],
         });
         setStart(next);
       },

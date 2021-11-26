@@ -148,17 +148,14 @@ export enum GestureIntent {
   Zoom = 'Zoom',
 }
 
-export enum GestureMeta {
-  Wheel = 'Wheel',
-  Trackpad = 'Trackpad',
-}
+export type ChartGestureMeta = 'trackpad' | 'wheel' | 'pinch';
 
 export interface ChartGestureEvent {
   phase: GesturePhase;
   intent: GestureIntent;
   start: Viewbox;
   next: Viewbox;
-  // meta: Array<GestureMeta>;
+  meta: Array<ChartGestureMeta>;
   state: any;
 }
 

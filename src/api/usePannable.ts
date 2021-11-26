@@ -14,12 +14,14 @@ interface Options {
   animationDuration: number;
   animationStepFunction: (progress: number) => number;
   rescale: (view: Viewbox, event?: ChartGestureEvent) => ViewboxDuck;
+  filterGestures: (event: ChartGestureEvent) => boolean;
 }
 
 const defaultOptions: Options = {
   animationDuration: 600,
   animationStepFunction: easeCubicOut,
-  rescale: (v: Viewbox) => v,
+  rescale: (v) => v,
+  filterGestures: (event) => !event.meta.includes('wheel'),
 };
 
 const makeAnimation = (current: Viewbox, next: Viewbox, options: Options) => {
@@ -51,6 +53,9 @@ export default (
 
   const onGesture = useCallback(
     (data: ChartGestureEvent) => {
+      if (!_options.filterGestures(data)) {
+        return;
+      }
       if (data.phase === GesturePhase.Start) {
         setIsGesturing(true);
       } else if (data.phase === GesturePhase.End) {

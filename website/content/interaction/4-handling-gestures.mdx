@@ -4,6 +4,8 @@ metaTitle: 'Bringing Hypocube charts to life'
 metaDescription: 'Bringing Hypocube charts to life'
 ---
 
+import PropDef from '../components/PropDef';
+
 Hypocube aims to make it easy to change the chart viewbox in response to basic mouse and touch gestures, including swipe and pinch zoom. To see how this works, consider the following example:
 
 As you might have guessed, `TheChart` is not the interesting part here, it merely renders a bunch of concentric diamonds centered on the origin. This gives us a sense of what's happening. Try clicking and dragging, or, if you have a touch device, try swiping or pinch-zooming the chart.
@@ -64,6 +66,8 @@ The following options are passed to `usePannable`:
 
 - `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` When `onGesture` fires, it will return Hypocube's _best guess_ as to what the next viewbox should be. `rescale` is used to contain the viewbox to within certain bounds, or to change the axes in response to where the new viewbox is. See the examples above for how viewbox methods can be composed to produce different rescaling effects. The default is the identity function `view => view`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
 
+- `filterGestures: (gestureData: ChartGestureEvent) => boolean`. Used to ignore certain events. Since most users find mousewheel zoom annoying, the default is `gestureData => !gestureData.meta.includes('wheel')`
+
 ## onGesture
 
 Similar to Chart pointer events, Hypocube rescales and remaps the event associated with gestures to provide useful information about the chart. While in most cases it will be enough to plug the `onGesture` function returned by `usePannable` directly into the chart, it is also possible to compose your own gesture event handlers. The `ChartGestureEvent` objects created by Hypocube have the following properties:
@@ -82,4 +86,9 @@ Similar to Chart pointer events, Hypocube rescales and remaps the event associat
   <a href="https://use-gesture.netlify.app/docs/state/">
     gesture state object from '@use-gesture/react'
   </a>
+</PropDef>
+<PropDef name="meta" type="Array<'trackpad' | 'wheel' | 'pinch'>">
+  An array of certain other data that can be gleaned from the state. The default
+  `filterGesture` function uses this to ignore mouse wheel events, which most
+  users find annoying.
 </PropDef>
