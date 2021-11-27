@@ -57,7 +57,6 @@ export default (
   useGesture(
     {
       onDragStart: (state) => {
-        setStart(cartesianBox);
         onGesture({
           phase: GesturePhase.Start,
           intent: GestureIntent.Scroll,
@@ -72,7 +71,7 @@ export default (
           phase: GesturePhase.Continue,
           intent: GestureIntent.Scroll,
           start,
-          next: pan(start, state.movement, scaleX, scaleY),
+          next: pan(cartesianBox, state.delta, scaleX, scaleY),
           state,
           meta: [],
         });
@@ -126,15 +125,6 @@ export default (
             state,
             meta: ['trackpad'],
           });
-        } else {
-          onGesture({
-            phase: GesturePhase.Start,
-            intent: GestureIntent.Zoom,
-            start: cartesianBox,
-            next: cartesianBox,
-            state,
-            meta: ['wheel'],
-          });
         }
       },
       onWheel: (state) => {
@@ -149,26 +139,6 @@ export default (
             next: start.panX(disp(scaleX, state.movement[0]) * -1),
             state,
             meta: ['trackpad'],
-          });
-        } else {
-          const zoomIn = state.direction[1] > 0;
-          const next = zoom(
-            start,
-            zoomIn ? 1.2 : 0.8,
-            state.event,
-            scaleX,
-            scaleY,
-            containerNode
-          );
-          setStart(next);
-
-          onGesture({
-            intent: GestureIntent.Zoom,
-            phase: GesturePhase.Continue,
-            start,
-            next,
-            state,
-            meta: ['wheel'],
           });
         }
       },
@@ -187,15 +157,6 @@ export default (
             meta: ['trackpad'],
           });
           setStart(next);
-        } else {
-          onGesture({
-            intent: GestureIntent.Zoom,
-            phase: GesturePhase.End,
-            start,
-            next: start,
-            state,
-            meta: ['wheel'],
-          });
         }
       },
 
@@ -216,10 +177,12 @@ export default (
       onPinch: (state) => {
         state.event.preventDefault();
         state.event.stopPropagation();
-        console.log(state.movement[0], Math.pow(2, state.movement[0]));
+
+        console.log(state);
+
         const next = zoom(
           start,
-          1 * Math.pow(2, state.movement[0]),
+          Math.pow(2, state.movement[0]),
           state.event,
           scaleX,
           scaleY,
@@ -241,12 +204,14 @@ export default (
         state.event.stopPropagation();
         const next = zoom(
           start,
-          1 * Math.pow(2, state.movement[0]),
+          Math.pow(2, state.movement[0]),
           state.event,
           scaleX,
           scaleY,
           containerNode
         );
+
+        console.log('end', next);
 
         onGesture({
           intent: GestureIntent.Zoom,

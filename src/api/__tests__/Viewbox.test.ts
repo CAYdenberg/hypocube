@@ -1,7 +1,9 @@
+import deepFreeze from 'deep-freeze';
 import { Point } from '../../types';
 import Viewbox, { createViewboxFromData } from '../Viewbox';
 
 const initial = new Viewbox(5, 50, 10, 15);
+deepFreeze(initial);
 
 describe('Viewbox', () => {
   it('sets up a viewbox', () => {
@@ -55,6 +57,10 @@ describe('Viewbox', () => {
       expect(result).toHaveProperty('height', 7.5);
       expect(result.xMin).toEqual(initial.xMin);
       expect(result.yMin).toEqual(initial.yMin);
+    });
+    it('never changes if the factor is 1', () => {
+      const result = initial.zoom(1, [5, 50]);
+      expect(result.hash).toEqual(initial.hash);
     });
   });
 
