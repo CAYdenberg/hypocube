@@ -4,8 +4,142 @@ metaTitle: 'Bringing Hypocube charts to life'
 metaDescription: 'Bringing Hypocube charts to life'
 ---
 
-TODO: https://github.com/CAYdenberg/hypocube/issues/30
+import GestureDemo from '../../../sandbox/GestureDemo';
+
+Hypocube aims to make it easy to change the chart viewbox in response to basic mouse and touch gestures, including swipe and pinch zoom. To see how this works, consider the following example:
+
+```javascript
+const { onGesture, view, scrollToView } = usePannable([-10, -10, 20, 20]);
+
+return (
+  <React.Fragment>
+    <p>
+      Left: {view.xMin.toFixed(2)} | Right: {view.xMax.toFixed(2)} | Top:{' '}
+      {view.yMax.toFixed(2)} | Bottom: {view.yMin.toFixed(2)}
+    </p>
+    <p>
+      <button type="button" onClick={() => scrollToView(view.zoom(0.5))}>
+        Zoom Out
+      </button>
+      <button type="button" onClick={() => scrollToView(view.zoom(2))}>
+        Zoom In
+      </button>
+    </p>
+    <TheChart isCanvas={isCanvas} onGesture={onGesture} view={view} />
+  </React.Fragment>
+);
+```
+
+<GestureDemo isCanvas={true} />
+
+Hypocube aims to make it easy to change the chart viewbox in response to basic mouse and touch gestures, including swipe and pinch zoom. To see how this works, consider the following example:
+
+As you might have guessed, `TheChart` is not the interesting part here, it merely renders a bunch of concentric diamonds centered on the origin. This gives us a sense of what's happening. Try clicking and dragging, or, if you have a touch device, try swiping or pinch-zooming the chart.
+
+The "magic" is made possible by the `usePannable` hook, which works a bit like `useState`. The initial view (in the form `[xMin, yMin, width, height]`) is passed as an argument, and the hook returns some stuff that leds us read and manipulate the view. `view` and `onGesture` are just passed down to the `Chart` as props. We can also manipulate the view directly with `setView` and `scrollToView`. To do that, we first have to discuss how views are handled within Hypocube.
+
+## Manipulating the Viewbox
+
+When we create a chart, we generally pass a `view` prop consisting of an array of four numbers: `[xMin, yMin, width, height]`. Under the hood, Hypocube converts this to a `Viewbox` object that contains this data, and other useful properties (like the xMax). It also has a few useful methods for manipulating the view. (Note: `Viewbox` objects are immutable: the methods that return Viewboxes actually create new ones, leaving the original in tact).
+
+To create a Viewbox, use the `createViewbox` function, which can accept: (1) an array in the form above, or the four numbers as separate arguments.
+
+### Viewbox properties
+
+Props are public, but do not manipulate them directly:
+
+`xMin, xMax, yMin, yMax, width, height`
+
+### Viewbox methods that return viewboxes (chainable)
+
+`setEdges({ xMin: number, yMin: number, xMax: number, yMax: number }) => Viewbox` Replaces any edge (which is not undefinied), leaves the others in tact.
+
+`panX(distance: number) => Viewbox` Move the viewbox horizontally to the right. To move left, use a negative number.
+
+`panY(distance: number) => Viewbox` Move the viewbox vertically down. To move up, use a negative number.
+
+`zoom(factor: number, anchor?: [x, y]) => Viewbox` Zoom in (factors greater than 1) or out (factors less than 1). `anchor` defaults to the center of the current viewbox.
+
+`interpolate(final: Viewbox, progress: number) => Viewbox`. Returns a viewbox interpolated between `final` and the current view. `progress` would normally be between 0 and 1.
+
+`bound(boundingBox: Viewbox) => Viewbox`. Slide the current viewbox to fit within the bounding box. If the current view is too big, it will shrink just enough to fit.
+
+`constrainZoom({ maxZoomX: number, maxZoomY: number }): Viewbox`. Zoom the current viewbox out until its width is at least maxZoomX or its height is at least maxZoomY. Used to prevent the viewbox from getting zoomed in too far. To keep the viewbox from being zoomed _out_ too far, use `bound`.
+
+### Other Viewbox methods
+
+`toPath(): [number, number][]` Returns four points representing a rectangle around the current viewbox.
+
+`isEqual(test: Viewbox): boolean` Returns `true` when the current viewbox is _equivalent to_ (all four sides are the same as) `test`.
+
+`pointsWithinX(points: Point[]) => Point[]`. Filter out all points that don't fall within the viewbox on the x-axis.
+
+`pointsWithinY(points: Point[]) => Point[]`. Filter out all points that don't fall within the viewbox on the y-axis.
+
+### Viewbox manipulation examples
+
+With these methods we can do some useful things. For example:
+
+"Swipe" the viewbox right, but keep it within a bounding box. Then, rescale the y-axis to fit around the data in the new view.
+
+```javascript
+const next = view.panX(view.width).bound(boundingBox);
+return next.setEdges({
+  yMin: 0,
+  yMax: findExtremes(next.pointsWithinX(data)).yMax + 10,
+});
+```
+
+## usePannable
+
+`usePannable` acts like React's `useState`, but for viewboxes.
+
+```javascript
+const { view, setView, scrollToView, onGesture, isPanning } = usePannable(
+  [0, 0, 10, 10],
+  options
+);
+```
+
+The `onGesture` return value can be plugged directly into `<Chart />`
+
+```javascript
+const { view, setView, scrollToView, onGesture, isPanning } = usePannable(
+  [0, 0, 10, 10],
+  options
+);
+
+<Chart view={view} onGesture={onGesture}></Chart>;
+```
+
+while `setView` and `scrollToView` are used to otherwise manipulate the viewbox (e.g., with buttons). `isPanning` is a boolean that tells you whether the chart is currently in motion.
+
+### Options
+
+The following options are passed to `usePannable`:
+
+- `animationDuration: number` Total time for animation when a swipe gesture occurs or when `scrollToView` is called. Default: 600 ms.
+
+- `animationStepFunction: (progress: number) => number` Easing function to for the animation. Default: d3's [`easeCubicOut`](https://github.com/d3/d3-ease#easeCubicOut)
+
+- `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` When `onGesture` fires, it will return Hypocube's _best guess_ as to what the next viewbox should be. `rescale` is used to contain the viewbox to within certain bounds, or to change the axes in response to where the new viewbox is. See the examples above for how viewbox methods can be composed to produce different rescaling effects. The default is the identity function `view => view`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
 
 ## onGesture
 
-## usePannable
+Similar to Chart pointer events, Hypocube rescales and remaps the event associated with gestures to provide useful information about the chart. While in most cases it will be enough to plug the `onGesture` function returned by `usePannable` directly into the chart, it is also possible to compose your own gesture event handlers. The `ChartGestureEvent` objects created by Hypocube have the following properties:
+
+<PropDef name="next" type="Viewbox">
+  Hypocube's "guess" as to the Viewbox that should be created by scrolled to by
+  the gesture.
+</PropDef>
+<PropDef name="start" type="Viewbox">
+  The original viewbox before the gesture.
+</PropDef>
+<PropDef name="phase" type="'start' | 'continue' | 'end'"></PropDef>
+<PropDef name="intent" type="'scroll' | 'swipe' | 'zoom'"></PropDef>
+<PropDef name="state">
+  This contains the full{' '}
+  <a href="https://use-gesture.netlify.app/docs/state/">
+    gesture state object from '@use-gesture/react'
+  </a>
+</PropDef>

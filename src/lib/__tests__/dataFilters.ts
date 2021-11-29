@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { ChartState, Point } from '../../types';
 import * as lib from '../dataFilters';
-import { createViewbox } from '../Viewbox';
+import { createViewbox } from '../../api/Viewbox';
 
 describe('filterToView', () => {
   // construct a state for the chart in which the cartesian and px views

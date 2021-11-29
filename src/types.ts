@@ -2,7 +2,7 @@ import { ScaleLinear } from 'd3-scale';
 import React from 'react';
 import { CurveType, DashType } from './components/primitives/Line';
 import { SymbolType } from './components/primitives/Symbol';
-import Viewbox from './lib/Viewbox';
+import Viewbox from './api/Viewbox';
 
 /**
  * CHART STATE AND GENERAL DEFINITIONS
@@ -117,7 +117,7 @@ export type ChartEventMetaData = Record<
   string | number | boolean | null
 >;
 
-export interface ChartEventData {
+export interface ChartEvent {
   event: ReactEvent;
   pointerId: number | null;
   pointerPosition?: [number, number];
@@ -126,7 +126,7 @@ export interface ChartEventData {
   meta: ChartEventMetaData;
 }
 
-export type ChartEventHandler = (data: ChartEventData) => void;
+export type ChartEventHandler = (data: ChartEvent) => void;
 
 export type ChartEventHandlers = {
   [Property in keyof ReactHandlers]: ChartEventHandler;
@@ -153,7 +153,7 @@ export enum GestureMeta {
   Trackpad = 'Trackpad',
 }
 
-export interface ChartGestureData {
+export interface ChartGestureEvent {
   phase: GesturePhase;
   intent: GestureIntent;
   start: Viewbox;
@@ -163,7 +163,7 @@ export interface ChartGestureData {
 }
 
 export interface ChartGestureHandlers {
-  onGesture?: (data: ChartGestureData) => void;
+  onGesture?: (data: ChartGestureEvent) => void;
 }
 
 export interface ClipT {

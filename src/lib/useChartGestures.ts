@@ -1,8 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import useChartState from '../components/base/ChartState';
-import Viewbox from './Viewbox';
-import { GesturePhase, ChartGestureData, GestureIntent, Point } from '../types';
+import Viewbox from '../api/Viewbox';
+import {
+  GesturePhase,
+  ChartGestureEvent,
+  GestureIntent,
+  Point,
+} from '../types';
 import { ScaleLinear } from 'd3-scale';
 
 type SL = ScaleLinear<number, number, number>;
@@ -42,7 +47,7 @@ const zoom = (
 };
 
 export default (
-  onGesture: (data: ChartGestureData) => void = () => null,
+  onGesture: (data: ChartGestureEvent) => void = () => null,
   containerNode?: React.RefObject<HTMLDivElement>,
   enableMousewheelZoom?: boolean
 ) => {

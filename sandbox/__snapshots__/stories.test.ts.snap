@@ -22217,6 +22217,529 @@ exports[`Test: Filled line 1`] = `
 </div>
 `;
 
+exports[`Test: Gesture Demo 1`] = `
+Array [
+  <p>
+    Left: 
+    -10.00
+     | Right: 
+    10.00
+     | Top:
+     
+    10.00
+     | Bottom: 
+    -10.00
+  </p>,
+  <p>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Zoom Out
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Zoom In
+    </button>
+  </p>,
+  <div
+    style={
+      Object {
+        "maxWidth": 300,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "height": 300,
+          "maxWidth": undefined,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "touchAction": "manipulation",
+          }
+        }
+      >
+        <div>
+          <svg
+            height={300}
+            width={300}
+          >
+            <path
+              d="M150,150L150,150L150,150L150,150L150,150"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(255,255,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,75L225,150L150,225L75,150L150,75"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(230,230,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,0L300,150L150,300L0,150L150,0"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(204,204,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-75L375,150L150,375L-75,150L150,-75"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(179,179,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-150L450,150L150,450L-150,150L150,-150"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(153,153,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-225L525,150L150,525L-225,150L150,-225"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(128,128,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-300L600,150L150,600L-300,150L150,-300"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(102,102,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-375L675,150L150,675L-375,150L150,-375"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(77,77,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-450L750,150L150,750L-450,150L150,-450"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(51,51,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-525L825,150L150,825L-525,150L150,-525"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(25,25,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M150,-600L900,150L150,900L-600,150L150,-600"
+              fill="transparent"
+              opacity={1}
+              stroke="rgb(0,0,255)"
+              strokeWidth={1}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <g>
+              <path
+                d="M0,150L300,150"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <path
+                d="M0,150L0,160"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="middle"
+                  x={0}
+                  y={178}
+                >
+                  -10
+                </text>
+              </g>
+              <path
+                d="M75,150L75,160"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="middle"
+                  x={75}
+                  y={178}
+                >
+                  -5
+                </text>
+              </g>
+              <path
+                d="M150,150L150,160"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="middle"
+                  x={150}
+                  y={178}
+                >
+                  0
+                </text>
+              </g>
+              <path
+                d="M225,150L225,160"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="middle"
+                  x={225}
+                  y={178}
+                >
+                  5
+                </text>
+              </g>
+              <path
+                d="M300,150L300,160"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="middle"
+                  x={300}
+                  y={178}
+                >
+                  10
+                </text>
+              </g>
+            </g>
+            <g>
+              <path
+                d="M150,300L150,0"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <path
+                d="M150,300L140,300"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="end"
+                  x={138}
+                  y={306}
+                >
+                  -10
+                </text>
+              </g>
+              <path
+                d="M150,225L140,225"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="end"
+                  x={138}
+                  y={231}
+                >
+                  -5
+                </text>
+              </g>
+              <path
+                d="M150,150L140,150"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="end"
+                  x={138}
+                  y={156}
+                >
+                  0
+                </text>
+              </g>
+              <path
+                d="M150,75L140,75"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="end"
+                  x={138}
+                  y={81}
+                >
+                  5
+                </text>
+              </g>
+              <path
+                d="M150,0L140,0"
+                fill="transparent"
+                opacity={1}
+                stroke="#666"
+                strokeWidth={2}
+                style={
+                  Object {
+                    "pointerEvents": undefined,
+                  }
+                }
+              />
+              <g>
+                <text
+                  fill="#666"
+                  fontSize={16}
+                  style={
+                    Object {
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+                      "pointerEvents": undefined,
+                      "userSelect": "none",
+                    }
+                  }
+                  textAnchor="end"
+                  x={138}
+                  y={6}
+                >
+                  10
+                </text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Test: Homepage: Bar 1`] = `
 <div
   style={
@@ -22281,7 +22804,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={75.625}
               y={274}
             >
-              Jan
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22311,7 +22834,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={106.875}
               y={274}
             >
-              Feb
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22341,7 +22864,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={138.125}
               y={274}
             >
-              Mar
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22371,7 +22894,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={169.375}
               y={274}
             >
-              Apr
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22401,7 +22924,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={200.625}
               y={274}
             >
-              May
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22431,7 +22954,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={231.875}
               y={274}
             >
-              Jun
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22461,7 +22984,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={263.125}
               y={274}
             >
-              Jul
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22491,7 +23014,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={294.375}
               y={274}
             >
-              Aug
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22521,7 +23044,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={325.625}
               y={274}
             >
-              Sep
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22551,7 +23074,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={356.875}
               y={274}
             >
-              Oct
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22581,7 +23104,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={388.125}
               y={274}
             >
-              Nov
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22611,7 +23134,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={419.375}
               y={274}
             >
-              Dec
+              LOCALE STRING
             </text>
           </g>
         </g>
@@ -31160,7 +31683,7 @@ Array [
                   x={81.3}
                   y={274}
                 >
-                  Jan 2017
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31220,7 +31743,7 @@ Array [
                   x={166.5}
                   y={274}
                 >
-                  Jan 2018
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31280,7 +31803,7 @@ Array [
                   x={251.70000000000002}
                   y={274}
                 >
-                  Jan 2019
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31340,7 +31863,7 @@ Array [
                   x={336.9}
                   y={274}
                 >
-                  Jan 2020
+                  LOCALE STRING
                 </text>
               </g>
               <path

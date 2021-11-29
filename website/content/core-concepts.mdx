@@ -26,7 +26,7 @@ Usually, HTML is used to talk about content and CSS is used to talk about style.
 
 ## Responsiveness
 
-What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height. This allows a similar outcome to what can be achieved with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
+What about responsiveness? All chart styles are **contextual**: which means they can optionally be provided as functions of the chart's _actual_ width and height (in pixels). This allows a similar outcome to what can be achieved with media queries, except that they are constructed as functions of the width of the _chart_, not the whole page.
 
 [Read more about `ChartStyle`.](/basic-charts/2-chart-style)
 
@@ -50,24 +50,20 @@ Callbacks can also be passed to most chart elements to produce other types of in
 
 [Read More about Hypocube events.](/interaction/)
 
-## Composability
+## Basic definitions, conventions, and utilities
 
-Elements such as axes render a number of different sub-components, most of which can be replaced with render props. In cases where the `chartStyles` don't provide enough flexibility, nearly any sub-component can be completely replaced.
+Hypocube represents data through a `Point` that is simply a bipartite (2-member) array consisting of an `x` and `y` value respectively. Thus, a set of data can be represented through an array of Points (`Point[]`). This convention holds even when data is categorical (has no meaningful x-value outside of the chart). An array of numbers can be converted to an array of `Point`s by `arr.map((val, i) => [i, val])`.
 
-[See how you can compose new types of charts with render props.](/composing-charts/)
+A `Dataseries` is an object shaped like
 
-## SVG vs Canvas
+```
+{
+  data: Point[];
+  key: string;
+  meta: Record<string, boolean | string | number | null>
+}
+```
 
-Hypocube can render in either SVG or Canvas, with the sole difference being that event callbacks on _individual chart components won't be called during canvas rendering_ (event callbacks on the containing chart component still will be). The change is triggered by a single prop, so an SVG-rendered chart can be switched to canvas while animating and then switched back to re-active element interaction.
+As you might guess if you're familiar with React, the `key` is a convenience for mapping the Dataseries to child elements. `meta` can contain any other information about the series, but it is best to stick to JavaScript primatives, as Hypocube uses that assumption under the hood to compare props and improve performance.
 
-All provided components can be rendered server-side while in SVG mode, although a server-rendered chart won't automatically adapt to its container width.
-
-All Hypocube chart components are composed out of a small number of primitives. These primitives provide both SVG and canvas rendering information: therefore if render props are used to replace sub-components, canvas rendering will still work as long as these primitives are used as the building blocks for the new elements.
-
-[Read more about primitives.](/composing-charts/3-primitives/)
-
-## HTML layer
-
-Tooltips are a very common pattern in web charts. Hypocube allows rendering of HTML elements at absolute positions defined on the Cartesian scale.
-
-[Read more about tooltips.](/interaction/2-tooltips/)
+The "bounding box" of a chart is represented through a `Viewbox` object. They can be created with `createViewbox(xMin, yMin, width, height)`, for consistency with the SVG element `viewbox` attribute. Once created, however, these objects also contain their xMax and yMax, a few other useful properties, and some methods for moving them about and the like. There is much more detail about this in the [interaction section](./interaction/4-handling-gestures). Viewboxes are immutable.

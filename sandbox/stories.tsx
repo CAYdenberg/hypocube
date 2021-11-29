@@ -11,6 +11,7 @@ import HomepageTimeseries from './HomepageTimeseries';
 import HomepageBar from './HomepageBar';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
+import GestureDemo from './GestureDemo';
 
 interface Example {
   name: string;
@@ -229,6 +230,10 @@ const examples: Example[] = [
         />
       );
     },
+  },
+  {
+    name: 'Gesture Demo',
+    render: ({ isCanvas }) => <GestureDemo isCanvas={isCanvas} />,
   },
 ];
 
