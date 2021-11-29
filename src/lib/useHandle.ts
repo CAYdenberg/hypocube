@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import useChartState from '../components/base/ChartState';
 import {
-  ChartEventData,
+  ChartEvent,
   ChartEventMetaData,
   ChartEventHandlers,
   ReactEvent,
@@ -24,12 +24,12 @@ export default ({
   const { scaleX, scaleY } = useChartState();
 
   const getData = useCallback(
-    (event: ReactEvent): ChartEventData => {
+    (event: ReactEvent): ChartEvent => {
       const offsets = containerNode?.current
         ? containerNode.current.getBoundingClientRect()
         : null;
 
-      const data: ChartEventData = {
+      const data: ChartEvent = {
         meta: meta || {},
         elementPosition,
         event,

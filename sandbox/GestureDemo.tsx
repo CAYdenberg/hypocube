@@ -6,7 +6,7 @@ import {
   Line,
   getSeriesColors,
   usePannable,
-  ChartGestureData,
+  ChartGestureEvent,
   list,
   Viewbox,
 } from '../src';
@@ -42,7 +42,7 @@ export default GestureDemo;
 interface TheChartProps {
   isCanvas?: boolean;
   view: Viewbox;
-  onGesture: (data: ChartGestureData) => void;
+  onGesture: (data: ChartGestureEvent) => void;
 }
 
 const TheChart: React.FC<TheChartProps> = ({ isCanvas, view, onGesture }) => (

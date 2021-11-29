@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import {
   BarVerticalSeries,
   Chart,
-  ChartEventData,
+  ChartEvent,
   ChartStyleFunction,
   RangeVerticalSeries,
   XAxis,
@@ -52,7 +52,7 @@ const HomepageBar: React.FC<Props> = ({
   handleClearSelect,
 }) => {
   const onPointerOver = useCallback(
-    (data: ChartEventData) => {
+    (data: ChartEvent) => {
       if (!handlePointSelect || !data.elementPosition) return;
       handlePointSelect({
         series: data.meta.seriesName as string,

@@ -6,7 +6,7 @@ import useCanvas from '../../lib/useCanvas';
 import useContainerSizes from '../../lib/useContainerSizes';
 import { HandlerProps } from '../../lib/useHandle';
 import Viewbox, { createViewbox, ViewboxDuck } from '../../api/Viewbox';
-import { ChartGestureData, ChartStyleOptions, Point } from '../../types';
+import { ChartGestureEvent, ChartStyleOptions, Point } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
 import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
@@ -58,7 +58,7 @@ export interface Props extends HandlerProps {
    * Event handler for drag, pinch, swipe, and wheel gestures. See "Interaction"
    * for more information.
    */
-  onGesture?: (data: ChartGestureData) => void;
+  onGesture?: (data: ChartGestureEvent) => void;
   /**
    * An element, or array of elements, to be rendered outside of SVG (or canvas).
    * The Given in the form { position: [x, y], render: React element }. Useful

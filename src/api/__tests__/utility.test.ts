@@ -1,5 +1,27 @@
-import { Point } from '../..';
-import * as lib from '../seriesStyle';
+import * as lib from '../utility';
+import { Dataseries } from '../../types';
+
+describe('flatten', () => {
+  it('constructs a Voronoi diagram from a 2D series array', () => {
+    const series: Dataseries[] = [
+      {
+        key: 'One',
+        data: [
+          [0, 0],
+          [1, 3],
+        ],
+      },
+      {
+        key: 'Two',
+        data: [
+          [0, 2],
+          [1, 5],
+        ],
+      },
+    ];
+    expect(lib.flatten(series)).toHaveLength(4);
+  });
+});
 
 describe('getColors', () => {
   it('creates colors from the provided palette', () => {
@@ -41,44 +63,5 @@ describe('getBarOffsets', () => {
     expect(resultFunc).toBeInstanceOf(Function);
 
     expect(resultFunc()).toEqual(-15);
-  });
-});
-
-describe('findExtremes', () => {
-  const data: Point[] = [
-    [-1, 0],
-    [-1, 1],
-    [0, 2],
-    [4, 7],
-    [4, 7],
-    [4, 7],
-    [5, 3],
-    [6, 4],
-    [6, 5],
-  ];
-
-  it('finds the extremes of a series', () => {
-    expect(lib.findExtremes(data)).toEqual({
-      xMin: -1,
-      xMax: 6,
-      yMin: 0,
-      yMax: 7,
-    });
-  });
-
-  it('finds the extremes of a dataseries', () => {
-    const dataseries = [
-      {
-        data,
-        key: 'mydata',
-      },
-    ];
-
-    expect(lib.findExtremes(dataseries)).toEqual({
-      xMin: -1,
-      xMax: 6,
-      yMin: 0,
-      yMax: 7,
-    });
   });
 });

@@ -1,4 +1,5 @@
-import Viewbox from '../Viewbox';
+import { Point } from '../../types';
+import Viewbox, { createViewboxFromData } from '../Viewbox';
 
 const initial = new Viewbox(5, 50, 10, 15);
 
@@ -146,5 +147,42 @@ describe('Viewbox', () => {
       });
       expect(result.hash).toEqual(initial.hash);
     });
+  });
+});
+
+describe('createViewboxFromData', () => {
+  const data: Point[] = [
+    [-1, 0],
+    [-1, 1],
+    [0, 2],
+    [4, 7],
+    [4, 7],
+    [4, 7],
+    [5, 3],
+    [6, 4],
+    [6, 5],
+  ];
+
+  it('finds the extremes of a series', () => {
+    const view = createViewboxFromData(data);
+    expect(view).toHaveProperty('xMin', -1);
+    expect(view).toHaveProperty('xMax', 6);
+    expect(view).toHaveProperty('yMin', 0);
+    expect(view).toHaveProperty('yMax', 7);
+  });
+
+  it('finds the extremes of a dataseries', () => {
+    const dataseries = [
+      {
+        data,
+        key: 'mydata',
+      },
+    ];
+
+    const view = createViewboxFromData(dataseries);
+    expect(view).toHaveProperty('xMin', -1);
+    expect(view).toHaveProperty('xMax', 6);
+    expect(view).toHaveProperty('yMin', 0);
+    expect(view).toHaveProperty('yMax', 7);
   });
 });

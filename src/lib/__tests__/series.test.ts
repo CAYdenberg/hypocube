@@ -1,27 +1,5 @@
 import { Dataseries } from '../../types';
-import { flatten, extractFromFlat } from '../series';
-
-describe('flatten', () => {
-  it('constructs a Voronoi diagram from a 2D series array', () => {
-    const series: Dataseries[] = [
-      {
-        key: 'One',
-        data: [
-          [0, 0],
-          [1, 3],
-        ],
-      },
-      {
-        key: 'Two',
-        data: [
-          [0, 2],
-          [1, 5],
-        ],
-      },
-    ];
-    expect(flatten(series)).toHaveLength(4);
-  });
-});
+import { extractFromFlat } from '../series';
 
 describe('extractFromFlat', () => {
   it('finds the coordinates of the point based on the coordinates in the flatten array', () => {

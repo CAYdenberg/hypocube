@@ -1,12 +1,22 @@
 import interpolate from 'color-interpolate';
 import { Dataseries, Point } from '..';
-import { flatten } from '../lib/series';
 import { Contextual, ChartStyleFunction } from '../types';
 
 export const list = <T>(
   length: number,
   getValue: (index: number) => T
 ): Array<T> => Array.from({ length }, (_, i) => getValue(i));
+
+const isDataseries = (input: Point[] | Dataseries[]): input is Dataseries[] => {
+  if (!input.length) return false;
+  if ((input[0] as Dataseries).data) return true;
+  return false;
+};
+
+export const flatten = (series: Dataseries[] | Point[]) => {
+  if (!isDataseries(series)) return series;
+  return series.reduce((acc, series) => acc.concat(series.data), [] as Point[]);
+};
 
 export const getSeriesOffsets = (
   stepSize: Contextual<number>,
@@ -30,29 +40,4 @@ export const getSeriesColors = (
 ): string[] => {
   const map = interpolate(palette);
   return Array.from({ length: numSeries }, (_, i) => map(i / (numSeries - 1)));
-};
-
-export const findExtremes = (data: Point[] | Dataseries[]) => {
-  const flat = flatten(data);
-  let xMin = flat[0][0];
-  let xMax = flat[0][0];
-  let yMin = flat[0][1];
-  let yMax = flat[0][1];
-  flat.forEach((point) => {
-    const [x, y] = point;
-    if (x < xMin) {
-      xMin = x;
-    }
-    if (x > xMax) {
-      xMax = x;
-    }
-    if (y < yMin) {
-      yMin = y;
-    }
-    if (y > yMax) {
-      yMax = y;
-    }
-  });
-
-  return { xMin, xMax, yMin, yMax };
 };

@@ -6,7 +6,7 @@ import {
   ChartStyleOptions,
   YAxis,
   usePannable,
-  findExtremes,
+  createViewboxFromData,
 } from '../src';
 
 interface Props {
@@ -34,7 +34,7 @@ const Pannable: React.FC<Props> = ({
     rescale: (view) => {
       const bounded = view.bound(bounds);
       return bounded.setEdges({
-        yMax: findExtremes(bounded.pointsWithinX(series)).yMax + 20,
+        yMax: createViewboxFromData(bounded.pointsWithinX(series)).yMax + 20,
         yMin: 0,
       });
     },
