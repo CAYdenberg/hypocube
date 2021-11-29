@@ -22804,7 +22804,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={75.625}
               y={274}
             >
-              Jan.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22834,7 +22834,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={106.875}
               y={274}
             >
-              Feb.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22864,7 +22864,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={138.125}
               y={274}
             >
-              Mar.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22894,7 +22894,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={169.375}
               y={274}
             >
-              Apr.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22924,7 +22924,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={200.625}
               y={274}
             >
-              May
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22954,7 +22954,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={231.875}
               y={274}
             >
-              Jun.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -22984,7 +22984,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={263.125}
               y={274}
             >
-              Jul.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -23014,7 +23014,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={294.375}
               y={274}
             >
-              Aug.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -23044,7 +23044,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={325.625}
               y={274}
             >
-              Sep.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -23074,7 +23074,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={356.875}
               y={274}
             >
-              Oct.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -23104,7 +23104,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={388.125}
               y={274}
             >
-              Nov.
+              LOCALE STRING
             </text>
           </g>
           <path
@@ -23134,7 +23134,7 @@ exports[`Test: Homepage: Bar 1`] = `
               x={419.375}
               y={274}
             >
-              Dec.
+              LOCALE STRING
             </text>
           </g>
         </g>
@@ -31683,7 +31683,7 @@ Array [
                   x={81.3}
                   y={274}
                 >
-                  Jan. 2017
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31743,7 +31743,7 @@ Array [
                   x={166.5}
                   y={274}
                 >
-                  Jan. 2018
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31803,7 +31803,7 @@ Array [
                   x={251.70000000000002}
                   y={274}
                 >
-                  Jan. 2019
+                  LOCALE STRING
                 </text>
               </g>
               <path
@@ -31863,7 +31863,7 @@ Array [
                   x={336.9}
                   y={274}
                 >
-                  Jan. 2020
+                  LOCALE STRING
                 </text>
               </g>
               <path
