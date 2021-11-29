@@ -84,7 +84,7 @@ With these methods we can do some useful things. For example:
 const next = view.panX(view.width).bound(boundingBox);
 return next.setEdges({
   yMin: 0,
-  yMax: findExtremes(next.pointsWithinX(dataSeries)).yMax + 10,
+  yMax: findExtremes(next.pointsWithinX(data)).yMax + 10,
 });
 ```
 
