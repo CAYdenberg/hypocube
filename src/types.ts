@@ -156,10 +156,8 @@ export enum GestureMeta {
 export interface ChartGestureEvent {
   phase: GesturePhase;
   intent: GestureIntent;
-  start: Viewbox;
-  next: Viewbox;
-  // meta: Array<GestureMeta>;
   state: any;
+  transform: (initial: Viewbox) => Viewbox;
 }
 
 export interface ChartGestureHandlers {

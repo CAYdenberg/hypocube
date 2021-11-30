@@ -50,16 +50,16 @@ export default (
   const [isGesturing, setIsGesturing] = useState(false);
 
   const onGesture = useCallback(
-    (data: ChartGestureEvent) => {
-      if (data.phase === GesturePhase.Start) {
+    (event: ChartGestureEvent) => {
+      if (event.phase === GesturePhase.Start) {
         setIsGesturing(true);
-      } else if (data.phase === GesturePhase.End) {
+      } else if (event.phase === GesturePhase.End) {
         setIsGesturing(false);
       }
 
-      const next = createViewbox(_options.rescale(data.next, data));
+      const next = createViewbox(_options.rescale(event.transform(state)));
 
-      if (data.intent === GestureIntent.Swipe) {
+      if (event.intent === GestureIntent.Swipe) {
         dispatch(makeAnimation(state, next, _options));
       } else {
         dispatch(next);
