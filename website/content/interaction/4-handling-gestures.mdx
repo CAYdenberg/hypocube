@@ -80,19 +80,50 @@ Props are public, but do not manipulate them directly:
 
 With these methods we can do some useful things. For example:
 
-"Swipe" the viewbox right, but keep it within a bounding box. Then, rescale the y-axis to fit around the data in the new view.
+#### Panning example
+
+Pan the viewbox right, but keep it within a bounding box. Then, rescale the y-axis to fit around the data in the new view.
 
 ```javascript
 const next = view.panX(view.width).bound(boundingBox);
 return next.setEdges({
   yMin: 0,
-  yMax: findExtremes(next.pointsWithinX(data)).yMax + 10,
+  yMax: createViewboxFromData(next.pointsWithinX(data)).yMax + 10,
 });
+```
+
+#### Pan to end example
+
+Pan the viewbox to the right end of the bounding box, keeping the same y-axis and width:
+
+```javascript
+return view.setEdges({
+  xMax: boundingBox.xMax,
+  xMin: view.xMax - view.width,
+});
+```
+
+#### Zooming example
+
+Zoom in by 200% on the xAxis, within reason, but keep the y-axis the same:
+
+```javascript
+return view
+  .zoom(2)
+  .constrainZoom({
+    maxZoomX: MAX_ZOOM_X,
+  })
+  .setEdges({
+    yMin: view.yMin,
+    yMax: view.yMax,
+  });
 ```
 
 ## usePannable
 
-`usePannable` acts like React's `useState`, but for viewboxes.
+Now that we understand how to manipulate viewboxes, let's see how to use them in practice.
+
+The `usePannable` hook acts like React's `useState`, but for viewboxes.
 
 ```javascript
 const { view, setView, scrollToView, onGesture, isPanning } = usePannable(
@@ -116,24 +147,20 @@ while `setView` and `scrollToView` are used to otherwise manipulate the viewbox 
 
 ### Options
 
-The following options are passed to `usePannable`:
+The following options are passed to `usePannable` as the second argument:
 
 - `animationDuration: number` Total time for animation when a swipe gesture occurs or when `scrollToView` is called. Default: 600 ms.
 
 - `animationStepFunction: (progress: number) => number` Easing function to for the animation. Default: d3's [`easeCubicOut`](https://github.com/d3/d3-ease#easeCubicOut)
 
-- `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` When `onGesture` fires, it will return Hypocube's _best guess_ as to what the next viewbox should be. `rescale` is used to contain the viewbox to within certain bounds, or to change the axes in response to where the new viewbox is. See the examples above for how viewbox methods can be composed to produce different rescaling effects. The default is the identity function `view => view`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
+- `rescale: (viewbox: Viewbox, gestureData?: ChartGestureEvent) => Viewbox` The `onGesture` event handler created by `usePannable` will automatically move the viewbox by in response to drag and swipe gestures. The `rescale` option can be used to apply constraints to this automatic movement. The default is the identity function `view => view`. The same function is also applied after `setView` and `scrollToView`. If desired, the entire ChartGestureEvent (see below) is also passed as a second argument when this is function is called in response to a gesture event (it is not passed if triggered by `scrollToView`).
 
 ## onGesture
 
 Similar to Chart pointer events, Hypocube rescales and remaps the event associated with gestures to provide useful information about the chart. While in most cases it will be enough to plug the `onGesture` function returned by `usePannable` directly into the chart, it is also possible to compose your own gesture event handlers. The `ChartGestureEvent` objects created by Hypocube have the following properties:
 
-<PropDef name="next" type="Viewbox">
-  Hypocube's "guess" as to the Viewbox that should be created by scrolled to by
-  the gesture.
-</PropDef>
-<PropDef name="start" type="Viewbox">
-  The original viewbox before the gesture.
+<PropDef name="transform" type="(initial: Viewbox) => Viewbox">
+  A function to update the viewbox based on its current value.
 </PropDef>
 <PropDef name="phase" type="'start' | 'continue' | 'end'"></PropDef>
 <PropDef name="intent" type="'scroll' | 'swipe' | 'zoom'"></PropDef>
