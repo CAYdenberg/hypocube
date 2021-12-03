@@ -190,7 +190,6 @@ export const PxLine: React.FC<Props> = (props) => {
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}
       opacity={opacity}
       style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
-      clipPath={clip ? `url(#${clip.id})` : undefined}
     />
   );
 };

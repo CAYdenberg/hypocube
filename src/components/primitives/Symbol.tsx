@@ -145,20 +145,18 @@ const Symbol: React.FC<SymbolProps> = (props) => {
   if (!line) return null;
 
   return (
-    <g clipPath={clip ? `url(#${clip.id})` : undefined}>
-      <g
-        style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
-        transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
-      >
-        <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
-        <path
-          d={line}
-          stroke={stroke}
-          fill={fill || 'transparent'}
-          strokeWidth={strokeWidth}
-          opacity={opacity}
-        />
-      </g>
+    <g
+      style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
+      transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
+    >
+      <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
+      <path
+        d={line}
+        stroke={stroke}
+        fill={fill || 'transparent'}
+        strokeWidth={strokeWidth}
+        opacity={opacity}
+      />
     </g>
   );
 };

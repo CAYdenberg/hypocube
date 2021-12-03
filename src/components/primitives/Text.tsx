@@ -75,27 +75,23 @@ const Text: React.FC<Props> = (props) => {
     align === 'center' ? 'middle' : align === 'right' ? 'end' : 'start';
 
   return (
-    <g clipPath={clip ? `url(#${clip.id})` : undefined}>
-      <text
-        x={x}
-        y={y}
-        fill={color}
-        fontSize={fontSize}
-        style={{
-          fontFamily: font,
-          pointerEvents: svgPointerEvents ? undefined : 'none',
-          userSelect: 'none',
-        }}
-        textAnchor={svgAnchor}
-        transform={
-          rotation
-            ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})`
-            : undefined
-        }
-      >
-        {text}
-      </text>
-    </g>
+    <text
+      x={x}
+      y={y}
+      fill={color}
+      fontSize={fontSize}
+      style={{
+        fontFamily: font,
+        pointerEvents: svgPointerEvents ? undefined : 'none',
+        userSelect: 'none',
+      }}
+      textAnchor={svgAnchor}
+      transform={
+        rotation ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})` : undefined
+      }
+    >
+      {text}
+    </text>
   );
 };
 

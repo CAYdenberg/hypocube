@@ -167,6 +167,7 @@ export interface ChartGestureHandlers {
 export interface ClipT {
   render: CanvasComponent;
   id: string;
+  svgPath: string;
 }
 
 export interface Dataseries {
