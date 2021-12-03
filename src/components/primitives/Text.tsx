@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { DEFAULT_FONT_FAMILY } from '../../constants';
 import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
-import { ChartClipContext } from './Clip';
+import { useClip } from './Clip';
 
 export interface Props {
   position: Point;
@@ -39,7 +39,7 @@ export interface Props {
 
 const Text: React.FC<Props> = (props) => {
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
-  const clip = useContext(ChartClipContext);
+  const clip = useClip();
 
   const { position, text } = props;
 
@@ -56,9 +56,7 @@ const Text: React.FC<Props> = (props) => {
 
   pushToCanvasQueue &&
     pushToCanvasQueue((renderer, dpr) => {
-      if (clip) {
-        clip.render(renderer, dpr);
-      }
+      clip(renderer, dpr);
       renderer.font = `${fontSize}px ${font}`;
       renderer.translate(x, y);
       renderer.rotate(rotation);

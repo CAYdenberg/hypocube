@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, LineSeries, list, XAxis, YAxis } from '../src';
+import { AreaSeries, Chart, LineSeries, list, XAxis, YAxis } from '../src';
 import { bottomLine, topLine } from './__data__/spain-vax-timeline';
 
 const COLORS = ['#003f5c', '#bc5090'];
@@ -19,6 +19,14 @@ const AreaChart: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
       <LineSeries
         data={bottomLine}
         chartStyle={{ dataLineStroke: COLORS[1] }}
+      />
+      <AreaSeries
+        topLine={topLine}
+        bottomLine={bottomLine}
+        chartStyle={{
+          dataLineStroke: 'black',
+          dataLineStrokeWidth: 2,
+        }}
       />
     </Chart>
   );

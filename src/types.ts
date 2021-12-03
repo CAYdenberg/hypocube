@@ -164,12 +164,6 @@ export interface ChartGestureHandlers {
   onGesture?: (data: ChartGestureEvent) => void;
 }
 
-export interface ClipT {
-  render: CanvasComponent;
-  id: string;
-  svgPath: string;
-}
-
 export interface Dataseries {
   data: Point[];
   key: string;

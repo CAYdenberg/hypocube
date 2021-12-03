@@ -9,9 +9,9 @@ import {
   symbolTriangle,
   symbolWye,
 } from 'd3-shape';
-import React, { useContext } from 'react';
+import React from 'react';
 import useChartState from '../base/ChartState';
-import { ChartClipContext } from './Clip';
+import { useClip } from './Clip';
 
 export type SymbolType =
   | 'circle'
@@ -105,7 +105,7 @@ const Symbol: React.FC<SymbolProps> = (props) => {
     ...props,
   };
   const { scaleX, scaleY, pushToCanvasQueue, isCanvas } = useChartState();
-  const clip = useContext(ChartClipContext);
+  const clip = useClip();
 
   const symbolF = getD3Symbol(symbol);
   if (!symbolF) {
@@ -116,9 +116,7 @@ const Symbol: React.FC<SymbolProps> = (props) => {
 
   pushToCanvasQueue &&
     pushToCanvasQueue((renderer, dpr) => {
-      if (clip) {
-        clip.render(renderer, dpr);
-      }
+      clip(renderer, dpr);
       const line = d3Symbol(symbolF, size * 8).context(renderer);
 
       renderer.setTransform(dpr, 0, 0, dpr, pxPoint[0] * dpr, pxPoint[1] * dpr);
