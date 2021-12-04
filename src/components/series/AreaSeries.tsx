@@ -16,7 +16,7 @@ import { normalize } from '../../lib/normalize';
 
 interface LineSeriesProps {
   topLine: Point[];
-  bottomLine: Point[];
+  bottomLine?: Point[];
   chartStyle?: ChartStyleOptions;
   handlerMeta?: ChartEventMetaData;
   view?: ViewboxDuck | null;

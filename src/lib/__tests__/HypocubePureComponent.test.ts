@@ -10,6 +10,16 @@ describe('custom isEqual', () => {
     expect(isEqual({ a: 1, b: 'one' }, { a: 2, b: 'two' })).toBeFalsy();
   });
 
+  it('with an additional property', () => {
+    expect(
+      isEqual({ a: 1, b: 'one' }, { a: 1, b: 'one', c: true })
+    ).toBeFalsy();
+  });
+
+  it('with a missing property', () => {
+    expect(isEqual({ a: 1, b: 'one' }, { a: 1 })).toBeFalsy();
+  });
+
   it('with equal viewbox', () => {
     const a = new Viewbox(0, 0, 10, 10);
     const b = new Viewbox(0, 0, 10, 10);
@@ -19,6 +29,30 @@ describe('custom isEqual', () => {
   it('with unequal viewbox', () => {
     const a = new Viewbox(0, 0, 10, 10);
     const b = new Viewbox(0, 0, 10, 20);
+    expect(isEqual({ a }, { a: b })).toBeFalsy();
+  });
+
+  it('with equal Points', () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+    ];
+    const b = [
+      [1, 2],
+      [3, 4],
+    ];
+    expect(isEqual({ a }, { a: b })).toBeTruthy();
+  });
+
+  it('with unequal Points', () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+    ];
+    const b = [
+      [1, 2],
+      [3, 5],
+    ];
     expect(isEqual({ a }, { a: b })).toBeFalsy();
   });
 
@@ -40,15 +74,5 @@ describe('custom isEqual', () => {
       series: 'green',
     };
     expect(isEqual({ a }, { a: b })).toBeFalsy();
-  });
-
-  it('with an additional property', () => {
-    expect(
-      isEqual({ a: 1, b: 'one' }, { a: 1, b: 'one', c: true })
-    ).toBeFalsy();
-  });
-
-  it('with a missing property', () => {
-    expect(isEqual({ a: 1, b: 'one' }, { a: 1 })).toBeFalsy();
   });
 });
