@@ -24,13 +24,6 @@ const isIndexed = (prop: any): prop is ChartStyleT | ChartEventMetaData => {
   return prop && typeof prop === 'object';
 };
 
-const arrayIsEqual = (a: Array<any>, b: Array<any>, depth: number = 0) => {
-  if (a.length !== b.length) {
-    return false;
-  }
-  return true;
-};
-
 export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
   if (depth > 1) {
     return a === b;
@@ -49,9 +42,6 @@ export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
           return true;
         }
         return !valA.isEqual(valB);
-      }
-      if (Array.isArray(valA) && Array.isArray(valB)) {
-        return !arrayIsEqual(valA, valB);
       }
       if (isIndexed(valA) && isIndexed(valB)) {
         return !isEqual(valA as Props, valB as Props, depth + 1);
