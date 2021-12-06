@@ -1,14 +1,16 @@
 import React, { PropsWithChildren, ReactElement, ReactFragment } from 'react';
 import { ChartEventMetaData, ChartStyleT } from '../types';
 import Viewbox from '../api/Viewbox';
+import { Point } from '..';
+
+type Primitive = string | number | boolean | null;
 
 export type Props = PropsWithChildren<
   Record<
     string,
-    | string
-    | number
-    | boolean
-    | null
+    | Primitive
+    | Array<Primitive>
+    | Array<Point>
     | Viewbox
     | ChartEventMetaData
     | ChartStyleT
@@ -19,10 +21,14 @@ export type Props = PropsWithChildren<
 >;
 
 const isIndexed = (prop: any): prop is ChartStyleT | ChartEventMetaData => {
-  return prop && !Array.isArray(prop) && typeof prop === 'object';
+  return prop && typeof prop === 'object';
 };
 
-export const isEqual = (a: Props, b: Props): boolean => {
+export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
+  if (depth > 1) {
+    return a === b;
+  }
+
   const aKeys = Object.keys(a);
   const missingInA = Object.keys(b).find((key) => !aKeys.includes(key));
 
@@ -35,18 +41,10 @@ export const isEqual = (a: Props, b: Props): boolean => {
         if (!(valB instanceof Viewbox)) {
           return true;
         }
-        return (
-          valA.xMin !== valB.xMin ||
-          valA.yMin !== valB.yMin ||
-          valA.xMax !== valB.xMax ||
-          valA.yMax !== valB.yMax
-        );
+        return !valA.isEqual(valB);
       }
-      if (isIndexed(valA)) {
-        if (!isIndexed(valB)) {
-          return true;
-        }
-        return !isEqual(valA as Props, valB as Props);
+      if (isIndexed(valA) && isIndexed(valB)) {
+        return !isEqual(valA as Props, valB as Props, depth + 1);
       }
       return valA !== valB;
     })

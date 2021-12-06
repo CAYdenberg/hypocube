@@ -81,6 +81,8 @@ export interface ChartStyleT {
   dataWhiskerBottomCapLength: number;
   dataWhiskerStroke: string;
   dataWhiskerStrokeWidth: number;
+
+  dataAreaFill: string;
 }
 
 type CreateChartStyleOptions<T> = {
@@ -162,11 +164,6 @@ export interface ChartGestureEvent {
 
 export interface ChartGestureHandlers {
   onGesture?: (data: ChartGestureEvent) => void;
-}
-
-export interface ClipT {
-  render: CanvasComponent;
-  id: string;
 }
 
 export interface Dataseries {

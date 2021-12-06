@@ -7,6 +7,7 @@ export * from './components/furniture/TickMarks';
 export * from './components/series/BarSeries';
 export * from './components/series/LineSeries';
 export * from './components/series/RangeSeries';
+export * from './components/series/AreaSeries';
 
 export * from './components/data/DataPoint';
 export * from './components/data/DataRange';

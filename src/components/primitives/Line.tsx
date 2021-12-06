@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   curveBasisOpen,
   curveCardinalOpen,
@@ -11,7 +11,7 @@ import {
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
 import { DASHED_LINE, DOTTED_LINE } from '../../constants';
-import { ChartClipContext } from './Clip';
+import { useClip } from './Clip';
 
 export type CurveType = 'linear' | 'cardinal' | 'natural' | 'basis' | 'step';
 export type DashType = 'solid' | 'dashed' | 'dotted' | Array<number> | null;
@@ -138,13 +138,11 @@ export const PxLine: React.FC<Props> = (props) => {
   const dashArray = getDashArray(dash);
 
   const { pushToCanvasQueue, isCanvas } = useChartState();
-  const clip = useContext(ChartClipContext);
+  const clip = useClip();
 
   pushToCanvasQueue &&
     pushToCanvasQueue((renderer, dpr) => {
-      if (clip) {
-        clip.render(renderer, dpr);
-      }
+      clip(renderer, dpr);
 
       const line = d3Line()
         .curve(curveFactory)
@@ -190,7 +188,6 @@ export const PxLine: React.FC<Props> = (props) => {
       strokeDasharray={dashArray ? dashArray.join(',') : undefined}
       opacity={opacity}
       style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
-      clipPath={clip ? `url(#${clip.id})` : undefined}
     />
   );
 };

@@ -48,6 +48,8 @@ const baseStyle: ChartStyleT = {
   dataWhiskerBottomCapLength: 10,
   dataWhiskerStroke: '#000',
   dataWhiskerStrokeWidth: 2,
+
+  dataAreaFill: 'rgba(102, 102, 102, 0.2)',
 };
 
 const contextualizeStyle = (

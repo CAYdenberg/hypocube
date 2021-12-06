@@ -12,6 +12,7 @@ import HomepageBar from './HomepageBar';
 import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 import GestureDemo from './GestureDemo';
+import AreaChart from './AreaChart';
 
 interface Example {
   name: string;
@@ -68,6 +69,39 @@ const examples: Example[] = [
             ]}
             fill="#000"
           />
+        </Clip>
+      </Chart>
+    ),
+  },
+  {
+    name: 'Multiple clip',
+    render: ({ isCanvas }) => (
+      <Chart height={300} view={[-10, -10, 110, 110]} isCanvas={isCanvas}>
+        <Clip
+          path={[
+            [0, 0],
+            [50, 0],
+            [50, 50],
+            [0, 50],
+          ]}
+        >
+          <Clip
+            path={[
+              [25, 75],
+              [25, 0],
+              [50, 0],
+              [50, 75],
+            ]}
+          >
+            <Line
+              path={[
+                [0, 0],
+                [25, 75],
+                [50, 0],
+              ]}
+              fill="#000"
+            />
+          </Clip>
         </Clip>
       </Chart>
     ),
@@ -178,6 +212,10 @@ const examples: Example[] = [
   {
     name: 'Multiple Series',
     render: ({ isCanvas }) => <MultipleSeries isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Area Chart',
+    render: ({ isCanvas }) => <AreaChart isCanvas={isCanvas} />,
   },
   {
     name: 'Multiple Bar Series',
