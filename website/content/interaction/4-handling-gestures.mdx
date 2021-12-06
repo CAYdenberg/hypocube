@@ -42,7 +42,7 @@ The "magic" is made possible by the `usePannable` hook, which works a bit like `
 
 When we create a chart, we generally pass a `view` prop consisting of an array of four numbers: `[xMin, yMin, width, height]`. Under the hood, Hypocube converts this to a `Viewbox` object that contains this data, and other useful properties (like the xMax). It also has a few useful methods for manipulating the view. (Note: `Viewbox` objects are immutable: the methods that return Viewboxes actually create new ones, leaving the original in tact).
 
-To create a Viewbox, use the `createViewbox` function, which can accept: (1) an array in the form above, or the four numbers as separate arguments.
+To create a Viewbox, use the `createViewbox` function, which can accept: (1) an array in the form above, or the four numbers as separate arguments. You can also use `createViewboxFromData`, which accepts an array of Points, and will return the smallest viewbox that fits around all of them.
 
 ### Viewbox properties
 
@@ -85,11 +85,14 @@ With these methods we can do some useful things. For example:
 Pan the viewbox right, but keep it within a bounding box. Then, rescale the y-axis to fit around the data in the new view.
 
 ```javascript
-const next = view.panX(view.width).bound(boundingBox);
-return next.setEdges({
-  yMin: 0,
-  yMax: createViewboxFromData(next.pointsWithinX(data)).yMax + 10,
-});
+const bounded = view.panX(view.width).bound(boundingBox);
+const fitted = createViewboxFromData(next.pointsWithinX(data));
+return fitted
+  ? next.setEdges({
+      yMin: 0,
+      yMax: fitted.yMax + 10,
+    })
+  : bounded;
 ```
 
 #### Pan to end example

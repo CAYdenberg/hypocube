@@ -199,8 +199,14 @@ export const createViewbox: ViewboxFactory = (
   );
 };
 
-export const createViewboxFromData = (data: Point[] | Dataseries[]) => {
+export const createViewboxFromData = (
+  data: Point[] | Dataseries[]
+): Viewbox | null => {
   const flat = flatten(data);
+  if (!flat.length) {
+    return new Viewbox(0, 0, 0, 0);
+  }
+
   let xMin = flat[0][0];
   let xMax = flat[0][0];
   let yMin = flat[0][1];
