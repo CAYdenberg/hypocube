@@ -20,14 +20,7 @@ const AreaChart: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
         data={bottomLine}
         chartStyle={{ dataLineStroke: COLORS[1] }}
       />
-      <AreaSeries
-        topLine={topLine}
-        bottomLine={bottomLine}
-        chartStyle={{
-          dataLineStroke: 'black',
-          dataLineStrokeWidth: 2,
-        }}
-      />
+      <AreaSeries topLine={topLine} bottomLine={bottomLine} />
     </Chart>
   );
 };

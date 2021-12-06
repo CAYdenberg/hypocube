@@ -46,8 +46,7 @@ export const AreaSeries: React.FC<LineSeriesProps & ChartEventHandlers> = (
             <Line
               path={areaUnder}
               strokeWidth={0}
-              fill="#003f5c"
-              opacity={0.3}
+              fill={chartStyle.dataAreaFill}
             />
           </Clip>
         )}

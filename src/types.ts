@@ -81,6 +81,8 @@ export interface ChartStyleT {
   dataWhiskerBottomCapLength: number;
   dataWhiskerStroke: string;
   dataWhiskerStrokeWidth: number;
+
+  dataAreaFill: string;
 }
 
 type CreateChartStyleOptions<T> = {
