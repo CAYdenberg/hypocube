@@ -185,4 +185,10 @@ describe('createViewboxFromData', () => {
     expect(view).toHaveProperty('yMin', 0);
     expect(view).toHaveProperty('yMax', 7);
   });
+
+  it('returns a collapsed viewbox if there is no data', () => {
+    const view = createViewboxFromData([]);
+    expect(view).toHaveProperty('width', 0);
+    expect(view).toHaveProperty('height', 0);
+  });
 });
