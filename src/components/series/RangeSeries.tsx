@@ -14,6 +14,7 @@ import { DataRangeCap, DataPointProps } from '../data/DataPoint';
 import { DataRangeVertical, DataRangeVerticalProps } from '../data/DataRange';
 import Handle from '../primitives/Handle';
 import Clip from '../primitives/Clip';
+
 interface RangeSeriesProps {
   data: Array<PointYRange>;
   chartStyle?: ChartStyleOptions;

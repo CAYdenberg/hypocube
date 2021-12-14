@@ -3,8 +3,8 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import {
   Chart,
   BarVerticalSeries,
-  LineSeries,
   RangeVerticalSeries,
+  LineSeries,
   XAxis,
   YAxis,
   getSeriesColors,
@@ -13,8 +13,8 @@ import {
 const scope = {
   Chart,
   BarVerticalSeries,
-  LineSeries,
   RangeVerticalSeries,
+  LineSeries,
   XAxis,
   YAxis,
   getSeriesColors,
