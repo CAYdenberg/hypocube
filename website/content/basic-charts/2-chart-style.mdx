@@ -216,19 +216,14 @@ points in a series. It is most commonly used as the marker in [a line series](/b
 
 ### Data ranges
 
-Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is a <strong>whisker</strong>, commonly associated with error bars but possibly used to represent other types of ranges. The range _must_ be "anchored" at a specific point for referencing purposes, and the _anchor may optionally be rendered_. See the [range series docs](/basic-charts/6-range-series/) for more information about what can be done with this type of data series.
+Data ranges represent a span of data along one axis (usually the y-axis), at a defined location on the other axis (usually the x-axis). The default range marker is is a "cap" rendered at each end of the range, with a vertical line connecting them. This marker is commonly associated with error bars but possibly used to represent other types of ranges. See the [range series docs](/basic-charts/6-range-series/) for more information about what can be done with this type of data series.
 
-<PropDef name="dataRangeAnchorLength" type="number" def="0">
-  The default range anchor is a line of this length along the non-data axis
-  (similar to drawing the top edge of an data bar). The default value is 0
-  however: change this value to render range anchors.
+<PropDef name="dataRangeCapLength" type="number" def="10">
+  The default range cap is a line of this length along the non-data axis
+  (similar to drawing the top edge of an data bar). The default value is 10.
 </PropDef>
-<PropDef name="dataRangeAnchorStroke" type="color" def="#000"></PropDef>
-<PropDef name="dataRangeAnchorStrokeWidth" type="number" def="2"></PropDef>
-<PropDef name="dataWhiskerTopCapLength" type="number" def="10"></PropDef>
-<PropDef name="dataWhiskerBottomCapLength" type="number" def="10"></PropDef>
-<PropDef name="dataWhiskerStroke" type="color" def="#000"></PropDef>
-<PropDef name="dataWhiskerStrokeWidth" type="number" def="2"></PropDef>
+<PropDef name="dataRangeStroke" type="color" def="#000"></PropDef>
+<PropDef name="dataRangeStrokeWidth" type="number" def="2"></PropDef>
 
 ### Data area
 

@@ -19476,7 +19476,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
         >
           <g>
             <path
-              d="M75,193.535L95,193.535"
+              d="M80,243.4795L90,243.4795"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19488,7 +19488,43 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M75,226.41349999999997L95,226.41349999999997"
+              d="M80,226.41349999999997L90,226.41349999999997"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M80,193.535L90,193.535"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M80,127.01900000000002L90,127.01900000000002"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M80,31.76449999999998L90,31.76449999999998"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19501,18 +19537,6 @@ exports[`Test: Dot and Tukey plot 1`] = `
             />
             <path
               d="M85,243.4795L85,226.41349999999997"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M75,243.4795L95,243.4795"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19548,31 +19572,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M75,31.76449999999998L95,31.76449999999998"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
               d="M85,127.01900000000002L85,31.76449999999998"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M75,127.01900000000002L95,127.01900000000002"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19586,7 +19586,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
           </g>
           <g>
             <path
-              d="M130,143.17649999999998L150,143.17649999999998"
+              d="M135,230.818L145,230.818"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19598,7 +19598,43 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M130,198.25L150,198.25"
+              d="M135,198.25L145,198.25"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M135,143.17649999999998L145,143.17649999999998"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M135,73.19899999999998L145,73.19899999999998"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M135,-28.587499999999988L145,-28.587499999999988"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19611,18 +19647,6 @@ exports[`Test: Dot and Tukey plot 1`] = `
             />
             <path
               d="M140,230.818L140,198.25"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M130,230.818L150,230.818"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19658,31 +19682,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M130,-28.587499999999988L150,-28.587499999999988"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
               d="M140,73.19899999999998L140,-28.587499999999988"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M130,73.19899999999998L150,73.19899999999998"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19696,7 +19696,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
           </g>
           <g>
             <path
-              d="M185,221.54899999999998L205,221.54899999999998"
+              d="M190,237.49949999999998L200,237.49949999999998"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19708,7 +19708,43 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M185,229.3L205,229.3"
+              d="M190,229.3L200,229.3"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M190,221.54899999999998L200,221.54899999999998"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M190,209.5775L200,209.5775"
+              fill="transparent"
+              opacity={1}
+              stroke="#000"
+              strokeWidth={2}
+              style={
+                Object {
+                  "pointerEvents": undefined,
+                }
+              }
+            />
+            <path
+              d="M190,186.79600000000002L200,186.79600000000002"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19721,18 +19757,6 @@ exports[`Test: Dot and Tukey plot 1`] = `
             />
             <path
               d="M195,237.49949999999998L195,229.3"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M185,237.49949999999998L205,237.49949999999998"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -19768,31 +19792,7 @@ exports[`Test: Dot and Tukey plot 1`] = `
               }
             />
             <path
-              d="M185,186.79600000000002L205,186.79600000000002"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
               d="M195,209.5775L195,186.79600000000002"
-              fill="transparent"
-              opacity={1}
-              stroke="#000"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M185,209.5775L205,209.5775"
               fill="transparent"
               opacity={1}
               stroke="#000"
@@ -21064,10 +21064,10 @@ exports[`Test: Homepage: Bar 1`] = `
         >
           <g>
             <path
-              d="M69.625,170.50476190476192L69.625,170.50476190476192"
+              d="M69.625,180.29343066974096L69.625,180.29343066974096"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21099,25 +21099,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M69.625,180.29343066974096L69.625,180.29343066974096"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M100.875,175.45476190476188L100.875,175.45476190476188"
+              d="M100.875,185.3638418918483L100.875,185.3638418918483"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21149,25 +21137,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M100.875,185.3638418918483L100.875,185.3638418918483"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M132.125,213.46190476190478L132.125,213.46190476190478"
+              d="M132.125,218.96020051517922L132.125,218.96020051517922"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21199,25 +21175,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M132.125,218.96020051517922L132.125,218.96020051517922"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M163.375,229.20285714285714L163.375,229.20285714285714"
+              d="M163.375,232.89805963102629L163.375,232.89805963102629"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21249,25 +21213,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M163.375,232.89805963102629L163.375,232.89805963102629"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M194.625,229.97095238095238L194.625,229.97095238095238"
+              d="M194.625,234.38352635173396L194.625,234.38352635173396"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21299,25 +21251,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M194.625,234.38352635173396L194.625,234.38352635173396"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M225.875,239.95857142857145L225.875,239.95857142857145"
+              d="M225.875,242.67991353443443L225.875,242.67991353443443"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21349,25 +21289,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M225.875,242.67991353443443L225.875,242.67991353443443"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M257.125,231.48809523809524L257.125,231.48809523809524"
+              d="M257.125,235.8993848670446L257.125,235.8993848670446"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21399,25 +21327,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M257.125,235.8993848670446L257.125,235.8993848670446"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M288.375,229.14904761904762L288.375,229.14904761904762"
+              d="M288.375,233.32474984114378L288.375,233.32474984114378"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21449,25 +21365,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M288.375,233.32474984114378L288.375,233.32474984114378"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M319.625,179.45714285714286L319.625,179.45714285714286"
+              d="M319.625,189.5655651587966L319.625,189.5655651587966"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21499,25 +21403,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M319.625,189.5655651587966L319.625,189.5655651587966"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M350.875,95.85619047619048L350.875,95.85619047619048"
+              d="M350.875,117.23088122861789L350.875,117.23088122861789"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21549,25 +21441,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M350.875,117.23088122861789L350.875,117.23088122861789"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M382.125,112.53190476190478L382.125,112.53190476190478"
+              d="M382.125,129.27704633164007L382.125,129.27704633164007"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21599,25 +21479,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M382.125,129.27704633164007L382.125,129.27704633164007"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M413.375,106.53238095238102L413.375,106.53238095238102"
+              d="M413.375,125.28303984874034L413.375,125.28303984874034"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21639,18 +21507,6 @@ exports[`Test: Homepage: Bar 1`] = `
             />
             <path
               d="M413.375,125.28303984874034L413.375,87.78172205602169"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M413.375,125.28303984874034L413.375,125.28303984874034"
               fill="transparent"
               opacity={1}
               stroke="#464f58"
@@ -21884,10 +21740,10 @@ exports[`Test: Homepage: Bar 1`] = `
         >
           <g>
             <path
-              d="M75.625,131.28904761904764L75.625,131.28904761904764"
+              d="M75.625,143.54274294117877L75.625,143.54274294117877"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21919,25 +21775,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M75.625,143.54274294117877L75.625,143.54274294117877"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M106.875,121.40047619047625L106.875,121.40047619047625"
+              d="M106.875,135.78416468689136L106.875,135.78416468689136"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -21969,25 +21813,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M106.875,135.78416468689136L106.875,135.78416468689136"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M138.125,173.24571428571429L138.125,173.24571428571429"
+              d="M138.125,182.93923406514867L138.125,182.93923406514867"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22019,25 +21851,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M138.125,182.93923406514867L138.125,182.93923406514867"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M169.375,198.89285714285714L169.375,198.89285714285714"
+              d="M169.375,206.63216663586564L169.375,206.63216663586564"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22069,25 +21889,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M169.375,206.63216663586564L169.375,206.63216663586564"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M200.625,201.52428571428572L200.625,201.52428571428572"
+              d="M200.625,210.41972475428176L200.625,210.41972475428176"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22119,25 +21927,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M200.625,210.41972475428176L200.625,210.41972475428176"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M231.875,224.4747619047619L231.875,224.4747619047619"
+              d="M231.875,229.30831817219857L231.875,229.30831817219857"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22169,25 +21965,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M231.875,229.30831817219857L231.875,229.30831817219857"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M263.125,215.1142857142857L263.125,215.1142857142857"
+              d="M263.125,221.6842123283573L263.125,221.6842123283573"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22219,25 +22003,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M263.125,221.6842123283573L263.125,221.6842123283573"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M294.375,204.29571428571427L294.375,204.29571428571427"
+              d="M294.375,213.45891000087207L294.375,213.45891000087207"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22269,25 +22041,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M294.375,213.45891000087207L294.375,213.45891000087207"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M325.625,127.5133333333333L325.625,127.5133333333333"
+              d="M325.625,145.68641709293044L325.625,145.68641709293044"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22319,25 +22079,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M325.625,145.68641709293044L325.625,145.68641709293044"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M356.875,46.71142857142854L356.875,46.71142857142854"
+              d="M356.875,70.45003094935176L356.875,70.45003094935176"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22369,25 +22117,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M356.875,70.45003094935176L356.875,70.45003094935176"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M388.125,58.67285714285714L388.125,58.67285714285714"
+              d="M388.125,80.97913319755912L388.125,80.97913319755912"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22419,25 +22155,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M388.125,80.97913319755912L388.125,80.97913319755912"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M419.375,68.66809523809528L419.375,68.66809523809528"
+              d="M419.375,90.50828837347017L419.375,90.50828837347017"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22459,18 +22183,6 @@ exports[`Test: Homepage: Bar 1`] = `
             />
             <path
               d="M419.375,90.50828837347017L419.375,46.827902102720394"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M419.375,90.50828837347017L419.375,90.50828837347017"
               fill="transparent"
               opacity={1}
               stroke="#464f58"
@@ -22704,10 +22416,10 @@ exports[`Test: Homepage: Bar 1`] = `
         >
           <g>
             <path
-              d="M81.625,232.7147619047619L81.625,232.7147619047619"
+              d="M81.625,235.074985663323L81.625,235.074985663323"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22739,25 +22451,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M81.625,235.074985663323L81.625,235.074985663323"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M112.875,234.51714285714286L112.875,234.51714285714286"
+              d="M112.875,237.07415701990604L112.875,237.07415701990604"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22789,25 +22489,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M112.875,237.07415701990604L112.875,237.07415701990604"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M144.125,232.8009523809524L144.125,232.8009523809524"
+              d="M144.125,234.77928477153264L144.125,234.77928477153264"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22839,25 +22527,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M144.125,234.77928477153264L144.125,234.77928477153264"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M175.375,213.95999999999998L175.375,213.95999999999998"
+              d="M175.375,217.12625330635439L175.375,217.12625330635439"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22889,25 +22565,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M175.375,217.12625330635439L175.375,217.12625330635439"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M206.625,216.19619047619048L206.625,216.19619047619048"
+              d="M206.625,220.04796600987683L206.625,220.04796600987683"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22939,25 +22603,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M206.625,220.04796600987683L206.625,220.04796600987683"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M237.875,229.81380952380954L237.875,229.81380952380954"
+              d="M237.875,233.69955588222058L237.875,233.69955588222058"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -22989,25 +22641,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M237.875,233.69955588222058L237.875,233.69955588222058"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M269.125,227.4052380952381L269.125,227.4052380952381"
+              d="M269.125,232.11112549194408L269.125,232.11112549194408"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23039,25 +22679,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M269.125,232.11112549194408L269.125,232.11112549194408"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M300.375,225.52809523809523L300.375,225.52809523809523"
+              d="M300.375,231.59304587189897L300.375,231.59304587189897"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23089,25 +22717,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M300.375,231.59304587189897L300.375,231.59304587189897"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M331.625,229.9061904761905L331.625,229.9061904761905"
+              d="M331.625,232.79305811463612L331.625,232.79305811463612"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23139,25 +22755,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M331.625,232.79305811463612L331.625,232.79305811463612"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M362.875,216.22238095238095L362.875,216.22238095238095"
+              d="M362.875,221.4678732121807L362.875,221.4678732121807"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23189,25 +22793,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M362.875,221.4678732121807L362.875,221.4678732121807"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M394.125,208.2409523809524L394.125,208.2409523809524"
+              d="M394.125,213.0443802244428L394.125,213.0443802244428"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23239,25 +22831,13 @@ exports[`Test: Homepage: Bar 1`] = `
                 }
               }
             />
-            <path
-              d="M394.125,213.0443802244428L394.125,213.0443802244428"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
           </g>
           <g>
             <path
-              d="M425.375,209.42095238095237L425.375,209.42095238095237"
+              d="M425.375,215.42043811288133L425.375,215.42043811288133"
               fill="transparent"
               opacity={1}
-              stroke="#000"
+              stroke="#464f58"
               strokeWidth={2}
               style={
                 Object {
@@ -23279,18 +22859,6 @@ exports[`Test: Homepage: Bar 1`] = `
             />
             <path
               d="M425.375,215.42043811288133L425.375,203.42146664902344"
-              fill="transparent"
-              opacity={1}
-              stroke="#464f58"
-              strokeWidth={2}
-              style={
-                Object {
-                  "pointerEvents": undefined,
-                }
-              }
-            />
-            <path
-              d="M425.375,215.42043811288133L425.375,215.42043811288133"
               fill="transparent"
               opacity={1}
               stroke="#464f58"

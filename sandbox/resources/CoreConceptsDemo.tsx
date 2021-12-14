@@ -4,12 +4,14 @@ import {
   XAxis,
   YAxis,
   RangeVerticalSeries,
-  DataWhiskerVertical,
+  DataRangeVertical,
   DataBoxVertical,
 } from '../../src';
 import { rain } from '../__data__/precipitationByCity';
 
-const distData = rain.map((series) => series.dist);
+const distData = rain.map(
+  (series) => [series.dist.anchor[0], series.dist.ranges] as [number, number[]]
+);
 
 const CoreConceptsDemo: React.FC<{
   isCanvas: boolean;
@@ -29,9 +31,7 @@ const CoreConceptsDemo: React.FC<{
         dataBoxStroke: reduceInk ? '#666' : '#000',
         dataBoxStrokeWidth: reduceInk ? 1 : 2,
         dataBoxThickness: reduceInk ? 4 : 20,
-        dataRangeAnchorLength: reduceInk ? 4 : 20,
-        dataWhiskerBottomCapLength: reduceInk ? 0 : 20,
-        dataWhiskerTopCapLength: reduceInk ? 0 : 20,
+        dataRangeCapLength: reduceInk ? 4 : 20,
       }}
     >
       <XAxis range={[-0.5, 2.5]} />
@@ -43,10 +43,10 @@ const CoreConceptsDemo: React.FC<{
       <RangeVerticalSeries
         data={distData}
         renderRanges={[
-          DataWhiskerVertical,
+          DataRangeVertical,
           DataBoxVertical,
           DataBoxVertical,
-          DataWhiskerVertical,
+          DataRangeVertical,
         ]}
       />
     </Chart>

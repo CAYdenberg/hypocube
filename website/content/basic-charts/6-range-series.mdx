@@ -4,58 +4,45 @@ metaTitle: 'Drawing error bars and beyond'
 metaDescription: 'Drawing error bars and beyond'
 ---
 
-A **range series** is similar to a bar series, but it is used to represent _ranges_ of data along the primary axis, instead of a single point. Like a bar series, it has only stylistic or no meaning along the secondary axis. The `RangeSeries` component will, by default, draw **whiskers** (often used to represent error bars). By using the flexible `renderRanges` prop, however, it can be used to draw range representations in a variety of ways. See [composing charts](/composing-charts/) for an example of how it can be used to create a Tukey ("box-and-whisker") plot.
-
-## Understanding Anchors
-
-All data elements in Hypocube have an _anchor point_ that is used to report the element position when an event occurs. The Range Series (like the Line Series) does not render anything at this point by default, but the anchor point position is still reported to event callbacks. You can, however, make the anchor visible by setting the `dataRangeAnchorLength` chart style declaration.
+A **range series** is similar to a bar series, but it is used to represent _ranges_ of data along the secondary axis, instead of a single point. The `RangeSeries` component will, by default, draw whiskers (often used to represent error bars). However, by using the flexible `renderRanges` and `renderCaps` props, it can be used to draw range representations in a variety of ways. See [composing charts](/composing-charts/) for an example of how it can be used to create a Tukey ("box-and-whisker") plot.
 
 ```javascript react-live=true
-<Chart height={100} view={[0, 0, 4, 6]} isCanvas={false}>
+<Chart height={100} view={[0, 0, 4, 5]} isCanvas={false}>
   <XAxis />
   <YAxis />
   <RangeVerticalSeries
     data={[
-      { anchor: [1, 3], ranges: [0.5, 3.5] },
-      { anchor: [2, 2], ranges: [1.5, 2.5] },
-      { anchor: [3, 5], ranges: [2.5, 5.5] },
+      [1, [3, 5]],
+      [2, [2, 4]],
+      [3, [5, 7]],
     ]}
     chartStyle={{
-      dataWhiskerStroke: 'blue',
-      seriesXOffset: -8,
+      dataRangeStroke: 'blue',
+      seriesXOffset: -5,
     }}
   />
   <RangeVerticalSeries
     data={[
-      { anchor: [1, 1], ranges: [0.5, 1.5] },
-      { anchor: [2, 1.5], ranges: [1, 2] },
-      { anchor: [3, 2.5], ranges: [2, 3] },
+      [1, [1, 3]],
+      [2, [1.5, 3.5]],
+      [3, [2.5, 3.5]],
     ]}
     chartStyle={{
-      dataWhiskerStroke: 'red',
+      dataRangeStroke: 'red',
       seriesXOffset: 5,
-      dataRangeAnchorLength: 16,
-      dataRangeAnchorStroke: 'red',
-      seriesXOffset: 8,
     }}
   />
 </Chart>
 ```
 
-## Multiple Ranges
-
 ## Props
 
 import PropDef from '../components/PropDef';
 
-<PropDef name="data" type="Array<{ anchor: Point, ranges: number[] }>" required>
-  An array of range data to render. Each data point is given as an `anchor`
-  (which is just a `[x, y]` Point) and an array of numbers, which are the range
-  values in the y dimension. In the example chart above, two values are given
-  for each `ranges` property. If more values are given, a whisker will be drawn
-  between each contiguous pair of values. For example, if the ranges array has
-  three members, a whisker will be drawn between the first and second points,
-  and another whisker will be drawn between the second and third.
+<PropDef name="data" type="Array<[number, number[]]>" required>
+  An array of range data to render. Unlike other data series, each point is
+  given as a bipartite array consisting of an `x` value, and an array of `y`
+  values (see the example above).
 </PropDef>
 <PropDef name="chartStyle">
   Styles declarations which will override the global{' '}
@@ -73,13 +60,16 @@ import PropDef from '../components/PropDef';
   will occur (data may render in the gutter).
 </PropDef>
 <PropDef
-  name="renderAnchor"
+  name="renderCaps"
   type="React.Component<{ x: number; y: number; chartStyle }>"
 >
-  Render prop for the anchors. See the{' '}
+  Render prop for the ends of the ranges. See the{' '}
   <a href="/composing-charts/1-data-components/">data component docs</a> for
-  more information. By default it renders a `DataAnchor` and a replacement
-  component should accept the same props.
+  more information. By default it renders a `DataRangeCap` and a replacement
+  component should accept the same props.{' '}
+  <strong>This prop can also accept an array of components.</strong> When
+  multiple caps are rendered (see the data property above), each component will
+  be used in succession.
 </PropDef>
 <PropDef
   name="renderRanges"
@@ -87,15 +77,13 @@ import PropDef from '../components/PropDef';
 >
   Render prop for the ranges. See the{' '}
   <a href="/composing-charts/1-data-components">data component docs</a> for more
-  information. By default it renders a `DataWhiskerVertical` and a replacement
+  information. By default it renders a `DataRangeVertical` and a replacement
   component should accept the same props.{' '}
-  <strong>
-    Unlike the other render props, this can accept an array of components.
-  </strong>{' '}
-  When multiple ranges are rendered (see the data property above), each
-  component will be used in succession. See the example in{' '}
+  <strong>This prop can also accept an array of components.</strong> When
+  multiple ranges are rendered (see the data property above), each component
+  will be used in succession. See the example in{' '}
   <a href="/composing-charts/">Composing Charts</a> for how to use this to
   create Tukey plots.
 </PropDef>
 
-Additionally, the range series component accepts all the [pointer event handlers](/interaction/1-pointer-events/), which are rendered around each range point.
+Additionally, the range series component accepts all the [pointer event handlers](/interaction/1-pointer-events/), which are rendered around each range. The `elementPosition` for the range is considered to be the first y value in the set.

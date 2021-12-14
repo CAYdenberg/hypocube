@@ -28,11 +28,11 @@ export const DataPoint = Pure<DataPointProps>((props) => {
   );
 });
 
-export const DataAnchorLine: React.FC<DataPointProps> = (props) => {
+export const DataRangeCap: React.FC<DataPointProps> = (props) => {
   const {
-    dataRangeAnchorLength,
-    dataRangeAnchorStroke,
-    dataRangeAnchorStrokeWidth,
+    dataRangeStroke,
+    dataRangeStrokeWidth,
+    dataRangeCapLength,
     seriesXOffset: offset,
     seriesOpacity,
   } = props.chartStyle;
@@ -41,11 +41,11 @@ export const DataAnchorLine: React.FC<DataPointProps> = (props) => {
     <TranslatedLine
       position={[props.x, props.y]}
       path={[
-        [offset + dataRangeAnchorLength / -2, 0],
-        [offset + dataRangeAnchorLength / 2, 0],
+        [offset + dataRangeCapLength / -2, 0],
+        [offset + dataRangeCapLength / 2, 0],
       ]}
-      strokeWidth={dataRangeAnchorStrokeWidth}
-      stroke={dataRangeAnchorStroke}
+      strokeWidth={dataRangeStrokeWidth}
+      stroke={dataRangeStroke}
       opacity={seriesOpacity}
       svgPointerEvents={props.chartStyle.svgPointerEvents}
     />

@@ -40,14 +40,9 @@ const baseStyle: ChartStyleT = {
   dataLineStroke: '#000',
   dataLineStrokeWidth: 1,
 
-  dataRangeAnchorLength: 0,
-  dataRangeAnchorStroke: '#000',
-  dataRangeAnchorStrokeWidth: 2,
-
-  dataWhiskerTopCapLength: 10,
-  dataWhiskerBottomCapLength: 10,
-  dataWhiskerStroke: '#000',
-  dataWhiskerStrokeWidth: 2,
+  dataRangeStroke: '#000',
+  dataRangeStrokeWidth: 2,
+  dataRangeCapLength: 10,
 
   dataAreaFill: 'rgba(102, 102, 102, 0.2)',
 };
