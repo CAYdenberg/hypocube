@@ -22,10 +22,10 @@ const getTickLabel = (x: number) => {
 const getRanges = (series: ByMonth) =>
   series.data.map((datapoint, i) => {
     const errorpoint = series.error[i];
-    return {
-      anchor: datapoint,
-      ranges: [datapoint[1] - errorpoint[1], datapoint[1] + errorpoint[1]],
-    };
+    return [
+      datapoint[0],
+      [datapoint[1] - errorpoint[1], datapoint[1] + errorpoint[1]],
+    ] as [number, number[]];
   });
 
 const barWidth: ChartStyleFunction<number> = ({ pxWidth }) =>
@@ -76,9 +76,8 @@ const HomepageBar: React.FC<Props> = ({
       gutter={[0, 0, 50, 60]}
       isCanvas={isCanvas}
       chartStyle={{
-        dataWhiskerTopCapLength: capWidth,
-        dataWhiskerBottomCapLength: capWidth,
-        dataWhiskerStroke: '#464f58',
+        dataRangeCapLength: capWidth,
+        dataRangeStroke: '#464f58',
         dataBoxThickness: barWidth,
         fontSize,
       }}

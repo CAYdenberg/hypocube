@@ -6,7 +6,7 @@ import {
   LineSeries,
   Point,
   RangeVerticalSeries,
-  DataWhiskerVertical,
+  DataRangeVertical,
   DataBoxVertical,
 } from '../src';
 import { rain } from './__data__/precipitationByCity';
@@ -16,7 +16,9 @@ const allData: Point[] = rain.reduce(
   [] as Point[]
 );
 
-const distData = rain.map((series) => series.dist);
+const distData = rain.map(
+  (series) => [series.dist.anchor[0], series.dist.ranges] as [number, number[]]
+);
 
 const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
   const getXLabel = (pos: number) => rain[pos].meta.seriesName;
@@ -51,15 +53,12 @@ const DotAndTukey: React.FC<{ isCanvas: boolean }> = ({ isCanvas }) => {
           dataBoxStroke: '#000',
           dataBoxStrokeWidth: 2,
           dataBoxThickness: 20,
-          dataRangeAnchorLength: 20,
-          dataWhiskerBottomCapLength: 20,
-          dataWhiskerTopCapLength: 20,
         }}
         renderRanges={[
-          DataWhiskerVertical,
+          DataRangeVertical,
           DataBoxVertical,
           DataBoxVertical,
-          DataWhiskerVertical,
+          DataRangeVertical,
         ]}
       />
     </Chart>

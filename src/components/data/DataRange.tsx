@@ -46,15 +46,11 @@ export const DataBoxVertical: React.FC<DataRangeVerticalProps> = (props) => {
   );
 };
 
-export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
-  props
-) => {
+export const DataRangeVertical: React.FC<DataRangeVerticalProps> = (props) => {
   const { scaleX, scaleY } = useChartState();
   const {
-    dataWhiskerTopCapLength,
-    dataWhiskerBottomCapLength,
-    dataWhiskerStroke,
-    dataWhiskerStrokeWidth,
+    dataRangeStroke,
+    dataRangeStrokeWidth,
     seriesXOffset: offset,
     seriesOpacity,
     svgPointerEvents,
@@ -63,41 +59,17 @@ export const DataWhiskerVertical: React.FC<DataRangeVerticalProps> = (
   const yMin = scaleY(props.yMin);
   const yMax = scaleY(props.yMax);
   const midX = scaleX(props.x) + offset;
-  const leftXTop = midX - dataWhiskerTopCapLength / 2;
-  const leftXBottom = midX - dataWhiskerBottomCapLength / 2;
 
   return (
-    <React.Fragment>
-      <PxLine
-        path={[
-          [leftXTop, yMax],
-          [leftXTop + dataWhiskerTopCapLength, yMax],
-        ]}
-        stroke={dataWhiskerStroke}
-        strokeWidth={dataWhiskerStrokeWidth}
-        opacity={seriesOpacity}
-        svgPointerEvents={svgPointerEvents}
-      />
-      <PxLine
-        path={[
-          [midX, yMin],
-          [midX, yMax],
-        ]}
-        stroke={dataWhiskerStroke}
-        strokeWidth={dataWhiskerStrokeWidth}
-        opacity={seriesOpacity}
-        svgPointerEvents={svgPointerEvents}
-      />
-      <PxLine
-        path={[
-          [leftXBottom, yMin],
-          [leftXBottom + dataWhiskerBottomCapLength, yMin],
-        ]}
-        stroke={dataWhiskerStroke}
-        strokeWidth={dataWhiskerStrokeWidth}
-        opacity={seriesOpacity}
-        svgPointerEvents={svgPointerEvents}
-      />
-    </React.Fragment>
+    <PxLine
+      path={[
+        [midX, yMin],
+        [midX, yMax],
+      ]}
+      stroke={dataRangeStroke}
+      strokeWidth={dataRangeStrokeWidth}
+      opacity={seriesOpacity}
+      svgPointerEvents={svgPointerEvents}
+    />
   );
 };

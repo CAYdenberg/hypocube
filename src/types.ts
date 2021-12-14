@@ -9,6 +9,8 @@ import Viewbox from './api/Viewbox';
  */
 export type Point = [number, number];
 
+export type PointYRange = [number, number[]];
+
 export type CanvasComponent = (
   renderer: CanvasRenderingContext2D,
   dpr: number
@@ -73,14 +75,9 @@ export interface ChartStyleT {
   dataLineStroke: string;
   dataLineStrokeWidth: number;
 
-  dataRangeAnchorLength: number;
-  dataRangeAnchorStroke: string;
-  dataRangeAnchorStrokeWidth: number;
-
-  dataWhiskerTopCapLength: number;
-  dataWhiskerBottomCapLength: number;
-  dataWhiskerStroke: string;
-  dataWhiskerStrokeWidth: number;
+  dataRangeStroke: string;
+  dataRangeStrokeWidth: number;
+  dataRangeCapLength: number;
 
   dataAreaFill: string;
 }
