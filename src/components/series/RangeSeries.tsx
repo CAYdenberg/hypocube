@@ -5,7 +5,7 @@ import {
   ChartEventHandlers,
   PointYRange,
 } from '../../types';
-import { normalize } from '../../lib/normalize';
+import { arrayRepeater, normalize } from '../../lib/normalize';
 import { createViewbox, ViewboxDuck } from '../../api/Viewbox';
 import useChartState from '../base/ChartState';
 import { useChartStyle } from '../base/ChartStyle';
@@ -33,17 +33,10 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
   const view = normalize(props.view, cartesianBox);
   const clipPath = view ? createViewbox(view).toPath() : null;
 
-  const renderCaps = Array.isArray(props.renderCaps)
-    ? props.renderCaps
-    : props.renderCaps
-    ? [props.renderCaps]
-    : [DataRangeCap];
-
-  const renderRanges = Array.isArray(props.renderRanges)
-    ? props.renderRanges
-    : props.renderRanges
-    ? [props.renderRanges]
-    : [DataRangeVertical];
+  const renderCaps = arrayRepeater(normalize(props.renderCaps, DataRangeCap));
+  const renderRanges = arrayRepeater(
+    normalize(props.renderRanges, DataRangeVertical)
+  );
 
   return (
     <Clip path={clipPath}>
@@ -53,10 +46,8 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
         }
 
         const rangePairs = ranges
-          ? ranges
-              .slice(0, ranges.length - 1)
-              .map((val, i) => [val, ranges[i + 1]])
-          : [];
+          .slice(0, ranges.length - 1)
+          .map((val, i) => [val, ranges[i + 1]]);
 
         return (
           <Handle
@@ -66,12 +57,11 @@ export const RangeVerticalSeries: React.FC<RangeSeriesProps &
             key={x}
           >
             {ranges.map((y, i) => {
-              const Cap = renderCaps[i % renderCaps.length] || DataRangeCap;
+              const Cap = renderCaps(i);
               return <Cap x={x} y={y} key={i} chartStyle={chartStyle} />;
             })}
             {rangePairs.map((pair, i) => {
-              const Range =
-                renderRanges[i % renderRanges.length] || DataRangeVertical;
+              const Range = renderRanges(i);
               return (
                 <Range
                   x={x}

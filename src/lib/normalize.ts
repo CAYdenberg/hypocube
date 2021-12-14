@@ -20,3 +20,17 @@ export const contextualize = <T>(
   }
   return safeProp;
 };
+
+/**
+ * This constructs an "infinite array" of items that repeat over and over again,
+ * and can be accessed by index. For example if passed ['pizza', 'sauce'], will
+ * construct a function that returns 'pizza' when called with 0, 2, 4, etc.., and
+ * 'sauce' when called with 1, 3, 5, etc.. If passed a single item will contruct
+ * a function that always returns that item.
+ */
+export const arrayRepeater = <T>(from: T | Array<T>) => (i: number): T => {
+  if (Array.isArray(from)) {
+    return from[i % from.length];
+  }
+  return from;
+};
