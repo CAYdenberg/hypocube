@@ -1,4 +1,4 @@
-import * as lib from '../area';
+import * as lib from '../geometry';
 
 import { Point } from '../../types';
 

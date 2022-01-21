@@ -13,3 +13,11 @@ export const closeLineToEdge = (
 
   return [[first[0], yEdge], ...line, [last[0], yEdge]];
 };
+
+export const radiansToDegrees = (radians: number): number => {
+  return (radians * 180) / Math.PI;
+};
+
+export const degreesToRadians = (degrees: number): number => {
+  return (degrees * Math.PI) / 180;
+};

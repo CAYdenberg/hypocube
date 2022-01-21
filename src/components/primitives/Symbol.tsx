@@ -10,6 +10,7 @@ import {
   symbolWye,
 } from 'd3-shape';
 import React from 'react';
+import { radiansToDegrees } from '../../lib/geometry';
 import useChartState from '../base/ChartState';
 import { useClip } from './Clip';
 
@@ -36,6 +37,7 @@ interface SymbolProps {
   stroke?: string;
   strokeWidth?: number;
   fill?: string | null;
+  rotation?: number;
   opacity?: number;
   /**
    * When rendering as SVG, an invisible circle of the given radius is rendered
@@ -90,6 +92,7 @@ const Symbol: React.FC<SymbolProps> = (props) => {
     stroke,
     fill,
     strokeWidth,
+    rotation,
     opacity,
     quietRenderRadius,
     svgPointerEvents,
@@ -98,6 +101,7 @@ const Symbol: React.FC<SymbolProps> = (props) => {
     symbol: symbolCircle,
     stroke: '#000',
     strokeWidth: 1,
+    rotation: 0,
     fill: null,
     opacity: 1,
     quietRenderRadius: 0,
@@ -120,6 +124,7 @@ const Symbol: React.FC<SymbolProps> = (props) => {
       const line = d3Symbol(symbolF, size * 8).context(renderer);
 
       renderer.setTransform(dpr, 0, 0, dpr, pxPoint[0] * dpr, pxPoint[1] * dpr);
+      renderer.rotate(rotation);
       renderer.beginPath();
 
       renderer.globalAlpha = opacity;
@@ -145,7 +150,9 @@ const Symbol: React.FC<SymbolProps> = (props) => {
   return (
     <g
       style={{ pointerEvents: svgPointerEvents ? undefined : 'none' }}
-      transform={`translate(${pxPoint[0]}, ${pxPoint[1]})`}
+      transform={`translate(${pxPoint[0]}, ${
+        pxPoint[1]
+      }), rotate(${radiansToDegrees(rotation)})`}
     >
       <circle r={quietRenderRadius} x={0} y={0} fill="transparent"></circle>
       <path
