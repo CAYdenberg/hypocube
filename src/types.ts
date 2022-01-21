@@ -63,8 +63,9 @@ export interface ChartStyleT {
   dataBoxStrokeWidth: number;
   dataBoxThickness: number;
 
-  dataPointSize: number;
   dataPointSymbol: SymbolType;
+  dataPointSize: number;
+  dataPointRotation: number;
   dataPointFill: string;
   dataPointStroke: string;
   dataPointStrokeWidth: number;

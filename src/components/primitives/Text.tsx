@@ -1,5 +1,6 @@
 import React from 'react';
 import { DEFAULT_FONT_FAMILY } from '../../constants';
+import { radiansToDegrees } from '../../lib/geometry';
 import { normalize } from '../../lib/normalize';
 import { Point } from '../../types';
 import useChartState from '../base/ChartState';
@@ -85,7 +86,7 @@ const Text: React.FC<Props> = (props) => {
       }}
       textAnchor={svgAnchor}
       transform={
-        rotation ? `rotate(${(rotation * 180) / Math.PI} ${x} ${y})` : undefined
+        rotation ? `rotate(${radiansToDegrees(rotation)} ${x} ${y})` : undefined
       }
     >
       {text}

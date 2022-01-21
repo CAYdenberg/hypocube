@@ -28,8 +28,9 @@ const baseStyle: ChartStyleT = {
   dataBoxStrokeWidth: 0,
   dataBoxThickness: 10,
 
-  dataPointSize: 5,
   dataPointSymbol: 'none',
+  dataPointSize: 5,
+  dataPointRotation: 0,
   dataPointFill: '#000',
   dataPointStroke: '#000',
   dataPointStrokeWidth: 0,

@@ -1,5 +1,14 @@
 import React from 'react';
-import { Chart, Clip, Line, Text, LineSeries, XAxis, YAxis } from '../src';
+import {
+  Chart,
+  Clip,
+  Line,
+  Text,
+  LineSeries,
+  XAxis,
+  YAxis,
+  Symbol,
+} from '../src';
 import ChartError from '../src/components/base/ChartError';
 import BarGraph from './BarGraph';
 import ClickHandler from './ClickHandler';
@@ -131,6 +140,37 @@ const examples: Example[] = [
               text="Lazy bog"
               align="center"
               rotation={-0.5 * x * Math.PI}
+            />
+          </React.Fragment>
+        ))}
+      </Chart>
+    ),
+  },
+  {
+    name: 'Symbol rotation',
+    render: ({ isCanvas }) => (
+      <Chart height={300} view={[0, 0, 5, 2]} isCanvas={isCanvas}>
+        <Line
+          path={[
+            [0, 1],
+            [5, 1],
+          ]}
+          dash="dashed"
+        />
+        {[1, 2, 3, 4].map((x) => (
+          <React.Fragment key={x}>
+            <Line
+              path={[
+                [x, 0],
+                [x, 2],
+              ]}
+              dash="dashed"
+            />
+            <Symbol
+              point={[x, 1]}
+              symbol="triangle"
+              size={50}
+              rotation={0.5 * x * Math.PI}
             />
           </React.Fragment>
         ))}

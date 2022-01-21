@@ -12,7 +12,7 @@ import Handle from '../primitives/Handle';
 import Clip from '../primitives/Clip';
 import { createViewbox, ViewboxDuck } from '../../api/Viewbox';
 import { normalize } from '../../lib/normalize';
-import { closeLineToEdge } from '../../lib/area';
+import { closeLineToEdge } from '../../lib/geometry';
 import { Line } from '../primitives/Line';
 
 interface LineSeriesProps {

@@ -18,6 +18,7 @@ export const DataPoint = Pure<DataPointProps>((props) => {
       point={[x, y]}
       symbol={props.chartStyle.dataPointSymbol}
       size={props.chartStyle.dataPointSize}
+      rotation={props.chartStyle.dataPointRotation}
       stroke={props.chartStyle.dataPointStroke}
       strokeWidth={props.chartStyle.dataPointStrokeWidth}
       fill={props.chartStyle.dataPointFill}
