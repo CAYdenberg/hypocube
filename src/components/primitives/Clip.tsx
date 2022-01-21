@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { line as d3Line } from 'd3-shape';
-import { hashDatapoints } from '../../lib/hashDatapoints';
+import useHtmlId from '../../lib/useHtmlId';
 import { CanvasComponent, Point } from '../../types';
 import useChartState from '../base/ChartState';
 
@@ -20,6 +20,7 @@ interface Props {
 const Clip: React.FC<Props> = ({ path, children }) => {
   const { scaleX, scaleY, isCanvas } = useChartState();
   const prevRenderer = useClip();
+  const id = useHtmlId();
 
   const clipData = useMemo(() => {
     const pxPath = path
@@ -27,8 +28,6 @@ const Clip: React.FC<Props> = ({ path, children }) => {
       : [];
 
     const svgPath = d3Line()(pxPath);
-    const id = pxPath.length ? hashDatapoints(pxPath) : '';
-
     if (!svgPath) {
       return null;
     }
@@ -43,7 +42,6 @@ const Clip: React.FC<Props> = ({ path, children }) => {
 
     return {
       svgPath,
-      id,
       render,
     };
   }, [prevRenderer, path, scaleX, scaleY]);
@@ -58,16 +56,16 @@ const Clip: React.FC<Props> = ({ path, children }) => {
     );
   }
 
-  const { id, svgPath } = clipData;
+  const { svgPath } = clipData;
 
   return (
     <React.Fragment>
       <defs>
-        <clipPath id={id} clipRule="nonzero">
+        <clipPath id={id.current} clipRule="nonzero">
           <path d={svgPath} />
         </clipPath>
       </defs>
-      <g clipPath={`url(#${id})`}>{children}</g>
+      <g clipPath={`url(#${id.current})`}>{children}</g>
     </React.Fragment>
   );
 };
