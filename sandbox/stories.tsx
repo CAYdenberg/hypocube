@@ -268,11 +268,9 @@ const examples: Example[] = [
   {
     name: 'Rendering error',
     render: ({ isCanvas }) => (
-      <ChartError
-        isCanvas={isCanvas}
-        height={300}
-        view={[0, 0, 0, 0]}
-      ></ChartError>
+      <ChartError isCanvas={isCanvas} height={300} view={[0, 0, 0, 0]}>
+        <XAxis />
+      </ChartError>
     ),
   },
   {

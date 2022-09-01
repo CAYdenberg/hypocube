@@ -6,12 +6,14 @@ import {
   ChartEventHandlers,
   ReactEvent,
   ReactHandlers,
+  ChartEventHandler,
 } from '../types';
 import selectHandlers from './selectHandlers';
 
 export interface HandlerProps extends ChartEventHandlers {
   elementPosition?: [number, number];
   meta?: ChartEventMetaData;
+  children?: React.ReactNode;
   containerNode?: React.RefObject<HTMLDivElement>;
 }
 
@@ -53,8 +55,7 @@ export default ({
   );
 
   const reactHandlers = useMemo(() => {
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    return selectHandlers(handlers, (handler: any) => {
+    return selectHandlers(handlers, (handler: ChartEventHandler) => {
       return (event: ReactEvent) => {
         event.preventDefault();
         return handler(getData(event));

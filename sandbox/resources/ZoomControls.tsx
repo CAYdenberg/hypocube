@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const ZoomControlsContainer: React.FC = ({ children }) => {
+export const ZoomControlsContainer: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="zoom-controls-wrapper">
       <div className="drag-direction">Drag or swipe to move the x-axis</div>

@@ -69,6 +69,8 @@ export interface Props extends HandlerProps {
    * message, if any, is passed as a prop.
    */
   renderError?: React.FC<{ message?: string }>;
+
+  children: React.ReactNode;
 }
 
 const ChartInner: React.FC<Props> = (props) => {

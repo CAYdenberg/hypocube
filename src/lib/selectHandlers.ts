@@ -23,8 +23,10 @@ const keyIsSupported = (key: string): key is keyof ChartEventHandlers => {
  * handler versions which will be directly attached to SVG elements.
  */
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export default (props: Props, map?: any) => {
+export default <T>(props: Props, map?: (handler: ChartEventHandler) => T) => {
   return Object.keys(props).reduce((acc, key) => {
+    if (key.startsWith('__')) return acc;
+
     if (typeof props[key] === 'undefined') return acc;
 
     if (keyIsSupported(key)) {

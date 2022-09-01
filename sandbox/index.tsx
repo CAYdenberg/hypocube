@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { renderToString } from 'react-dom/server';
 import stories from './stories';
 
@@ -36,4 +36,6 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const el = document.getElementById('root') as HTMLDivElement;
+const root = createRoot(el);
+root.render(<App />);
