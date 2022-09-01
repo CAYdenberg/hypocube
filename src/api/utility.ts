@@ -25,13 +25,13 @@ export const getSeriesOffsets = (
   if (numSeries === 0) {
     return [];
   }
-  const getValue =
+  const getValue: (index: number) => number | ChartStyleFunction<number> =
     typeof stepSize === 'number'
       ? (index: number) => (numSeries - 1) * stepSize * -0.5 + stepSize * index
       : (index: number): ChartStyleFunction<number> => (pxBox) =>
           (numSeries - 1) * stepSize(pxBox) * -0.5 + stepSize(pxBox) * index;
 
-  return list(numSeries, getValue as any);
+  return list(numSeries, getValue);
 };
 
 export const getSeriesColors = (

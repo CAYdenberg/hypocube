@@ -29,6 +29,7 @@ export const useTooltip = <Meta extends ChartEventMetaData>() => {
 
 export const TooltipWrapper: React.FC<{
   onRequestClose: () => void;
+  children: React.ReactNode;
 }> = ({ onRequestClose, children }) => {
   const ref = useRef<HTMLDivElement>(null);
 

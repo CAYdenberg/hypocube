@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export function applyLanguages(_Prism) {
   /**
    * Here you have the possibility to add other supported languages to Prism and thus to the code highlighting.

@@ -28019,9 +28019,7 @@ Array [
                 textAnchor="middle"
                 x={123.9}
                 y={274}
-              >
-                
-              </text>
+              />
               <path
                 d="M166.5,250L166.5,260"
                 fill="transparent"
@@ -28075,9 +28073,7 @@ Array [
                 textAnchor="middle"
                 x={209.1}
                 y={274}
-              >
-                
-              </text>
+              />
               <path
                 d="M251.70000000000002,250L251.70000000000002,260"
                 fill="transparent"
@@ -28131,9 +28127,7 @@ Array [
                 textAnchor="middle"
                 x={294.3}
                 y={274}
-              >
-                
-              </text>
+              />
               <path
                 d="M336.9,250L336.9,260"
                 fill="transparent"
@@ -28187,9 +28181,7 @@ Array [
                 textAnchor="middle"
                 x={379.5}
                 y={274}
-              >
-                
-              </text>
+              />
             </g>
             <g>
               <path
@@ -50388,9 +50380,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={233}
-          >
-            
-          </text>
+          />
           <path
             d="M50,204L40,204"
             fill="transparent"
@@ -50416,9 +50406,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={210}
-          >
-            
-          </text>
+          />
           <path
             d="M50,181L40,181"
             fill="transparent"
@@ -50444,9 +50432,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={187}
-          >
-            
-          </text>
+          />
           <path
             d="M50,158L40,158"
             fill="transparent"
@@ -50472,9 +50458,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={164}
-          >
-            
-          </text>
+          />
           <path
             d="M50,135L40,135"
             fill="transparent"
@@ -50500,9 +50484,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={141}
-          >
-            
-          </text>
+          />
           <path
             d="M50,112L40,112"
             fill="transparent"
@@ -50528,9 +50510,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={118}
-          >
-            
-          </text>
+          />
           <path
             d="M50,89.00000000000001L40,89.00000000000001"
             fill="transparent"
@@ -50556,9 +50536,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={95.00000000000001}
-          >
-            
-          </text>
+          />
           <path
             d="M50,65.99999999999999L40,65.99999999999999"
             fill="transparent"
@@ -50584,9 +50562,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={71.99999999999999}
-          >
-            
-          </text>
+          />
           <path
             d="M50,42.99999999999999L40,42.99999999999999"
             fill="transparent"
@@ -50612,9 +50588,7 @@ exports[`Test: Pannable 1`] = `
             textAnchor="end"
             x={38}
             y={48.99999999999999}
-          >
-            
-          </text>
+          />
         </g>
         <defs>
           <clipPath

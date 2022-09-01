@@ -1,30 +1,15 @@
-import React, { PropsWithChildren, ReactElement, ReactFragment } from 'react';
-import { ChartEventMetaData, ChartStyleT } from '../types';
+import React from 'react';
 import Viewbox from '../api/Viewbox';
-import { Point } from '..';
 
-type Primitive = string | number | boolean | null;
-
-export type Props = PropsWithChildren<
-  Record<
-    string,
-    | Primitive
-    | Array<Primitive>
-    | Array<Point>
-    | Viewbox
-    | ChartEventMetaData
-    | ChartStyleT
-    | Function
-    | ReactElement
-    | ReactFragment
-  >
->;
-
-const isIndexed = (prop: any): prop is ChartStyleT | ChartEventMetaData => {
-  return prop && typeof prop === 'object';
+const isIndexed = (prop: unknown): prop is Record<string, unknown> => {
+  return !!prop && typeof prop === 'object';
 };
 
-export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
+export const isEqual = (
+  a: Record<string, unknown>,
+  b: Record<string, unknown>,
+  depth = 0
+): boolean => {
   if (depth > 1) {
     return a === b;
   }
@@ -44,12 +29,12 @@ export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
         return !valA.isEqual(valB);
       }
       if (isIndexed(valA) && isIndexed(valB)) {
-        return !isEqual(valA as Props, valB as Props, depth + 1);
+        return !isEqual(valA, valB, depth + 1);
       }
       return valA !== valB;
     })
   );
 };
 
-export const Pure = <Props>(Component: React.FC<Props>): React.FC<Props> =>
+export const Pure = <P>(Component: React.FC<P>) =>
   React.memo(Component, isEqual);

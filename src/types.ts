@@ -156,7 +156,7 @@ export enum GestureMeta {
 export interface ChartGestureEvent {
   phase: GesturePhase;
   intent: GestureIntent;
-  state: any;
+  state: unknown;
   transform: (initial: Viewbox) => Viewbox;
 }
 

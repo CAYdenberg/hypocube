@@ -13,6 +13,7 @@ import {
 } from '../components/styles/Docs';
 
 const forcedNavOrder = config.sidebar.forcedNavOrder;
+import githubIcon from '../components/images/github.svg';
 
 export default class MDXRuntimeTest extends Component {
   render() {
@@ -34,7 +35,6 @@ export default class MDXRuntimeTest extends Component {
       },
     } = data;
 
-    const githubIcon = require('../components/images/github.svg').default;
     const navItems = allMdx.edges
       .filter(({ node }) => {
         return node.fields.slug !== '/' && !node.frontmatter.noMenu;

@@ -36,6 +36,7 @@ const StateContainer: React.FC<Props> = ({ children }) => {
 
 const Tabs: React.FC<{
   names: string[];
+  children: React.ReactNode;
 }> = ({ names, children }) => {
   const [tab, setTab] = useState<number>(0);
   const activeChild = React.Children.toArray(children)[tab];
@@ -57,7 +58,10 @@ const Tabs: React.FC<{
   );
 };
 
-const LegendItem: React.FC<{ color: string }> = ({ color, children }) => {
+const LegendItem: React.FC<{ color: string; children: React.ReactNode }> = ({
+  color,
+  children,
+}) => {
   return (
     <li className="legend-item" style={{ color }}>
       <span
@@ -178,9 +182,9 @@ export const HomepageDemoContainer: React.FC = () => (
   </StateContainer>
 );
 
-export const CoreConceptsDemoContainer: React.FC = ({
-  children: _children,
-}) => {
+export const CoreConceptsDemoContainer: React.FC<{
+  children: React.ReactNode;
+}> = ({ children: _children }) => {
   const children = React.Children.toArray(_children);
 
   return (

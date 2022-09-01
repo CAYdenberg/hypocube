@@ -15,6 +15,7 @@ export const useClip = (): CanvasComponent => {
 
 interface Props {
   path?: Point[] | null;
+  children?: React.ReactNode;
 }
 
 const Clip: React.FC<Props> = ({ path, children }) => {

@@ -42,8 +42,8 @@ const pan = (
 // };
 
 export default (
-  onGesture: (data: ChartGestureEvent) => void = () => null,
-  containerNode?: React.RefObject<HTMLDivElement>
+  onGesture: (data: ChartGestureEvent) => void = () => null
+  // containerNode?: React.RefObject<HTMLDivElement>
 ) => {
   const ref = useRef(null);
   const { scaleX, scaleY } = useChartState();

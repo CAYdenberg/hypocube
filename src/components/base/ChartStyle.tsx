@@ -65,6 +65,7 @@ export const ChartStyleContext = React.createContext<ChartStyleT>(baseStyle);
 
 export const ChartStyleProvider: React.FC<{
   chartStyle: ChartStyleOptions;
+  children: React.ReactNode;
 }> = (props) => {
   const state = useChartState();
 

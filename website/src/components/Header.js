@@ -7,10 +7,11 @@ import Loadable from 'react-loadable';
 
 import config from '../../config.js';
 import LoadingProvider from './mdxComponents/loading';
-import { DarkModeSwitch } from './DarkModeSwitch';
 import Sidebar from './sidebar';
 
-const help = require('./images/help.svg');
+import help from './images/help.svg';
+import logoImg from './images/logo.svg';
+import twitter from './images/twitter.svg';
 
 const isSearchEnabled =
   config.header.search && config.header.search.enabled ? true : false;
@@ -57,7 +58,7 @@ const StyledLogo = styled.img`
   max-width: 18px;
 `;
 
-const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
+const Header = ({ location, isDarkThemeActive }) => (
   <StaticQuery
     query={graphql`
       query headerTitleQuery {
@@ -80,10 +81,6 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
       }
     `}
     render={(data) => {
-      const logoImg = require('./images/logo.svg');
-
-      const twitter = require('./images/twitter.svg');
-
       const {
         site: {
           siteMetadata: {

@@ -13,7 +13,7 @@ const defaultOptions: Options = {
 };
 
 export const segment = (data: number[], binWidth = 5): number[][] => {
-  let breakpoints: number[] = [];
+  const breakpoints: number[] = [];
 
   const max = Math.max(...data);
   const min = Math.min(...data);

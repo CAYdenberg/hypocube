@@ -7,7 +7,7 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
   const canvasContext = useRef<CanvasRenderingContext2D | null>(null);
   const dpr = useRef<number>(0);
 
-  const [_, setHash] = useState<number>(Math.random());
+  const [, setHash] = useState<number>(Math.random());
   const forceUpdate = useCallback(() => {
     setHash(Math.random());
   }, []);
@@ -61,19 +61,20 @@ export default (pxBox: Viewbox, isCanvas: boolean) => {
   // every time
   useEffect(() => {
     if (!canvasContext.current) return;
+    const cc = canvasContext.current as CanvasRenderingContext2D;
 
     canvasContext.current.scale(dpr.current, dpr.current);
     canvasContext.current.clearRect(0, 0, pxBox.x[1], pxBox.y[1]);
-    canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);
+    canvasContext.current.setTransform(1, 0, 0, 1, 0, 0);
 
     queue.forEach((func) => {
-      canvasContext.current!.save();
-      canvasContext.current!.scale(dpr.current, dpr.current);
-      func(canvasContext.current!, dpr.current);
+      cc.save();
+      cc.scale(dpr.current, dpr.current);
+      func(cc, dpr.current);
 
-      canvasContext.current!.globalAlpha = 1;
-      canvasContext.current!.restore();
-      canvasContext.current!.setTransform(1, 0, 0, 1, 0, 0);
+      cc.globalAlpha = 1;
+      cc.restore();
+      cc.setTransform(1, 0, 0, 1, 0, 0);
     });
   });
 

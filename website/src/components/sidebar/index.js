@@ -6,7 +6,7 @@ import { ExternalLink } from 'react-feather';
 import config from '../../../config';
 
 // eslint-disable-next-line no-unused-vars
-const ListItem = styled(({ className, active, level, ...props }) => {
+const ListItem = styled(({ className, ...props }) => {
   return (
     <li className={className}>
       <a href={props.to} {...props} target="_blank" rel="noopener noreferrer">
@@ -90,7 +90,7 @@ const Divider = styled((props) => (
   }
 `;
 
-const SidebarLayout = ({ location }) => (
+const SidebarLayout = () => (
   <StaticQuery
     query={graphql`
       query {
