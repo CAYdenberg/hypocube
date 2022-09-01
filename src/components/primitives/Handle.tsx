@@ -10,7 +10,7 @@ export const ChartHandle: React.FC<HandlerProps & ChartGestureHandlers> = ({
   onGesture,
   ...props
 }) => {
-  const ref = useChartGestures(onGesture, props.containerNode);
+  const ref = useChartGestures(onGesture);
   const handlers = useHandle(props);
   return (
     <div

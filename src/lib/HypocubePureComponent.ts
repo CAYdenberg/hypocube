@@ -14,17 +14,19 @@ export type Props = PropsWithChildren<
     | Viewbox
     | ChartEventMetaData
     | ChartStyleT
+    // type of function is unknown, could include user-declared callbacks
+    // eslint-disable-next-line @typescript-eslint/ban-types
     | Function
     | ReactElement
     | ReactFragment
   >
 >;
 
-const isIndexed = (prop: any): prop is ChartStyleT | ChartEventMetaData => {
-  return prop && typeof prop === 'object';
+const isIndexed = (prop: unknown): prop is ChartStyleT | ChartEventMetaData => {
+  return !!prop && typeof prop === 'object';
 };
 
-export const isEqual = (a: Props, b: Props, depth: number = 0): boolean => {
+export const isEqual = (a: Props, b: Props, depth = 0): boolean => {
   if (depth > 1) {
     return a === b;
   }

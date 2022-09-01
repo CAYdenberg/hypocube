@@ -53,7 +53,8 @@ export default ({
   );
 
   const reactHandlers = useMemo(() => {
-    return selectHandlers(handlers, (handler) => {
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    return selectHandlers(handlers, (handler: any) => {
       return (event: ReactEvent) => {
         event.preventDefault();
         return handler(getData(event));

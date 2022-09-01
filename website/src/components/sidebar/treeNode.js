@@ -11,7 +11,6 @@ const TreeNode = ({
   url,
   title,
   items,
-  ...rest
 }) => {
   const isCollapsed = collapsed[url];
 

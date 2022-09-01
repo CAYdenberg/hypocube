@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const config = require('../../config.js');
 
 const pageQuery = `{

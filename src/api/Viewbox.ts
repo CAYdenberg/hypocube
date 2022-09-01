@@ -169,11 +169,11 @@ export default class Viewbox {
     );
   }
 
-  private bisectX(fraction: number = 0.5): number {
+  private bisectX(fraction = 0.5): number {
     return fraction * this.width + this.xMin;
   }
 
-  private bisectY(fraction: number = 0.5): number {
+  private bisectY(fraction = 0.5): number {
     return fraction * this.height + this.yMin;
   }
 }

@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
 import { ChartAnimation } from '../types';
 
-const isTransitionAnimation = (input: any): input is ChartAnimation<any> =>
-  !!input.duration;
+const isTransitionAnimation = <T>(
+  input: ChartAnimation<T> | unknown
+): input is ChartAnimation<T> => !!(input as ChartAnimation<T>).duration;
 
 const useTransition = <T>(initialState: T) => {
   const [currentState, setCurrentState] = useState<T>(initialState);
