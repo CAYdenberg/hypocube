@@ -22,6 +22,7 @@ import { canada } from './__data__/covid-canada';
 import { tickerTape } from './__data__/tickerTape';
 import GestureDemo from './GestureDemo';
 import AreaChart from './AreaChart';
+import AnimationDemo from './AnimationDemo';
 
 interface Example {
   name: string;
@@ -310,6 +311,10 @@ const examples: Example[] = [
   {
     name: 'Gesture Demo',
     render: ({ isCanvas }) => <GestureDemo isCanvas={isCanvas} />,
+  },
+  {
+    name: 'Animation Demo',
+    render: ({ isCanvas }) => <AnimationDemo isCanvas={isCanvas} />,
   },
 ];
 
