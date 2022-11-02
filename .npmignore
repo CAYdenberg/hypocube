@@ -4,7 +4,6 @@ report.html
 src
 sandbox
 .cache
-dist/*
 website
 
 # Logs
