@@ -6,16 +6,12 @@ import useCanvas from '../../lib/useCanvas';
 import useContainerSizes from '../../lib/useContainerSizes';
 import { HandlerProps } from '../../lib/useHandle';
 import Viewbox, { createViewbox, ViewboxDuck } from '../../api/Viewbox';
-import { ChartGestureEvent, ChartStyleOptions, Point } from '../../types';
+import { ChartGestureEvent, ChartStyleOptions } from '../../types';
 import { ChartHandle } from '../primitives/Handle';
 import ChartError from './ChartError';
 import { ChartStateContext } from './ChartState';
 import { ChartStyleProvider } from './ChartStyle';
-
-interface HtmlLayerElement {
-  position: Point;
-  render: JSX.Element | null;
-}
+import { HtmlLayerManager, HtmlLayerElement } from './HtmlLayer';
 
 export interface Props extends HandlerProps {
   /**
@@ -112,12 +108,6 @@ const ChartInner: React.FC<Props> = (props) => {
     [pushToCanvasQueue, pxBox, cartesianBox.hash]
   );
 
-  const htmlLayer: HtmlLayerElement[] = Array.isArray(props.htmlLayer)
-    ? props.htmlLayer
-    : props.htmlLayer
-    ? [props.htmlLayer]
-    : [];
-
   return (
     <div
       ref={containerRef}
@@ -147,21 +137,7 @@ const ChartInner: React.FC<Props> = (props) => {
                 {children}
               </svg>
             )}
-            {htmlLayer.map((layer) => (
-              <div
-                style={{
-                  position: 'absolute',
-                  left: scaleX(layer.position[0]),
-                  top: scaleY(layer.position[1]),
-                  pointerEvents: chartStyle.htmlLayerPointerEvents
-                    ? undefined
-                    : 'none',
-                }}
-                key={`${layer.position[0]}-${layer.position[1]}`}
-              >
-                {layer.render}
-              </div>
-            ))}
+            <HtmlLayerManager htmlLayer={props.htmlLayer} />
           </ChartHandle>
         </ChartStyleProvider>
       </ChartStateContext.Provider>
