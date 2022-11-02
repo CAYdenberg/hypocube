@@ -25,32 +25,36 @@ export const Grid: React.FC<GridProps> = (props) => {
 
   return (
     <React.Fragment>
-      {xLines.map((y) => (
-        <Line
-          key={y}
-          path={[
-            [cartesianBox.xMin, y],
-            [cartesianBox.xMax, y],
-          ]}
-          strokeWidth={gridStrokeWidth}
-          stroke={gridColor}
-          dash={gridDashStyle}
-          svgPointerEvents={svgPointerEvents}
-        />
-      ))}
-      {yLines.map((x) => (
-        <Line
-          key={x}
-          path={[
-            [x, cartesianBox.yMin],
-            [x, cartesianBox.xMax],
-          ]}
-          strokeWidth={gridStrokeWidth}
-          stroke={gridColor}
-          dash={gridDashStyle}
-          svgPointerEvents={svgPointerEvents}
-        />
-      ))}
+      {xLines
+        .filter((x) => x >= cartesianBox.xMin && x <= cartesianBox.xMax)
+        .map((x) => (
+          <Line
+            key={`grid:x:${x}`}
+            path={[
+              [x, cartesianBox.yMin],
+              [x, cartesianBox.yMax],
+            ]}
+            strokeWidth={gridStrokeWidth}
+            stroke={gridColor}
+            dash={gridDashStyle}
+            svgPointerEvents={svgPointerEvents}
+          />
+        ))}
+      {yLines
+        .filter((y) => y >= cartesianBox.yMin && y <= cartesianBox.yMax)
+        .map((y) => (
+          <Line
+            key={`grid:y:${y}`}
+            path={[
+              [cartesianBox.xMin, y],
+              [cartesianBox.xMax, y],
+            ]}
+            strokeWidth={gridStrokeWidth}
+            stroke={gridColor}
+            dash={gridDashStyle}
+            svgPointerEvents={svgPointerEvents}
+          />
+        ))}
     </React.Fragment>
   );
 };
