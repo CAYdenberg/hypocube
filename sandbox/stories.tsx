@@ -128,7 +128,7 @@ const examples: Example[] = [
           gridDashStyle: 'dashed',
         }}
       >
-        <Grid xLines={[1]} yLines={[1, 2, 3, 4]} />
+        <Grid xLines={[1, 2, 3, 4]} yLines={[1]} />
         {[1, 2, 3, 4].map((x) => (
           <Text
             key={x}
