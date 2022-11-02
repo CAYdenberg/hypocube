@@ -26,8 +26,9 @@ export {
   createViewbox,
   createViewboxFromData,
 } from './api/Viewbox';
-export { default as useTransition } from './api/useTransition';
-export { default as usePannable } from './api/usePannable';
+export { default as useStateTransition } from './api/useTransition';
 export { default as useVoronoi } from './api/useVoronoi';
+export { default as createUseInterpolatedEffect } from './api/InterpolatedEffect';
+export * from './api/createUsePannable';
 
 export * from './types';

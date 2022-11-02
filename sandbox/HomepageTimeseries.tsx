@@ -8,7 +8,7 @@ import {
   ChartEvent,
   Point,
   ChartStyleFunction,
-  usePannable,
+  createUsePannable,
 } from '../src';
 import timeseriesData, { labels } from './__data__/homepage-1';
 import { ZoomControlsContainer, ZoomControl } from './resources/ZoomControls';
@@ -49,6 +49,10 @@ const initial: [number, number, number, number] = [201, 0, 50, 250];
 const maxZoomX = 12;
 const maxZoomY = 250;
 
+const usePannable = createUsePannable({
+  rescale: (view) => view.bound(bounds).constrainZoom({ maxZoomX, maxZoomY }),
+});
+
 const HomepageTimeseries: React.FC<Props> = ({
   isCanvas,
   colors,
@@ -56,13 +60,12 @@ const HomepageTimeseries: React.FC<Props> = ({
   handlePointSelect,
   handleClearSelect,
 }) => {
-  const { view, scrollToView, onGesture, isPanning } = usePannable(
-    [201, 0, 50, 250],
-    {
-      rescale: (view) =>
-        view.bound(bounds).constrainZoom({ maxZoomX, maxZoomY }),
-    }
-  );
+  const { view, scrollToView, onGesture, isPanning } = usePannable([
+    201,
+    0,
+    50,
+    250,
+  ]);
 
   const handleSelectPoint = useCallback(
     (data: ChartEvent) => {

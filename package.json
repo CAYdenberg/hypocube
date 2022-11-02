@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src sandbox website/src --ext .ts,.tsx,.js,.jsx --max-warnings=0",
     "test": "jest --env=jsdom",
+    "test:update": "jest --env=jsdom -u",
     "chk": "npm run typecheck && npm run lint && npm run test",
     "build": "tsc --project tsconfig.build.json && vite --config vite.ts build",
     "preversion": "npm run typecheck && npm run lint && npm run test && npm run build",

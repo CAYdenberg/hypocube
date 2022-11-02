@@ -30,18 +30,16 @@ const Pannable: React.FC<Props> = ({
   series,
   tickPositions,
 }) => {
-  const { view, onGesture } = usePannable([50, 0, 50, 1000], {
-    rescale: (view) => {
-      const bounded = view.bound(bounds);
-      const fitted = createViewboxFromData(bounded.pointsWithinX(series));
+  const { view, onGesture } = usePannable([50, 0, 50, 1000], (view) => {
+    const bounded = view.bound(bounds);
+    const fitted = createViewboxFromData(bounded.pointsWithinX(series));
 
-      return fitted
-        ? bounded.setEdges({
-            yMax: fitted.yMax + 20,
-            yMin: 0,
-          })
-        : bounded;
-    },
+    return fitted
+      ? bounded.setEdges({
+          yMax: fitted.yMax + 20,
+          yMin: 0,
+        })
+      : bounded;
   });
 
   return (
