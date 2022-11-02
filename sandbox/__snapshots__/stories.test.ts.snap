@@ -51659,7 +51659,7 @@ exports[`Test: Text rotation 1`] = `
           d="M0,150L300,150"
           fill="transparent"
           opacity={1}
-          stroke="#000"
+          stroke="#666"
           strokeDasharray="5,5"
           strokeWidth={1}
           style={
@@ -51669,10 +51669,49 @@ exports[`Test: Text rotation 1`] = `
           }
         />
         <path
-          d="M60,300L60,0"
+          d="M60,300L60,-450"
           fill="transparent"
           opacity={1}
-          stroke="#000"
+          stroke="#666"
+          strokeDasharray="5,5"
+          strokeWidth={1}
+          style={
+            Object {
+              "pointerEvents": undefined,
+            }
+          }
+        />
+        <path
+          d="M120,300L120,-450"
+          fill="transparent"
+          opacity={1}
+          stroke="#666"
+          strokeDasharray="5,5"
+          strokeWidth={1}
+          style={
+            Object {
+              "pointerEvents": undefined,
+            }
+          }
+        />
+        <path
+          d="M180,300L180,-450"
+          fill="transparent"
+          opacity={1}
+          stroke="#666"
+          strokeDasharray="5,5"
+          strokeWidth={1}
+          style={
+            Object {
+              "pointerEvents": undefined,
+            }
+          }
+        />
+        <path
+          d="M240,300L240,-450"
+          fill="transparent"
+          opacity={1}
+          stroke="#666"
           strokeDasharray="5,5"
           strokeWidth={1}
           style={
@@ -51698,19 +51737,6 @@ exports[`Test: Text rotation 1`] = `
         >
           Lazy bog
         </text>
-        <path
-          d="M120,300L120,0"
-          fill="transparent"
-          opacity={1}
-          stroke="#000"
-          strokeDasharray="5,5"
-          strokeWidth={1}
-          style={
-            Object {
-              "pointerEvents": undefined,
-            }
-          }
-        />
         <text
           fill="#000"
           fontSize={16}
@@ -51728,19 +51754,6 @@ exports[`Test: Text rotation 1`] = `
         >
           Lazy bog
         </text>
-        <path
-          d="M180,300L180,0"
-          fill="transparent"
-          opacity={1}
-          stroke="#000"
-          strokeDasharray="5,5"
-          strokeWidth={1}
-          style={
-            Object {
-              "pointerEvents": undefined,
-            }
-          }
-        />
         <text
           fill="#000"
           fontSize={16}
@@ -51758,19 +51771,6 @@ exports[`Test: Text rotation 1`] = `
         >
           Lazy bog
         </text>
-        <path
-          d="M240,300L240,0"
-          fill="transparent"
-          opacity={1}
-          stroke="#000"
-          strokeDasharray="5,5"
-          strokeWidth={1}
-          style={
-            Object {
-              "pointerEvents": undefined,
-            }
-          }
-        />
         <text
           fill="#000"
           fontSize={16}

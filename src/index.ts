@@ -3,6 +3,7 @@ export { default as Chart } from './components/base/Chart';
 export * from './components/furniture/Axes';
 export * from './components/furniture/AxisLabels';
 export * from './components/furniture/TickMarks';
+export * from './components/furniture/Grid';
 
 export * from './components/series/BarSeries';
 export * from './components/series/LineSeries';
