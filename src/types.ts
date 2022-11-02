@@ -43,6 +43,7 @@ export interface ChartStyleT {
   fontSize: number;
   fontFamily: string;
   svgPointerEvents: boolean;
+  htmlLayerPointerEvents: boolean;
 
   axisColor: string;
   axisStrokeWidth: number;

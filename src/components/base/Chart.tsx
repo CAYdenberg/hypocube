@@ -153,6 +153,9 @@ const ChartInner: React.FC<Props> = (props) => {
                   position: 'absolute',
                   left: scaleX(layer.position[0]),
                   top: scaleY(layer.position[1]),
+                  pointerEvents: chartStyle.htmlLayerPointerEvents
+                    ? undefined
+                    : 'none',
                 }}
                 key={`${layer.position[0]}-${layer.position[1]}`}
               >

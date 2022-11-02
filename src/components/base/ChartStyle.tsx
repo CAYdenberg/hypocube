@@ -8,6 +8,7 @@ const baseStyle: ChartStyleT = {
   fontSize: 16,
   fontFamily: DEFAULT_FONT_FAMILY,
   svgPointerEvents: true,
+  htmlLayerPointerEvents: true,
 
   axisColor: '#666',
   axisStrokeWidth: 2,
