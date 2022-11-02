@@ -36,6 +36,8 @@ const useVoronoi = (
 
   const handler: ChartEventHandler = useCallback(
     (data) => {
+      data.event.stopPropagation();
+
       if (!voronoi || !data.pointerPosition) {
         return data;
       }

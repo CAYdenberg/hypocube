@@ -22,7 +22,9 @@ export const useTooltip = <Meta extends ChartEventMetaData>() => {
     []
   );
 
-  const handleCloseTooltip = useCallback(() => setData(null), []);
+  const handleCloseTooltip = useCallback(() => {
+    setData(null);
+  }, []);
 
   return [data, handleSetTooltip, handleCloseTooltip] as const;
 };
