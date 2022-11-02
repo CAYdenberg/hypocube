@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Chart,
   Clip,
+  Grid,
   Line,
   Text,
   LineSeries,
@@ -119,30 +120,23 @@ const examples: Example[] = [
   {
     name: 'Text rotation',
     render: ({ isCanvas }) => (
-      <Chart height={300} view={[0, 0, 5, 2]} isCanvas={isCanvas}>
-        <Line
-          path={[
-            [0, 1],
-            [5, 1],
-          ]}
-          dash="dashed"
-        />
+      <Chart
+        height={300}
+        view={[0, 0, 5, 2]}
+        isCanvas={isCanvas}
+        chartStyle={{
+          gridDashStyle: 'dashed',
+        }}
+      >
+        <Grid xLines={[1]} yLines={[1, 2, 3, 4]} />
         {[1, 2, 3, 4].map((x) => (
-          <React.Fragment key={x}>
-            <Line
-              path={[
-                [x, 0],
-                [x, 2],
-              ]}
-              dash="dashed"
-            />
-            <Text
-              position={[x, 1]}
-              text="Lazy bog"
-              align="center"
-              rotation={-0.5 * x * Math.PI}
-            />
-          </React.Fragment>
+          <Text
+            key={x}
+            position={[x, 1]}
+            text="Lazy bog"
+            align="center"
+            rotation={-0.5 * x * Math.PI}
+          />
         ))}
       </Chart>
     ),

@@ -46,6 +46,10 @@ const baseStyle: ChartStyleT = {
   dataRangeCapLength: 10,
 
   dataAreaFill: 'rgba(102, 102, 102, 0.2)',
+
+  gridColor: '#666',
+  gridDashStyle: 'dotted',
+  gridStrokeWidth: 1,
 };
 
 const contextualizeStyle = (

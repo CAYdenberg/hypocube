@@ -81,6 +81,10 @@ export interface ChartStyleT {
   dataRangeCapLength: number;
 
   dataAreaFill: string;
+
+  gridColor: string;
+  gridDashStyle: DashType;
+  gridStrokeWidth: number;
 }
 
 type CreateChartStyleOptions<T> = {
