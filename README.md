@@ -2,7 +2,7 @@
 
 Composable, responsive React-based data visualization.
 
-[Read the docs.](https://hypocube.space/)
+[Read the docs.](https://hypocube.livingpixel.io/)
 
 ## Motivation
 
